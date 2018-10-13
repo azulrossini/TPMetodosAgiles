@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 13/10/2018 16:02:12 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Persistencia.Vigencias" table="vigencias" catalog="lic_sf_bd" optimistic-lock="version">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="assigned" />
+        </id>
+        <property name="primeraMenor21" type="int">
+            <column name="primera_menor_21" not-null="true" />
+        </property>
+        <property name="segundaMenor21" type="int">
+            <column name="segunda_menor_21" not-null="true" />
+        </property>
+        <property name="menor46" type="int">
+            <column name="menor_46" not-null="true" />
+        </property>
+        <property name="menor60" type="int">
+            <column name="menor_60" not-null="true" />
+        </property>
+        <property name="menor70" type="int">
+            <column name="menor_70" not-null="true" />
+        </property>
+        <property name="mayor70" type="int">
+            <column name="mayor_70" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 13/10/2018 16:02:12 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Persistencia.Clase" table="clase" catalog="lic_sf_bd" optimistic-lock="version">
+        <id name="id" type="string">
+            <column name="id" length="1" />
+            <generator class="assigned" />
+        </id>
+        <property name="vehiculos" type="string">
+            <column name="vehiculos" length="64" not-null="true" />
+        </property>
+        <property name="edadMinima" type="int">
+            <column name="edad_minima" not-null="true" />
+        </property>
+        <property name="clasesHeredadasId" type="string">
+            <column name="clases_heredadas_id" length="1" />
+        </property>
+    </class>
+</hibernate-mapping>

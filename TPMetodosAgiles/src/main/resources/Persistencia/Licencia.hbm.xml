@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 13/10/2018 16:02:12 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Persistencia.Licencia" table="licencia" catalog="lic_sf_bd" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="personaId" type="int">
+            <column name="persona_id" not-null="true" />
+        </property>
+        <property name="claseId" type="string">
+            <column name="clase_id" length="1" not-null="true" />
+        </property>
+        <property name="usuarioId" type="int">
+            <column name="usuario_id" not-null="true" />
+        </property>
+        <property name="costoId" type="string">
+            <column name="costo_id" length="1" not-null="true" />
+        </property>
+        <property name="vigenciaId" type="int">
+            <column name="vigencia_id" not-null="true" />
+        </property>
+        <property name="motivo" type="string">
+            <column name="motivo" length="10" not-null="true" />
+        </property>
+        <property name="fechaEmision" type="date">
+            <column name="fecha_emision" length="10" not-null="true" />
+        </property>
+        <property name="observaciones" type="string">
+            <column name="observaciones" length="200" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 13/10/2018 16:02:12 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Persistencia.Persona" table="persona" catalog="lic_sf_bd" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="tipoId" type="string">
+            <column name="tipo_id" length="3" not-null="true" />
+        </property>
+        <property name="nroId" type="int">
+            <column name="nro_id" not-null="true" />
+        </property>
+        <property name="apellido" type="string">
+            <column name="apellido" length="32" not-null="true" />
+        </property>
+        <property name="nombre" type="string">
+            <column name="nombre" length="32" not-null="true" />
+        </property>
+        <property name="fechaNac" type="date">
+            <column name="fecha_nac" length="10" not-null="true" />
+        </property>
+        <property name="domicilio" type="string">
+            <column name="domicilio" length="32" not-null="true" />
+        </property>
+        <property name="grupoSanguineo" type="string">
+            <column name="grupo_sanguineo" length="2" not-null="true" />
+        </property>
+        <property name="factor" type="string">
+            <column name="factor" length="1" not-null="true" />
+        </property>
+        <property name="donante" type="boolean">
+            <column name="donante" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
