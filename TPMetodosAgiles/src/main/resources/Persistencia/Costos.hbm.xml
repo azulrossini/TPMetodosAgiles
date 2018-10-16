@@ -8,17 +8,17 @@
             <column name="id" length="1" />
             <generator class="assigned" />
         </id>
-        <property name="unA&#241;o" type="int">
-            <column name="un_a&#241;o" not-null="true" />
+        <property name="unAnio" type="int">
+            <column name="un_anio" not-null="true" />
         </property>
-        <property name="tresA&#241;os" type="int">
-            <column name="tres_a&#241;os" not-null="true" />
+        <property name="tresAnios" type="int">
+            <column name="tres_anios" not-null="true" />
         </property>
-        <property name="cuatroA&#241;os" type="int">
-            <column name="cuatro_a&#241;os" not-null="true" />
+        <property name="cuatroAnios" type="int">
+            <column name="cuatro_anios" not-null="true" />
         </property>
-        <property name="cincoA&#241;os" type="int">
-            <column name="cinco_a&#241;os" not-null="true" />
+        <property name="cincoAnios" type="int">
+            <column name="cinco_anios" not-null="true" />
         </property>
     </class>
 </hibernate-mapping>
