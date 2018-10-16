@@ -58,7 +58,7 @@ public class ListadoLicencias extends javax.swing.JFrame {
                 
                 datos[0] = listaLicencia.get(i).getId();
                 datos[1] = listaLicencia.get(i).getClaseId();
-                datos[2] = listaLicencia.get(i).getVigenciaId(); //TENGO QUE CALCULAR LA VIGENCIA SUMANDO A LA FECHA DE EMISIÓN    
+                datos[2] = licenciaController.getVigencia(listaLicencia.get(i)); //CALCULO LA VIGENCIA
                 datos[3] = licenciaController.getPersona(listaLicencia.get(i).getPersonaId()).getApellido(); //Apellido
                 datos[4] = licenciaController.getPersona(listaLicencia.get(i).getPersonaId()).getNombre(); //Nombre
                 datos[5] = licenciaController.getPersona(listaLicencia.get(i).getPersonaId()).getGrupoSanguineo(); //GrupoSanguineo

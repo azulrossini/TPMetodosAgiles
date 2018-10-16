@@ -7,6 +7,7 @@ package Logica;
 
 import Persistencia.Licencia;
 import Persistencia.Persona;
+import Persistencia.Vigencias;
 import java.util.List;
 
 /**
@@ -33,6 +34,25 @@ public class LicenciaController {
         p = personaController.getPersona(id);
         
         return p;
+    }
+    
+    public int getVigencia(Licencia licencia){
+        
+        //id es el id de la persona
+          
+        PersonaController personaController = new PersonaController();
+        VigenciaController vigenciaController = new VigenciaController();
+        
+        //En listaVigencias tengo todas las edades para manejar las vigencias
+        
+        List<Vigencias> listaVigencias = vigenciaController.getVigencias();
+        Persona persona = personaController.getPersona(licencia.getPersonaId());
+               
+        int anio = persona.getFechaNac().getYear();
+        
+        
+        
+        return 0;
     }
     
 }
