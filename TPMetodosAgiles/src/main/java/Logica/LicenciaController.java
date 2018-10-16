@@ -6,6 +6,7 @@
 package Logica;
 
 import Persistencia.Licencia;
+import Persistencia.Persona;
 import java.util.List;
 
 /**
@@ -22,8 +23,16 @@ public class LicenciaController {
     
     public List<Licencia> getLicencias(){
         return LicenciaDAO.readAll();
+    }   
+    
+    public Persona getPersona(int id){
+        
+        Persona p;      
+        PersonaController personaController = new PersonaController();
+        
+        p = personaController.getPersona(id);
+        
+        return p;
     }
-    
-    
     
 }

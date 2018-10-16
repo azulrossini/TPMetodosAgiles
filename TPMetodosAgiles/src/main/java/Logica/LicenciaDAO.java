@@ -18,14 +18,13 @@ import org.hibernate.Session;
  */
 public class LicenciaDAO extends GenericDAO {
     
-    private util HU;
     private Session SS;
     
     public LicenciaDAO() {
     }
     
     public List<Licencia> readAll(){
-        SS = HU.getSessionFactory().openSession();
+        SS = util.getSessionFactory().openSession();
         SS.beginTransaction();
         String sentencia = "SELECT * FROM licencia WHERE 1;";
         Query query = SS.createSQLQuery(sentencia).addEntity(Licencia.class);
