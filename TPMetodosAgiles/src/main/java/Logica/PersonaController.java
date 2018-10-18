@@ -17,6 +17,8 @@ public class PersonaController {
     
     private PersonaDAO PersonaDAO;
     
+    public enum TipoDocumento{DNI, CUIT, CUIL}
+    
     public PersonaController(){
         this.PersonaDAO = new PersonaDAO();
     }
@@ -28,5 +30,13 @@ public class PersonaController {
         return persona;
         
     }
+    
+    public boolean validarDatos(TipoDocumento tipo, String numeroDocumento, String nombre, String apellido, int dia, 
+                                    int mes, int anio, String calle, int numeroCalle, int piso, String depart, String grupoSanguineo, char rh ){
+        
+        return true;
+    }
+    
+    
        
 }
