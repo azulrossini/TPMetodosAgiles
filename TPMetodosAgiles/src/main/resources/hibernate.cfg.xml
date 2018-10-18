@@ -48,10 +48,10 @@ Contributor(s):
     <property name="hibernate.show_sql">true</property>
     <property name="hibernate.query.factory_class">org.hibernate.hql.internal.classic.ClassicQueryTranslatorFactory</property>
     <mapping resource="Persistencia/Licencia.hbm.xml"/>
-    <mapping resource="Persistencia/Persona.hbm.xml"/>
-    <mapping resource="Persistencia/Clase.hbm.xml"/>
-    <mapping resource="Persistencia/Usuario.hbm.xml"/>
     <mapping resource="Persistencia/Vigencias.hbm.xml"/>
     <mapping resource="Persistencia/Costos.hbm.xml"/>
+    <mapping resource="Persistencia/Clase.hbm.xml"/>
+    <mapping resource="Persistencia/Usuario.hbm.xml"/>
+    <mapping resource="Persistencia/Persona.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

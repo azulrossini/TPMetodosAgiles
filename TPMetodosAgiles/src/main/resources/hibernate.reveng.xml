@@ -41,10 +41,10 @@ Contributor(s):
 -->
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="lic_sf_bd"/>
-  <table-filter match-name="costos"/>
   <table-filter match-name="licencia"/>
-  <table-filter match-name="usuario"/>
-  <table-filter match-name="vigencias"/>
-  <table-filter match-name="clase"/>
   <table-filter match-name="persona"/>
+  <table-filter match-name="clase"/>
+  <table-filter match-name="costos"/>
+  <table-filter match-name="vigencias"/>
+  <table-filter match-name="usuario"/>
 </hibernate-reverse-engineering>
