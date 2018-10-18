@@ -104,9 +104,9 @@ public class AltaTitular extends javax.swing.JFrame {
         jLabelTipoDocumento.setForeground(new java.awt.Color(51, 51, 51));
         jLabelTipoDocumento.setText("Tipo");
 
-        jComboBoxTipoDocumento.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 11)); // NOI18N
+        jComboBoxTipoDocumento.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 14)); // NOI18N
         jComboBoxTipoDocumento.setForeground(new java.awt.Color(51, 51, 51));
-        jComboBoxTipoDocumento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "DNI", "CUIT", "CUIL" }));
+        jComboBoxTipoDocumento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "DNI", "CUIT", "CUIL", "LC", "LE", "CI", "PASAPORTE" }));
 
         jLabelNumeroDocumento.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 18)); // NOI18N
         jLabelNumeroDocumento.setForeground(new java.awt.Color(51, 51, 51));
@@ -330,8 +330,8 @@ public class AltaTitular extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabelTipoDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jComboBoxTipoDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(23, 23, 23)
+                                .addComponent(jComboBoxTipoDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
                                 .addComponent(jLabelNumeroDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jTextFieldNumeroDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -350,7 +350,7 @@ public class AltaTitular extends javax.swing.JFrame {
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextFieldAnioNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(89, Short.MAX_VALUE))
+                .addGap(83, 83, 83))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
