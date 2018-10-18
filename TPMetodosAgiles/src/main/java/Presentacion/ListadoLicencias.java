@@ -17,6 +17,7 @@ import java.awt.event.KeyEvent;
 import static java.util.Collections.list;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
@@ -36,6 +37,18 @@ public class ListadoLicencias extends javax.swing.JFrame {
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
+        
+        //CONFIGURO EL ANCHO DE LAS COLUMNAS
+        tabla.getColumnModel().getColumn(0).setPreferredWidth(27);
+        tabla.getColumnModel().getColumn(1).setPreferredWidth(5);
+        tabla.getColumnModel().getColumn(2).setPreferredWidth(5);
+        tabla.getColumnModel().getColumn(3).setPreferredWidth(50);
+        tabla.getColumnModel().getColumn(4).setPreferredWidth(50);
+        tabla.getColumnModel().getColumn(5).setPreferredWidth(10);
+        tabla.getColumnModel().getColumn(6).setPreferredWidth(10);
+        tabla.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
+        
+        //CARGO LAS LICENCIAS
         getLicencias();
         
     }
@@ -56,6 +69,7 @@ public class ListadoLicencias extends javax.swing.JFrame {
             for (int i=0; i<listaLicencia.size(); i++){
                 Object datos[] = new Object[7];
                 
+                
                 Persona persona = licenciaController.getPersona(listaLicencia.get(i).getPersonaId());
                 Licencia licencia = listaLicencia.get(i);
                 
@@ -65,12 +79,23 @@ public class ListadoLicencias extends javax.swing.JFrame {
                 datos[3] = persona.getApellido(); //Apellido
                 datos[4] = persona.getNombre(); //Nombre
                 datos[5] = persona.getGrupoSanguineo(); //GrupoSanguineo
-                datos[6] = persona.isDonante();
+                datos[6] = this.isDonante(persona);
                 
                 dtm.addRow(datos);
             }
             
         } 
+    }
+    
+    public String isDonante(Persona persona){
+        
+        if(persona.isDonante()){
+            return "SI";
+        }
+        else{
+            return "NO";
+        }
+        
     }
     
     public void filtro() {
@@ -128,7 +153,8 @@ public class ListadoLicencias extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tabla.setIntercellSpacing(new java.awt.Dimension(16, 4));
+        tabla.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tabla.setIntercellSpacing(new java.awt.Dimension(4, 4));
         jScrollPane1.setViewportView(tabla);
 
         print.setBackground(new java.awt.Color(102, 102, 102));
@@ -178,6 +204,11 @@ public class ListadoLicencias extends javax.swing.JFrame {
         jButton12.setBorderPainted(false);
         jButton12.setContentAreaFilled(false);
         jButton12.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/left-arrow rollover.png"))); // NOI18N
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -280,6 +311,11 @@ public class ListadoLicencias extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.setExtendedState(ICONIFIED);
     }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        IndexView indexView = new IndexView();
+        this.dispose();
+    }//GEN-LAST:event_jButton12ActionPerformed
 
     /**
      * @param args the command line arguments

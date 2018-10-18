@@ -7,6 +7,7 @@ package Logica;
 
 import Persistencia.Licencia;
 import Persistencia.Persona;
+import java.util.Date;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -78,7 +79,7 @@ public class LicenciaControllerTest {
         Licencia licencia = null;
         LicenciaController instance = new LicenciaController();
         int expResult = 0;
-        int result = instance.getVigencia(licencia);
+        Date result = instance.getVigencia(licencia);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
