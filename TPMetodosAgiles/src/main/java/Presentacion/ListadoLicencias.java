@@ -87,13 +87,13 @@ public class ListadoLicencias extends javax.swing.JFrame {
         tabla = new javax.swing.JTable();
         jSeparator2 = new javax.swing.JSeparator();
         print = new javax.swing.JButton();
-        back = new javax.swing.JLabel();
-        minimize = new javax.swing.JLabel();
-        exit = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         tFiltro = new javax.swing.JTextField();
         jSeparator3 = new javax.swing.JSeparator();
         jComboFiltro = new javax.swing.JComboBox<>();
+        jButton10 = new javax.swing.JButton();
+        jButton11 = new javax.swing.JButton();
+        jButton12 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -101,13 +101,11 @@ public class ListadoLicencias extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(102, 102, 102));
         jPanel1.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 1, true), new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true)));
 
-        jLabel1.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setFont(new java.awt.Font("Microsoft JhengHei UI", 0, 18)); // NOI18N
         jLabel1.setText("Filtros");
 
         tabla.setBackground(new java.awt.Color(102, 102, 102));
-        tabla.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
-        tabla.setForeground(new java.awt.Color(255, 255, 255));
+        tabla.setFont(new java.awt.Font("Microsoft JhengHei UI", 1, 14)); // NOI18N
         tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
@@ -131,8 +129,7 @@ public class ListadoLicencias extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tabla);
 
         print.setBackground(new java.awt.Color(102, 102, 102));
-        print.setFont(new java.awt.Font("Caviar Dreams", 1, 11)); // NOI18N
-        print.setForeground(new java.awt.Color(255, 255, 255));
+        print.setFont(new java.awt.Font("Microsoft JhengHei UI", 1, 11)); // NOI18N
         print.setText("IMPRIMIR");
         print.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -140,32 +137,10 @@ public class ListadoLicencias extends javax.swing.JFrame {
             }
         });
 
-        back.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/reply.png"))); // NOI18N
-        back.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                backMouseClicked(evt);
-            }
-        });
-
-        minimize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/minimize.png"))); // NOI18N
-        minimize.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                minimizeMouseClicked(evt);
-            }
-        });
-
-        exit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/cancel.png"))); // NOI18N
-        exit.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                exitMouseClicked(evt);
-            }
-        });
-
-        jLabel2.setFont(new java.awt.Font("Caviar Dreams", 0, 36)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setFont(new java.awt.Font("Microsoft JhengHei UI", 0, 36)); // NOI18N
         jLabel2.setText("Listado de licencias");
 
-        tFiltro.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
+        tFiltro.setFont(new java.awt.Font("Microsoft JhengHei UI", 1, 14)); // NOI18N
         tFiltro.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 tFiltroKeyTyped(evt);
@@ -173,9 +148,33 @@ public class ListadoLicencias extends javax.swing.JFrame {
         });
 
         jComboFiltro.setBackground(new java.awt.Color(102, 102, 102));
-        jComboFiltro.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
-        jComboFiltro.setForeground(new java.awt.Color(255, 255, 255));
+        jComboFiltro.setFont(new java.awt.Font("Microsoft JhengHei UI", 1, 14)); // NOI18N
         jComboFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Apellido", "Nombre", "Grupo", "Donante" }));
+
+        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/cancel.png"))); // NOI18N
+        jButton10.setBorderPainted(false);
+        jButton10.setContentAreaFilled(false);
+        jButton10.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/cancel rollover.png"))); // NOI18N
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
+
+        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/diminish.png"))); // NOI18N
+        jButton11.setBorderPainted(false);
+        jButton11.setContentAreaFilled(false);
+        jButton11.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/diminish rollover.png"))); // NOI18N
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
+
+        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/left-arrow.png"))); // NOI18N
+        jButton12.setBorderPainted(false);
+        jButton12.setContentAreaFilled(false);
+        jButton12.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/left-arrow rollover.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -190,12 +189,6 @@ public class ListadoLicencias extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(print))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(back)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(minimize)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(exit))
                     .addComponent(jSeparator3)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -205,7 +198,14 @@ public class ListadoLicencias extends javax.swing.JFrame {
                                 .addComponent(jComboFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(tFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 365, Short.MAX_VALUE)))
+                        .addGap(0, 365, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -213,10 +213,10 @@ public class ListadoLicencias extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(5, 5, 5)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(back)
-                    .addComponent(exit)
-                    .addComponent(minimize))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -255,19 +255,6 @@ public class ListadoLicencias extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_printActionPerformed
 
-    private void minimizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_minimizeMouseClicked
-        this.setExtendedState(ICONIFIED);
-    }//GEN-LAST:event_minimizeMouseClicked
-
-    private void exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseClicked
-        System.exit(0);
-    }//GEN-LAST:event_exitMouseClicked
-
-    private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
-        IndexView IV = new IndexView();
-        this.dispose();
-    }//GEN-LAST:event_backMouseClicked
-
     private void tFiltroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tFiltroKeyTyped
         tFiltro.addKeyListener(new KeyAdapter() {
             @Override
@@ -281,6 +268,15 @@ public class ListadoLicencias extends javax.swing.JFrame {
         trsFiltro = new TableRowSorter(tabla.getModel());
         tabla.setRowSorter(trsFiltro);
     }//GEN-LAST:event_tFiltroKeyTyped
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        // TODO add your handling code here:
+        this.setExtendedState(ICONIFIED);
+    }//GEN-LAST:event_jButton11ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -318,8 +314,9 @@ public class ListadoLicencias extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel back;
-    private javax.swing.JLabel exit;
+    private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton12;
     private javax.swing.JComboBox<String> jComboFiltro;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -328,7 +325,6 @@ public class ListadoLicencias extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JLabel minimize;
     private javax.swing.JButton print;
     private javax.swing.JTextField tFiltro;
     private javax.swing.JTable tabla;
