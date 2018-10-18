@@ -27,7 +27,7 @@ public class VigenciaDAO {
         SS = util.getSessionFactory().openSession();
         SS.beginTransaction();
         String sentencia = "SELECT * FROM vigencias WHERE 1;";
-        Query query = SS.createSQLQuery(sentencia).addEntity(Licencia.class);
+        Query query = SS.createSQLQuery(sentencia).addEntity(Vigencias.class);
         List<Vigencias> lista = query.list();
         SS.getTransaction().commit();
         SS.close();

@@ -56,13 +56,16 @@ public class ListadoLicencias extends javax.swing.JFrame {
             for (int i=0; i<listaLicencia.size(); i++){
                 Object datos[] = new Object[7];
                 
-                datos[0] = listaLicencia.get(i).getId();
-                datos[1] = listaLicencia.get(i).getClaseId();
-                datos[2] = licenciaController.getVigencia(listaLicencia.get(i)); //CALCULO LA VIGENCIA
-                datos[3] = licenciaController.getPersona(listaLicencia.get(i).getPersonaId()).getApellido(); //Apellido
-                datos[4] = licenciaController.getPersona(listaLicencia.get(i).getPersonaId()).getNombre(); //Nombre
-                datos[5] = licenciaController.getPersona(listaLicencia.get(i).getPersonaId()).getGrupoSanguineo(); //GrupoSanguineo
-                datos[6] = licenciaController.getPersona(listaLicencia.get(i).getPersonaId()).isDonante();
+                Persona persona = licenciaController.getPersona(listaLicencia.get(i).getPersonaId());
+                Licencia licencia = listaLicencia.get(i);
+                
+                datos[0] = licencia.getId();
+                datos[1] = licencia.getClaseId();
+                datos[2] = licenciaController.getVigencia(licencia); //CALCULO LA VIGENCIA
+                datos[3] = persona.getApellido(); //Apellido
+                datos[4] = persona.getNombre(); //Nombre
+                datos[5] = persona.getGrupoSanguineo(); //GrupoSanguineo
+                datos[6] = persona.isDonante();
                 
                 dtm.addRow(datos);
             }
