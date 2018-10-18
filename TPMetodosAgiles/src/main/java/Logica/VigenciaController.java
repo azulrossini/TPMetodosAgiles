@@ -13,11 +13,12 @@ import java.util.List;
  * @author JIC
  */
 public class VigenciaController {
-    
-    private VigenciaDAO VigenciaDAO;
-    
+       
     public List<Vigencias> getVigencias(){
-        return VigenciaDAO.readAll();
+        
+        VigenciaDAO vigenciadao = new VigenciaDAO();
+        
+        return vigenciadao.readAll();
     } 
     
 }
