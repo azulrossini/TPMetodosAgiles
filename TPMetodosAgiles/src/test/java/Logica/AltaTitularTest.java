@@ -130,6 +130,7 @@ public class AltaTitularTest {
         assertEquals(false, rtdo[10]);
         
         //edad menor a 17
+        grupoSanguineo="A";
         anio="2010";
         rtdo=p.validarDatos(PersonaController.TipoDocumento.CUIT, numDocumento, nombre, apellido, dia, mes, anio, calle, numeroCalle, piso, depart, grupoSanguineo);
         assertEquals(false, rtdo[11]);
