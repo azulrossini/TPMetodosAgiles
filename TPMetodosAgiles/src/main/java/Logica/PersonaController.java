@@ -7,6 +7,7 @@ package Logica;
 
 import Persistencia.Licencia;
 import Persistencia.Persona;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,10 +32,28 @@ public class PersonaController {
         
     }
     
-    public boolean validarDatos(TipoDocumento tipo, String numeroDocumento, String nombre, String apellido, int dia, 
-                                    int mes, int anio, String calle, int numeroCalle, int piso, String depart, String grupoSanguineo, char rh ){
+    
+    
+    /*devuelve un arreglo de booleans, cada posicion indica si el dato es correcto o no
+    0 numeroDocumento
+    1 nombre
+    2 apellido
+    3 dia
+    4 mes
+    5 anio
+    6 calle
+    7 numero de calle
+    8 piso
+    9 departamento
+    10 grupo sanguineo
+    11 edad menor a 17
+    */
+    public boolean[] validarDatos(TipoDocumento tipo, String numeroDocumento, String nombre, String apellido, String dia, 
+                                    String mes, String anio, String calle, String numeroCalle, String piso, String depart, String grupoSanguineo){
+        //falta hacer
+        boolean lista[]=null;
         
-        return true;
+        return lista;
     }
     
     

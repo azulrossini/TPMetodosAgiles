@@ -64,7 +64,6 @@ public class AltaTitular extends javax.swing.JFrame {
         jLabelGrupoSanguineo = new javax.swing.JLabel();
         jTextFieldGrupoSanguineo = new javax.swing.JTextField();
         jLabelRH = new javax.swing.JLabel();
-        jTextFieldRH = new javax.swing.JTextField();
         jLabelDonante = new javax.swing.JLabel();
         jCheckBoxDonante = new javax.swing.JCheckBox();
         jButtonGuardar = new javax.swing.JButton();
@@ -72,6 +71,7 @@ public class AltaTitular extends javax.swing.JFrame {
         jButtonCerrar = new javax.swing.JButton();
         jButtonAtras = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        jComboBoxRH = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -112,20 +112,20 @@ public class AltaTitular extends javax.swing.JFrame {
         jLabelNumeroDocumento.setForeground(new java.awt.Color(51, 51, 51));
         jLabelNumeroDocumento.setText("Número");
 
-        jTextFieldNumeroDocumento.setToolTipText("");
+        jTextFieldNumeroDocumento.setToolTipText("Sin guiones ni espacios");
 
         jLabelNombreTitular.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 18)); // NOI18N
         jLabelNombreTitular.setForeground(new java.awt.Color(51, 51, 51));
         jLabelNombreTitular.setText("Nombre");
 
-        jTextFieldNombreTitular.setToolTipText("Juan");
+        jTextFieldNombreTitular.setToolTipText("");
         jTextFieldNombreTitular.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
 
         jLabelApellidoTitular.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 18)); // NOI18N
         jLabelApellidoTitular.setForeground(new java.awt.Color(51, 51, 51));
         jLabelApellidoTitular.setText("Apellido");
 
-        jTextFieldApellidoTitular.setToolTipText("Perez");
+        jTextFieldApellidoTitular.setToolTipText("");
 
         jLabelFechaNacimiento.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 18)); // NOI18N
         jLabelFechaNacimiento.setForeground(new java.awt.Color(51, 51, 51));
@@ -206,12 +206,6 @@ public class AltaTitular extends javax.swing.JFrame {
         jLabelRH.setForeground(new java.awt.Color(51, 51, 51));
         jLabelRH.setText("RH");
 
-        jTextFieldRH.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldRHActionPerformed(evt);
-            }
-        });
-
         jLabelDonante.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 18)); // NOI18N
         jLabelDonante.setForeground(new java.awt.Color(51, 51, 51));
         jLabelDonante.setText("Donante");
@@ -260,6 +254,8 @@ public class AltaTitular extends javax.swing.JFrame {
         });
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/AltaTitularGrande.png"))); // NOI18N
+
+        jComboBoxRH.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "+", "-" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -321,8 +317,8 @@ public class AltaTitular extends javax.swing.JFrame {
                                 .addComponent(jTextFieldGrupoSanguineo, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabelRH, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextFieldRH, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addComponent(jComboBoxRH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabelNombreTitular, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -367,11 +363,12 @@ public class AltaTitular extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabelDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelTipoDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelNumeroDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldNumeroDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBoxTipoDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jComboBoxTipoDocumento, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabelTipoDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabelNumeroDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextFieldNumeroDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelNombreTitular, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -409,8 +406,8 @@ public class AltaTitular extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelGrupoSanguineo, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelRH, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldRH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldGrupoSanguineo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldGrupoSanguineo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxRH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jCheckBoxDonante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -452,10 +449,6 @@ public class AltaTitular extends javax.swing.JFrame {
     private void jCheckBoxDonanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxDonanteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBoxDonanteActionPerformed
-
-    private void jTextFieldRHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldRHActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldRHActionPerformed
 
     private void jTextFieldGrupoSanguineoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldGrupoSanguineoActionPerformed
         // TODO add your handling code here:
@@ -536,6 +529,7 @@ public class AltaTitular extends javax.swing.JFrame {
     private javax.swing.JButton jButtonGuardar;
     private javax.swing.JButton jButtonMinimizar;
     private javax.swing.JCheckBox jCheckBoxDonante;
+    private javax.swing.JComboBox<String> jComboBoxRH;
     private javax.swing.JComboBox<String> jComboBoxTipoDocumento;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel7;
@@ -567,6 +561,5 @@ public class AltaTitular extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldNombreTitular;
     private javax.swing.JTextField jTextFieldNumeroDocumento;
     private javax.swing.JTextField jTextFieldPiso;
-    private javax.swing.JTextField jTextFieldRH;
     // End of variables declaration//GEN-END:variables
 }

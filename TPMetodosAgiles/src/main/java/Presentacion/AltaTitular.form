@@ -137,8 +137,8 @@
                                   <Component id="jTextFieldGrupoSanguineo" min="-2" pref="43" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="jLabelRH" min="-2" pref="29" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jTextFieldRH" min="-2" pref="43" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="jComboBoxRH" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabelNombreTitular" min="-2" pref="73" max="-2" attributes="0"/>
@@ -194,11 +194,13 @@
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jLabelDocumento" min="-2" pref="31" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabelTipoDocumento" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
-                      <Component id="jLabelNumeroDocumento" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
-                      <Component id="jTextFieldNumeroDocumento" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jComboBoxTipoDocumento" alignment="1" min="-2" pref="31" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabelTipoDocumento" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                          <Component id="jLabelNumeroDocumento" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                          <Component id="jTextFieldNumeroDocumento" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -243,8 +245,8 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabelGrupoSanguineo" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                       <Component id="jLabelRH" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
-                      <Component id="jTextFieldRH" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jTextFieldGrupoSanguineo" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jComboBoxRH" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -329,7 +331,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldNumeroDocumento">
           <Properties>
-            <Property name="toolTipText" type="java.lang.String" value=""/>
+            <Property name="toolTipText" type="java.lang.String" value="Sin guiones ni espacios"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelNombreTitular">
@@ -345,7 +347,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldNombreTitular">
           <Properties>
-            <Property name="toolTipText" type="java.lang.String" value="Juan"/>
+            <Property name="toolTipText" type="java.lang.String" value=""/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Cursor de Texto"/>
             </Property>
@@ -364,7 +366,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldApellidoTitular">
           <Properties>
-            <Property name="toolTipText" type="java.lang.String" value="Perez"/>
+            <Property name="toolTipText" type="java.lang.String" value=""/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelFechaNacimiento">
@@ -520,11 +522,6 @@
             <Property name="text" type="java.lang.String" value="RH"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextFieldRH">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldRHActionPerformed"/>
-          </Events>
-        </Component>
         <Component class="javax.swing.JLabel" name="jLabelDonante">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -610,6 +607,19 @@
               <Image iconType="3" name="/Presentacion/AltaTitularGrande.png"/>
             </Property>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="jComboBoxRH">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="2">
+                <StringItem index="0" value="+"/>
+                <StringItem index="1" value="-"/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>
