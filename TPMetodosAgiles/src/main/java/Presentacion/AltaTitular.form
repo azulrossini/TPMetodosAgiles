@@ -24,7 +24,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
+          <Component id="jPanel1" alignment="0" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -76,7 +76,7 @@
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="476" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="jButtonMinimizar" min="-2" pref="38" max="-2" attributes="0"/>
@@ -148,18 +148,18 @@
                                   <Component id="jTextFieldPiso" min="-2" pref="43" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jLabelErrorPiso" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                                   <Component id="jLabelDepartamento" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jTextFieldDepartamento" min="-2" pref="43" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jLabelErrorDepartamento" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Component id="jLabelFechaNacimiento" alignment="0" min="-2" pref="321" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabelGrupoSanguineo" min="-2" pref="158" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jComboBox1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jComboBoxGrupoSanguineo" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="jLabelRH" min="-2" pref="29" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -299,7 +299,7 @@
                       <Component id="jLabelGrupoSanguineo" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                       <Component id="jLabelRH" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                       <Component id="jComboBoxRH" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jComboBox1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jComboBoxGrupoSanguineo" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -400,7 +400,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldNombre">
           <Properties>
-            <Property name="toolTipText" type="java.lang.String" value="Ingrese como maximo 2 nombres"/>
+            <Property name="toolTipText" type="java.lang.String" value="Nombre completo"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Cursor de Texto"/>
             </Property>
@@ -419,7 +419,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldApellido">
           <Properties>
-            <Property name="toolTipText" type="java.lang.String" value="Ingrese como maximo 2 apellidos"/>
+            <Property name="toolTipText" type="java.lang.String" value="Apellido completo"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelFechaNacimiento">
@@ -528,6 +528,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldPiso">
+          <Properties>
+            <Property name="toolTipText" type="java.lang.String" value="Si no corresponde, dejar en blanco"/>
+          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldPisoActionPerformed"/>
           </Events>
@@ -544,6 +547,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldDepartamento">
+          <Properties>
+            <Property name="toolTipText" type="java.lang.String" value="Si no corresponde, dejar en blanco"/>
+          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldDepartamentoActionPerformed"/>
           </Events>
@@ -675,7 +681,7 @@
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JComboBox" name="jComboBox1">
+        <Component class="javax.swing.JComboBox" name="jComboBoxGrupoSanguineo">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Microsoft YaHei UI" size="11" style="0"/>
