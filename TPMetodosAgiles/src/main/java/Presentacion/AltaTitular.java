@@ -6,11 +6,8 @@
 package Presentacion;
 
 import Logica.PersonaController;
-import Persistencia.Persona;
-import java.awt.Color;
 import java.awt.Point;
 import static java.lang.System.exit;
-import java.util.Date;
 
 /**
  *
@@ -83,7 +80,7 @@ public class AltaTitular extends javax.swing.JFrame {
         jButtonAtras = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jComboBoxRH = new javax.swing.JComboBox<>();
-        jComboBoxGrupoSanguineo = new javax.swing.JComboBox<>();
+        jComboBox1 = new javax.swing.JComboBox<>();
         jLabelErrorNumDocumento = new javax.swing.JLabel();
         jLabelErrorNombre = new javax.swing.JLabel();
         jLabelErrorApellido = new javax.swing.JLabel();
@@ -138,14 +135,14 @@ public class AltaTitular extends javax.swing.JFrame {
         jLabelNombreTitular.setForeground(new java.awt.Color(51, 51, 51));
         jLabelNombreTitular.setText("Nombre");
 
-        jTextFieldNombre.setToolTipText("Nombre completo");
+        jTextFieldNombre.setToolTipText("Ingrese como maximo 2 nombres");
         jTextFieldNombre.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
 
         jLabelApellidoTitular.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 18)); // NOI18N
         jLabelApellidoTitular.setForeground(new java.awt.Color(51, 51, 51));
         jLabelApellidoTitular.setText("Apellido");
 
-        jTextFieldApellido.setToolTipText("Apellido completo");
+        jTextFieldApellido.setToolTipText("Ingrese como maximo 2 apellidos");
 
         jLabelFechaNacimiento.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 18)); // NOI18N
         jLabelFechaNacimiento.setForeground(new java.awt.Color(51, 51, 51));
@@ -196,7 +193,6 @@ public class AltaTitular extends javax.swing.JFrame {
         jLabelPiso.setForeground(new java.awt.Color(51, 51, 51));
         jLabelPiso.setText("Piso");
 
-        jTextFieldPiso.setToolTipText("Si no corresponde, dejar en blanco");
         jTextFieldPiso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldPisoActionPerformed(evt);
@@ -207,7 +203,6 @@ public class AltaTitular extends javax.swing.JFrame {
         jLabelDepartamento.setForeground(new java.awt.Color(51, 51, 51));
         jLabelDepartamento.setText("Departamento");
 
-        jTextFieldDepartamento.setToolTipText("Si no corresponde, dejar en blanco");
         jTextFieldDepartamento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldDepartamentoActionPerformed(evt);
@@ -279,8 +274,8 @@ public class AltaTitular extends javax.swing.JFrame {
         jComboBoxRH.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 11)); // NOI18N
         jComboBoxRH.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "+", "-" }));
 
-        jComboBoxGrupoSanguineo.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 11)); // NOI18N
-        jComboBoxGrupoSanguineo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "O", "A", "B", "AB" }));
+        jComboBox1.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 11)); // NOI18N
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "O", "A", "B", "AB" }));
 
         jLabelErrorNumDocumento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/atencion.png"))); // NOI18N
 
@@ -309,7 +304,7 @@ public class AltaTitular extends javax.swing.JFrame {
                         .addComponent(jButtonAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(476, Short.MAX_VALUE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jButtonMinimizar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -367,17 +362,17 @@ public class AltaTitular extends javax.swing.JFrame {
                                 .addComponent(jTextFieldPiso, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabelErrorPiso)
-                                .addGap(33, 33, 33)
+                                .addGap(12, 12, 12)
                                 .addComponent(jLabelDepartamento)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTextFieldDepartamento, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabelErrorDepartamento))
                             .addComponent(jLabelFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabelGrupoSanguineo, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBoxGrupoSanguineo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabelRH, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -486,7 +481,7 @@ public class AltaTitular extends javax.swing.JFrame {
                     .addComponent(jLabelGrupoSanguineo, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelRH, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBoxRH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBoxGrupoSanguineo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jCheckBoxDonante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -500,7 +495,7 @@ public class AltaTitular extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -577,94 +572,27 @@ public class AltaTitular extends javax.swing.JFrame {
         String depart = this.jTextFieldDepartamento.getText();
         String numeroCalle = this.jTextFieldNumeroCalle.getText();
         PersonaController.TipoDocumento tipo=null;
-        String tipo1 = null;
         switch (this.jComboBoxTipoDocumento.getSelectedIndex()){
-            case 0: tipo = PersonaController.TipoDocumento.DNI; tipo1="DNI"; break;
-            case 1: tipo = PersonaController.TipoDocumento.CUIT; tipo1="CUIT";break;
-            case 2: tipo = PersonaController.TipoDocumento.CUIL; tipo1="CUIL";break;
-            case 3: tipo = PersonaController.TipoDocumento.LC;tipo1="LC"; break;
-            case 4: tipo = PersonaController.TipoDocumento.LE;tipo1="LE"; break;
-            case 5: tipo = PersonaController.TipoDocumento.CI;tipo1="CI"; break;
-            case 6: tipo = PersonaController.TipoDocumento.PASAPORTE;tipo1="PASAPORTE"; break;
+            case 0: tipo = PersonaController.TipoDocumento.DNI; break;
+            case 1: tipo = PersonaController.TipoDocumento.CUIT; break;
+            case 2: tipo = PersonaController.TipoDocumento.CUIL; break;
+            case 3: tipo = PersonaController.TipoDocumento.LC; break;
+            case 4: tipo = PersonaController.TipoDocumento.LE; break;
+            case 5: tipo = PersonaController.TipoDocumento.CI; break;
+            case 6: tipo = PersonaController.TipoDocumento.PASAPORTE; break;
         }
-        //valido datos
-        boolean[] lista = new boolean[11];
-        lista = p.validarDatos(tipo, numeroDocumento, nombre, apellido, dia, mes, anio, calle, numeroCalle, piso, depart);
+        boolean lista[]=null;
+        for(int i =0; i<11;i++)
+        lista[i] = p.validarDatos(tipo, numeroDocumento, nombre, apellido, dia, mes, anio, calle, numeroCalle, piso, depart)[i];
         
-        //si hay error, informo por pantalla
-        
-        //muestro label de error
         this.jLabelErrorNumDocumento.setVisible(!lista[0]);
         this.jLabelErrorNombre.setVisible(!lista[1]);
         this.jLabelErrorApellido.setVisible(!lista[2]);
-        this.jLabelErrorFecha.setVisible(!(lista[3] && lista[4] && lista[5] && lista[10]));
+        this.jLabelErrorFecha.setVisible(!(lista[3] || lista[4] || lista[5] || lista[10]));
         this.jLabelErrorCalle.setVisible(!lista[6]);
         this.jLabelErrorNumeroCalle.setVisible(!lista[7]);
         this.jLabelErrorPiso.setVisible(!lista[8]);
         this.jLabelErrorDepartamento.setVisible(!lista[9]);
-        
-        //cambio color de los jtexfield
-        if(!lista[0]){
-            this.jTextFieldNumeroDocumento.setForeground(Color.red);
-        }else this.jTextFieldNumeroDocumento.setForeground(Color.black);
-        if(!lista[1]){
-            this.jTextFieldNombre.setForeground(Color.red);
-        }else this.jTextFieldNombre.setForeground(Color.black);
-        if(!lista[2]){
-            this.jTextFieldApellido.setForeground(Color.red);
-        }else this.jTextFieldApellido.setForeground(Color.black);
-        if(!lista[10]){
-           this.jTextFieldDiaNacimiento.setForeground(Color.red);
-           this.jTextFieldMesNacimiento.setForeground(Color.red);
-           this.jTextFieldAnioNacimiento.setForeground(Color.red);
-        }else{
-            this.jTextFieldDiaNacimiento.setForeground(Color.black);
-            this.jTextFieldMesNacimiento.setForeground(Color.black);
-            this.jTextFieldAnioNacimiento.setForeground(Color.black);
-        }
-        if(!lista[3]) this.jTextFieldDiaNacimiento.setForeground(Color.red);
-        else this.jTextFieldDiaNacimiento.setForeground(Color.black);
-        if(!lista[4]) this.jTextFieldMesNacimiento.setForeground(Color.red);
-        else this.jTextFieldMesNacimiento.setForeground(Color.black);
-        if(!lista[5]) this.jTextFieldAnioNacimiento.setForeground(Color.red);
-        else this.jTextFieldAnioNacimiento.setForeground(Color.black);
-        if(!lista[6]){
-            this.jTextFieldCalle.setForeground(Color.red);
-        }else this.jTextFieldCalle.setForeground(Color.black);
-        if(!lista[7]){
-            this.jTextFieldNumeroCalle.setForeground(Color.red);
-        }else this.jTextFieldNumeroCalle.setForeground(Color.black);
-        if(!lista[8]){
-            this.jTextFieldPiso.setForeground(Color.red);
-        }else this.jTextFieldPiso.setForeground(Color.black);
-        if(!lista[9]){
-            this.jTextFieldDepartamento.setForeground(Color.red);
-        }else this.jTextFieldDepartamento.setForeground(Color.black);
-        
-        boolean estado=true;
-        for(int i=0;i<11;i++)
-            if(lista[i]==false) estado=false;
-        if(estado){
-            Date fechaNac = p.getFecha(dia, mes, anio);
-            String domicilio = calle+numeroCalle;
-            String grupoSang="";
-            String rh="";
-            switch (this.jComboBoxGrupoSanguineo.getSelectedIndex()){
-            case 0: grupoSang="O"; break;
-            case 1:  grupoSang="A";break;
-            case 2:  grupoSang="B"; break;
-            case 3:  grupoSang="AB";break;
-        }
-             switch (this.jComboBoxRH.getSelectedIndex()){
-            case 0: rh="+"; break;
-            case 1: rh="-";break;
-           
-        }
-            boolean donante = this.jCheckBoxDonante.isEnabled();
-            int numDocu = Integer.valueOf(numeroDocumento);
-            Persona nuevoTitular = new Persona(tipo1,numDocu, apellido, nombre, fechaNac, domicilio,grupoSang, rh, donante );
-            System.out.println(nuevoTitular.isDonante());
-        }
        
         
         
@@ -712,7 +640,7 @@ public class AltaTitular extends javax.swing.JFrame {
     private javax.swing.JButton jButtonGuardar;
     private javax.swing.JButton jButtonMinimizar;
     private javax.swing.JCheckBox jCheckBoxDonante;
-    private javax.swing.JComboBox<String> jComboBoxGrupoSanguineo;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBoxRH;
     private javax.swing.JComboBox<String> jComboBoxTipoDocumento;
     private javax.swing.JLabel jLabel2;

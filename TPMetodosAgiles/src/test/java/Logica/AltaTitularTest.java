@@ -18,11 +18,10 @@ import static org.junit.Assert.*;
  */
 public class AltaTitularTest {
     PersonaController p = new PersonaController();
-    @Test
-    public void AltaTitularTest() {
+    public AltaTitularTest() {
         
         
-        //TEST CON DATOS CORRECTOS
+        //TEST CORRECTOS
         
         //dni
         String numDocumento="39765432";
@@ -36,17 +35,17 @@ public class AltaTitularTest {
         String piso = "1";
         String depart = "A";
         boolean[] rtdo=p.validarDatos(PersonaController.TipoDocumento.DNI, numDocumento, nombre, apellido, dia, mes, anio, calle, numeroCalle, piso, depart);
-        for(int i=0;i<11;i++) assertEquals(true, rtdo[i]);
+        for(int i=0;i<13;i++) assertEquals(true, rtdo[i]);
 
         
         //cuit y cuil
         numDocumento = "20398765433";
         rtdo=p.validarDatos(PersonaController.TipoDocumento.CUIT, numDocumento, nombre, apellido, dia, mes, anio, calle, numeroCalle, piso, depart);
-        for(int i=0;i<11;i++) assertEquals(true, rtdo[i]);
+        for(int i=0;i<13;i++) assertEquals(true, rtdo[i]);
         
         
         
-        //TESTS CON DATOS ERRONEOS
+        //TEST ERRONEOS
         
         
         //numdocumento (longitud muy corta)
