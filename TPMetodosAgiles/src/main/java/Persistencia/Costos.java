@@ -1,5 +1,5 @@
 package Persistencia;
-// Generated 21/10/2018 21:00:55 by Hibernate Tools 4.3.1
+// Generated 21/10/2018 23:41:00 by Hibernate Tools 4.3.1
 
 
 
@@ -9,57 +9,47 @@ package Persistencia;
 public class Costos  implements java.io.Serializable {
 
 
-     private String id;
-     private int unAnio;
-     private int tresAnios;
-     private int cuatroAnios;
-     private int cincoAnios;
+     private Integer id;
+     private String clase;
+     private int anios;
+     private float precio;
 
     public Costos() {
     }
 
-    public Costos(String id, int unAnio, int tresAnios, int cuatroAnios, int cincoAnios) {
-       this.id = id;
-       this.unAnio = unAnio;
-       this.tresAnios = tresAnios;
-       this.cuatroAnios = cuatroAnios;
-       this.cincoAnios = cincoAnios;
+    public Costos(String clase, int anios, float precio) {
+       this.clase = clase;
+       this.anios = anios;
+       this.precio = precio;
     }
    
-    public String getId() {
+    public Integer getId() {
         return this.id;
     }
     
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
-    public int getUnAnio() {
-        return this.unAnio;
+    public String getClase() {
+        return this.clase;
     }
     
-    public void setUnAnio(int unAnio) {
-        this.unAnio = unAnio;
+    public void setClase(String clase) {
+        this.clase = clase;
     }
-    public int getTresAnios() {
-        return this.tresAnios;
-    }
-    
-    public void setTresAnios(int tresAnios) {
-        this.tresAnios = tresAnios;
-    }
-    public int getCuatroAnios() {
-        return this.cuatroAnios;
+    public int getAnios() {
+        return this.anios;
     }
     
-    public void setCuatroAnios(int cuatroAnios) {
-        this.cuatroAnios = cuatroAnios;
+    public void setAnios(int anios) {
+        this.anios = anios;
     }
-    public int getCincoAnios() {
-        return this.cincoAnios;
+    public float getPrecio() {
+        return this.precio;
     }
     
-    public void setCincoAnios(int cincoAnios) {
-        this.cincoAnios = cincoAnios;
+    public void setPrecio(float precio) {
+        this.precio = precio;
     }
 
 

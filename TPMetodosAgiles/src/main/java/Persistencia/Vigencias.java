@@ -1,5 +1,5 @@
 package Persistencia;
-// Generated 21/10/2018 21:00:55 by Hibernate Tools 4.3.1
+// Generated 21/10/2018 23:41:00 by Hibernate Tools 4.3.1
 
 
 
@@ -9,75 +9,38 @@ package Persistencia;
 public class Vigencias  implements java.io.Serializable {
 
 
-     private int id;
-     private int primeraMenor21;
-     private int segundaMenor21;
-     private int menor46;
-     private int menor60;
-     private int menor70;
-     private int mayor70;
+     private Integer id;
+     private String condicion;
+     private int duracion;
 
     public Vigencias() {
     }
 
-    public Vigencias(int id, int primeraMenor21, int segundaMenor21, int menor46, int menor60, int menor70, int mayor70) {
-       this.id = id;
-       this.primeraMenor21 = primeraMenor21;
-       this.segundaMenor21 = segundaMenor21;
-       this.menor46 = menor46;
-       this.menor60 = menor60;
-       this.menor70 = menor70;
-       this.mayor70 = mayor70;
+    public Vigencias(String condicion, int duracion) {
+       this.condicion = condicion;
+       this.duracion = duracion;
     }
    
-    public int getId() {
+    public Integer getId() {
         return this.id;
     }
     
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
-    public int getPrimeraMenor21() {
-        return this.primeraMenor21;
+    public String getCondicion() {
+        return this.condicion;
     }
     
-    public void setPrimeraMenor21(int primeraMenor21) {
-        this.primeraMenor21 = primeraMenor21;
+    public void setCondicion(String condicion) {
+        this.condicion = condicion;
     }
-    public int getSegundaMenor21() {
-        return this.segundaMenor21;
-    }
-    
-    public void setSegundaMenor21(int segundaMenor21) {
-        this.segundaMenor21 = segundaMenor21;
-    }
-    public int getMenor46() {
-        return this.menor46;
+    public int getDuracion() {
+        return this.duracion;
     }
     
-    public void setMenor46(int menor46) {
-        this.menor46 = menor46;
-    }
-    public int getMenor60() {
-        return this.menor60;
-    }
-    
-    public void setMenor60(int menor60) {
-        this.menor60 = menor60;
-    }
-    public int getMenor70() {
-        return this.menor70;
-    }
-    
-    public void setMenor70(int menor70) {
-        this.menor70 = menor70;
-    }
-    public int getMayor70() {
-        return this.mayor70;
-    }
-    
-    public void setMayor70(int mayor70) {
-        this.mayor70 = mayor70;
+    public void setDuracion(int duracion) {
+        this.duracion = duracion;
     }
 
 

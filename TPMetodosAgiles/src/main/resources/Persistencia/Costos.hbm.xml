@@ -1,24 +1,21 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 21/10/2018 21:00:56 by Hibernate Tools 4.3.1 -->
+<!-- Generated 21/10/2018 23:41:00 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Persistencia.Costos" table="costos" catalog="lic_sf_bd" optimistic-lock="version">
-        <id name="id" type="string">
-            <column name="id" length="1" />
-            <generator class="assigned" />
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
         </id>
-        <property name="unAnio" type="int">
-            <column name="un_anio" not-null="true" />
+        <property name="clase" type="string">
+            <column name="clase" length="1" not-null="true" />
         </property>
-        <property name="tresAnios" type="int">
-            <column name="tres_anios" not-null="true" />
+        <property name="anios" type="int">
+            <column name="anios" not-null="true" />
         </property>
-        <property name="cuatroAnios" type="int">
-            <column name="cuatro_anios" not-null="true" />
-        </property>
-        <property name="cincoAnios" type="int">
-            <column name="cinco_anios" not-null="true" />
+        <property name="precio" type="float">
+            <column name="precio" precision="5" not-null="true" />
         </property>
     </class>
 </hibernate-mapping>

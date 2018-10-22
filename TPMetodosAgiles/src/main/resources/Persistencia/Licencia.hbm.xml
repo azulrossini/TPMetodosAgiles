@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 21/10/2018 21:00:56 by Hibernate Tools 4.3.1 -->
+<!-- Generated 21/10/2018 23:41:00 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Persistencia.Licencia" table="licencia" catalog="lic_sf_bd" optimistic-lock="version">
         <id name="id" type="java.lang.Integer">
@@ -17,8 +17,8 @@
         <property name="usuarioId" type="int">
             <column name="usuario_id" not-null="true" />
         </property>
-        <property name="costoId" type="string">
-            <column name="costo_id" length="1" not-null="true" />
+        <property name="costoId" type="int">
+            <column name="costo_id" not-null="true" />
         </property>
         <property name="vigenciaId" type="int">
             <column name="vigencia_id" not-null="true" />

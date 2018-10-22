@@ -1,5 +1,5 @@
 package Persistencia;
-// Generated 21/10/2018 21:00:55 by Hibernate Tools 4.3.1
+// Generated 21/10/2018 23:41:00 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -14,7 +14,7 @@ public class Licencia  implements java.io.Serializable {
      private int personaId;
      private String claseId;
      private int usuarioId;
-     private String costoId;
+     private int costoId;
      private int vigenciaId;
      private String motivo;
      private Date fechaEmision;
@@ -24,7 +24,7 @@ public class Licencia  implements java.io.Serializable {
     }
 
 	
-    public Licencia(int personaId, String claseId, int usuarioId, String costoId, int vigenciaId, String motivo, Date fechaEmision) {
+    public Licencia(int personaId, String claseId, int usuarioId, int costoId, int vigenciaId, String motivo, Date fechaEmision) {
         this.personaId = personaId;
         this.claseId = claseId;
         this.usuarioId = usuarioId;
@@ -33,7 +33,7 @@ public class Licencia  implements java.io.Serializable {
         this.motivo = motivo;
         this.fechaEmision = fechaEmision;
     }
-    public Licencia(int personaId, String claseId, int usuarioId, String costoId, int vigenciaId, String motivo, Date fechaEmision, String observaciones) {
+    public Licencia(int personaId, String claseId, int usuarioId, int costoId, int vigenciaId, String motivo, Date fechaEmision, String observaciones) {
        this.personaId = personaId;
        this.claseId = claseId;
        this.usuarioId = usuarioId;
@@ -72,11 +72,11 @@ public class Licencia  implements java.io.Serializable {
     public void setUsuarioId(int usuarioId) {
         this.usuarioId = usuarioId;
     }
-    public String getCostoId() {
+    public int getCostoId() {
         return this.costoId;
     }
     
-    public void setCostoId(String costoId) {
+    public void setCostoId(int costoId) {
         this.costoId = costoId;
     }
     public int getVigenciaId() {
