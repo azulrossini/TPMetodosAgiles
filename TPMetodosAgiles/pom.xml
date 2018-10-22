@@ -40,6 +40,11 @@
             <version>1.3</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>JasperReports</groupId>
+            <artifactId>JasperReports</artifactId>
+            <version>4.7.1</version>
+        </dependency>
     </dependencies>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
