@@ -5,6 +5,7 @@
  */
 package Presentacion;
 
+import Logica.ImprimirController;
 import Persistencia.Licencia;
 import Persistencia.Persona;
 
@@ -19,12 +20,13 @@ public class ImprimirLicencia extends javax.swing.JFrame {
      */
     Persona tit;
     Licencia lic;
+    ImprimirController ic;
     
     public ImprimirLicencia(Persona p, Licencia l) {
         initComponents();
         tit=p;
         lic=l;
-        
+        ic = new ImprimirController();
     }
 
     /**
