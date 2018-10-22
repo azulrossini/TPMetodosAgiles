@@ -1,5 +1,5 @@
 package Persistencia;
-// Generated 21/10/2018 23:41:00 by Hibernate Tools 4.3.1
+// Generated 22/10/2018 12:28:56 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -18,13 +18,14 @@ public class Licencia  implements java.io.Serializable {
      private int vigenciaId;
      private String motivo;
      private Date fechaEmision;
+     private Date fechaVenc;
      private String observaciones;
 
     public Licencia() {
     }
 
 	
-    public Licencia(int personaId, String claseId, int usuarioId, int costoId, int vigenciaId, String motivo, Date fechaEmision) {
+    public Licencia(int personaId, String claseId, int usuarioId, int costoId, int vigenciaId, String motivo, Date fechaEmision, Date fechaVenc) {
         this.personaId = personaId;
         this.claseId = claseId;
         this.usuarioId = usuarioId;
@@ -32,8 +33,9 @@ public class Licencia  implements java.io.Serializable {
         this.vigenciaId = vigenciaId;
         this.motivo = motivo;
         this.fechaEmision = fechaEmision;
+        this.fechaVenc = fechaVenc;
     }
-    public Licencia(int personaId, String claseId, int usuarioId, int costoId, int vigenciaId, String motivo, Date fechaEmision, String observaciones) {
+    public Licencia(int personaId, String claseId, int usuarioId, int costoId, int vigenciaId, String motivo, Date fechaEmision, Date fechaVenc, String observaciones) {
        this.personaId = personaId;
        this.claseId = claseId;
        this.usuarioId = usuarioId;
@@ -41,6 +43,7 @@ public class Licencia  implements java.io.Serializable {
        this.vigenciaId = vigenciaId;
        this.motivo = motivo;
        this.fechaEmision = fechaEmision;
+       this.fechaVenc = fechaVenc;
        this.observaciones = observaciones;
     }
    
@@ -99,6 +102,13 @@ public class Licencia  implements java.io.Serializable {
     
     public void setFechaEmision(Date fechaEmision) {
         this.fechaEmision = fechaEmision;
+    }
+    public Date getFechaVenc() {
+        return this.fechaVenc;
+    }
+    
+    public void setFechaVenc(Date fechaVenc) {
+        this.fechaVenc = fechaVenc;
     }
     public String getObservaciones() {
         return this.observaciones;
