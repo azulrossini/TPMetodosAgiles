@@ -1,5 +1,5 @@
 package Persistencia;
-// Generated 18/10/2018 19:24:53 by Hibernate Tools 4.3.1
+// Generated 21/10/2018 21:00:55 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
