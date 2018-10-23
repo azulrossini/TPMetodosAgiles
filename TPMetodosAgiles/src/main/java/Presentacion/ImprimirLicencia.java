@@ -27,6 +27,7 @@ import java.sql.SQLXML;
 import java.sql.Savepoint;
 import java.sql.Statement;
 import java.sql.Struct;
+import java.util.Date;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Properties;
@@ -57,15 +58,15 @@ public class ImprimirLicencia extends javax.swing.JFrame {
     private Licencia lic;
     private ImprimirController ic;
     private Point mouseDownCompCoords = null;
+    private Map <String, Object> parameters = new HashMap<String, Object>();
     
     public ImprimirLicencia(Persona p, Licencia l) {
         initComponents();
-        tit=p;
+        tit=new Persona("DNI", 40053701, "Fedele", "Fausto", new Date(), "Avellaneda 2178", "O", "+", true);
         lic=l;
         ic = new ImprimirController();
-        Map <String, Object> parameters = new HashMap<String, Object>();
         this.setLocationRelativeTo(null);
-//        parameters.put("nro_id", p.getNroId());
+        parameters.put("nro_id", tit.getNroId());
     }
 
     /**
@@ -450,11 +451,10 @@ public class ImprimirLicencia extends javax.swing.JFrame {
             @Override
             public void execute(Connection cnctn) throws SQLException {
                 String archivo = "D:\\Datos\\Documentos\\NetBeansProjects\\TPMetodosAgiles\\TPMetodosAgiles\\src\\main\\java\\Reporte\\licencia.jasper";
-                System.out.println(archivo);
                 JasperReport jr = null;
                 try{
                     jr = (JasperReport) JRLoader.loadObject(archivo);
-                    JasperPrint jp = JasperFillManager.fillReport(jr,null,cnctn);
+                    JasperPrint jp = JasperFillManager.fillReport(jr,parameters,cnctn);
                     JasperViewer jv = new JasperViewer(jp);
                     jv.setVisible(true);
                     jv.setTitle("Licencia de conducir");

@@ -25,6 +25,7 @@ public class Persona  implements java.io.Serializable {
     }
 
     public Persona(String tipoId, int nroId, String apellido, String nombre, Date fechaNac, String domicilio, String grupoSanguineo, String factor, boolean donante) {
+       this.id=1;
        this.tipoId = tipoId;
        this.nroId = nroId;
        this.apellido = apellido;

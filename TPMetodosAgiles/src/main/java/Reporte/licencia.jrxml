@@ -165,6 +165,7 @@
 				<textElement>
 					<font size="9" isBold="true"/>
 				</textElement>
+				<textFieldExpression><![CDATA[$P{nro_id}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement uuid="3e101f6c-a4ea-4690-93b1-f87576a8dab5" x="129" y="119" width="86" height="15"/>
