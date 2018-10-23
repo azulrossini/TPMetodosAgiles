@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" printOrder="Horizontal" pageWidth="343" pageHeight="200" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="343" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="eae730d9-34a4-47b6-a69c-742f3d17a346">
+	<property name="ireport.zoom" value="2.1435888100000016"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<subDataset name="dataset1" uuid="c32c1766-6c1f-4273-9120-f44834ac80d2"/>
+	<parameter name="nro_id" class="java.lang.Integer"/>
+	<parameter name="apellido" class="java.lang.String"/>
+	<parameter name="nombre" class="java.lang.String"/>
+	<parameter name="domicilio" class="java.lang.String"/>
+	<parameter name="fecha_venc" class="java.lang.Date"/>
+	<parameter name="fecha_nacimiento" class="java.lang.Date"/>
+	<parameter name="grupo_sanguineo" class="java.lang.String"/>
+	<parameter name="factor" class="java.lang.String"/>
+	<parameter name="clase" class="java.lang.String"/>
+	<parameter name="donante" class="java.lang.Boolean"/>
+	<parameter name="observaciones" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT * FROM persona, licencia, vigencias WHERE 1]]>
+	</queryString>
+	<field name="nro_id" class="java.lang.Integer"/>
+	<field name="apellido" class="java.lang.String"/>
+	<field name="nombre" class="java.lang.String"/>
+	<field name="fecha_nac" class="java.sql.Date"/>
+	<field name="domicilio" class="java.lang.String"/>
+	<field name="grupo_sanguineo" class="java.lang.String"/>
+	<field name="factor" class="java.lang.String"/>
+	<field name="donante" class="java.lang.Boolean"/>
+	<field name="fecha_emision" class="java.sql.Date"/>
+	<field name="fecha_venc" class="java.sql.Date"/>
+	<field name="duracion" class="java.lang.Integer"/>
+	<field name="clase_id" class="java.lang.String"/>
+	<field name="observaciones" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="200" splitType="Stretch">
+			<image>
+				<reportElement uuid="da8d66e5-6f28-465d-9322-b7eee1ff1f38" x="1" y="165" width="342" height="35"/>
+				<imageExpression><![CDATA["D:\\Datos\\Documentos\\Reporte\\bordeAbajo.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement uuid="6a135534-2026-4162-bcfc-d3e27f0b734c" x="0" y="0" width="343" height="39"/>
+				<imageExpression><![CDATA["D:\\Datos\\Documentos\\Reporte\\bordeArriba.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement uuid="e2ab3c92-6ec1-4dc2-83a3-8cb0350f96df" x="10" y="39" width="93" height="80"/>
+				<imageExpression><![CDATA["D:\\Datos\\Documentos\\Reporte\\young-boy-head-with-long-hair.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="8f61dd52-3fa4-40d6-a308-f255685d63b6" x="129" y="39" width="69" height="16"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[N° Licencia:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8f61dd52-3fa4-40d6-a308-f255685d63b6" x="129" y="71" width="69" height="16"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Apellido:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8f61dd52-3fa4-40d6-a308-f255685d63b6" x="129" y="103" width="69" height="16"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Nombre:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8f61dd52-3fa4-40d6-a308-f255685d63b6" x="129" y="134" width="69" height="14"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Domicilio:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8f61dd52-3fa4-40d6-a308-f255685d63b6" x="246" y="39" width="37" height="16"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Clase/s:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8f61dd52-3fa4-40d6-a308-f255685d63b6" x="246" y="70" width="93" height="16"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Grupo sanguíneo y factor:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8f61dd52-3fa4-40d6-a308-f255685d63b6" x="302" y="39" width="37" height="16"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Donante:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8f61dd52-3fa4-40d6-a308-f255685d63b6" x="10" y="119" width="93" height="16"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Observaciones:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="3e101f6c-a4ea-4690-93b1-f87576a8dab5" x="10" y="136" width="108" height="29"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+			</textField>
+			<staticText>
+				<reportElement uuid="8f61dd52-3fa4-40d6-a308-f255685d63b6" x="246" y="102" width="93" height="16"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Fecha de nacimiento:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8f61dd52-3fa4-40d6-a308-f255685d63b6" x="246" y="133" width="56" height="15"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Válida hasta:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="3e101f6c-a4ea-4690-93b1-f87576a8dab5" x="246" y="87" width="93" height="15"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+			</textField>
+			<textField>
+				<reportElement uuid="3e101f6c-a4ea-4690-93b1-f87576a8dab5" x="246" y="118" width="93" height="15"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+			</textField>
+			<textField>
+				<reportElement uuid="3e101f6c-a4ea-4690-93b1-f87576a8dab5" x="302" y="54" width="37" height="15"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+			</textField>
+			<textField>
+				<reportElement uuid="3e101f6c-a4ea-4690-93b1-f87576a8dab5" x="246" y="55" width="37" height="15"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+			</textField>
+			<textField>
+				<reportElement uuid="3e101f6c-a4ea-4690-93b1-f87576a8dab5" x="129" y="88" width="86" height="15"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+			</textField>
+			<textField>
+				<reportElement uuid="3e101f6c-a4ea-4690-93b1-f87576a8dab5" x="129" y="148" width="86" height="15"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+			</textField>
+			<textField pattern="###0">
+				<reportElement uuid="3e101f6c-a4ea-4690-93b1-f87576a8dab5" x="129" y="55" width="86" height="15"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+			</textField>
+			<textField>
+				<reportElement uuid="3e101f6c-a4ea-4690-93b1-f87576a8dab5" x="129" y="119" width="86" height="15"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+			</textField>
+			<textField>
+				<reportElement uuid="3e101f6c-a4ea-4690-93b1-f87576a8dab5" x="246" y="148" width="93" height="15"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

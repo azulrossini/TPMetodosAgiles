@@ -64,33 +64,33 @@ public class LicenciaController {
         if(edad < 21){
             if(licencia.getMotivo().equals(Motivo.ORIGINAL.toString())){
                
-               fechaVigencia.add(Calendar.YEAR, listaVigencias.get(0).getPrimeraMenor21());
+//               fechaVigencia.add(Calendar.YEAR, listaVigencias.get(0).getPrimeraMenor21());
                 
             }
             if(licencia.getMotivo().equals(Motivo.RENOVACION.toString())){
                 
-               fechaVigencia.add(Calendar.YEAR, listaVigencias.get(0).getSegundaMenor21()); 
+//               fechaVigencia.add(Calendar.YEAR, listaVigencias.get(0).getSegundaMenor21()); 
                 
             }
         }
         if(edad <= 46){
             
-            fechaVigencia.add(Calendar.YEAR, listaVigencias.get(0).getMenor46()); 
+//            fechaVigencia.add(Calendar.YEAR, listaVigencias.get(0).getMenor46()); 
             
         }
         if(edad <= 60){
             
-            fechaVigencia.add(Calendar.YEAR, listaVigencias.get(0).getMenor60());
+//            fechaVigencia.add(Calendar.YEAR, listaVigencias.get(0).getMenor60());
             
         }
         if(edad <= 70){
             
-            fechaVigencia.add(Calendar.YEAR, listaVigencias.get(0).getMenor70());
+//            fechaVigencia.add(Calendar.YEAR, listaVigencias.get(0).getMenor70());
             
         }
         if(edad > 70){
             
-           fechaVigencia.add(Calendar.YEAR, listaVigencias.get(0).getMayor70());
+//           fechaVigencia.add(Calendar.YEAR, listaVigencias.get(0).getMayor70());
            
         }
         
