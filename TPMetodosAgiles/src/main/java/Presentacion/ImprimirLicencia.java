@@ -180,7 +180,7 @@ public class ImprimirLicencia extends javax.swing.JFrame {
         jLabel22.setBackground(new java.awt.Color(51, 51, 51));
         jLabel22.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 18)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel22.setText("DNi:");
+        jLabel22.setText("DNI:");
 
         clase.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 18)); // NOI18N
         clase.setEnabled(false);
