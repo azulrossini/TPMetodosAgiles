@@ -14,7 +14,7 @@ import org.hibernate.Session;
  */
 public class GenericDAO {
     
-    private Session SS;
+    private static Session SS;
     
     public GenericDAO(){
         SS = util.getSessionFactory().openSession();
@@ -23,7 +23,7 @@ public class GenericDAO {
         SS.close();
     }
 
-    public void create(Object o){
+    public static void create(Object o){
         SS = util.getSessionFactory().openSession();
         SS.beginTransaction();
         SS.save(o);
@@ -32,7 +32,7 @@ public class GenericDAO {
     }
     
     
-    public Object read(Object o, int id){
+    public static Object read(Object o, int id){
         SS = util.getSessionFactory().openSession();
         SS.beginTransaction();
         Class c = o.getClass();
@@ -41,7 +41,8 @@ public class GenericDAO {
         SS.close();
         return obj;
     }
-    public void update(Object o){
+    
+    public static void update(Object o){
         SS = util.getSessionFactory().openSession();
         SS.beginTransaction();
         SS.update(o);
@@ -49,7 +50,7 @@ public class GenericDAO {
         SS.close();
     }
 
-    public void delete(Object o){
+    public static void delete(Object o){
         SS = util.getSessionFactory().openSession();
         SS.beginTransaction();
         SS.delete(o);

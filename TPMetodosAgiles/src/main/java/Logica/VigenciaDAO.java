@@ -16,7 +16,7 @@ import org.hibernate.Session;
  *
  * @author JIC
  */
-public class VigenciaDAO {
+public class VigenciaDAO extends GenericDAO{
     
     private Session SS;
     

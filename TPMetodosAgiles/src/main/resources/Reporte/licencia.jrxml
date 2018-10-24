@@ -8,13 +8,14 @@
 	<parameter name="apellido" class="java.lang.String"/>
 	<parameter name="nombre" class="java.lang.String"/>
 	<parameter name="domicilio" class="java.lang.String"/>
-	<parameter name="fecha_venc" class="java.lang.Date"/>
-	<parameter name="fecha_nacimiento" class="java.lang.Date"/>
+	<parameter name="fecha_venc" class="java.util.Date"/>
+	<parameter name="fecha_nacimiento" class="java.util.Date"/>
 	<parameter name="grupo_sanguineo" class="java.lang.String"/>
 	<parameter name="factor" class="java.lang.String"/>
 	<parameter name="clase" class="java.lang.String"/>
-	<parameter name="donante" class="java.lang.Boolean"/>
+	<parameter name="donante" class="java.lang.String"/>
 	<parameter name="observaciones" class="java.lang.String"/>
+	<parameter name="image" class="java.awt.image.BufferedImage"/>
 	<queryString language="SQL">
 		<![CDATA[SELECT * FROM persona, licencia, vigencias WHERE 1]]>
 	</queryString>
@@ -28,7 +29,6 @@
 	<field name="donante" class="java.lang.Boolean"/>
 	<field name="fecha_emision" class="java.sql.Date"/>
 	<field name="fecha_venc" class="java.sql.Date"/>
-	<field name="duracion" class="java.lang.Integer"/>
 	<field name="clase_id" class="java.lang.String"/>
 	<field name="observaciones" class="java.lang.String"/>
 	<background>
@@ -43,10 +43,6 @@
 			<image>
 				<reportElement uuid="6a135534-2026-4162-bcfc-d3e27f0b734c" x="0" y="0" width="343" height="39"/>
 				<imageExpression><![CDATA["D:\\Datos\\Documentos\\Reporte\\bordeArriba.png"]]></imageExpression>
-			</image>
-			<image>
-				<reportElement uuid="e2ab3c92-6ec1-4dc2-83a3-8cb0350f96df" x="10" y="39" width="93" height="80"/>
-				<imageExpression><![CDATA["D:\\Datos\\Documentos\\Reporte\\young-boy-head-with-long-hair.png"]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement uuid="8f61dd52-3fa4-40d6-a308-f255685d63b6" x="129" y="39" width="69" height="16"/>
@@ -109,6 +105,7 @@
 				<textElement>
 					<font size="9" isBold="true"/>
 				</textElement>
+				<textFieldExpression><![CDATA[$P{observaciones}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement uuid="8f61dd52-3fa4-40d6-a308-f255685d63b6" x="246" y="102" width="93" height="16"/>
@@ -129,36 +126,42 @@
 				<textElement>
 					<font size="9" isBold="true"/>
 				</textElement>
+				<textFieldExpression><![CDATA[$P{grupo_sanguineo}+$P{factor}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement uuid="3e101f6c-a4ea-4690-93b1-f87576a8dab5" x="246" y="118" width="93" height="15"/>
 				<textElement>
 					<font size="9" isBold="true"/>
 				</textElement>
+				<textFieldExpression><![CDATA[$P{fecha_nacimiento}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement uuid="3e101f6c-a4ea-4690-93b1-f87576a8dab5" x="302" y="54" width="37" height="15"/>
 				<textElement>
 					<font size="9" isBold="true"/>
 				</textElement>
+				<textFieldExpression><![CDATA[$P{donante}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement uuid="3e101f6c-a4ea-4690-93b1-f87576a8dab5" x="246" y="55" width="37" height="15"/>
 				<textElement>
 					<font size="9" isBold="true"/>
 				</textElement>
+				<textFieldExpression><![CDATA[$P{clase}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement uuid="3e101f6c-a4ea-4690-93b1-f87576a8dab5" x="129" y="88" width="86" height="15"/>
 				<textElement>
 					<font size="9" isBold="true"/>
 				</textElement>
+				<textFieldExpression><![CDATA[$P{apellido}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement uuid="3e101f6c-a4ea-4690-93b1-f87576a8dab5" x="129" y="148" width="86" height="15"/>
 				<textElement>
 					<font size="9" isBold="true"/>
 				</textElement>
+				<textFieldExpression><![CDATA[$P{domicilio}]]></textFieldExpression>
 			</textField>
 			<textField pattern="###0">
 				<reportElement uuid="3e101f6c-a4ea-4690-93b1-f87576a8dab5" x="129" y="55" width="86" height="15"/>
@@ -172,13 +175,19 @@
 				<textElement>
 					<font size="9" isBold="true"/>
 				</textElement>
+				<textFieldExpression><![CDATA[$P{nombre}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement uuid="3e101f6c-a4ea-4690-93b1-f87576a8dab5" x="246" y="148" width="93" height="15"/>
 				<textElement verticalAlignment="Middle">
 					<font size="9" isBold="true"/>
 				</textElement>
+				<textFieldExpression><![CDATA[$P{fecha_venc}]]></textFieldExpression>
 			</textField>
+			<image scaleImage="FillFrame" hAlign="Center" vAlign="Middle">
+				<reportElement uuid="fac690c9-ed20-4820-9501-4d7bd55109a0" x="10" y="39" width="93" height="79"/>
+				<imageExpression><![CDATA[$P{image}]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>
