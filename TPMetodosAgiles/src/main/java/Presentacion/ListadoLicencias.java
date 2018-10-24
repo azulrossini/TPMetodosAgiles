@@ -11,11 +11,14 @@ import Persistencia.Licencia;
 import Persistencia.Persona;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.text.ParseException;
 
 
 
 import static java.util.Collections.list;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
@@ -33,7 +36,7 @@ public class ListadoLicencias extends javax.swing.JFrame {
     
     private TableRowSorter trsFiltro;
     
-    public ListadoLicencias() {
+    public ListadoLicencias() throws ParseException {
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
@@ -53,7 +56,7 @@ public class ListadoLicencias extends javax.swing.JFrame {
         
     }
 
-    private void getLicencias(){   
+    private void getLicencias() throws ParseException{   
         List<Licencia> listaLicencia = lController.getLicencias();
         LicenciaController licenciaController = new LicenciaController();
         
@@ -75,7 +78,7 @@ public class ListadoLicencias extends javax.swing.JFrame {
                 
                 datos[0] = licencia.getId();
                 datos[1] = licencia.getClaseId();
-//                datos[2] = licenciaController.getVigencia(licencia); //CALCULO LA VIGENCIA
+                datos[2] = licenciaController.getVigencia(licencia); //CALCULO LA VIGENCIA
                 datos[3] = persona.getApellido(); //Apellido
                 datos[4] = persona.getNombre(); //Nombre
                 datos[5] = persona.getGrupoSanguineo(); //GrupoSanguineo
@@ -126,13 +129,14 @@ public class ListadoLicencias extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
-        jPanel1.setBackground(new java.awt.Color(102, 102, 102));
+        jPanel1.setBackground(new java.awt.Color(178, 176, 176));
         jPanel1.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 1, true), new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true)));
 
         jLabel1.setFont(new java.awt.Font("Microsoft JhengHei UI", 0, 18)); // NOI18N
         jLabel1.setText("Filtros");
 
-        tabla.setBackground(new java.awt.Color(102, 102, 102));
+        tabla.setAutoCreateColumnsFromModel(false);
+        tabla.setBackground(new java.awt.Color(178, 176, 176));
         tabla.setFont(new java.awt.Font("Microsoft JhengHei UI", 1, 14)); // NOI18N
         tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -347,7 +351,11 @@ public class ListadoLicencias extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ListadoLicencias().setVisible(true);
+                try {
+                    new ListadoLicencias().setVisible(true);
+                } catch (ParseException ex) {
+                    Logger.getLogger(ListadoLicencias.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
