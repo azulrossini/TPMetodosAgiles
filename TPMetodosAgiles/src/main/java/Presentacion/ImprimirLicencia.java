@@ -208,7 +208,7 @@ public class ImprimirLicencia extends javax.swing.JFrame {
 
         vistaPrevia.setBackground(new java.awt.Color(255, 255, 255));
         vistaPrevia.setFont(new java.awt.Font("Microsoft JhengHei UI", 1, 12)); // NOI18N
-        vistaPrevia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/eye.png"))); // NOI18N
+        vistaPrevia.setIcon(new javax.swing.ImageIcon("D:\\Datos\\Descargas\\eye.png")); // NOI18N
         vistaPrevia.setText("VISTA PREVIA");
         vistaPrevia.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -249,7 +249,7 @@ public class ImprimirLicencia extends javax.swing.JFrame {
 
         imprimir.setBackground(new java.awt.Color(255, 255, 255));
         imprimir.setFont(new java.awt.Font("Microsoft JhengHei UI", 1, 12)); // NOI18N
-        imprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/mini-printer.png"))); // NOI18N
+        imprimir.setIcon(new javax.swing.ImageIcon("D:\\Datos\\Descargas\\printer-.png")); // NOI18N
         imprimir.setText("IMPRIMIR");
         imprimir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -267,7 +267,7 @@ public class ImprimirLicencia extends javax.swing.JFrame {
 
         cargarImagen.setBackground(new java.awt.Color(255, 255, 255));
         cargarImagen.setFont(new java.awt.Font("Microsoft JhengHei UI", 1, 12)); // NOI18N
-        cargarImagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/image-file.png"))); // NOI18N
+        cargarImagen.setIcon(new javax.swing.ImageIcon("D:\\Datos\\Descargas\\image-file.png")); // NOI18N
         cargarImagen.setText("CARGAR FOTO");
         cargarImagen.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -347,8 +347,8 @@ public class ImprimirLicencia extends javax.swing.JFrame {
                                             .addComponent(vigencia, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(don, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(0, 0, Short.MAX_VALUE))
-                                    .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                                    .addComponent(jSeparator5)))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(imprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)

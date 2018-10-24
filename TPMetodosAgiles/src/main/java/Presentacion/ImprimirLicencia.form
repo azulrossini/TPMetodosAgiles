@@ -136,10 +136,10 @@
                                           </Group>
                                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
-                                      <Component id="jSeparator5" min="-2" pref="240" max="-2" attributes="0"/>
+                                      <Component id="jSeparator5" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
-                              <Group type="102" alignment="1" attributes="0">
+                              <Group type="102" attributes="0">
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Component id="imprimir" min="-2" pref="113" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -465,7 +465,7 @@
               <Font name="Microsoft JhengHei UI" size="12" style="1"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Presentacion/eye.png"/>
+              <Image iconType="2" name="D:\Datos\Descargas\eye.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="VISTA PREVIA"/>
           </Properties>
@@ -544,7 +544,7 @@
               <Font name="Microsoft JhengHei UI" size="12" style="1"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Presentacion/mini-printer.png"/>
+              <Image iconType="2" name="D:\Datos\Descargas\printer-.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="IMPRIMIR"/>
           </Properties>
@@ -563,7 +563,7 @@
               <Font name="Microsoft JhengHei UI" size="12" style="1"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Presentacion/image-file.png"/>
+              <Image iconType="2" name="D:\Datos\Descargas\image-file.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="CARGAR FOTO"/>
           </Properties>
