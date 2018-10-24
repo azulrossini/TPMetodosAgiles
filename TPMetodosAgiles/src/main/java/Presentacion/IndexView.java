@@ -6,6 +6,9 @@
 package Presentacion;
 
 import static java.lang.System.exit;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -390,7 +393,11 @@ public class IndexView extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        ListadoLicencias LL = new ListadoLicencias();
+        try {
+            ListadoLicencias LL = new ListadoLicencias();
+        } catch (ParseException ex) {
+            Logger.getLogger(IndexView.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.dispose();
     }//GEN-LAST:event_jButton9ActionPerformed
 

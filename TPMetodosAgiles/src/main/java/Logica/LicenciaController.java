@@ -64,7 +64,7 @@ public class LicenciaController {
         if(edad < 21){
             if(licencia.getMotivo().equals(Motivo.ORIGINAL.toString())){
                
-//               fechaVigencia.add(Calendar.YEAR, listaVigencias.get(0).getPrimeraMenor21());
+//                 fechaVigencia.add(Calendar.YEAR, listaVigencias.get(0).getPrimeraMenor21());
                 
             }
             if(licencia.getMotivo().equals(Motivo.RENOVACION.toString())){
