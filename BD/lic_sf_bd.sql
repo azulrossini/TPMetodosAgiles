@@ -1,31 +1,36 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.1
--- http://www.phpmyadmin.net
+-- version 4.8.3
+-- https://www.phpmyadmin.net/
 --
--- Servidor: localhost
--- Tiempo de generación: 16-10-2018 a las 14:20:35
--- Versión del servidor: 5.5.24-log
--- Versión de PHP: 5.4.3
+-- Host: 127.0.0.1:3306
+-- Generation Time: Oct 22, 2018 at 05:08 PM
+-- Server version: 5.7.23
+-- PHP Version: 7.2.10
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `lic_sf_bd`
+-- Database: `lic_sf_bd`
 --
+CREATE DATABASE IF NOT EXISTS `lic_sf_bd` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `lic_sf_bd`;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `clase`
+-- Table structure for table `clase`
 --
 
+DROP TABLE IF EXISTS `clase`;
 CREATE TABLE IF NOT EXISTS `clase` (
   `id` varchar(1) NOT NULL,
   `vehiculos` varchar(64) NOT NULL,
@@ -36,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `clase` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `clase`
+-- Dumping data for table `clase`
 --
 
 INSERT INTO `clase` (`id`, `vehiculos`, `edad_minima`, `clases_heredadas_id`) VALUES
@@ -51,44 +56,62 @@ INSERT INTO `clase` (`id`, `vehiculos`, `edad_minima`, `clases_heredadas_id`) VA
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `costos`
+-- Table structure for table `costos`
 --
 
+DROP TABLE IF EXISTS `costos`;
 CREATE TABLE IF NOT EXISTS `costos` (
-  `id` varchar(1) NOT NULL,
-  `un_anio` int(3) NOT NULL,
-  `tres_anios` int(3) NOT NULL,
-  `cuatro_anios` int(3) NOT NULL,
-  `cinco_anios` int(3) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `id` int(2) NOT NULL AUTO_INCREMENT,
+  `clase` varchar(1) NOT NULL,
+  `anios` int(1) NOT NULL,
+  `precio` float(5,2) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `clase` (`clase`)
+) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `costos`
+-- Dumping data for table `costos`
 --
 
-INSERT INTO `costos` (`id`, `un_anio`, `tres_anios`, `cuatro_anios`, `cinco_anios`) VALUES
-('A', 40, 30, 25, 20),
-('B', 40, 30, 25, 20),
-('C', 47, 35, 30, 23),
-('E', 59, 44, 39, 29),
-('G', 40, 30, 25, 20);
+INSERT INTO `costos` (`id`, `clase`, `anios`, `precio`) VALUES
+(1, 'A', 1, 20.00),
+(2, 'A', 3, 25.00),
+(3, 'A', 4, 30.00),
+(4, 'A', 5, 40.00),
+(5, 'B', 1, 20.00),
+(6, 'B', 3, 25.00),
+(7, 'B', 4, 30.00),
+(8, 'B', 5, 40.00),
+(9, 'C', 1, 23.00),
+(10, 'C', 3, 30.00),
+(11, 'C', 4, 35.00),
+(12, 'C', 5, 47.00),
+(13, 'E', 1, 29.00),
+(14, 'E', 3, 39.00),
+(15, 'E', 4, 44.00),
+(16, 'E', 5, 59.00),
+(17, 'G', 1, 20.00),
+(18, 'G', 3, 25.00),
+(19, 'G', 4, 30.00),
+(20, 'G', 5, 40.00);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `licencia`
+-- Table structure for table `licencia`
 --
 
+DROP TABLE IF EXISTS `licencia`;
 CREATE TABLE IF NOT EXISTS `licencia` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `persona_id` int(10) NOT NULL,
   `clase_id` varchar(1) NOT NULL,
   `usuario_id` int(2) NOT NULL,
-  `costo_id` varchar(1) NOT NULL,
+  `costo_id` int(2) NOT NULL,
   `vigencia_id` int(1) NOT NULL,
   `motivo` varchar(10) NOT NULL,
   `fecha_emision` date NOT NULL,
+  `fecha_venc` date NOT NULL,
   `observaciones` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_persona_lic` (`persona_id`),
@@ -96,18 +119,19 @@ CREATE TABLE IF NOT EXISTS `licencia` (
   KEY `fk_usuario_lic` (`usuario_id`),
   KEY `fk_costo_lic` (`costo_id`),
   KEY `fk_vigencia_lic` (`vigencia_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `persona`
+-- Table structure for table `persona`
 --
 
+DROP TABLE IF EXISTS `persona`;
 CREATE TABLE IF NOT EXISTS `persona` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
-  `tipo_id` varchar(3) NOT NULL,
-  `nro_id` int(8) NOT NULL,
+  `tipo_id` varchar(9) NOT NULL,
+  `nro_id` int(11) NOT NULL,
   `apellido` varchar(32) NOT NULL,
   `nombre` varchar(32) NOT NULL,
   `fecha_nac` date NOT NULL,
@@ -116,14 +140,22 @@ CREATE TABLE IF NOT EXISTS `persona` (
   `factor` varchar(1) NOT NULL,
   `donante` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `persona`
+--
+
+INSERT INTO `persona` (`id`, `tipo_id`, `nro_id`, `apellido`, `nombre`, `fecha_nac`, `domicilio`, `grupo_sanguineo`, `factor`, `donante`) VALUES
+(1, 'DNI', 40053701, 'Fedele', 'Fausto', '1997-05-06', 'Avellaneda 2178', 'O', '+', 1);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `usuario`
+-- Table structure for table `usuario`
 --
 
+DROP TABLE IF EXISTS `usuario`;
 CREATE TABLE IF NOT EXISTS `usuario` (
   `id` int(2) NOT NULL AUTO_INCREMENT,
   `persona_id` int(10) NOT NULL,
@@ -132,31 +164,34 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `privilegio` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_persona_usuario` (`persona_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `vigencias`
+-- Table structure for table `vigencias`
 --
 
+DROP TABLE IF EXISTS `vigencias`;
 CREATE TABLE IF NOT EXISTS `vigencias` (
-  `id` int(1) NOT NULL,
-  `primera_menor_21` int(1) NOT NULL,
-  `segunda_menor_21` int(1) NOT NULL,
-  `menor_46` int(1) NOT NULL,
-  `menor_60` int(1) NOT NULL,
-  `menor_70` int(1) NOT NULL,
-  `mayor_70` int(1) NOT NULL,
+  `id` int(1) NOT NULL AUTO_INCREMENT,
+  `condicion` varchar(16) NOT NULL,
+  `duracion` int(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `vigencias`
+-- Dumping data for table `vigencias`
 --
 
-INSERT INTO `vigencias` (`id`, `primera_menor_21`, `segunda_menor_21`, `menor_46`, `menor_60`, `menor_70`, `mayor_70`) VALUES
-(1, 1, 3, 5, 4, 3, 1);
+INSERT INTO `vigencias` (`id`, `condicion`, `duracion`) VALUES
+(1, 'primera_menor_21', 1),
+(2, 'segunda_menor_21', 3),
+(3, 'menor_46', 5),
+(4, 'menor_60', 4),
+(5, 'menor_70', 3),
+(6, 'mayor_70', 1);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
