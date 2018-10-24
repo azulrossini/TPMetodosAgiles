@@ -208,6 +208,7 @@ public class ImprimirLicencia extends javax.swing.JFrame {
 
         vistaPrevia.setBackground(new java.awt.Color(255, 255, 255));
         vistaPrevia.setFont(new java.awt.Font("Microsoft JhengHei UI", 1, 12)); // NOI18N
+        vistaPrevia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/eye.png"))); // NOI18N
         vistaPrevia.setText("VISTA PREVIA");
         vistaPrevia.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -248,6 +249,7 @@ public class ImprimirLicencia extends javax.swing.JFrame {
 
         imprimir.setBackground(new java.awt.Color(255, 255, 255));
         imprimir.setFont(new java.awt.Font("Microsoft JhengHei UI", 1, 12)); // NOI18N
+        imprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/mini-printer.png"))); // NOI18N
         imprimir.setText("IMPRIMIR");
         imprimir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -265,6 +267,7 @@ public class ImprimirLicencia extends javax.swing.JFrame {
 
         cargarImagen.setBackground(new java.awt.Color(255, 255, 255));
         cargarImagen.setFont(new java.awt.Font("Microsoft JhengHei UI", 1, 12)); // NOI18N
+        cargarImagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/image-file.png"))); // NOI18N
         cargarImagen.setText("CARGAR FOTO");
         cargarImagen.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
