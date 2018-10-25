@@ -16,6 +16,8 @@
 	<parameter name="donante" class="java.lang.String"/>
 	<parameter name="observaciones" class="java.lang.String"/>
 	<parameter name="image" class="java.awt.image.BufferedImage"/>
+	<parameter name="bordeArriba" class="java.awt.image.BufferedImage"/>
+	<parameter name="bordeAbajo" class="java.awt.image.BufferedImage"/>
 	<queryString language="SQL">
 		<![CDATA[SELECT * FROM persona, licencia, vigencias WHERE 1]]>
 	</queryString>
@@ -38,11 +40,11 @@
 		<band height="200" splitType="Stretch">
 			<image>
 				<reportElement uuid="da8d66e5-6f28-465d-9322-b7eee1ff1f38" x="1" y="165" width="342" height="35"/>
-				<imageExpression><![CDATA["D:\\Datos\\Documentos\\Reporte\\bordeAbajo.png"]]></imageExpression>
+				<imageExpression><![CDATA[$P{bordeAbajo}]]></imageExpression>
 			</image>
 			<image>
 				<reportElement uuid="6a135534-2026-4162-bcfc-d3e27f0b734c" x="0" y="0" width="343" height="39"/>
-				<imageExpression><![CDATA["D:\\Datos\\Documentos\\Reporte\\bordeArriba.png"]]></imageExpression>
+				<imageExpression><![CDATA[$P{bordeArriba}]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement uuid="8f61dd52-3fa4-40d6-a308-f255685d63b6" x="129" y="39" width="69" height="16"/>
