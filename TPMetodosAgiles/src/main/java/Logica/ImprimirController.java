@@ -42,13 +42,13 @@ public class ImprimirController {
     private final Licencia lic;
     private final Map<String, Object> parameters = new HashMap();
     
-    public ImprimirController(Persona p, Licencia l){
+    public ImprimirController(Persona p, Licencia l) throws IOException{
         persona = p;
         lic = l;
         this.cargarParametros();
     }
 
-    private void cargarParametros(){
+    private void cargarParametros() throws IOException{
         parameters.put("nro_id",persona.getNroId());
         parameters.put("apellido",persona.getApellido());
         parameters.put("nombre",persona.getNombre());
@@ -63,6 +63,8 @@ public class ImprimirController {
             parameters.put("donante", "Sí");
         else
             parameters.put("donante", "No");
+        parameters.put("bordeArriba", this.getClass().getClassLoader().getResource("bordeArriba.png"));
+        parameters.put("bordeAbajo", this.getClass().getClassLoader().getResource("bordeArriba.png"));
     }
     
     public void verReporte(){
