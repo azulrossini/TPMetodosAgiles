@@ -60,6 +60,21 @@
             <artifactId>jasperreports</artifactId>
             <version>4.7.1</version>
         </dependency>
+        <dependency>
+            <groupId>JasperReport</groupId>
+            <artifactId>JasperReport</artifactId>
+            <version>4.7.1</version>
+        </dependency>
+        <dependency>
+            <groupId>JasperReport</groupId>
+            <artifactId>JasperReport-2</artifactId>
+            <version>4.7.1</version>
+        </dependency>
+        <dependency>
+            <groupId>JasperReport</groupId>
+            <artifactId>JasperReport-3</artifactId>
+            <version>4.7.1</version>
+        </dependency>
     </dependencies>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
