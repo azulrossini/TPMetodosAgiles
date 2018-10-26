@@ -144,15 +144,17 @@ public class IndexView extends javax.swing.JFrame {
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/id-card (2).png"))); // NOI18N
         jButton5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         jButton5.setContentAreaFilled(false);
-        jButton5.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/id-card rollover.png"))); // NOI18N
+        jButton5.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/id-card rollover 64.png"))); // NOI18N
 
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/budget.png"))); // NOI18N
         jButton6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         jButton6.setContentAreaFilled(false);
+        jButton6.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/budget rollove.png"))); // NOI18N
 
         jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/printer.png"))); // NOI18N
         jButton8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         jButton8.setContentAreaFilled(false);
+        jButton8.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/printer rollover.png"))); // NOI18N
 
         jLabel11.setBackground(new java.awt.Color(51, 51, 51));
         jLabel11.setFont(new java.awt.Font("Caviar Dreams", 1, 18)); // NOI18N
@@ -175,6 +177,7 @@ public class IndexView extends javax.swing.JFrame {
         jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/list.png"))); // NOI18N
         jButton9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         jButton9.setContentAreaFilled(false);
+        jButton9.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/list rollover.png"))); // NOI18N
         jButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton9ActionPerformed(evt);
@@ -300,7 +303,7 @@ public class IndexView extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
-                .addGap(18, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
