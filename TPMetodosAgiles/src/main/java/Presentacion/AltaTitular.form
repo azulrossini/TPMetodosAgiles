@@ -151,7 +151,7 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabelGrupoSanguineo" min="-2" pref="158" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jComboBox1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jComboBoxGrupoSanguineo" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="jLabelRH" min="-2" pref="29" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -302,7 +302,7 @@
                       <Component id="jLabelGrupoSanguineo" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                       <Component id="jLabelRH" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                       <Component id="jComboBoxRH" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jComboBox1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jComboBoxGrupoSanguineo" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -405,7 +405,7 @@
           <Properties>
             <Property name="toolTipText" type="java.lang.String" value="Ingrese como maximo 2 nombres"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Default Cursor"/>
+              <Color id="Cursor Por defecto"/>
             </Property>
           </Properties>
         </Component>
@@ -678,7 +678,7 @@
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JComboBox" name="jComboBox1">
+        <Component class="javax.swing.JComboBox" name="jComboBoxGrupoSanguineo">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Microsoft YaHei UI" size="11" style="0"/>

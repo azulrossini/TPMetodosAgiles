@@ -12,7 +12,9 @@ import java.util.List;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.Period;
+import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 /**
  *
@@ -53,8 +55,7 @@ public class PersonaController {
     */
     public boolean[] validarDatos(TipoDocumento tipo, String numeroDocumento, String nombre, String apellido, String dia, 
                                     String mes, String anio, String calle, String numeroCalle, String piso, String depart){
-        
-        boolean lista[]=null;
+        boolean[] lista= new boolean[11];
         
         lista[0]=validarDocumento(tipo, numeroDocumento);
         lista[1]=validarNombre(nombre);
@@ -66,7 +67,7 @@ public class PersonaController {
         lista[7]=validarNumeroCalle(numeroCalle);
         lista[8]=validarPiso(piso);
         lista[9]=validarDepartamento(depart);
-        //lista[10]=validarFecha(dia,mes,anio);
+        lista[10]=validarFecha(dia,mes,anio);
         
         return lista;
     }
@@ -85,14 +86,15 @@ public class PersonaController {
     public boolean validarNombre(String nombre){
         
         
-        if(nombre.matches("\\s[a-zA-Z]**?[a-zA-Z]*")) return true;
+        
+        if(nombre.matches("((\\s?)[a-zA-Z]+(\\s?))+")) return true;
         else return false;
         
  
     }
     public boolean validarApellido(String apellido){
        
-        if(apellido.matches("\\s[a-zA-Z]**?[a-zA-Z]*") ) return true;
+        if(apellido.matches("((\\s?)[a-zA-Z]+(\\s?))+") ) return true;
         else return false;
         
         
@@ -165,7 +167,7 @@ public class PersonaController {
         }else return false;
     }
     public boolean validarCalle(String calle){
-        if(calle.matches("\\s[a-zA-Z]**?[a-zA-Z]*")) return true;
+        if(calle.matches("((\\s?)[a-zA-Z]+(\\s?))+")) return true;
         else return false;
     }
     public boolean validarNumeroCalle(String numeroCalle){
@@ -176,13 +178,19 @@ public class PersonaController {
     }
     
     public boolean validarPiso(String piso){
-        if(piso.matches("[0-9]?[0-9]")) return true;
+        if(piso.matches("([0-9]?[0-9])?")) return true;
         else return false;
     }
     public boolean validarDepartamento(String depart){
-        if(depart.matches("[0-9]") || depart.matches("[a-zA-Z]")) return true;
+        if(depart.matches("[0-9]?") || depart.matches("[a-zA-Z]?")) return true;
         else return false;
     }
     
-       
-}
+    public Date getFecha(String dia, String mes, String anio){
+        int dia1 = Integer.valueOf(dia);
+        int mes1 = Integer.valueOf(mes);
+        int anio1 = Integer.valueOf(anio);
+        LocalDate fechaNac = LocalDate.of(anio1, mes1, dia1);
+        Date date = Date.from(fechaNac.atStartOfDay().toInstant(ZoneOffset.UTC));
+        return date;
+    }}
