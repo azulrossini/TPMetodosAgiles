@@ -111,7 +111,7 @@ public class AltaTitular extends javax.swing.JFrame {
 
         jLabelRegistroDeTitular.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 36)); // NOI18N
         jLabelRegistroDeTitular.setForeground(new java.awt.Color(51, 51, 51));
-        jLabelRegistroDeTitular.setText("Registro de titular");
+        jLabelRegistroDeTitular.setText("Registro de Titular");
 
         jLabelDocumento.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 18)); // NOI18N
         jLabelDocumento.setForeground(new java.awt.Color(51, 51, 51));
@@ -136,7 +136,7 @@ public class AltaTitular extends javax.swing.JFrame {
         jLabelNombreTitular.setText("Nombre");
 
         jTextFieldNombre.setToolTipText("Ingrese como maximo 2 nombres");
-        jTextFieldNombre.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jTextFieldNombre.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jLabelApellidoTitular.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 18)); // NOI18N
         jLabelApellidoTitular.setForeground(new java.awt.Color(51, 51, 51));
