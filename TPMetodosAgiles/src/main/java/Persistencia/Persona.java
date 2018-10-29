@@ -118,6 +118,25 @@ public class Persona  implements java.io.Serializable {
             return "No";
         }
     }
+    
+    public int calcularEdad(){
+        Date fechaActual = new Date();
+        Date fechaNac = this.getFechaNac();
+        int anios = fechaActual.getYear() - fechaNac.getYear();
+        int mes = fechaActual.getMonth() - fechaNac.getMonth();
+        
+        if (mes < 0) {
+            anios = anios - 1;
+        } 
+        else if (mes == 0) {
+            int dia = fechaActual.getDay() - fechaNac.getDay();
+            if (dia > 0) {
+                anios = anios - 1;
+            }
+        }
+        
+        return anios;
+    }
 
 }
 

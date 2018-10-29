@@ -36,7 +36,6 @@ public class LicenciaController {
     }   
     
     public Persona getPersona(int id){
-        
         Persona p;      
         PersonaController personaController = new PersonaController();
         
@@ -52,12 +51,9 @@ public class LicenciaController {
         
         Persona persona = personaController.getPersona(licencia.getPersonaId());
         List<Vigencias> listaVigencias = vigenciaController.getVigencias();
-        
-                
+             
         Calendar fechaVigencia = Calendar.getInstance();
         fechaVigencia.setTime(persona.getFechaNac());
-        
-        //HAB
         
         int edad = this.getEdad(persona.getFechaNac());
         
@@ -101,9 +97,7 @@ public class LicenciaController {
     }
     
     public int getEdad(Date fechaNacimiento){
-        
         if(fechaNacimiento!=null){
-            
             Calendar c = new GregorianCalendar();
             c.setTime(fechaNacimiento);
             
@@ -118,7 +112,8 @@ public class LicenciaController {
             }
             return diffYear;
 
-        }else{
+        }
+        else{
             return -1;
         }
     }

@@ -22,11 +22,16 @@ public class AltaTitular extends javax.swing.JFrame {
      * Creates new form AltaTitular1
      */
     private Point mouseDownCompCoords = null;
+    private PersonaController personaController;
+    private String pantallaAnterior;
     
-    public AltaTitular() {
+    public AltaTitular(PersonaController p, String pantAnterior) {
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
+        this.personaController = p;
+        this.pantallaAnterior = pantAnterior;
+        
         this.jLabelErrorNumDocumento.setVisible(false);
         this.jLabelErrorNombre.setVisible(false);
         this.jLabelErrorApellido.setVisible(false);
@@ -36,6 +41,10 @@ public class AltaTitular extends javax.swing.JFrame {
         this.jLabelErrorDepartamento.setVisible(false);
         this.jLabelErrorFecha.setVisible(false);
         
+    }
+
+    private AltaTitular() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -97,7 +106,7 @@ public class AltaTitular extends javax.swing.JFrame {
         setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(206, 206, 206));
-        jPanel1.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 1, true), new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true)));
+        jPanel1.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 2, true), new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true)));
         jPanel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 jPanel1MouseDragged(evt);
@@ -514,6 +523,17 @@ public class AltaTitular extends javax.swing.JFrame {
 
     private void jButtonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtrasActionPerformed
         // TODO add your handling code here:
+        switch(pantallaAnterior){
+            case "index": 
+                IndexView i = new IndexView();
+                i.setVisible(true);
+                this.setVisible(false);
+                break;
+            case "eleccion": 
+                EleccionTipoEmision e = new EleccionTipoEmision(personaController);
+                e.setVisible(true);
+                this.setVisible(false);
+        }
     }//GEN-LAST:event_jButtonAtrasActionPerformed
 
     private void jButtonCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCerrarActionPerformed
@@ -563,7 +583,6 @@ public class AltaTitular extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel1MouseDragged
 
     private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
-        PersonaController p = new PersonaController();
         
         //tomando los datos de la pantalla
         String nombre = this.jTextFieldNombre.getText();
@@ -590,7 +609,7 @@ public class AltaTitular extends javax.swing.JFrame {
         
         //valido datos
         boolean[] lista = new boolean[11];
-        lista = p.validarDatos(tipo, numeroDocumento, nombre, apellido, dia, mes, anio, calle, numeroCalle, piso, depart);
+        lista = personaController.validarDatos(tipo, numeroDocumento, nombre, apellido, dia, mes, anio, calle, numeroCalle, piso, depart);
         
         this.jLabelErrorNumDocumento.setVisible(!lista[0]);
         this.jLabelErrorNombre.setVisible(!lista[1]);
@@ -646,7 +665,7 @@ public class AltaTitular extends javax.swing.JFrame {
         for(int i=0;i<11;i++)
             if(lista[i]==false) estado=false;
         if(estado){
-            Date fechaNac = p.getFecha(dia, mes, anio);
+            Date fechaNac = personaController.getFecha(dia, mes, anio);
             String domicilio = calle+" "+numeroCalle;
             String grupoSang="";
             String rh="";
@@ -668,9 +687,9 @@ public class AltaTitular extends javax.swing.JFrame {
             
             
             //Llama para emitir una licencia con el titular creado
-            /*EmitirLicencia el = new EmitirLicencia(nuevoTitular, p);
+            EmitirLicencia el = new EmitirLicencia(nuevoTitular, personaController);
             el.setVisible(true);
-            this.setVisible(false);*/
+            this.setVisible(false);
         }
        
         

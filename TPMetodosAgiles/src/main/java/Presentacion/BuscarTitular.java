@@ -1,21 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Presentacion;
 
-/**
- *
- * @author Azul
- */
+import Logica.PersonaController;
+
 public class BuscarTitular extends javax.swing.JFrame {
 
-    /**
-     * Creates new form BuscarTitular
-     */
+    private PersonaController personaController;
     public BuscarTitular() {
         initComponents();
+    }
+    
+    public BuscarTitular(PersonaController p){
+        this.personaController = p;
+        initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -154,11 +152,13 @@ public class BuscarTitular extends javax.swing.JFrame {
                                                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addGroup(jPanel4Layout.createSequentialGroup()
                                                 .addGap(19, 19, 19)
-                                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                         .addGap(23, 23, 23)))
                                 .addGap(37, 37, 37))))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
