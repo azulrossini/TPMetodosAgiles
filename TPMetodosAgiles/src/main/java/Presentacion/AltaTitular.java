@@ -647,7 +647,7 @@ public class AltaTitular extends javax.swing.JFrame {
             if(lista[i]==false) estado=false;
         if(estado){
             Date fechaNac = p.getFecha(dia, mes, anio);
-            String domicilio = calle+numeroCalle;
+            String domicilio = calle+" "+numeroCalle;
             String grupoSang="";
             String rh="";
             switch (this.jComboBoxGrupoSanguineo.getSelectedIndex()){
@@ -661,7 +661,7 @@ public class AltaTitular extends javax.swing.JFrame {
             case 1: rh="-";break;
            
         }
-            boolean donante = this.jCheckBoxDonante.isEnabled();
+            boolean donante = this.jCheckBoxDonante.isSelected();
             int numDocu = Integer.valueOf(numeroDocumento);
             Persona nuevoTitular = new Persona(tipo1,numDocu, apellido, nombre, fechaNac, domicilio, grupoSang, rh, donante );
             System.out.println(nuevoTitular.isDonante());

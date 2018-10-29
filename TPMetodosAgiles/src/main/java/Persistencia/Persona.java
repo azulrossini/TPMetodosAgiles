@@ -69,6 +69,7 @@ public class Persona  implements java.io.Serializable {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+    
     public Date getFechaNac() {
         return this.fechaNac;
     }

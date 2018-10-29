@@ -11,6 +11,8 @@ import java.awt.Point;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.Date;
 
 public class EmitirLicencia extends javax.swing.JFrame {
 
@@ -23,13 +25,11 @@ public class EmitirLicencia extends javax.swing.JFrame {
     
     public EmitirLicencia() {
         initComponents();
-        this.setLocationRelativeTo(null);
     }
     
     public EmitirLicencia(Persona tit, PersonaController p){
         this.titular = tit;
         this.personaController = p;
-        this.setLocationRelativeTo(null);
         initComponents();
         completarDatosTitular();
         setearEdad();
@@ -55,7 +55,7 @@ public class EmitirLicencia extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         areaDatosTitular = new javax.swing.JTextArea();
-        jLabel7 = new javax.swing.JLabel();
+        labelEdad = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jLabelRegistroDeTitular = new javax.swing.JLabel();
@@ -110,7 +110,7 @@ public class EmitirLicencia extends javax.swing.JFrame {
 
         jTextArea1.setBackground(new java.awt.Color(206, 206, 206));
         jTextArea1.setColumns(20);
-        jTextArea1.setForeground(new java.awt.Color(153, 153, 153));
+        jTextArea1.setForeground(new java.awt.Color(51, 51, 51));
         jTextArea1.setRows(5);
         jTextArea1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
         jScrollPane1.setViewportView(jTextArea1);
@@ -137,14 +137,14 @@ public class EmitirLicencia extends javax.swing.JFrame {
         areaDatosTitular.setEditable(false);
         areaDatosTitular.setBackground(new java.awt.Color(206, 206, 206));
         areaDatosTitular.setColumns(20);
-        areaDatosTitular.setForeground(new java.awt.Color(153, 153, 153));
+        areaDatosTitular.setForeground(new java.awt.Color(51, 51, 51));
         areaDatosTitular.setRows(5);
         areaDatosTitular.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
         jScrollPane2.setViewportView(areaDatosTitular);
 
-        jLabel7.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 16)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel7.setText("Edad");
+        labelEdad.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 16)); // NOI18N
+        labelEdad.setForeground(new java.awt.Color(51, 51, 51));
+        labelEdad.setText("Edad");
 
         jLabel8.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 16)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(51, 51, 51));
@@ -200,7 +200,7 @@ public class EmitirLicencia extends javax.swing.JFrame {
                                     .addComponent(jLabel5))))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
+                            .addComponent(labelEdad)
                             .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(jPanel4Layout.createSequentialGroup()
@@ -244,7 +244,7 @@ public class EmitirLicencia extends javax.swing.JFrame {
                         .addGap(24, 24, 24)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
-                            .addComponent(jLabel7))
+                            .addComponent(labelEdad))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
@@ -295,7 +295,7 @@ public class EmitirLicencia extends javax.swing.JFrame {
         this.areaDatosTitular.setText("NOMBRE: "+ titular.getNombre() + "\n"
                 + "APELLIDO: " + titular.getApellido() + "\n"
                 + titular.getTipoId().toUpperCase() +": " + titular.getId() + "\n"
-                + "FECHA DE NACIMIENTO: " + titular.getFechaNac()+ "\n"
+                + "FECHA DE NACIMIENTO: " + titular.getFechaNac().getDay() +"/"+ titular.getFechaNac().getMonth() +"/"+ titular.getFechaNac().getYear()+ "\n"
                 + "DOMICILIO: " + titular.getDomicilio() + "\n"
                 + "GRUPO SANGUINEO: " + titular.getGrupoSanguineo() + "\n"
                 + "FACTOR: " + titular.getFactor() + "\n"
@@ -303,13 +303,22 @@ public class EmitirLicencia extends javax.swing.JFrame {
     }
     
     private void setearEdad(){
-        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate fechaNac = LocalDate.parse((CharSequence) titular.getFechaNac(), fmt);
-        LocalDate ahora = LocalDate.now();
-
-        Period periodo = Period.between(fechaNac, ahora);
-        System.out.printf("Tu edad es: %s años, %s meses y %s días",
-                    periodo.getYears(), periodo.getMonths(), periodo.getDays()); 
+        Date fechaActual = new Date();
+        Date fechaNac = titular.getFechaNac();
+        int anios = fechaActual.getYear() - fechaNac.getYear();
+        int mes = fechaActual.getMonth() - fechaNac.getMonth();
+        
+        if (mes < 0) {
+            anios = anios - 1;
+        } 
+        else if (mes == 0) {
+            int dia = fechaActual.getDay() - fechaNac.getDay();
+            if (dia > 0) {
+                anios = anios - 1;
+            }
+        }
+        
+        this.labelEdad.setText(String.valueOf(anios));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -326,12 +335,12 @@ public class EmitirLicencia extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabelRegistroDeTitular;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JLabel labelEdad;
     // End of variables declaration//GEN-END:variables
 }
