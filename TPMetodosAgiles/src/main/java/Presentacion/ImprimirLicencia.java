@@ -12,6 +12,7 @@ import Persistencia.Persona;
 import Persistencia.Vigencias;
 import java.awt.Point;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -40,7 +41,8 @@ public class ImprimirLicencia extends javax.swing.JFrame {
     private void cargarCampos(Persona p, Licencia l){
         this.titular.setText(p.getApellido() + ", " + p.getNombre());
         this.dni.setText(String.valueOf(p.getNroId()));
-        this.fechanac.setText(p.getFechaNac().toString());
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        this.fechanac.setText(sdf.format(p.getFechaNac()));
         this.clase.setText(l.getClaseId());
         if (p.getDonante())
             this.don.setText("Sí");
