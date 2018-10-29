@@ -8,18 +8,10 @@ package Presentacion;
 import Logica.PersonaController;
 import Persistencia.Persona;
 import java.awt.Point;
-import java.time.LocalDate;
-import java.time.Period;
-import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
 import java.util.Date;
 
 public class EmitirLicencia extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FrameEjemploFondoEtc
-     */
-    private Point mouseDownCompCoords = null;
     private Persona titular;
     private PersonaController personaController;
     
