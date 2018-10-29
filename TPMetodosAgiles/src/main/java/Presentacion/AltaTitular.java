@@ -663,8 +663,14 @@ public class AltaTitular extends javax.swing.JFrame {
         }
             boolean donante = this.jCheckBoxDonante.isEnabled();
             int numDocu = Integer.valueOf(numeroDocumento);
-            Persona nuevoTitular = new Persona(tipo1,numDocu, apellido, nombre, fechaNac, domicilio,grupoSang, rh, donante );
+            Persona nuevoTitular = new Persona(tipo1,numDocu, apellido, nombre, fechaNac, domicilio, grupoSang, rh, donante );
             System.out.println(nuevoTitular.isDonante());
+            
+            
+            //Llama para emitir una licencia con el titular creado
+            EmitirLicencia el = new EmitirLicencia(nuevoTitular, p);
+            el.setVisible(true);
+            this.setVisible(false);
         }
        
         
