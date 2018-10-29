@@ -191,6 +191,6 @@ public class PersonaController {
         int mes1 = Integer.valueOf(mes);
         int anio1 = Integer.valueOf(anio);
         LocalDate fechaNac = LocalDate.of(anio1, mes1, dia1);
-        Date date = Date.from(fechaNac.atStartOfDay().toInstant(ZoneOffset.UTC));
+        Date date = /*Date.from(fechaNac.atStartOfDay().toInstant(ZoneOffset.UTC));*/ java.sql.Date.valueOf(fechaNac);
         return date;
     }}

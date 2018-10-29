@@ -595,7 +595,7 @@ public class AltaTitular extends javax.swing.JFrame {
         this.jLabelErrorNumDocumento.setVisible(!lista[0]);
         this.jLabelErrorNombre.setVisible(!lista[1]);
         this.jLabelErrorApellido.setVisible(!lista[2]);
-        this.jLabelErrorFecha.setVisible(!(lista[3] || lista[4] || lista[5] || lista[10]));
+        this.jLabelErrorFecha.setVisible(!(lista[3] && lista[4] && lista[5] && lista[10]));
         this.jLabelErrorCalle.setVisible(!lista[6]);
         this.jLabelErrorNumeroCalle.setVisible(!lista[7]);
         this.jLabelErrorPiso.setVisible(!lista[8]);
@@ -664,13 +664,13 @@ public class AltaTitular extends javax.swing.JFrame {
             boolean donante = this.jCheckBoxDonante.isSelected();
             int numDocu = Integer.valueOf(numeroDocumento);
             Persona nuevoTitular = new Persona(tipo1,numDocu, apellido, nombre, fechaNac, domicilio, grupoSang, rh, donante );
-            System.out.println(nuevoTitular.isDonante());
+            //System.out.println(nuevoTitular.isDonante()+"   "+ nuevoTitular.getFechaNac());
             
             
             //Llama para emitir una licencia con el titular creado
-            EmitirLicencia el = new EmitirLicencia(nuevoTitular, p);
+            /*EmitirLicencia el = new EmitirLicencia(nuevoTitular, p);
             el.setVisible(true);
-            this.setVisible(false);
+            this.setVisible(false);*/
         }
        
         
