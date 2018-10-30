@@ -78,7 +78,7 @@ public class ListadoLicencias extends javax.swing.JFrame {
                 
                 datos[0] = licencia.getId();
                 datos[1] = licencia.getClaseId();
-                datos[2] = licenciaController.getVigencia(licencia); //CALCULO LA VIGENCIA
+                datos[2] = licenciaController.getVigencia(licencia, persona.getFechaNac()); //CALCULO LA VIGENCIA
                 datos[3] = persona.getApellido(); //Apellido
                 datos[4] = persona.getNombre(); //Nombre
                 datos[5] = persona.getGrupoSanguineo(); //GrupoSanguineo

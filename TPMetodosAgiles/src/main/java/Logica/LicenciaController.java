@@ -36,86 +36,64 @@ public class LicenciaController {
     }   
     
     public Persona getPersona(int id){
-        Persona p;      
+              
         PersonaController personaController = new PersonaController();
         
-        p = personaController.getPersona(id);
-        
-        return p;
+        return personaController.getPersona(id);
     }
     
-    public Object getVigencia(Licencia licencia) throws ParseException{
+    public Date getVigencia(Licencia licencia,Date fechaNacimiento) throws ParseException{
         
         PersonaController personaController = new PersonaController();
         VigenciaController vigenciaController = new VigenciaController();
-        
-        Persona persona = personaController.getPersona(licencia.getPersonaId());
+
         List<Vigencias> listaVigencias = vigenciaController.getVigencias();
              
         Calendar fechaVigencia = Calendar.getInstance();
-        fechaVigencia.setTime(persona.getFechaNac());
+        fechaVigencia.setTime(licencia.getFechaEmision());
         
-        int edad = this.getEdad(persona.getFechaNac());
+        int edad = personaController.getEdad(fechaNacimiento);
         
         if(edad < 21){
             if(licencia.getMotivo().equals(Motivo.ORIGINAL.toString())){
-               
-//                 fechaVigencia.add(Calendar.YEAR, listaVigencias.get(0).getPrimeraMenor21());
+                
+                fechaVigencia.add(Calendar.YEAR, listaVigencias.get(0).getDuracion());
                 
             }
             if(licencia.getMotivo().equals(Motivo.RENOVACION.toString())){
                 
-//               fechaVigencia.add(Calendar.YEAR, listaVigencias.get(0).getSegundaMenor21()); 
+                fechaVigencia.add(Calendar.YEAR, listaVigencias.get(1).getDuracion()); 
                 
             }
         }
-        if(edad <= 46){
+        if(edad >=21 && edad <= 46){
             
-//            fechaVigencia.add(Calendar.YEAR, listaVigencias.get(0).getMenor46()); 
-            
-        }
-        if(edad <= 60){
-            
-//            fechaVigencia.add(Calendar.YEAR, listaVigencias.get(0).getMenor60());
+            fechaVigencia.add(Calendar.YEAR, listaVigencias.get(2).getDuracion()); 
             
         }
-        if(edad <= 70){
+        if(edad>46 && edad <= 60){
             
-//            fechaVigencia.add(Calendar.YEAR, listaVigencias.get(0).getMenor70());
+            fechaVigencia.add(Calendar.YEAR, listaVigencias.get(3).getDuracion());
+            
+        }
+        if(edad >60 && edad <= 70){
+            
+            fechaVigencia.add(Calendar.YEAR, listaVigencias.get(4).getDuracion());
             
         }
         if(edad > 70){
-            
-//           fechaVigencia.add(Calendar.YEAR, listaVigencias.get(0).getMayor70());
+           
+           fechaVigencia.add(Calendar.YEAR, listaVigencias.get(5).getDuracion());
            
         }
+        Calendar c = Calendar.getInstance();
+        c.setTime(fechaNacimiento);
+        fechaVigencia.set(Calendar.DAY_OF_MONTH, c.get(Calendar.DAY_OF_MONTH));
+        fechaVigencia.set(Calendar.MONTH, c.get(Calendar.MONTH));
         
-        SimpleDateFormat mdyFormat = new SimpleDateFormat("dd/MM/yyyy");
-        String mdy = mdyFormat.format(fechaVigencia);
-        
-        return mdy;
+        return fechaVigencia.getTime();
     }
     
-    public int getEdad(Date fechaNacimiento){
-        if(fechaNacimiento!=null){
-            Calendar c = new GregorianCalendar();
-            c.setTime(fechaNacimiento);
-            
-            Calendar today = Calendar.getInstance();
-            int diffYear = today.get(Calendar.YEAR) - c.get(Calendar.YEAR);
-            int diffMonth = today.get(Calendar.MONTH) - c.get(Calendar.MONTH);
-            int diffDay = today.get(Calendar.DAY_OF_MONTH) - c.get(Calendar.DAY_OF_MONTH);
-            
-            // Si está en ese año pero todavía no los ha cumplido
-            if (diffMonth < 0 || (diffMonth == 0 && diffDay < 0)) {
-                diffYear = diffYear - 1;
-            }
-            return diffYear;
-
-        }
-        else{
-            return -1;
-        }
-    }
+    
     
 }

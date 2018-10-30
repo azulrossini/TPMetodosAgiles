@@ -6,11 +6,19 @@
 package Presentacion;
 
 import Logica.LicenciaController;
+import Logica.LicenciaController.Motivo;
 import Logica.PersonaController;
 import Persistencia.*;
+import java.awt.Point;
+import java.text.ParseException;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class EmitirLicencia extends javax.swing.JFrame {
 
+    private Point mouseDownCompCoords = null;
     private Persona titular;
     private PersonaController personaController;
     private LicenciaController licenciaController;
@@ -26,6 +34,7 @@ public class EmitirLicencia extends javax.swing.JFrame {
         initComponents();
         completarDatosTitular();
         setearEdad();
+        this.setLocationRelativeTo(null);
     }
     
     @SuppressWarnings("unchecked")
@@ -60,6 +69,19 @@ public class EmitirLicencia extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(206, 206, 206));
         jPanel4.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 2, true), new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true)));
+        jPanel4.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jPanel4MouseDragged(evt);
+            }
+        });
+        jPanel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPanel4MousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jPanel4MouseReleased(evt);
+            }
+        });
 
         jLabel14.setBackground(new java.awt.Color(51, 51, 51));
         jLabel14.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 36)); // NOI18N
@@ -176,12 +198,12 @@ public class EmitirLicencia extends javax.swing.JFrame {
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(labelEdad)
-                                    .addComponent(comboClase, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                                         .addComponent(jLabel8)
                                         .addGap(291, 291, 291))
                                     .addComponent(jScrollPane2)
-                                    .addComponent(observaciones))
+                                    .addComponent(observaciones)
+                                    .addComponent(comboClase, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(12, 12, 12)
                                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel4Layout.createSequentialGroup()
@@ -283,12 +305,34 @@ public class EmitirLicencia extends javax.swing.JFrame {
         String obs = this.observaciones.getText();
 
         
+        System.out.println(titular.getFechaNac());
         
         Licencia licencia = new Licencia();
-        //Object vigencia = licenciaController.getVigencia(licencia);
-        int vigencia = 3;
+        licencia.setFechaEmision(new Date());
+        licencia.setMotivo(Motivo.ORIGINAL.toString());
+        try {
+            Date fechaVencimiento = licenciaController.getVigencia(licencia, titular.getFechaNac());
+            licencia.setFechaVenc(fechaVencimiento);
+        } catch (ParseException ex) {
+            Logger.getLogger(EmitirLicencia.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+
         
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jPanel4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MousePressed
+        mouseDownCompCoords = evt.getPoint();
+    }//GEN-LAST:event_jPanel4MousePressed
+
+    private void jPanel4MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseReleased
+        mouseDownCompCoords = null;
+    }//GEN-LAST:event_jPanel4MouseReleased
+
+    private void jPanel4MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseDragged
+        Point currCoords = evt.getLocationOnScreen();
+        this.setLocation(currCoords.x - mouseDownCompCoords.x, currCoords.y - mouseDownCompCoords.y);
+    }//GEN-LAST:event_jPanel4MouseDragged
     
     private boolean verificarClase(String clase){
             switch (clase){
@@ -317,11 +361,12 @@ public class EmitirLicencia extends javax.swing.JFrame {
     private void completarDatosTitular(){
         //Completar los datos del titular en el textArea
         //No se pueden editar. Es el titular dado de alta anteriormente
-        
+        Calendar c = Calendar.getInstance();
+        c.setTime(titular.getFechaNac());
         this.areaDatosTitular.setText("NOMBRE: "+ titular.getNombre() + "\n"
                 + "APELLIDO: " + titular.getApellido() + "\n"
-                + titular.getTipoId().toUpperCase() +": " + titular.getId() + "\n"
-                + "FECHA DE NACIMIENTO: " + titular.getFechaNac().getDay() +"/"+ titular.getFechaNac().getMonth() +"/"+ titular.getFechaNac().getYear()+ "\n"
+                + titular.getTipoId().toUpperCase() +": " + titular.getNroId() + "\n"
+                + "FECHA DE NACIMIENTO: " + c.get(Calendar.DAY_OF_MONTH) +"/"+ (c.get(Calendar.MONTH)+1) +"/"+ c.get(Calendar.YEAR)+ "\n"
                 + "DOMICILIO: " + titular.getDomicilio() + "\n"
                 + "GRUPO SANGUINEO: " + titular.getGrupoSanguineo() + "\n"
                 + "FACTOR: " + titular.getFactor() + "\n"
@@ -329,7 +374,7 @@ public class EmitirLicencia extends javax.swing.JFrame {
     }
     
     private void setearEdad(){
-        this.labelEdad.setText(String.valueOf(titular.calcularEdad()));
+        this.labelEdad.setText(String.valueOf(personaController.getEdad(titular.getFechaNac())));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

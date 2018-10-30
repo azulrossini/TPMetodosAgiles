@@ -7,6 +7,7 @@ package Logica;
 
 import Presentacion.IndexView;
 
+
 /**
  *
  * @author JIC

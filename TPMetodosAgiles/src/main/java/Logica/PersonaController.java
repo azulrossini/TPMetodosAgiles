@@ -14,7 +14,9 @@ import java.time.Month;
 import java.time.Period;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 /**
  *
@@ -192,5 +194,28 @@ public class PersonaController {
         int anio1 = Integer.valueOf(anio);
         LocalDate fechaNac = LocalDate.of(anio1, mes1, dia1);
         Date date = /*Date.from(fechaNac.atStartOfDay().toInstant(ZoneOffset.UTC));*/ java.sql.Date.valueOf(fechaNac);
+
         return date;
-    }}
+    }
+    public int getEdad(Date fechaNacimiento){
+        if(fechaNacimiento!=null){
+            Calendar c = new GregorianCalendar();
+            c.setTime(fechaNacimiento);
+            
+            Calendar today = Calendar.getInstance();
+            int diffYear = today.get(Calendar.YEAR) - c.get(Calendar.YEAR);
+            int diffMonth = today.get(Calendar.MONTH) - c.get(Calendar.MONTH);
+            int diffDay = today.get(Calendar.DAY_OF_MONTH) - c.get(Calendar.DAY_OF_MONTH);
+            
+            // Si está en ese año pero todavía no los ha cumplido
+            if (diffMonth < 0 || (diffMonth == 0 && diffDay < 0)) {
+                diffYear = diffYear - 1;
+            }
+            return diffYear;
+
+        }
+        else{
+            return -1;
+        }
+    }
+}
