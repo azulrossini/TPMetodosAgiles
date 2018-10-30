@@ -363,7 +363,7 @@ public class IndexView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAltaActionPerformed
-        AltaTitular at = new AltaTitular(PC, "index");
+        AltaTitular at = new AltaTitular(PC,LC, "index");
         at.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_botonAltaActionPerformed
@@ -394,7 +394,7 @@ public class IndexView extends javax.swing.JFrame {
 
     private void botonEmitirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEmitirActionPerformed
         // TODO add your handling code here:
-        EleccionTipoEmision ete = new EleccionTipoEmision(PC);
+        EleccionTipoEmision ete = new EleccionTipoEmision(PC, LC);
         this.setVisible(false);
         ete.setVisible(true);
     }//GEN-LAST:event_botonEmitirActionPerformed

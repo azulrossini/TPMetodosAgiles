@@ -14,14 +14,16 @@ import Logica.*;
 public class EleccionTipoEmision extends javax.swing.JFrame {
 
     private PersonaController personaController;
+    private LicenciaController licenciaController;
 
     
     public EleccionTipoEmision() {
         initComponents();
     }
     
-    public EleccionTipoEmision(PersonaController p){
+    public EleccionTipoEmision(PersonaController p, LicenciaController l){
         this.personaController = p;
+        this.licenciaController = l;
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -183,7 +185,7 @@ public class EleccionTipoEmision extends javax.swing.JFrame {
 
     private void boton1vezActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton1vezActionPerformed
         // TODO add your handling code here:
-        AltaTitular at = new AltaTitular(personaController, "eleccion");
+        AltaTitular at = new AltaTitular(personaController, licenciaController, "eleccion");
         at.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_boton1vezActionPerformed

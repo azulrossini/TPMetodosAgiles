@@ -5,8 +5,8 @@
  */
 package Presentacion;
 
-import Logica.PersonaController;
-import Persistencia.Persona;
+import Logica.*;
+import Persistencia.*;
 import java.awt.Color;
 import java.awt.Point;
 import static java.lang.System.exit;
@@ -23,14 +23,16 @@ public class AltaTitular extends javax.swing.JFrame {
      */
     private Point mouseDownCompCoords = null;
     private PersonaController personaController;
+    private LicenciaController licenciaController;
     private String pantallaAnterior;
     
-    public AltaTitular(PersonaController p, String pantAnterior) {
+    public AltaTitular(PersonaController p, LicenciaController l, String pantAnterior) {
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.personaController = p;
         this.pantallaAnterior = pantAnterior;
+        this.licenciaController = l;
         
         this.jLabelErrorNumDocumento.setVisible(false);
         this.jLabelErrorNombre.setVisible(false);
@@ -530,9 +532,10 @@ public class AltaTitular extends javax.swing.JFrame {
                 this.setVisible(false);
                 break;
             case "eleccion": 
-                EleccionTipoEmision e = new EleccionTipoEmision(personaController);
+                EleccionTipoEmision e = new EleccionTipoEmision(personaController, licenciaController);
                 e.setVisible(true);
                 this.setVisible(false);
+                break;
         }
     }//GEN-LAST:event_jButtonAtrasActionPerformed
 
@@ -687,7 +690,7 @@ public class AltaTitular extends javax.swing.JFrame {
             
             
             //Llama para emitir una licencia con el titular creado
-            EmitirLicencia el = new EmitirLicencia(nuevoTitular, personaController);
+            EmitirLicencia el = new EmitirLicencia(nuevoTitular, personaController, licenciaController);
             el.setVisible(true);
             this.setVisible(false);
         }

@@ -6,7 +6,6 @@
 package Logica;
 
 import Persistencia.Licencia;
-import org.hibernate.Session;
 import java.util.List;
 import lic_sf_bd.util;
 import org.hibernate.Query;
