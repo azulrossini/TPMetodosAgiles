@@ -33,4 +33,17 @@ public class LicenciaDAO extends GenericDAO {
         return lista;
     }
     
+    public List<Licencia> getLicenciasTitular(int idTitular){
+        SS = util.getSessionFactory().openSession();
+        SS.beginTransaction();
+        String sentencia = "SELECT L.* FROM licencia L WHERE L.persona_id ='"+ idTitular +"';";
+        Query query = SS.createSQLQuery(sentencia).addEntity(Licencia.class);
+        List<Licencia> lista = query.list();
+        SS.getTransaction().commit();
+        SS.close();
+        return lista;
+        
+        
+    }
+    
 }

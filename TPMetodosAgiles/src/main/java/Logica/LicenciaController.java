@@ -5,22 +5,18 @@
  */
 package Logica;
 
+import Persistencia.Clase;
 import Persistencia.Licencia;
 import Persistencia.Persona;
 import Persistencia.Vigencias;
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
-import java.util.Locale;
 
-/**
- *
- * @author JIC
- */
+
 public class LicenciaController {
     
     private LicenciaDAO LicenciaDAO;
@@ -34,6 +30,37 @@ public class LicenciaController {
     public List<Licencia> getLicencias(){
         return LicenciaDAO.readAll();
     }   
+    
+    public boolean verificarClase(String clase, Persona titular){
+        ClaseController cc = new ClaseController();
+        //Si la clase existe
+        if(cc.verificarClase(clase)){
+
+            if(clase =="A" || clase =="B" || clase== "F" || clase =="G" ){
+                //Si es de esta clase no necesita validacion extra, puede sacarla sin problema a la licencia
+                return true;
+            }
+            else{
+                List<Licencia> licencias_anteriores = LicenciaDAO.getLicenciasTitular(titular.getId());
+                for(int i=0; i<licencias_anteriores.size(); i++){
+                    
+                //Verifica si tuvo una licencia de clase B en algun momento, al menos 1 anio antes
+                    if(licencias_anteriores.get(i).getClaseId() == "B"){
+                        Date hoy = new Date();
+                        long diff = hoy.getTime() - licencias_anteriores.get(i).getFechaEmision().getTime();
+                        
+                        //Tiene que haberla sacado 1 anio antes al menos
+                        int diffDays = (int) (diff / (24 * 60 * 60 * 1000));
+                        if(diffDays>= 365){
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
     
     public Persona getPersona(int id){
               

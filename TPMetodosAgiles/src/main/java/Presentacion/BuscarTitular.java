@@ -236,7 +236,7 @@ public class BuscarTitular extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton17ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
+        //Busca el titular con el dni o la parte del dni ingresado
         if(this.buscaDNI.getText()!=null){
             int dni = Integer.valueOf(this.buscaDNI.getText());
             personas = personaController.buscarTitular(dni);
@@ -262,6 +262,7 @@ public class BuscarTitular extends javax.swing.JFrame {
 
     
     private void setearTabla(){
+        //Setea la tabla con los valores de los titualres obtenidos
         DefaultTableModel dtm = (DefaultTableModel) this.tabla.getModel();
         dtm.setRowCount(0);   
         for(int i = 0; i<personas.size(); i++){

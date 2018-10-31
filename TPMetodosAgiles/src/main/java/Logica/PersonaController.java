@@ -42,6 +42,8 @@ public class PersonaController {
     
     
     public List<Persona> buscarTitular(int dni){
+        //Este metodo busca por DNI, no por id de la persona
+        //El ID de la persona es un autoincremental de la bd
         return PersonaDAO.readTitular(dni);
     }
     

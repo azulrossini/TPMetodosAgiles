@@ -292,30 +292,33 @@ public class EmitirLicencia extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        
         String clase = (String) this.comboClase.getSelectedItem();
+        
         //Comprobar que pueda sacar las clases
-        if(verificarClase(clase)){
+        if(licenciaController.verificarClase(clase, titular)){
             //Sigue
+            //Si es clase C D o E controla que tenga +21, sino no
+            if(controlarCDE(clase)){
+                String obs = this.observaciones.getText();
+            } 
         }
         else{
             //Tira un error
         }
-        
-        String obs = this.observaciones.getText();
-
-        
-        System.out.println(titular.getFechaNac());
-        
-        Licencia licencia = new Licencia();
-        licencia.setFechaEmision(new Date());
-        licencia.setMotivo(Motivo.ORIGINAL.toString());
-        try {
-            Date fechaVencimiento = licenciaController.getVigencia(licencia, titular.getFechaNac());
-            licencia.setFechaVenc(fechaVencimiento);
-        } catch (ParseException ex) {
-            Logger.getLogger(EmitirLicencia.class.getName()).log(Level.SEVERE, null, ex);
-        }
+                
+//
+//        System.out.println(titular.getFechaNac());
+//        
+//        Licencia licencia = new Licencia();
+//        licencia.setFechaEmision(new Date());
+//        licencia.setMotivo(Motivo.ORIGINAL.toString());
+//        try {
+//            Date fechaVencimiento = licenciaController.getVigencia(licencia, titular.getFechaNac());
+//            licencia.setFechaVenc(fechaVencimiento);
+//        } catch (ParseException ex) {
+//            Logger.getLogger(EmitirLicencia.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//
         
 
         
@@ -334,27 +337,7 @@ public class EmitirLicencia extends javax.swing.JFrame {
         this.setLocation(currCoords.x - mouseDownCompCoords.x, currCoords.y - mouseDownCompCoords.y);
     }//GEN-LAST:event_jPanel4MouseDragged
     
-    private boolean verificarClase(String clase){
-            switch (clase){
-                case "A": 
-                    return true;
-                case "B":
-                    return true;
-                case "C": 
-//                    if(licenciaController.getEdad(titular.getFechaNac())>=21
-//                            && licenciaController.getPersona(titular.getId()))
-//                    
-                    break;
-                case "D": break;
-                case "E": break;
-                case "F": 
-                    return true;
-                case "G": 
-                    return true;
-            } 
-        
-        return false;
-    }
+
     
     
     
@@ -375,6 +358,20 @@ public class EmitirLicencia extends javax.swing.JFrame {
     
     private void setearEdad(){
         this.labelEdad.setText(String.valueOf(personaController.getEdad(titular.getFechaNac())));
+    }
+    
+    private boolean controlarCDE(String clase){
+        if(clase == "C" || clase == "E" || clase == "D"){
+            if(personaController.getEdad(titular.getFechaNac())>=21){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+        else{
+            return true;
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
