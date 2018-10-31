@@ -64,4 +64,8 @@ public class PersonaDAO {
         return lista;
     }
     
+    public void writeTitular(Persona p){
+        
+    }
+    
 }

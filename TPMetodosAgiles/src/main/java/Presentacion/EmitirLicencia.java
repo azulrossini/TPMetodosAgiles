@@ -13,6 +13,7 @@ import java.awt.Point;
 import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -291,37 +292,46 @@ public class EmitirLicencia extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton18ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        //Almacena el titular para poder obtener el id
+        //Para almacenar como FK en la tabla Licencia
+        personaController.almacenarTitular(titular);
+
         String clase = (String) this.comboClase.getSelectedItem();
         
         //Comprobar que pueda sacar las clases
         if(licenciaController.verificarClase(clase, titular)){
-            //Sigue
             //Si es clase C D o E controla que tenga +21, sino no
             if(controlarCDE(clase)){
+                licenciaController.eliminarClasesHeredadas(clase, titular);
+                
+                
+                
                 String obs = this.observaciones.getText();
+                
+                
+                
+                //Crear la licencia
+                Licencia licencia = new Licencia();
+                licencia.setClaseId(clase);
+                licencia.setObservaciones(obs);
+                licencia.setPersonaId(titular.getId());
+                licencia.setUsuarioId(00);
+                
+                //Calcular vigencia
+                licencia.setFechaEmision(new Date());
+                Date fechaVencimiento=null;
+                try {
+                    fechaVencimiento = fechaVencimiento = licenciaController.getVigencia(licencia, titular.getFechaNac());
+                } catch (ParseException ex) {
+                    Logger.getLogger(EmitirLicencia.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                licencia.setFechaVenc(fechaVencimiento);
             } 
         }
         else{
             //Tira un error
         }
-                
-//
-//        System.out.println(titular.getFechaNac());
-//        
-//        Licencia licencia = new Licencia();
-//        licencia.setFechaEmision(new Date());
-//        licencia.setMotivo(Motivo.ORIGINAL.toString());
-//        try {
-//            Date fechaVencimiento = licenciaController.getVigencia(licencia, titular.getFechaNac());
-//            licencia.setFechaVenc(fechaVencimiento);
-//        } catch (ParseException ex) {
-//            Logger.getLogger(EmitirLicencia.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//
-        
-
-        
+    
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jPanel4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MousePressed
@@ -336,10 +346,7 @@ public class EmitirLicencia extends javax.swing.JFrame {
         Point currCoords = evt.getLocationOnScreen();
         this.setLocation(currCoords.x - mouseDownCompCoords.x, currCoords.y - mouseDownCompCoords.y);
     }//GEN-LAST:event_jPanel4MouseDragged
-    
 
-    
-    
     
     private void completarDatosTitular(){
         //Completar los datos del titular en el textArea

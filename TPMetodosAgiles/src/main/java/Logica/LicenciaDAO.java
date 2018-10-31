@@ -1,20 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Logica;
 
-import Persistencia.Licencia;
+import Persistencia.*;
 import java.util.List;
 import lic_sf_bd.util;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
-/**
- *
- * @author JIC
- */
+
 public class LicenciaDAO extends GenericDAO {
     
     private Session SS;
@@ -41,9 +34,30 @@ public class LicenciaDAO extends GenericDAO {
         List<Licencia> lista = query.list();
         SS.getTransaction().commit();
         SS.close();
+        return lista;  
+    }
+    
+    public List<String> getHeredadas(String clase){
+        SS = util.getSessionFactory().openSession();
+        SS.beginTransaction();
+        String sentencia = "SELECT C.clases_heredadas_id FROM clase C WHERE C.id ='"+ clase +"';";
+        Query query = SS.createSQLQuery(sentencia).addEntity(Licencia.class);
+        List<String> lista = query.list();
+        SS.getTransaction().commit();
+        SS.close();
         return lista;
-        
-        
+    }
+    
+    public List<Licencia> getLicenciasPorClase(int id, String clase){
+        SS = util.getSessionFactory().openSession();
+        SS.beginTransaction();
+        String sentencia = "SELECT L.* FROM licencia L WHERE L.persona_id ='"+ id +"'"
+                + "AND L.clase_id ='"+ clase +"';";
+        Query query = SS.createSQLQuery(sentencia).addEntity(Licencia.class);
+        List<Licencia> lista = query.list();
+        SS.getTransaction().commit();
+        SS.close();
+        return lista;
     }
     
 }

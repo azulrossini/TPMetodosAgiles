@@ -62,6 +62,37 @@ public class LicenciaController {
         return false;
     }
     
+    public void eliminarLicenciasHeredadas(String clase, Persona titular){
+        
+        switch (clase){
+            case "A":
+                return;
+            case "B":
+                return;
+            case"C":
+                List<String> heredadas = LicenciaDAO.getHeredadas("C");
+                
+                for(int i=0; i<heredadas.size(); i++){
+                    List<Licencia> licencia_anterior = LicenciaDAO.getLicenciasPorClase(titular.getId(), heredadas.get(i));
+                    
+                }
+        }
+        
+        
+        
+        
+        
+        List<Licencia> licencias_anteriores = LicenciaDAO.getLicenciasTitular(titular.getId());
+                for(int i=0; i<licencias_anteriores.size(); i++){
+                    
+                //Verifica si tuvo una licencia de clase B en algun momento, al menos 1 anio antes
+                    if(licencias_anteriores.get(i).getClaseId() == "B"){
+                        
+                    }
+                }
+    }
+    
+    
     public Persona getPersona(int id){
               
         PersonaController personaController = new PersonaController();
