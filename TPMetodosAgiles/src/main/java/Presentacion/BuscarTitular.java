@@ -1,17 +1,25 @@
 
 package Presentacion;
 
+import Logica.LicenciaController;
 import Logica.PersonaController;
+import Persistencia.*;
+import java.util.*;
+import javax.swing.table.DefaultTableModel;
 
 public class BuscarTitular extends javax.swing.JFrame {
 
     private PersonaController personaController;
+    private LicenciaController licenciaController;
+    private List<Persona> personas;
+    
     public BuscarTitular() {
         initComponents();
     }
     
-    public BuscarTitular(PersonaController p){
+    public BuscarTitular(PersonaController p, LicenciaController l){
         this.personaController = p;
+        this.licenciaController = l;
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -31,10 +39,10 @@ public class BuscarTitular extends javax.swing.JFrame {
         jButton17 = new javax.swing.JButton();
         jButton18 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        buscaDNI = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabla = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
         jLabelRegistroDeTitular = new javax.swing.JLabel();
 
@@ -73,6 +81,11 @@ public class BuscarTitular extends javax.swing.JFrame {
         jButton18.setBorderPainted(false);
         jButton18.setContentAreaFilled(false);
         jButton18.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/left-arrow rollover.png"))); // NOI18N
+        jButton18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton18ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 16)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 51, 51));
@@ -82,8 +95,13 @@ public class BuscarTitular extends javax.swing.JFrame {
         jButton1.setBorderPainted(false);
         jButton1.setContentAreaFilled(false);
         jButton1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/search rollover.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -102,17 +120,22 @@ public class BuscarTitular extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
+        jScrollPane1.setViewportView(tabla);
+        if (tabla.getColumnModel().getColumnCount() > 0) {
+            tabla.getColumnModel().getColumn(0).setResizable(false);
+            tabla.getColumnModel().getColumn(1).setResizable(false);
+            tabla.getColumnModel().getColumn(2).setResizable(false);
         }
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/Flecha derecha.png"))); // NOI18N
         jButton2.setBorderPainted(false);
         jButton2.setContentAreaFilled(false);
         jButton2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/Flecha derecha rollover.png"))); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabelRegistroDeTitular.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 36)); // NOI18N
         jLabelRegistroDeTitular.setForeground(new java.awt.Color(51, 51, 51));
@@ -147,7 +170,7 @@ public class BuscarTitular extends javax.swing.JFrame {
                                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(jPanel4Layout.createSequentialGroup()
                                                 .addGap(69, 69, 69)
-                                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(buscaDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addGroup(jPanel4Layout.createSequentialGroup()
@@ -180,7 +203,7 @@ public class BuscarTitular extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(buscaDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
@@ -203,6 +226,7 @@ public class BuscarTitular extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
+        this.dispose();
         System.exit(0);
     }//GEN-LAST:event_jButton16ActionPerformed
 
@@ -211,8 +235,49 @@ public class BuscarTitular extends javax.swing.JFrame {
         this.setExtendedState(ICONIFIED);
     }//GEN-LAST:event_jButton17ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        if(this.buscaDNI.getText()!=null){
+            int dni = Integer.valueOf(this.buscaDNI.getText());
+            personas = personaController.buscarTitular(dni);
+            setearTabla();
+        }
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
+        // TODO add your handling code here:
+        EleccionTipoEmision ete = new EleccionTipoEmision(personaController, licenciaController);
+        ete.setVisible(true);
+        this.setVisible(false);
+        
+    }//GEN-LAST:event_jButton18ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        EmitirLicencia el= new EmitirLicencia(personas.get(this.tabla.getSelectedRow()), personaController, licenciaController);
+        el.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    
+    private void setearTabla(){
+        DefaultTableModel dtm = (DefaultTableModel) this.tabla.getModel();
+        dtm.setRowCount(0);   
+        for(int i = 0; i<personas.size(); i++){
+            String datos[] = new String[3];                 
+                datos[0] = String.valueOf(personas.get(i).getNroId());
+                datos[1] = personas.get(i).getNombre();
+                datos[2] = personas.get(i).getApellido();
+
+                dtm.addRow(datos);
+        }    
+
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField buscaDNI;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton17;
@@ -223,7 +288,6 @@ public class BuscarTitular extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelRegistroDeTitular;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTable tabla;
     // End of variables declaration//GEN-END:variables
 }

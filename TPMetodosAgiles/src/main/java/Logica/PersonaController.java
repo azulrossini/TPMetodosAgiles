@@ -41,6 +41,9 @@ public class PersonaController {
     }
     
     
+    public List<Persona> buscarTitular(int dni){
+        return PersonaDAO.readTitular(dni);
+    }
     
     /*devuelve un arreglo de booleans, cada posicion indica si el dato es correcto o no
     0 numeroDocumento

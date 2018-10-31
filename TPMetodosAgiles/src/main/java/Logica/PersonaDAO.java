@@ -9,6 +9,7 @@ import Persistencia.Licencia;
 import Persistencia.Persona;
 import java.util.List;
 import lic_sf_bd.util;
+import org.hibernate.Hibernate;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
@@ -49,6 +50,17 @@ public class PersonaDAO {
         else{
             return null;
         }    
+    }
+    
+    public List<Persona> readTitular(int id){
+        SS = util.getSessionFactory().openSession();
+        SS.beginTransaction();
+        String sentencia = "SELECT * FROM Persona P WHERE P.id LIKE '%" + id + "%';";
+        Query query = SS.createSQLQuery(sentencia).addEntity(Persona.class);
+        List<Persona> lista = query.list();
+        SS.getTransaction().commit();
+        SS.close();
+        return lista;
     }
     
 }

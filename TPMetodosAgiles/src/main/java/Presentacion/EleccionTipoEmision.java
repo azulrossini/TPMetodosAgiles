@@ -178,7 +178,7 @@ public class EleccionTipoEmision extends javax.swing.JFrame {
 
     private void botonRenovacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRenovacionActionPerformed
         // TODO add your handling code here:
-        BuscarTitular bt = new BuscarTitular(personaController);
+        BuscarTitular bt = new BuscarTitular(personaController, licenciaController);
         bt.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_botonRenovacionActionPerformed
