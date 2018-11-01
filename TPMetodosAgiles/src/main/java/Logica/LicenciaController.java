@@ -178,7 +178,7 @@ public class LicenciaController {
                 licencia.setObservaciones(obs);
                 licencia.setPersonaId(titular.getId());
                 licencia.setUsuarioId(00);
-                licencia.setMotivo(motivo);
+                licencia.setMotivo(motivo.toString());
 
                 //SETAR!!!!
                 licencia.setVigenciaId(0);

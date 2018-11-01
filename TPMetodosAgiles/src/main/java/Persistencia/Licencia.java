@@ -13,7 +13,7 @@ public class Licencia  implements java.io.Serializable {
     private int usuarioId;
     private int costoId;
     private int vigenciaId;
-    private Motivo motivo;
+    private String motivo;
     private Date fechaEmision;
     private Date fechaVenc;
     private String observaciones;
@@ -21,7 +21,7 @@ public class Licencia  implements java.io.Serializable {
     public Licencia() {
     }
     
-    public Licencia(int personaId, String claseId, int usuarioId, int costoId, int vigenciaId, Motivo motivo, Date fechaEmision, Date fechaVenc) {
+    public Licencia(int personaId, String claseId, int usuarioId, int costoId, int vigenciaId, String motivo, Date fechaEmision, Date fechaVenc) {
         this.personaId = personaId;
         this.claseId = claseId;
         this.usuarioId = usuarioId;
@@ -32,7 +32,7 @@ public class Licencia  implements java.io.Serializable {
         this.fechaVenc = fechaVenc;
     }
     
-    public Licencia(int personaId, String claseId, int usuarioId, int costoId, int vigenciaId, Motivo motivo, Date fechaEmision, Date fechaVenc, String observaciones) {
+    public Licencia(int personaId, String claseId, int usuarioId, int costoId, int vigenciaId, String motivo, Date fechaEmision, Date fechaVenc, String observaciones) {
        this.personaId = personaId;
        this.claseId = claseId;
        this.usuarioId = usuarioId;
@@ -86,11 +86,11 @@ public class Licencia  implements java.io.Serializable {
     public void setVigenciaId(int vigenciaId) {
         this.vigenciaId = vigenciaId;
     }
-    public Motivo getMotivo() {
+    public String getMotivo() {
         return this.motivo;
     }
     
-    public void setMotivo(Motivo motivo) {
+    public void setMotivo(String motivo) {
         this.motivo = motivo;
     }
     public Date getFechaEmision() {
