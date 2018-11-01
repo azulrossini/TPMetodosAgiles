@@ -372,11 +372,7 @@ public class IndexView extends javax.swing.JFrame {
     }//GEN-LAST:event_botonAltaActionPerformed
 
     private void botonListadoLicenciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonListadoLicenciasActionPerformed
-        try {
-            ListadoLicencias LL = new ListadoLicencias();
-        } catch (ParseException ex) {
-            Logger.getLogger(IndexView.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        FiltroListadoLicencias FLL = new FiltroListadoLicencias();
         this.dispose();
     }//GEN-LAST:event_botonListadoLicenciasActionPerformed
 

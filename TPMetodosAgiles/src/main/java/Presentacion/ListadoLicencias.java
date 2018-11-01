@@ -12,10 +12,13 @@ import Persistencia.Persona;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 
 
 import static java.util.Collections.list;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -36,27 +39,34 @@ public class ListadoLicencias extends javax.swing.JFrame {
     
     private TableRowSorter trsFiltro;
     
+    public ListadoLicencias(String fechaDesde, String fechaHasta) throws ParseException {
+        initComponents();
+        this.setVisible(true);
+        this.setLocationRelativeTo(null);
+        
+        //CARGO LAS LICENCIAS DENTRO DEL RANGO
+        getLicenciasRango(fechaDesde, fechaHasta);        
+    }
+    
     public ListadoLicencias() throws ParseException {
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         
-        //CONFIGURO EL ANCHO DE LAS COLUMNAS
-       // tabla.getColumnModel().getColumn(0).setPreferredWidth(27);
-        //tabla.getColumnModel().getColumn(1).setPreferredWidth(5);
-        //tabla.getColumnModel().getColumn(2).setPreferredWidth(5);
-        //tabla.getColumnModel().getColumn(3).setPreferredWidth(50);
-       // tabla.getColumnModel().getColumn(4).setPreferredWidth(50);
-       // tabla.getColumnModel().getColumn(5).setPreferredWidth(10);
-       // tabla.getColumnModel().getColumn(6).setPreferredWidth(10);
-       // tabla.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
+        //CARGO TODAS LAS LICENCIAS
+        getLicencias();        
+    }
+    
+    private void getLicenciasRango(String fechaDesde, String fechaHasta){
         
-        //CARGO LAS LICENCIAS
-        getLicencias();
+        List<Licencia> listaLicencia = lController.getLicencias();
+        LicenciaController licenciaController = new LicenciaController();
+        
         
     }
 
     private void getLicencias() throws ParseException{   
+        
         List<Licencia> listaLicencia = lController.getLicencias();
         LicenciaController licenciaController = new LicenciaController();
         
@@ -70,15 +80,14 @@ public class ListadoLicencias extends javax.swing.JFrame {
             dtm.setRowCount(0);
         
             for (int i=0; i<listaLicencia.size(); i++){
-                Object datos[] = new Object[7];
-                
+                Object datos[] = new Object[7];                              
                 
                 Persona persona = licenciaController.getPersona(listaLicencia.get(i).getPersonaId());
                 Licencia licencia = listaLicencia.get(i);
                 
                 datos[0] = licencia.getId();
                 datos[1] = licencia.getClaseId();
-                datos[2] = licenciaController.getVigencia(licencia, persona.getFechaNac()); //CALCULO LA VIGENCIA
+                datos[2] = parseoFechaVigencia(licenciaController.getVigencia(licencia, persona.getFechaNac())); //CALCULO LA VIGENCIA
                 datos[3] = persona.getApellido(); //Apellido
                 datos[4] = persona.getNombre(); //Nombre
                 datos[5] = persona.getGrupoSanguineo(); //GrupoSanguineo
@@ -88,6 +97,18 @@ public class ListadoLicencias extends javax.swing.JFrame {
             }
             
         } 
+    }
+    
+    private void cargarTabla(List listaLicencias){
+        
+        
+        
+    }
+    
+    public String parseoFechaVigencia(Date fechaVigencia){
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        String fecha = sdf.format(fechaVigencia); 
+        return fecha;
     }
     
     public String isDonante(Persona persona){
@@ -145,7 +166,7 @@ public class ListadoLicencias extends javax.swing.JFrame {
         });
 
         jLabel2.setFont(new java.awt.Font("Microsoft JhengHei UI", 0, 36)); // NOI18N
-        jLabel2.setText("Listado de licencias");
+        jLabel2.setText("Listado de licencias vigentes");
 
         tFiltro.setFont(new java.awt.Font("Microsoft JhengHei UI", 1, 14)); // NOI18N
         tFiltro.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -250,9 +271,9 @@ public class ListadoLicencias extends javax.swing.JFrame {
                     .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(2, 2, 2)
+                .addComponent(jLabel2)
                 .addGap(12, 12, 12)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
@@ -313,7 +334,7 @@ public class ListadoLicencias extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        IndexView indexView = new IndexView();
+        FiltroListadoLicencias FLL = new FiltroListadoLicencias();
         this.dispose();
     }//GEN-LAST:event_jButton12ActionPerformed
 

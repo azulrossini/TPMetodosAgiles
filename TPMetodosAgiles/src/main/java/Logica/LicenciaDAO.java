@@ -6,6 +6,7 @@
 package Logica;
 
 import Persistencia.Licencia;
+import java.util.Date;
 import java.util.List;
 import lic_sf_bd.util;
 import org.hibernate.Query;
@@ -22,10 +23,23 @@ public class LicenciaDAO extends GenericDAO {
     public LicenciaDAO() {
     }
     
+    //SOLO TRAE LAS VIGENTES
+        public List<Licencia> read(Date fechaVigencia){
+        SS = util.getSessionFactory().openSession();
+        SS.beginTransaction();
+        String sentencia = "SELECT * FROM licencia WHERE fecha_venc >= " + fechaVigencia;
+        Query query = SS.createSQLQuery(sentencia).addEntity(Licencia.class);
+        List<Licencia> lista = query.list();
+        SS.getTransaction().commit();
+        SS.close();
+        return lista;
+    }
+        
+    //TRAE TODAS    
     public List<Licencia> readAll(){
         SS = util.getSessionFactory().openSession();
         SS.beginTransaction();
-        String sentencia = "SELECT * FROM licencia WHERE 1;";
+        String sentencia = "SELECT * FROM licencia WHERE 1";
         Query query = SS.createSQLQuery(sentencia).addEntity(Licencia.class);
         List<Licencia> lista = query.list();
         SS.getTransaction().commit();

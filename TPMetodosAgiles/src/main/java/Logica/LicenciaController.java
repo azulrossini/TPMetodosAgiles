@@ -33,7 +33,11 @@ public class LicenciaController {
     
     public List<Licencia> getLicencias(){
         return LicenciaDAO.readAll();
-    }   
+    }
+    
+    public List<Licencia> getLicenciasVigentes(Date fechaVigencia){
+        return LicenciaDAO.read(fechaVigencia);
+    }  
     
     public Persona getPersona(int id){
               
@@ -86,6 +90,7 @@ public class LicenciaController {
            fechaVigencia.add(Calendar.YEAR, listaVigencias.get(5).getDuracion());
            
         }
+        
         Calendar c = Calendar.getInstance();
         c.setTime(fechaNacimiento);
         fechaVigencia.set(Calendar.DAY_OF_MONTH, c.get(Calendar.DAY_OF_MONTH));
