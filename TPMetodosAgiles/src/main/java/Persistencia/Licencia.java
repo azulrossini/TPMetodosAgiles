@@ -6,16 +6,16 @@ import java.util.Date;
 
 public class Licencia  implements java.io.Serializable {
 
-     private Integer id;
-     private int personaId;
-     private String claseId;
-     private int usuarioId;
-     private int costoId;
-     private int vigenciaId;
-     private String motivo;
-     private Date fechaEmision;
-     private Date fechaVenc;
-     private String observaciones;
+    private Integer id;
+    private int personaId;
+    private String claseId;
+    private int usuarioId;
+    private int costoId;
+    private int vigenciaId;
+    private String motivo;
+    private Date fechaEmision;
+    private Date fechaVenc;
+    private String observaciones;
 
     public Licencia() {
     }

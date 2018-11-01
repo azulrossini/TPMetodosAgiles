@@ -1,21 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Logica;
 
+<<<<<<< HEAD
 import Persistencia.Licencia;
 import java.util.Date;
+=======
+import Persistencia.*;
+>>>>>>> f22b24af7f1948ae533ef000b02c9d10dd36a017
 import java.util.List;
 import lic_sf_bd.util;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
-/**
- *
- * @author JIC
- */
+
 public class LicenciaDAO extends GenericDAO {
     
     private Session SS;
@@ -40,6 +37,40 @@ public class LicenciaDAO extends GenericDAO {
         SS = util.getSessionFactory().openSession();
         SS.beginTransaction();
         String sentencia = "SELECT * FROM licencia WHERE 1";
+        Query query = SS.createSQLQuery(sentencia).addEntity(Licencia.class);
+        List<Licencia> lista = query.list();
+        SS.getTransaction().commit();
+        SS.close();
+        return lista;
+    }
+    
+    public List<Licencia> getLicenciasTitular(int idTitular){
+        SS = util.getSessionFactory().openSession();
+        SS.beginTransaction();
+        String sentencia = "SELECT L.* FROM licencia L WHERE L.persona_id ='"+ idTitular +"';";
+        Query query = SS.createSQLQuery(sentencia).addEntity(Licencia.class);
+        List<Licencia> lista = query.list();
+        SS.getTransaction().commit();
+        SS.close();
+        return lista;  
+    }
+    
+    public List<String> getHeredadas(String clase){
+        SS = util.getSessionFactory().openSession();
+        SS.beginTransaction();
+        String sentencia = "SELECT C.clases_heredadas_id FROM clase C WHERE C.id ='"+ clase +"';";
+        Query query = SS.createSQLQuery(sentencia).addEntity(Licencia.class);
+        List<String> lista = query.list();
+        SS.getTransaction().commit();
+        SS.close();
+        return lista;
+    }
+    
+    public List<Licencia> getLicenciasPorClase(int id, String clase){
+        SS = util.getSessionFactory().openSession();
+        SS.beginTransaction();
+        String sentencia = "SELECT L.* FROM licencia L WHERE L.persona_id ='"+ id +"'"
+                + "AND L.clase_id ='"+ clase +"';";
         Query query = SS.createSQLQuery(sentencia).addEntity(Licencia.class);
         List<Licencia> lista = query.list();
         SS.getTransaction().commit();

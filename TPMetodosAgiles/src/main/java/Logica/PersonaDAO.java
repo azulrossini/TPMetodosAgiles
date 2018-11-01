@@ -55,12 +55,17 @@ public class PersonaDAO {
     public List<Persona> readTitular(int id){
         SS = util.getSessionFactory().openSession();
         SS.beginTransaction();
-        String sentencia = "SELECT * FROM Persona P WHERE P.id LIKE '%" + id + "%';";
+        //Devuelve los DNI que contengan un substring del dni
+        String sentencia = "SELECT * FROM Persona P WHERE P.nro_id LIKE '%" + id + "%';";
         Query query = SS.createSQLQuery(sentencia).addEntity(Persona.class);
         List<Persona> lista = query.list();
         SS.getTransaction().commit();
         SS.close();
         return lista;
+    }
+    
+    public void writeTitular(Persona p){
+        
     }
     
 }

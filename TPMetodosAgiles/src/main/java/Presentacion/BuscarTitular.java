@@ -91,6 +91,12 @@ public class BuscarTitular extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(51, 51, 51));
         jLabel1.setText("Ingrese el DNI el titular para el que desea emitir una licencia");
 
+        buscaDNI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscaDNIActionPerformed(evt);
+            }
+        });
+
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/search.png"))); // NOI18N
         jButton1.setBorderPainted(false);
         jButton1.setContentAreaFilled(false);
@@ -236,7 +242,10 @@ public class BuscarTitular extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton17ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
+        //Busca el titular con el dni o la parte del dni ingresado
+        
+        //Validar que no ingrese caracteres no numericos
+        
         if(this.buscaDNI.getText()!=null){
             int dni = Integer.valueOf(this.buscaDNI.getText());
             personas = personaController.buscarTitular(dni);
@@ -260,8 +269,13 @@ public class BuscarTitular extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void buscaDNIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscaDNIActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buscaDNIActionPerformed
+
     
     private void setearTabla(){
+        //Setea la tabla con los valores de los titualres obtenidos
         DefaultTableModel dtm = (DefaultTableModel) this.tabla.getModel();
         dtm.setRowCount(0);   
         for(int i = 0; i<personas.size(); i++){
