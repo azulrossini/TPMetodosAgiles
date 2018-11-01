@@ -1,22 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Logica;
 
-import Persistencia.Licencia;
 import Persistencia.Persona;
 import java.util.List;
 import lic_sf_bd.util;
-import org.hibernate.Hibernate;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
-/**
- *
- * @author JIC
- */
 public class PersonaDAO {
     
     private Session SS;
@@ -65,7 +55,13 @@ public class PersonaDAO {
     }
     
     public void writeTitular(Persona p){
-        
+        SS = util.getSessionFactory().openSession();
+        SS.beginTransaction();
+        SS.save(p);
+        SS.getTransaction().commit();
+        SS.close();
     }
+    
+
     
 }

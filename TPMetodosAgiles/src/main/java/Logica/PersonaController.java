@@ -1,27 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Logica;
 
-import Persistencia.Licencia;
 import Persistencia.Persona;
-import java.util.ArrayList;
 import java.util.List;
 import java.time.LocalDate;
-import java.time.Month;
 import java.time.Period;
-import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-/**
- *
- * @author JIC
- */
+
 public class PersonaController {
     
     private PersonaDAO PersonaDAO;
@@ -33,23 +22,20 @@ public class PersonaController {
     }
     
     public Persona getPersona(int id){
-        
-        Persona persona = PersonaDAO.read(id);
-                       
-        return persona;
-        
+        Persona persona = PersonaDAO.read(id);                
+        return persona;   
     }
-    
-    
+
     public List<Persona> buscarTitular(int dni){
         //Este metodo busca por DNI, no por id de la persona
         //El ID de la persona es un autoincremental de la bd
         return PersonaDAO.readTitular(dni);
     }
-    
+
     public void almacenarTitular(Persona p){
         PersonaDAO.writeTitular(p);
     }
+    
     
     /*devuelve un arreglo de booleans, cada posicion indica si el dato es correcto o no
     0 numeroDocumento
@@ -65,7 +51,7 @@ public class PersonaController {
     10 edad menor a 17
     */
     public boolean[] validarDatos(TipoDocumento tipo, String numeroDocumento, String nombre, String apellido, String dia, 
-                                    String mes, String anio, String calle, String numeroCalle, String piso, String depart){
+        String mes, String anio, String calle, String numeroCalle, String piso, String depart){
         boolean[] lista= new boolean[11];
         
         lista[0]=validarDocumento(tipo, numeroDocumento);
@@ -74,41 +60,36 @@ public class PersonaController {
         lista[3]=validarDia(dia);
         lista[4]=validarMes(mes);
         lista[5]=validarAnio(anio);
-        lista[6]=validarCalle(calle);
+        lista[6]=validarCalle(calle, numeroCalle, piso, depart);
         lista[7]=validarNumeroCalle(numeroCalle);
         lista[8]=validarPiso(piso);
         lista[9]=validarDepartamento(depart);
         lista[10]=validarFecha(dia,mes,anio);
-        
+        //lista[11]=validarExistencia(tipo, numeroDocumento);
         return lista;
     }
     
     public boolean validarDocumento(TipoDocumento tipo, String numeroDocumento){
-        
-        
+
         if((tipo==TipoDocumento.DNI || tipo==TipoDocumento.LE || tipo==TipoDocumento.LC ) && numeroDocumento.matches("[0-9]{8}")) return true;
         else if((tipo==TipoDocumento.CUIT || tipo==TipoDocumento.CUIL)  && numeroDocumento.matches("[0-9]{11}")) return true;
         else if(tipo==TipoDocumento.PASAPORTE && numeroDocumento.matches("[0-9]{8}[a-zA-Z]")) return true;
         else return false; 
 
-        
     }
     
     public boolean validarNombre(String nombre){
-        
-        
-        
-        if(nombre.matches("((\\s?)[a-zA-Z]+(\\s?))+")) return true;
+
+        if(nombre.matches("((\\s?)[a-zA-Z]+(\\s?))+") && nombre.length()<32) return true;
         else return false;
         
  
     }
     public boolean validarApellido(String apellido){
        
-        if(apellido.matches("((\\s?)[a-zA-Z]+(\\s?))+") ) return true;
+        if(apellido.matches("((\\s?)[a-zA-Z]+(\\s?))+") && apellido.length()<32 ) return true;
         else return false;
-        
-        
+  
     }
     public boolean validarFecha(String dia, String mes, String anio){
         int dia1, mes1, anio1;
@@ -139,8 +120,7 @@ public class PersonaController {
                 }
                 break;
         }
-        
-        
+
         DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate fechaNac = LocalDate.of(anio1, mes1, dia1);
         LocalDate ahora = LocalDate.now();
@@ -148,13 +128,10 @@ public class PersonaController {
         Period periodo = Period.between(fechaNac, ahora);
         if(periodo.getYears()<17) return false;
         else return true;
-        
-        
-        
+
     }
     public boolean validarDia(String dia){
-        
-        
+
         if(dia.matches("[0-9]?[0-9]")){
             if(Integer.valueOf(dia)>0 && Integer.valueOf(dia)<32)
                 return true;
@@ -177,8 +154,8 @@ public class PersonaController {
             else return false;
         }else return false;
     }
-    public boolean validarCalle(String calle){
-        if(calle.matches("((\\s?)[a-zA-Z]+(\\s?))+")) return true;
+    public boolean validarCalle(String calle, String numeroCalle, String piso, String depart){
+        if(calle.matches("((\\s?)[a-zA-Z]+(\\s?))+") && (calle.length()+numeroCalle.length()+piso.length()+depart.length())<32) return true;
         else return false;
     }
     public boolean validarNumeroCalle(String numeroCalle){
@@ -206,6 +183,7 @@ public class PersonaController {
 
         return date;
     }
+    
     public int getEdad(Date fechaNacimiento){
         if(fechaNacimiento!=null){
             Calendar c = new GregorianCalendar();
@@ -226,5 +204,14 @@ public class PersonaController {
         else{
             return -1;
         }
+    }
+    
+    public boolean validarExistencia(TipoDocumento tipo, String numeroDocumento){
+        PersonaDAO pDao = new PersonaDAO();
+        List<Persona> listaPersonas = pDao.readTitular(Integer.valueOf(numeroDocumento));
+        for(Persona p: listaPersonas){
+            if(p.getTipoId().equals(tipo.toString())) return false;
+        }
+        return true;
     }
 }

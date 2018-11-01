@@ -76,20 +76,20 @@ public class EleccionTipoEmision extends javax.swing.JFrame {
         jButton18.setContentAreaFilled(false);
         jButton18.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/left-arrow rollover.png"))); // NOI18N
 
-        botonRenovacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/cycle-represented-by-four-arrows-circle-in-a-rounded-square.png"))); // NOI18N
+        botonRenovacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/recycle-sign.png"))); // NOI18N
         botonRenovacion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         botonRenovacion.setContentAreaFilled(false);
-        botonRenovacion.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/cycle-represented-by-four-arrows-circle-in-a-rounded-square rollover.png"))); // NOI18N
+        botonRenovacion.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/recycle-sign rollover.png"))); // NOI18N
         botonRenovacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonRenovacionActionPerformed(evt);
             }
         });
 
-        boton1vez.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/one.png"))); // NOI18N
+        boton1vez.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/identity-card (2).png"))); // NOI18N
         boton1vez.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         boton1vez.setContentAreaFilled(false);
-        boton1vez.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/one rollover.png"))); // NOI18N
+        boton1vez.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/identity-card rollover.png"))); // NOI18N
         boton1vez.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boton1vezActionPerformed(evt);
@@ -100,7 +100,7 @@ public class EleccionTipoEmision extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Caviar Dreams", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(51, 51, 51));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Primera vez");
+        jLabel5.setText("Original");
 
         jLabel6.setBackground(new java.awt.Color(51, 51, 51));
         jLabel6.setFont(new java.awt.Font("Caviar Dreams", 1, 18)); // NOI18N
@@ -122,15 +122,15 @@ public class EleccionTipoEmision extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(78, 78, 78)
+                        .addGap(90, 90, 90)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(boton1vez, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE))
-                        .addGap(49, 49, 49)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE))
+                        .addGap(54, 54, 54)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(botonRenovacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 62, Short.MAX_VALUE)))
+                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
+                            .addComponent(botonRenovacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 82, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -142,15 +142,14 @@ public class EleccionTipoEmision extends javax.swing.JFrame {
                     .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(39, 39, 39)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(botonRenovacion, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(boton1vez, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(boton1vez, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
+                    .addComponent(botonRenovacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -178,14 +177,14 @@ public class EleccionTipoEmision extends javax.swing.JFrame {
 
     private void botonRenovacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRenovacionActionPerformed
         // TODO add your handling code here:
-        BuscarTitular bt = new BuscarTitular(personaController, licenciaController);
+        BuscarTitular bt = new BuscarTitular(personaController, licenciaController, LicenciaController.Motivo.RENOVACION);
         bt.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_botonRenovacionActionPerformed
 
     private void boton1vezActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton1vezActionPerformed
         // TODO add your handling code here:
-        AltaTitular at = new AltaTitular(personaController, licenciaController, "eleccion");
+        AltaTitular at = new AltaTitular(personaController, licenciaController, "eleccion", LicenciaController.Motivo.ORIGINAL);
         at.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_boton1vezActionPerformed

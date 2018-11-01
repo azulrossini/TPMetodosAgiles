@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Presentacion;
 
 import Logica.LicenciaController;
@@ -10,12 +6,8 @@ import Logica.LicenciaController.Motivo;
 import Logica.PersonaController;
 import Persistencia.*;
 import java.awt.Point;
-import java.text.ParseException;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 public class EmitirLicencia extends javax.swing.JFrame {
 
@@ -23,18 +15,21 @@ public class EmitirLicencia extends javax.swing.JFrame {
     private Persona titular;
     private PersonaController personaController;
     private LicenciaController licenciaController;
+    private Motivo motivo;
     
     public EmitirLicencia() {
         initComponents();
     }
     
-    public EmitirLicencia(Persona tit, PersonaController p, LicenciaController l){
+    public EmitirLicencia(Persona tit, PersonaController p, LicenciaController l, Motivo m){
         this.titular = tit;
         this.personaController = p;
         this.licenciaController = l;
+        this.motivo = m;
         initComponents();
         completarDatosTitular();
-        setearEdad();
+        setearOriginal();
+        //anularBarraSiNoEsOriginal();
         this.setLocationRelativeTo(null);
     }
     
@@ -52,14 +47,11 @@ public class EmitirLicencia extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         comboClase = new javax.swing.JComboBox<>();
-        jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         areaDatosTitular = new javax.swing.JTextArea();
-        labelEdad = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        labelOriginal = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
-        jLabelRegistroDeTitular = new javax.swing.JLabel();
         observaciones = new javax.swing.JTextArea();
 
         jLabel1.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 16)); // NOI18N
@@ -87,7 +79,8 @@ public class EmitirLicencia extends javax.swing.JFrame {
         jLabel14.setBackground(new java.awt.Color(51, 51, 51));
         jLabel14.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 36)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/id-card grande.png"))); // NOI18N
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/identity-card (2).png"))); // NOI18N
+        jLabel14.setText(" Emitir Licencia");
 
         jButton16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/cancel.png"))); // NOI18N
         jButton16.setBorderPainted(false);
@@ -132,31 +125,24 @@ public class EmitirLicencia extends javax.swing.JFrame {
         jLabel4.setText("Clase:");
 
         comboClase.setBackground(new java.awt.Color(178, 176, 176));
-        comboClase.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Clase A", "Clase B", "Clase C", "Clase D", "Clase E", "Clase F", "Clase G" }));
-
-        jLabel5.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 16)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel5.setText("Edad:");
+        comboClase.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "B", "C", "D", "E", "F", "G" }));
 
         jLabel6.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 16)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel6.setText("Primera vez:");
+        jLabel6.setText("Original:");
 
         areaDatosTitular.setEditable(false);
         areaDatosTitular.setBackground(new java.awt.Color(206, 206, 206));
         areaDatosTitular.setColumns(20);
+        areaDatosTitular.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
         areaDatosTitular.setForeground(new java.awt.Color(51, 51, 51));
         areaDatosTitular.setRows(5);
         areaDatosTitular.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
         jScrollPane2.setViewportView(areaDatosTitular);
 
-        labelEdad.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 16)); // NOI18N
-        labelEdad.setForeground(new java.awt.Color(51, 51, 51));
-        labelEdad.setText("Edad");
-
-        jLabel8.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 16)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel8.setText("Si o No");
+        labelOriginal.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 16)); // NOI18N
+        labelOriginal.setForeground(new java.awt.Color(51, 51, 51));
+        labelOriginal.setText("Si o No");
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/Flecha derecha.png"))); // NOI18N
         jButton2.setBorderPainted(false);
@@ -168,10 +154,6 @@ public class EmitirLicencia extends javax.swing.JFrame {
             }
         });
 
-        jLabelRegistroDeTitular.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 36)); // NOI18N
-        jLabelRegistroDeTitular.setForeground(new java.awt.Color(51, 51, 51));
-        jLabelRegistroDeTitular.setText("Emitir Licencia");
-
         observaciones.setBackground(new java.awt.Color(206, 206, 206));
         observaciones.setColumns(20);
         observaciones.setForeground(new java.awt.Color(51, 51, 51));
@@ -182,90 +164,83 @@ public class EmitirLicencia extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel4)
-                                .addComponent(jLabel6)
-                                .addComponent(jLabel5)
-                                .addComponent(jLabel3)))
-                        .addGap(27, 27, 27)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(labelEdad)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                        .addComponent(jLabel8)
-                                        .addGap(291, 291, 291))
-                                    .addComponent(jScrollPane2)
-                                    .addComponent(observaciones)
-                                    .addComponent(comboClase, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(12, 12, 12)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGap(62, 62, 62)
-                                .addComponent(jLabel14))
-                            .addComponent(jLabelRegistroDeTitular)))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addContainerGap()
                         .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 451, Short.MAX_VALUE)
-                        .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 595, Short.MAX_VALUE)
+                        .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(48, 48, 48)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel4Layout.createSequentialGroup()
+                                        .addGap(42, 42, 42)
+                                        .addComponent(jLabel14))
+                                    .addGroup(jPanel4Layout.createSequentialGroup()
+                                        .addGap(19, 19, 19)
+                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 493, Short.MAX_VALUE))))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel6))
+                                .addGap(31, 31, 31)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(labelOriginal)
+                                    .addComponent(observaciones)
+                                    .addComponent(comboClase, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabelRegistroDeTitular)
-                .addGap(32, 32, 32)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(observaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(comboClase, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))
-                        .addGap(33, 33, 33)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(labelEdad))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel8))
-                        .addGap(43, 43, 43))
+                        .addGap(15, 15, 15)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(116, 116, 116))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addGap(139, 139, 139)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                        .addContainerGap()
+                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(22, 22, 22)))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(24, 24, 24)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(observaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(comboClase, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelOriginal)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -277,6 +252,7 @@ public class EmitirLicencia extends javax.swing.JFrame {
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
         System.exit(0);
+        
     }//GEN-LAST:event_jButton16ActionPerformed
 
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
@@ -286,50 +262,38 @@ public class EmitirLicencia extends javax.swing.JFrame {
 
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
         // TODO add your handling code here:
-        AltaTitular at = new AltaTitular(personaController, licenciaController, "");
-        at.setVisible(true);
-        this.setVisible(false);
+        int seleccion = JOptionPane.showOptionDialog(this, "¿Está seguro que desea volver \n No se guardaran los datos", "", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,
+            null,    // null para icono por defecto.
+            new Object[] { "Si", "No" },   // null para YES, NO y CANCEL
+            "Si");
+        if(seleccion == 0){
+            AltaTitular at = new AltaTitular(personaController, licenciaController, "", motivo);
+            at.setVisible(true);
+            this.setVisible(false);
+        }
+
     }//GEN-LAST:event_jButton18ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         //Almacena el titular para poder obtener el id
         //Para almacenar como FK en la tabla Licencia
-        personaController.almacenarTitular(titular);
-
+ 
         String clase = (String) this.comboClase.getSelectedItem();
-        
         //Comprobar que pueda sacar las clases
         if(licenciaController.verificarClase(clase, titular)){
+            personaController.almacenarTitular(titular);
+            
+            //Actualizo para que me devuelva el titular con el id autoincremental de la bd
+            titular = personaController.getPersona(titular.getId());
+            
             //Si es clase C D o E controla que tenga +21, sino no
             if(controlarCDE(clase)){
-                licenciaController.eliminarClasesHeredadas(clase, titular);
-                
-                
-                
                 String obs = this.observaciones.getText();
-                
-                
-                
-                //Crear la licencia
-                Licencia licencia = new Licencia();
-                licencia.setClaseId(clase);
-                licencia.setObservaciones(obs);
-                licencia.setPersonaId(titular.getId());
-                licencia.setUsuarioId(00);
-                
-                //Calcular vigencia
-                licencia.setFechaEmision(new Date());
-                Date fechaVencimiento=null;
-                try {
-                    fechaVencimiento = fechaVencimiento = licenciaController.getVigencia(licencia, titular.getFechaNac());
-                } catch (ParseException ex) {
-                    Logger.getLogger(EmitirLicencia.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                licencia.setFechaVenc(fechaVencimiento);
-            } 
+                licenciaController.crearLicencia(titular, clase, obs, motivo);
+            }
         }
         else{
-            //Tira un error
+            JOptionPane.showMessageDialog(this, "Ha ocurrido un error \n No se puede almacenar el titular", "Error",  JOptionPane.ERROR_MESSAGE);
         }
     
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -357,16 +321,36 @@ public class EmitirLicencia extends javax.swing.JFrame {
                 + "APELLIDO: " + titular.getApellido() + "\n"
                 + titular.getTipoId().toUpperCase() +": " + titular.getNroId() + "\n"
                 + "FECHA DE NACIMIENTO: " + c.get(Calendar.DAY_OF_MONTH) +"/"+ (c.get(Calendar.MONTH)+1) +"/"+ c.get(Calendar.YEAR)+ "\n"
+                + "EDAD: "+ String.valueOf(personaController.getEdad(titular.getFechaNac()))+ "\n"
                 + "DOMICILIO: " + titular.getDomicilio() + "\n"
                 + "GRUPO SANGUINEO: " + titular.getGrupoSanguineo() + "\n"
                 + "FACTOR: " + titular.getFactor() + "\n"
                 + "ES DONANTE: " + titular.esDonante());
+
     }
     
-    private void setearEdad(){
-        this.labelEdad.setText(String.valueOf(personaController.getEdad(titular.getFechaNac())));
+    private void setearOriginal(){
+        switch(motivo){
+            case ORIGINAL:
+                this.labelOriginal.setText("Si");
+                break;
+            case RENOVACION:
+                this.labelOriginal.setText("No");
+                break;
+        }
+        
     }
-    
+
+    private void anularBarraSiNoEsOriginal(){
+        switch(motivo){
+            case ORIGINAL:
+                this.comboClase.setEnabled(true);
+                break;
+            case RENOVACION:
+                this.comboClase.setEnabled(false);
+                break;
+        }
+    }
     private boolean controlarCDE(String clase){
         if(clase == "C" || clase == "E" || clase == "D"){
             if(personaController.getEdad(titular.getFechaNac())>=21){
@@ -393,13 +377,10 @@ public class EmitirLicencia extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabelRegistroDeTitular;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JLabel labelEdad;
+    private javax.swing.JLabel labelOriginal;
     private javax.swing.JTextArea observaciones;
     // End of variables declaration//GEN-END:variables
 }

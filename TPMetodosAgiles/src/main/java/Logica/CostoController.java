@@ -1,18 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Logica;
 
+import Persistencia.Costos;
 
 
-/**
- *
- * @author ayr_1
- */
 public class CostoController {
     private CostoDAO costoDAO;
+    private Costos costo;
     
     public CostoController(){
         this.costoDAO = new CostoDAO();
@@ -21,9 +15,17 @@ public class CostoController {
     public float calcularCosto(String clase, int vigencia){
         //Costo Administrativo
         int costoAdmin = 8;
-        float costoLicencia = costoDAO.calcularCosto(clase , vigencia);
-        
+        this.costo = costoDAO.calcularCosto(clase , vigencia);
+        float costoLicencia = costo.getPrecio();     
         return (costoAdmin + costoLicencia);
+    }
+    
+    public int getCostoId(){
+        return this.costo.getId();
+    }
+    
+    public Costos getCosto(){
+        return this.costo;
     }
     
 }

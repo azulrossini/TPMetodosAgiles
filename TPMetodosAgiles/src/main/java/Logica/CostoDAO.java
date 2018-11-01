@@ -23,17 +23,17 @@ public class CostoDAO {
     public CostoDAO() {
     }
     
-    public float calcularCosto(String clase, int vigencia){
+    public Costos calcularCosto(String clase, int vigencia){
         ss = util.getSessionFactory().openSession();
         ss.beginTransaction();
         
-        String sentencia = "SELECT C.precio "
+        String sentencia = "SELECT C.* "
                         + "FROM costos C "
                         + "WHERE C.clase='" + clase + "' "
                         + "AND C.anios ='" + vigencia + "';";        
              
-        Query query = ss.createSQLQuery(sentencia);//.addEntity(Costos.class);
-        List<Float> lista = query.list();
+        Query query = ss.createSQLQuery(sentencia).addEntity(Costos.class);
+        List<Costos> lista = query.list();
         
         ss.getTransaction().commit();
         ss.close();
@@ -43,7 +43,7 @@ public class CostoDAO {
             return lista.get(0);
         }    
         else{
-            return -1;
+            return null;
         }
         
     }

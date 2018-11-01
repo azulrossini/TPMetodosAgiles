@@ -2,6 +2,7 @@ package Persistencia;
 // Generated 22/10/2018 14:13:22 by Hibernate Tools 4.3.1
 
 
+import Logica.LicenciaController.Motivo;
 import java.util.Date;
 
 public class Licencia  implements java.io.Serializable {

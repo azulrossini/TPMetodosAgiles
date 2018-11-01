@@ -3,7 +3,13 @@ package Logica;
 
 import Persistencia.Licencia;
 import java.util.Date;
+<<<<<<< HEAD
 import Persistencia.*;
+=======
+
+import Persistencia.*;
+
+>>>>>>> 4bdfe7f70b8a9de20e085a532be9a7f235218933
 import java.util.List;
 import lic_sf_bd.util;
 import org.hibernate.Query;
@@ -15,6 +21,14 @@ public class LicenciaDAO extends GenericDAO {
     private Session SS;
     
     public LicenciaDAO() {
+    }
+    
+    public void writeLicencia(Licencia l){
+        SS = util.getSessionFactory().openSession();
+        SS.beginTransaction();
+        SS.save(l);
+        SS.getTransaction().commit();
+        SS.close();
     }
     
     //SOLO TRAE LAS VIGENTES

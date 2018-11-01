@@ -50,7 +50,7 @@ public class ImprimirLicencia extends javax.swing.JFrame {
             this.don.setText("No");
         this.dom.setText(p.getDomicilio());
         this.rh.setText(p.getGrupoSanguineo() + p.getFactor());
-        this.tipo.setText(l.getMotivo());
+        this.tipo.setText(l.getMotivo().toString());
         Vigencias vig = (Vigencias) GenericDAO.read(new Vigencias(), l.getVigenciaId());
         this.vigencia.setText(String.valueOf(vig.getDuracion()) + " años");
     }
