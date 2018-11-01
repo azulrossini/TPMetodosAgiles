@@ -125,7 +125,7 @@ public class EmitirLicencia extends javax.swing.JFrame {
         jLabel4.setText("Clase:");
 
         comboClase.setBackground(new java.awt.Color(178, 176, 176));
-        comboClase.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Clase A", "Clase B", "Clase C", "Clase D", "Clase E", "Clase F", "Clase G" }));
+        comboClase.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "B", "C", "D", "E", "F", "G" }));
 
         jLabel6.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 16)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(51, 51, 51));

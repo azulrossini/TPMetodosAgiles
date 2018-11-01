@@ -183,6 +183,7 @@ public class PersonaController {
 
         return date;
     }
+    
     public int getEdad(Date fechaNacimiento){
         if(fechaNacimiento!=null){
             Calendar c = new GregorianCalendar();

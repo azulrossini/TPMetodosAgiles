@@ -27,8 +27,8 @@ public class ClaseDAO {
     public Clase read(String id){
         SS = util.getSessionFactory().openSession();
         SS.beginTransaction();
-        String sentencia = "SELECT C.* FROM clase C WHERE C.id='" + id + "' LIMIT 0,1;";
-        Query query = SS.createSQLQuery(sentencia).addEntity(Persona.class);
+        String sentencia = "SELECT C.* FROM clase C WHERE C.id='" + id + "';";
+        Query query = SS.createSQLQuery(sentencia).addEntity(Clase.class);
         List<Clase> lista = query.list();
         SS.getTransaction().commit();
         SS.close();

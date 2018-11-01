@@ -8,6 +8,7 @@ import Presentacion.EmitirLicencia;
 import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -48,12 +49,8 @@ public class LicenciaController {
                     
                 //Verifica si tuvo una licencia de clase B en algun momento, al menos 1 anio antes
                     if(licencias_anteriores.get(i).getClaseId() == "B"){
-                        Date hoy = new Date();
-                        long diff = hoy.getTime() - licencias_anteriores.get(i).getFechaEmision().getTime();
-                        
-                        //Tiene que haberla sacado 1 anio antes al menos
-                        int diffDays = (int) (diff / (24 * 60 * 60 * 1000));
-                        if(diffDays>= 365){
+                        int diffAnios = getDiferenciaAnios(licencias_anteriores.get(i).getFechaEmision());
+                        if(diffAnios>= 365){
                             return true;
                         }
                     }
@@ -185,7 +182,6 @@ public class LicenciaController {
 
                 //SETAR!!!!
                 licencia.setVigenciaId(0);
-                licencia.setCostoId(0);
  
                 //Calcular vigencia
                 licencia.setFechaEmision(new Date());
@@ -197,11 +193,30 @@ public class LicenciaController {
                     Logger.getLogger(EmitirLicencia.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 licencia.setFechaVenc(fechaVencimiento);
+                System.out.println(fechaVencimiento);
+                
+                //Calcular costo
+                CostoController cc = new CostoController();
+                Date hoy = new Date();
+                
+                int diffAnios = getDiferenciaAnios(fechaVencimiento);
 
+                System.out.println(diffAnios);
+                cc.calcularCosto(clase, diffAnios);
+                
+                licencia.setCostoId(cc.getCostoId());
+                System.out.println(cc.getCostoId());
                 
                 LicenciaDAO.writeLicencia(licencia);
     }
     
-    
-    
+    public int getDiferenciaAnios(Date vencimiento){
+            Calendar c = new GregorianCalendar();
+            c.setTime(vencimiento);
+            
+            Calendar today = Calendar.getInstance();
+            int diffYear = c.get(Calendar.YEAR) -today.get(Calendar.YEAR);
+            
+            return diffYear;
+    }
 }

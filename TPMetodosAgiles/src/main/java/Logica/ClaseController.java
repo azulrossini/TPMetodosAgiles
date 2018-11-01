@@ -12,7 +12,8 @@ public class ClaseController {
     }
     
     public boolean verificarClase(String clase){
-        return (claseDAO.read(clase)!=null);
+        return (!(claseDAO.read(clase)==null));
+        
     }
 }
 
