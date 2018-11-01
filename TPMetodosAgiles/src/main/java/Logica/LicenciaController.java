@@ -114,53 +114,21 @@ public class LicenciaController {
         return personaController.getPersona(id);
     }
     
-    public Date getVigencia(Licencia licencia,Date fechaNacimiento) throws ParseException{
+    public Date getFechaVigencia(Vigencias v,Date fechaNacimiento){
         
         PersonaController personaController = new PersonaController();
-        VigenciaController vigenciaController = new VigenciaController();
-
-        List<Vigencias> listaVigencias = vigenciaController.getVigencias();
+        
              
         Calendar fechaVigencia = Calendar.getInstance();
-        fechaVigencia.setTime(licencia.getFechaEmision());
+//        fechaVigencia.setTime(licencia.getFechaEmision());
         
         int edad = personaController.getEdad(fechaNacimiento);
         
-        if(edad < 21){
-            if(licencia.getMotivo().equals(Motivo.ORIGINAL.toString())){
-                
-                fechaVigencia.add(Calendar.YEAR, listaVigencias.get(0).getDuracion());
-                
-            }
-            if(licencia.getMotivo().equals(Motivo.RENOVACION.toString())){
-                
-                fechaVigencia.add(Calendar.YEAR, listaVigencias.get(1).getDuracion()); 
-                
-            }
-        }
-        if(edad >=21 && edad <= 46){
-            
-            fechaVigencia.add(Calendar.YEAR, listaVigencias.get(2).getDuracion()); 
-            
-        }
-        if(edad>46 && edad <= 60){
-            
-            fechaVigencia.add(Calendar.YEAR, listaVigencias.get(3).getDuracion());
-            
-        }
-        if(edad >60 && edad <= 70){
-            
-            fechaVigencia.add(Calendar.YEAR, listaVigencias.get(4).getDuracion());
-            
-        }
-        if(edad > 70){
-           
-           fechaVigencia.add(Calendar.YEAR, listaVigencias.get(5).getDuracion());
-           
-        }
-        
+        fechaVigencia.add(Calendar.YEAR, v.getDuracion());
+      
         Calendar c = Calendar.getInstance();
         c.setTime(fechaNacimiento);
+        
         fechaVigencia.set(Calendar.DAY_OF_MONTH, c.get(Calendar.DAY_OF_MONTH));
         fechaVigencia.set(Calendar.MONTH, c.get(Calendar.MONTH));
         
@@ -170,8 +138,10 @@ public class LicenciaController {
     public void crearLicencia(Persona titular, String clase, String obs, Motivo motivo){
 
                 this.eliminarClasesHeredadas(clase, titular);
-
                 
+                VigenciaController vigenciaController = new VigenciaController();
+                
+                Vigencias vigencia = vigenciaController.getVigencia(motivo.toString(), titular.getFechaNac());
                 //Crear la licencia
                 Licencia licencia = new Licencia();
                 licencia.setClaseId(clase);
@@ -181,17 +151,14 @@ public class LicenciaController {
                 licencia.setMotivo(motivo.toString());
 
                 //SETAR!!!!
-                licencia.setVigenciaId(0);
+                licencia.setVigenciaId(vigencia.getId());
  
                 //Calcular vigencia
                 licencia.setFechaEmision(new Date());
                 Date fechaVencimiento=null;
-                try {
-                    fechaVencimiento = fechaVencimiento = this.getVigencia(licencia, titular.getFechaNac());
-                } 
-                catch (ParseException ex) {
-                    Logger.getLogger(EmitirLicencia.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                
+                fechaVencimiento = this.getFechaVigencia(vigencia, titular.getFechaNac());
+               
                 licencia.setFechaVenc(fechaVencimiento);
                 System.out.println(fechaVencimiento);
                 

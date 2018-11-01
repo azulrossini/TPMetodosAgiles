@@ -5,10 +5,11 @@
  */
 package Presentacion;
 
-import Logica.LicenciaController;
+import Logica.*;
 import Logica.PersonaController;
 import Persistencia.Licencia;
 import Persistencia.Persona;
+import Persistencia.Vigencias;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.text.ParseException;
@@ -69,6 +70,8 @@ public class ListadoLicencias extends javax.swing.JFrame {
         
         List<Licencia> listaLicencia = lController.getLicencias();
         LicenciaController licenciaController = new LicenciaController();
+        VigenciaController vigenciaController = new VigenciaController();
+        
         
         if(listaLicencia.isEmpty()){
             
@@ -84,10 +87,11 @@ public class ListadoLicencias extends javax.swing.JFrame {
                 
                 Persona persona = licenciaController.getPersona(listaLicencia.get(i).getPersonaId());
                 Licencia licencia = listaLicencia.get(i);
+                Vigencias vigencia = vigenciaController.getVigencia(licencia.getMotivo(), persona.getFechaNac());
                 
                 datos[0] = licencia.getId();
                 datos[1] = licencia.getClaseId();
-                datos[2] = parseoFechaVigencia(licenciaController.getVigencia(licencia, persona.getFechaNac())); //CALCULO LA VIGENCIA
+                datos[2] = parseoFechaVigencia(licenciaController.getFechaVigencia(vigencia, persona.getFechaNac())); //CALCULO LA VIGENCIA
                 datos[3] = persona.getApellido(); //Apellido
                 datos[4] = persona.getNombre(); //Nombre
                 datos[5] = persona.getGrupoSanguineo(); //GrupoSanguineo
