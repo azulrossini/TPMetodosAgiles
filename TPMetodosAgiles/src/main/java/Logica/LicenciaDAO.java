@@ -1,12 +1,9 @@
 
 package Logica;
 
-<<<<<<< HEAD
 import Persistencia.Licencia;
 import java.util.Date;
-=======
 import Persistencia.*;
->>>>>>> f22b24af7f1948ae533ef000b02c9d10dd36a017
 import java.util.List;
 import lic_sf_bd.util;
 import org.hibernate.Query;
