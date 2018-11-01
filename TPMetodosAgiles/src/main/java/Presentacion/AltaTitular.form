@@ -233,11 +233,13 @@
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="1" attributes="0">
-                                      <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                                      <Group type="103" alignment="1" groupAlignment="0" attributes="0">
                                           <Component id="jComboBoxTipoDocumento" alignment="1" min="-2" pref="28" max="-2" attributes="0"/>
-                                          <Component id="jLabelNumeroDocumento" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
-                                          <Component id="jTextFieldNumeroDocumento" alignment="3" max="32767" attributes="0"/>
-                                          <Component id="jLabelTipoDocumento" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="jLabelNumeroDocumento" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+                                              <Component id="jTextFieldNumeroDocumento" alignment="3" max="32767" attributes="0"/>
+                                              <Component id="jLabelTipoDocumento" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                                          </Group>
                                       </Group>
                                       <Component id="jLabelErrorNumDocumento" alignment="1" min="-2" max="-2" attributes="0"/>
                                   </Group>

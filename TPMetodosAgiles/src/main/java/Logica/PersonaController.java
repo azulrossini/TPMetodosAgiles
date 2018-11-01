@@ -49,10 +49,11 @@ public class PersonaController {
     8 piso
     9 departamento
     10 edad menor a 17
+    11 existe en bd
     */
     public boolean[] validarDatos(TipoDocumento tipo, String numeroDocumento, String nombre, String apellido, String dia, 
         String mes, String anio, String calle, String numeroCalle, String piso, String depart){
-        boolean[] lista= new boolean[11];
+        boolean[] lista= new boolean[12];
         
         lista[0]=validarDocumento(tipo, numeroDocumento);
         lista[1]=validarNombre(nombre);
@@ -65,7 +66,7 @@ public class PersonaController {
         lista[8]=validarPiso(piso);
         lista[9]=validarDepartamento(depart);
         lista[10]=validarFecha(dia,mes,anio);
-        //lista[11]=validarExistencia(tipo, numeroDocumento);
+        lista[11]=validarExistencia(tipo, numeroDocumento);
         return lista;
     }
     
@@ -207,11 +208,13 @@ public class PersonaController {
     }
     
     public boolean validarExistencia(TipoDocumento tipo, String numeroDocumento){
-        PersonaDAO pDao = new PersonaDAO();
-        List<Persona> listaPersonas = pDao.readTitular(Integer.valueOf(numeroDocumento));
+        if(this.validarDocumento(tipo, numeroDocumento)){
+            List<Persona> listaPersonas = this.buscarTitular(Integer.valueOf(numeroDocumento));
         for(Persona p: listaPersonas){
             if(p.getTipoId().equals(tipo.toString())) return false;
         }
         return true;
+        }else return false;
+        
     }
 }

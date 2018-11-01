@@ -35,7 +35,7 @@ public class AltaTitular extends javax.swing.JFrame {
         this.jLabelErrorNumeroCalle.setVisible(false);
         this.jLabelErrorDepartamento.setVisible(false);
         this.jLabelErrorFecha.setVisible(false);
-        
+        this.jLabelErrorDonante.setVisible(false);
         this.buttonGroupDoanate.add(this.jRadioButtonDonanteSi);
         this.buttonGroupDoanate.add(this.jRadioButtonDonanteNo);
     }
@@ -466,11 +466,12 @@ public class AltaTitular extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jComboBoxTipoDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabelNumeroDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jTextFieldNumeroDocumento)
-                                        .addComponent(jLabelTipoDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jComboBoxTipoDocumento, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jLabelNumeroDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jTextFieldNumeroDocumento)
+                                            .addComponent(jLabelTipoDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addComponent(jLabelErrorNumDocumento))
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -639,11 +640,11 @@ public class AltaTitular extends javax.swing.JFrame {
         }
         
         //valido datos
-        boolean[] lista = new boolean[11];
+        boolean[] lista = new boolean[12];
         boolean errorEnDonante = (!this.jRadioButtonDonanteSi.isSelected() && !this.jRadioButtonDonanteNo.isSelected());
         lista = personaController.validarDatos(tipo, numeroDocumento, nombre, apellido, dia, mes, anio, calle, numeroCalle, piso, depart);
         
-        this.jLabelErrorNumDocumento.setVisible(!lista[0]);
+        this.jLabelErrorNumDocumento.setVisible(!(lista[0] && lista[11]));
         this.jLabelErrorNombre.setVisible(!lista[1]);
         this.jLabelErrorApellido.setVisible(!lista[2]);
         this.jLabelErrorFecha.setVisible(!(lista[3] && lista[4] && lista[5] && lista[10]));
@@ -652,7 +653,7 @@ public class AltaTitular extends javax.swing.JFrame {
         this.jLabelErrorPiso.setVisible(!lista[8]);
         this.jLabelErrorDepartamento.setVisible(!lista[9]);
         this.jLabelErrorDonante.setVisible(errorEnDonante);
-        //System.out.println(lista[12]);
+        
         //cambio color de los jtexfield
         if(!lista[0]){
             this.jTextFieldNumeroDocumento.setForeground(Color.red);
@@ -696,7 +697,7 @@ public class AltaTitular extends javax.swing.JFrame {
         //verifico y creo un nuevo titular
         boolean estado=true;
         if(errorEnDonante) estado=false;
-        for(int i=0;i<11;i++)
+        for(int i=0;i<12;i++)
             if(lista[i]==false ) estado=false;
         if(estado){
             Date fechaNac = personaController.getFecha(dia, mes, anio);
