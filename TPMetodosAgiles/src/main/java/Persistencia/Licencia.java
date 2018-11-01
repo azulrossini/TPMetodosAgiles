@@ -2,6 +2,7 @@ package Persistencia;
 // Generated 22/10/2018 14:13:22 by Hibernate Tools 4.3.1
 
 
+import Logica.LicenciaController.Motivo;
 import java.util.Date;
 
 public class Licencia  implements java.io.Serializable {
@@ -12,7 +13,7 @@ public class Licencia  implements java.io.Serializable {
     private int usuarioId;
     private int costoId;
     private int vigenciaId;
-    private String motivo;
+    private Motivo motivo;
     private Date fechaEmision;
     private Date fechaVenc;
     private String observaciones;
@@ -20,7 +21,7 @@ public class Licencia  implements java.io.Serializable {
     public Licencia() {
     }
     
-    public Licencia(int personaId, String claseId, int usuarioId, int costoId, int vigenciaId, String motivo, Date fechaEmision, Date fechaVenc) {
+    public Licencia(int personaId, String claseId, int usuarioId, int costoId, int vigenciaId, Motivo motivo, Date fechaEmision, Date fechaVenc) {
         this.personaId = personaId;
         this.claseId = claseId;
         this.usuarioId = usuarioId;
@@ -31,7 +32,7 @@ public class Licencia  implements java.io.Serializable {
         this.fechaVenc = fechaVenc;
     }
     
-    public Licencia(int personaId, String claseId, int usuarioId, int costoId, int vigenciaId, String motivo, Date fechaEmision, Date fechaVenc, String observaciones) {
+    public Licencia(int personaId, String claseId, int usuarioId, int costoId, int vigenciaId, Motivo motivo, Date fechaEmision, Date fechaVenc, String observaciones) {
        this.personaId = personaId;
        this.claseId = claseId;
        this.usuarioId = usuarioId;
@@ -85,11 +86,11 @@ public class Licencia  implements java.io.Serializable {
     public void setVigenciaId(int vigenciaId) {
         this.vigenciaId = vigenciaId;
     }
-    public String getMotivo() {
+    public Motivo getMotivo() {
         return this.motivo;
     }
     
-    public void setMotivo(String motivo) {
+    public void setMotivo(Motivo motivo) {
         this.motivo = motivo;
     }
     public Date getFechaEmision() {

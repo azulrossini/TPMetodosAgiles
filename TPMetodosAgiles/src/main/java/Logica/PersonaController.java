@@ -47,9 +47,12 @@ public class PersonaController {
         return PersonaDAO.readTitular(dni);
     }
     
+ 
+    
     public void almacenarTitular(Persona p){
         PersonaDAO.writeTitular(p);
     }
+    
     
     /*devuelve un arreglo de booleans, cada posicion indica si el dato es correcto o no
     0 numeroDocumento

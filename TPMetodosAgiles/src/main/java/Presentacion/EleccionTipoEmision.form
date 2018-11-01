@@ -70,17 +70,17 @@
                           <Component id="jButton16" min="-2" pref="35" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="boton1vez" max="32767" attributes="0"/>
-                              <Component id="jLabel5" pref="143" max="32767" attributes="0"/>
+                              <Component id="jLabel5" pref="123" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jLabel6" pref="123" max="32767" attributes="0"/>
                               <Component id="botonRenovacion" max="32767" attributes="0"/>
-                              <Component id="jLabel6" min="-2" pref="143" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="0" pref="62" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="82" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -97,18 +97,16 @@
                       <Component id="jButton18" alignment="1" min="-2" pref="33" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Component id="botonRenovacion" min="-2" pref="122" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel5" min="-2" pref="34" max="-2" attributes="0"/>
-                              <Component id="jLabel6" min="-2" pref="34" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Component id="boton1vez" min="-2" pref="122" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="boton1vez" pref="114" max="32767" attributes="0"/>
+                      <Component id="botonRenovacion" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="57" max="32767" attributes="0"/>
+                  <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel6" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                      <Component id="jLabel5" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="64" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -159,7 +157,7 @@
         <Component class="javax.swing.JButton" name="botonRenovacion">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Presentacion/cycle-represented-by-four-arrows-circle-in-a-rounded-square.png"/>
+              <Image iconType="3" name="/Presentacion/recycle-sign.png"/>
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
@@ -170,7 +168,7 @@
             </Property>
             <Property name="contentAreaFilled" type="boolean" value="false"/>
             <Property name="rolloverIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Presentacion/cycle-represented-by-four-arrows-circle-in-a-rounded-square rollover.png"/>
+              <Image iconType="3" name="/Presentacion/recycle-sign rollover.png"/>
             </Property>
           </Properties>
           <Events>
@@ -180,7 +178,7 @@
         <Component class="javax.swing.JButton" name="boton1vez">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Presentacion/one.png"/>
+              <Image iconType="3" name="/Presentacion/identity-card (2).png"/>
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
@@ -191,7 +189,7 @@
             </Property>
             <Property name="contentAreaFilled" type="boolean" value="false"/>
             <Property name="rolloverIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Presentacion/one rollover.png"/>
+              <Image iconType="3" name="/Presentacion/identity-card rollover.png"/>
             </Property>
           </Properties>
           <Events>
@@ -210,7 +208,7 @@
               <Color blue="33" green="33" red="33" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Primera vez"/>
+            <Property name="text" type="java.lang.String" value="Original"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">

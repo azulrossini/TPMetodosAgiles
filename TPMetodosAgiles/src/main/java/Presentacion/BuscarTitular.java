@@ -2,6 +2,7 @@
 package Presentacion;
 
 import Logica.LicenciaController;
+import Logica.LicenciaController.Motivo;
 import Logica.PersonaController;
 import Persistencia.*;
 import java.util.*;
@@ -12,14 +13,16 @@ public class BuscarTitular extends javax.swing.JFrame {
     private PersonaController personaController;
     private LicenciaController licenciaController;
     private List<Persona> personas;
+    private Motivo motivo;
     
     public BuscarTitular() {
         initComponents();
     }
     
-    public BuscarTitular(PersonaController p, LicenciaController l){
+    public BuscarTitular(PersonaController p, LicenciaController l, Motivo m){
         this.personaController = p;
         this.licenciaController = l;
+        this.motivo = m;
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -264,7 +267,7 @@ public class BuscarTitular extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        EmitirLicencia el= new EmitirLicencia(personas.get(this.tabla.getSelectedRow()), personaController, licenciaController);
+        EmitirLicencia el= new EmitirLicencia(personas.get(this.tabla.getSelectedRow()), personaController, licenciaController, motivo);
         el.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed

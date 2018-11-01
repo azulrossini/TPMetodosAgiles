@@ -9,12 +9,17 @@ import Persistencia.Clase;
 import Persistencia.Licencia;
 import Persistencia.Persona;
 import Persistencia.Vigencias;
+import Presentacion.EmitirLicencia;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class LicenciaController {
@@ -66,7 +71,7 @@ public class LicenciaController {
         return false;
     }
     
-    public void eliminarLicenciasHeredadas(String clase, Persona titular){
+    public void eliminarClasesHeredadas(String clase, Persona titular){
         
         switch (clase){
             case "A":
@@ -81,10 +86,7 @@ public class LicenciaController {
                     
                 }
         }
-        
-        
-        
-        
+
         
         List<Licencia> licencias_anteriores = LicenciaDAO.getLicenciasTitular(titular.getId());
                 for(int i=0; i<licencias_anteriores.size(); i++){
@@ -155,6 +157,38 @@ public class LicenciaController {
         fechaVigencia.set(Calendar.MONTH, c.get(Calendar.MONTH));
         
         return fechaVigencia.getTime();
+    }
+    
+    public void crearLicencia(Persona titular, String clase, String obs, Motivo motivo){
+
+                this.eliminarClasesHeredadas(clase, titular);
+
+                
+                //Crear la licencia
+                Licencia licencia = new Licencia();
+                licencia.setClaseId(clase);
+                licencia.setObservaciones(obs);
+                licencia.setPersonaId(titular.getId());
+                licencia.setUsuarioId(00);
+                licencia.setMotivo(motivo);
+
+                //SETAR!!!!
+                licencia.setVigenciaId(0);
+                licencia.setCostoId(0);
+ 
+                //Calcular vigencia
+                licencia.setFechaEmision(new Date());
+                Date fechaVencimiento=null;
+                try {
+                    fechaVencimiento = fechaVencimiento = this.getVigencia(licencia, titular.getFechaNac());
+                } 
+                catch (ParseException ex) {
+                    Logger.getLogger(EmitirLicencia.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                licencia.setFechaVenc(fechaVencimiento);
+
+                
+                LicenciaDAO.writeLicencia(licencia);
     }
     
     

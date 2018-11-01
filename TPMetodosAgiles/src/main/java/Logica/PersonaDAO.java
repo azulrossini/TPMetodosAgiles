@@ -65,7 +65,13 @@ public class PersonaDAO {
     }
     
     public void writeTitular(Persona p){
-        
+        SS = util.getSessionFactory().openSession();
+        SS.beginTransaction();
+        SS.save(p);
+        SS.getTransaction().commit();
+        SS.close();
     }
+    
+
     
 }
