@@ -60,12 +60,12 @@ public class PersonaController {
         lista[3]=validarDia(dia);
         lista[4]=validarMes(mes);
         lista[5]=validarAnio(anio);
-        lista[6]=validarCalle(calle);
+        lista[6]=validarCalle(calle, numeroCalle, piso, depart);
         lista[7]=validarNumeroCalle(numeroCalle);
         lista[8]=validarPiso(piso);
         lista[9]=validarDepartamento(depart);
         lista[10]=validarFecha(dia,mes,anio);
-        
+        //lista[11]=validarExistencia(tipo, numeroDocumento);
         return lista;
     }
     
@@ -80,14 +80,14 @@ public class PersonaController {
     
     public boolean validarNombre(String nombre){
 
-        if(nombre.matches("((\\s?)[a-zA-Z]+(\\s?))+")) return true;
+        if(nombre.matches("((\\s?)[a-zA-Z]+(\\s?))+") && nombre.length()<32) return true;
         else return false;
         
  
     }
     public boolean validarApellido(String apellido){
        
-        if(apellido.matches("((\\s?)[a-zA-Z]+(\\s?))+") ) return true;
+        if(apellido.matches("((\\s?)[a-zA-Z]+(\\s?))+") && apellido.length()<32 ) return true;
         else return false;
   
     }
@@ -154,8 +154,8 @@ public class PersonaController {
             else return false;
         }else return false;
     }
-    public boolean validarCalle(String calle){
-        if(calle.matches("((\\s?)[a-zA-Z]+(\\s?))+")) return true;
+    public boolean validarCalle(String calle, String numeroCalle, String piso, String depart){
+        if(calle.matches("((\\s?)[a-zA-Z]+(\\s?))+") && (calle.length()+numeroCalle.length()+piso.length()+depart.length())<32) return true;
         else return false;
     }
     public boolean validarNumeroCalle(String numeroCalle){
@@ -203,5 +203,14 @@ public class PersonaController {
         else{
             return -1;
         }
+    }
+    
+    public boolean validarExistencia(TipoDocumento tipo, String numeroDocumento){
+        PersonaDAO pDao = new PersonaDAO();
+        List<Persona> listaPersonas = pDao.readTitular(Integer.valueOf(numeroDocumento));
+        for(Persona p: listaPersonas){
+            if(p.getTipoId().equals(tipo.toString())) return false;
+        }
+        return true;
     }
 }
