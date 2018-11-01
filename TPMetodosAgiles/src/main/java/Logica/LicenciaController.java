@@ -1,18 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Logica;
 
-import Persistencia.Clase;
 import Persistencia.Licencia;
 import Persistencia.Persona;
 import Persistencia.Vigencias;
 import Presentacion.EmitirLicencia;
 import java.text.ParseException;
-import java.time.LocalDate;
-import java.time.Period;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
@@ -72,6 +65,10 @@ public class LicenciaController {
     }
     
     public void eliminarClasesHeredadas(String clase, Persona titular){
+        //Cancela la vigencia de las clases heredadas
+        //Por ejemplo, si se emite una nueva licencia de la clase C
+        //Si el titular posee una licencia de clase B, pierde la vigencia de la misma
+        //Porque C hereda todo loq ue posea B
         
         switch (clase){
             case "A":
@@ -79,23 +76,37 @@ public class LicenciaController {
             case "B":
                 return;
             case"C":
-                List<String> heredadas = LicenciaDAO.getHeredadas("C");
-                
-                for(int i=0; i<heredadas.size(); i++){
-                    List<Licencia> licencia_anterior = LicenciaDAO.getLicenciasPorClase(titular.getId(), heredadas.get(i));
-                    
+                List<String> heredadasC = LicenciaDAO.getHeredadas("E");
+                for(int i=0; i<heredadasC.size(); i++){
+                    List<Licencia> licencia_anterior = LicenciaDAO.getLicenciasPorClase(titular.getId(), heredadasC.get(i));
+                    for(int j=0; j<licencia_anterior.size(); j++){
+                        licencia_anterior.get(j).setFechaVenc(new Date());
+                    }   
                 }
+                break;
+            case "D":
+                List<String> heredadasD = LicenciaDAO.getHeredadas("E");
+                for(int i=0; i<heredadasD.size(); i++){
+                    List<Licencia> licencia_anterior = LicenciaDAO.getLicenciasPorClase(titular.getId(), heredadasD.get(i));
+                    for(int j=0; j<licencia_anterior.size(); j++){
+                        licencia_anterior.get(j).setFechaVenc(new Date());
+                    }   
+                }
+                break;
+            case "E":
+                List<String> heredadasE = LicenciaDAO.getHeredadas("E");
+                for(int i=0; i<heredadasE.size(); i++){
+                    List<Licencia> licencia_anterior = LicenciaDAO.getLicenciasPorClase(titular.getId(), heredadasE.get(i));
+                    for(int j=0; j<licencia_anterior.size(); j++){
+                        licencia_anterior.get(j).setFechaVenc(new Date());
+                    }   
+                }
+                break;
+            case "F":
+                return;
+            case "G":
+                return;
         }
-
-        
-        List<Licencia> licencias_anteriores = LicenciaDAO.getLicenciasTitular(titular.getId());
-                for(int i=0; i<licencias_anteriores.size(); i++){
-                    
-                //Verifica si tuvo una licencia de clase B en algun momento, al menos 1 anio antes
-                    if(licencias_anteriores.get(i).getClaseId() == "B"){
-                        
-                    }
-                }
     }
     
     

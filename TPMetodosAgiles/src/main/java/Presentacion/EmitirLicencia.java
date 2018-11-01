@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Presentacion;
 
 import Logica.LicenciaController;
@@ -10,12 +6,7 @@ import Logica.LicenciaController.Motivo;
 import Logica.PersonaController;
 import Persistencia.*;
 import java.awt.Point;
-import java.text.ParseException;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class EmitirLicencia extends javax.swing.JFrame {
@@ -38,7 +29,7 @@ public class EmitirLicencia extends javax.swing.JFrame {
         initComponents();
         completarDatosTitular();
         setearOriginal();
-        anularBarraSiNoEsOriginal();
+        //anularBarraSiNoEsOriginal();
         this.setLocationRelativeTo(null);
     }
     
@@ -357,7 +348,6 @@ public class EmitirLicencia extends javax.swing.JFrame {
                 break;
             case RENOVACION:
                 this.comboClase.setEnabled(false);
-                
                 break;
         }
     }
