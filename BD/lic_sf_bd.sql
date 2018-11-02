@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 22, 2018 at 05:08 PM
+-- Generation Time: Nov 02, 2018 at 06:25 PM
 -- Server version: 5.7.23
 -- PHP Version: 7.2.10
 
@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `costos` (
   `precio` float(5,2) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `clase` (`clase`)
-) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `costos`
@@ -127,7 +127,15 @@ CREATE TABLE IF NOT EXISTS `licencia` (
   KEY `fk_usuario_lic` (`usuario_id`),
   KEY `fk_costo_lic` (`costo_id`),
   KEY `fk_vigencia_lic` (`vigencia_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `licencia`
+--
+
+INSERT INTO `licencia` (`id`, `persona_id`, `clase_id`, `usuario_id`, `costo_id`, `vigencia_id`, `motivo`, `fecha_emision`, `fecha_venc`, `observaciones`) VALUES
+(1, 12, 'A', 0, 4, 0, 'ORIGINAL', '2018-11-01', '2023-11-21', ''),
+(2, 13, 'A', 0, 1, 0, 'ORIGINAL', '2018-11-01', '2019-09-21', '');
 
 -- --------------------------------------------------------
 
@@ -139,7 +147,7 @@ DROP TABLE IF EXISTS `persona`;
 CREATE TABLE IF NOT EXISTS `persona` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `tipo_id` varchar(9) NOT NULL,
-  `nro_id` int(11) NOT NULL,
+  `nro_id` varchar(11) NOT NULL,
   `apellido` varchar(32) NOT NULL,
   `nombre` varchar(32) NOT NULL,
   `fecha_nac` date NOT NULL,
@@ -148,14 +156,25 @@ CREATE TABLE IF NOT EXISTS `persona` (
   `factor` varchar(1) NOT NULL,
   `donante` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `persona`
 --
 
 INSERT INTO `persona` (`id`, `tipo_id`, `nro_id`, `apellido`, `nombre`, `fecha_nac`, `domicilio`, `grupo_sanguineo`, `factor`, `donante`) VALUES
-(1, 'DNI', 40053701, 'Fedele', 'Fausto', '1997-05-06', 'Avellaneda 2178', 'O', '+', 1);
+(1, 'DNI', '40053701', 'Fedele', 'Fausto', '1997-05-06', 'Avellaneda 2178', 'O', '+', 1),
+(2, 'DNI', '24789349', 'jsfkj', 'askjd', '1997-08-21', 'kajsd 8239  ', 'O', '+', 0),
+(3, 'DNI', '23847436', 'jhdaj', 'ahad', '1997-02-02', 'jahdajs 2738  ', 'O', '+', 0),
+(6, 'DNI', '40115862', 'jdas', 'asdhj', '1997-09-21', 'ajhasdl 889  ', 'O', '+', 0),
+(5, 'DNI', '40115862', 'Rossini', 'Azul', '1997-05-21', 'La Tatenguita 478  ', 'O', '+', 1),
+(7, 'DNI', '40115862', 'ljasd', 'auha', '1999-01-01', 'akjsdl 833  ', 'O', '+', 0),
+(8, 'DNI', '40115862', 'ajsd', 'asdlj', '1999-09-21', 'asdlj 7138  ', 'O', '+', 0),
+(9, 'DNI', '40115862', 'ajsd', 'asdlj', '1999-09-21', 'asdlj 7138  ', 'O', '+', 0),
+(10, 'DNI', '37584638', 'jhdas', 'ajds', '1999-11-21', 'asdjhl 2389  ', 'O', '+', 0),
+(11, 'DNI', '23478496', 'jhdlas', 'ahads', '1978-08-21', 'ahsdjm 2378  ', 'O', '+', 0),
+(12, 'DNI', '40115862', 'rossi', 'azul', '1996-11-21', 'asdhj 389  ', 'O', '+', 0),
+(13, 'DNI', '10382758', 'asdjl', 'asdjk', '1999-09-21', 'xxzx 222  ', 'O', '+', 0);
 
 -- --------------------------------------------------------
 

@@ -4,16 +4,10 @@ package Logica;
 import Persistencia.Licencia;
 import Persistencia.Persona;
 import Persistencia.Vigencias;
-import Presentacion.EmitirLicencia;
-import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 
 public class LicenciaController {
