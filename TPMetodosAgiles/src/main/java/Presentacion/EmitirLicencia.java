@@ -281,7 +281,11 @@ public class EmitirLicencia extends javax.swing.JFrame {
         String clase = (String) this.comboClase.getSelectedItem();
         //Comprobar que pueda sacar las clases
         if(licenciaController.verificarClase(clase, titular)){
-            personaController.almacenarTitular(titular);
+            //Si no esta en la BD lo almacena, si esta no
+            //Es para que no presione el boton OK muchas veces, porque se almacena muhcas veces el mismo titular
+            if(personaController.getPersona(titular.getId())!=null){
+                personaController.almacenarTitular(titular);
+            }
             
             //Actualizo para que me devuelva el titular con el id autoincremental de la bd
             titular = personaController.getPersona(titular.getId());
@@ -325,7 +329,7 @@ public class EmitirLicencia extends javax.swing.JFrame {
                 + "DOMICILIO: " + titular.getDomicilio() + "\n"
                 + "GRUPO SANGUINEO: " + titular.getGrupoSanguineo() + "\n"
                 + "FACTOR: " + titular.getFactor() + "\n"
-                + "ES DONANTE: " + titular.esDonante());
+                + "ES DONANTE: " + titular.isDonante());
 
     }
     

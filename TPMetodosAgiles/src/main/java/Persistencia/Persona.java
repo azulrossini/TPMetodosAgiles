@@ -10,16 +10,16 @@ import java.util.Date;
 public class Persona  implements java.io.Serializable {
 
 
-     private Integer id;
-     private String tipoId;
-     private String nroId;
-     private String apellido;
-     private String nombre;
-     private Date fechaNac;
-     private String domicilio;
-     private String grupoSanguineo;
-     private String factor;
-     private boolean donante;
+    private Integer id;
+    private String tipoId;
+    private String nroId;
+    private String apellido;
+    private String nombre;
+    private Date fechaNac;
+    private String domicilio;
+    private String grupoSanguineo;
+    private String factor;
+    private boolean donante;
 
     public Persona() {
     }
@@ -106,8 +106,6 @@ public class Persona  implements java.io.Serializable {
     public void setDonante(boolean donante) {
         this.donante = donante;
     }
-
-
 
 
 }

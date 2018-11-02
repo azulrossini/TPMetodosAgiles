@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Presentacion;
 
 import Logica.GenericDAO;
@@ -13,7 +9,6 @@ import Persistencia.Vigencias;
 import java.awt.Point;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import net.sf.jasperreports.engine.JRException;
@@ -44,7 +39,7 @@ public class ImprimirLicencia extends javax.swing.JFrame {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         this.fechanac.setText(sdf.format(p.getFechaNac()));
         this.clase.setText(l.getClaseId());
-        if (p.getDonante())
+        if (p.isDonante())
             this.don.setText("Sí");
         else
             this.don.setText("No");

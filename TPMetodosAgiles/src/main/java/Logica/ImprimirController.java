@@ -59,7 +59,7 @@ public class ImprimirController {
         parameters.put("clase",lic.getClaseId());
         parameters.put("observaciones",lic.getObservaciones());
         parameters.put("fecha_venc",lic.getFechaVenc());
-        if (persona.getDonante())
+        if (persona.isDonante())
             parameters.put("donante", "Sí");
         else
             parameters.put("donante", "No");
