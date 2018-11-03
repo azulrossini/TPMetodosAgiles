@@ -24,6 +24,10 @@ public class LicenciaController {
         return LicenciaDAO.readAll();
     }
     
+    public List<Licencia> getLicenciasRango(String fecha1, String fecha2){
+        return LicenciaDAO.readRango(fecha1, fecha2);
+    }
+    
     public List<Licencia> getLicenciasVigentes(Date fechaVigencia){
         return LicenciaDAO.read(fechaVigencia);
     }  

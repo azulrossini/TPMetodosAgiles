@@ -12,6 +12,7 @@ import Persistencia.Persona;
 import Persistencia.Vigencias;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -46,6 +47,10 @@ public class ListadoLicencias extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         
         //CARGO LAS LICENCIAS DENTRO DEL RANGO
+        System.out.println("");
+        System.out.println("ENTRO CON ARGUMENTOS: ");
+        System.out.println("");
+        
         getLicenciasRango(fechaDesde, fechaHasta);        
     }
     
@@ -58,18 +63,56 @@ public class ListadoLicencias extends javax.swing.JFrame {
         getLicencias();        
     }
     
-    private void getLicenciasRango(String fechaDesde, String fechaHasta){
+    private void getLicenciasRango(String fechaDesde, String fechaHasta) throws ParseException{
         
-        List<Licencia> listaLicencia = lController.getLicencias();
-        LicenciaController licenciaController = new LicenciaController();
         
+        LicenciaController lController = new LicenciaController();
+        
+        SimpleDateFormat sourceFormat = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat targetFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date dateDesde = sourceFormat.parse(fechaDesde);
+        Date dateHasta = sourceFormat.parse(fechaHasta);
+        String fecha1 = targetFormat.format(dateDesde);
+        String fecha2 = targetFormat.format(dateHasta);
+
+        List<Licencia> listaLicencia = lController.getLicenciasRango(fecha1, fecha2);        
+        VigenciaController vigenciaController = new VigenciaController();
+        
+        
+        if(listaLicencia.isEmpty()){
+            
+            JOptionPane.showMessageDialog(null,"No hay licencias con fecha de vencimiento dentro del rango");
+            
+        }else{
+            
+            DefaultTableModel dtm = (DefaultTableModel) this.tabla.getModel();
+            dtm.setRowCount(0);
+        
+            for (int i=0; i<listaLicencia.size(); i++){
+                Object datos[] = new Object[7];                              
+                
+                Persona persona = lController.getPersona(listaLicencia.get(i).getPersonaId());
+                Licencia licencia = listaLicencia.get(i);
+                Vigencias vigencia = vigenciaController.getVigencia(licencia.getMotivo(), persona.getFechaNac());
+                
+                datos[0] = licencia.getId();
+                datos[1] = licencia.getClaseId();
+                datos[2] = parseoFechaVigencia(lController.getFechaVigencia(vigencia, persona.getFechaNac())); //CALCULO LA VIGENCIA
+                datos[3] = persona.getApellido(); //Apellido
+                datos[4] = persona.getNombre(); //Nombre
+                datos[5] = persona.getGrupoSanguineo(); //GrupoSanguineo
+                datos[6] = this.isDonante(persona); //SI O NO
+                
+                dtm.addRow(datos);
+            }
+            
+        } 
         
     }
 
     private void getLicencias() throws ParseException{   
         
         List<Licencia> listaLicencia = lController.getLicencias();
-        LicenciaController licenciaController = new LicenciaController();
         VigenciaController vigenciaController = new VigenciaController();
         
         
@@ -85,13 +128,13 @@ public class ListadoLicencias extends javax.swing.JFrame {
             for (int i=0; i<listaLicencia.size(); i++){
                 Object datos[] = new Object[7];                              
                 
-                Persona persona = licenciaController.getPersona(listaLicencia.get(i).getPersonaId());
+                Persona persona = lController.getPersona(listaLicencia.get(i).getPersonaId());
                 Licencia licencia = listaLicencia.get(i);
                 Vigencias vigencia = vigenciaController.getVigencia(licencia.getMotivo(), persona.getFechaNac());
                 
                 datos[0] = licencia.getId();
                 datos[1] = licencia.getClaseId();
-                datos[2] = parseoFechaVigencia(licenciaController.getFechaVigencia(vigencia, persona.getFechaNac())); //CALCULO LA VIGENCIA
+                datos[2] = parseoFechaVigencia(lController.getFechaVigencia(vigencia, persona.getFechaNac())); //CALCULO LA VIGENCIA
                 datos[3] = persona.getApellido(); //Apellido
                 datos[4] = persona.getNombre(); //Nombre
                 datos[5] = persona.getGrupoSanguineo(); //GrupoSanguineo
@@ -252,7 +295,7 @@ public class ListadoLicencias extends javax.swing.JFrame {
                         .addGap(4, 4, 4)
                         .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()

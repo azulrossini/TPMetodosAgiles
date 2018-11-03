@@ -38,6 +38,19 @@ public class LicenciaDAO extends GenericDAO {
         return lista;
     }
         
+    //TRAE LAS VIGENCIAS CON FECHA_VENC EN EL RANGO DADO
+    //FORMATE DATE MYSQL: yyyy-MM-dd
+    public List<Licencia> readRango(String fechaDesde, String fechaHasta){
+    SS = util.getSessionFactory().openSession();
+    SS.beginTransaction();
+    String sentencia = "SELECT * FROM licencia WHERE fecha_venc BETWEEN " + "'" + fechaDesde + "'" + " AND " + "'" + fechaHasta + "'" +" ORDER BY fecha_venc ASC";
+    Query query = SS.createSQLQuery(sentencia).addEntity(Licencia.class);
+    List<Licencia> lista = query.list();
+    SS.getTransaction().commit();
+    SS.close();
+    return lista;
+    }    
+        
     //TRAE TODAS    
     public List<Licencia> readAll(){
         SS = util.getSessionFactory().openSession();
