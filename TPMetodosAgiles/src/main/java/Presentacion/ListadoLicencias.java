@@ -39,18 +39,18 @@ public class ListadoLicencias extends javax.swing.JFrame {
     LicenciaController lController = new LicenciaController();
     PersonaController PersonaC;
     
+    private ImprimirController ic;
     private TableRowSorter trsFiltro;
+    private int flagTodas = 0;
     
     public ListadoLicencias(String fechaDesde, String fechaHasta) throws ParseException {
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         
-        //CARGO LAS LICENCIAS DENTRO DEL RANGO
-        System.out.println("");
-        System.out.println("ENTRO CON ARGUMENTOS: ");
-        System.out.println("");
+        flagTodas = 0;
         
+        //CARGO TODAS LAS LICENCIAS DENTRO DEL RANGO
         getLicenciasRango(fechaDesde, fechaHasta);        
     }
     
@@ -58,6 +58,8 @@ public class ListadoLicencias extends javax.swing.JFrame {
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
+        
+        flagTodas = 1;
         
         //CARGO TODAS LAS LICENCIAS
         getLicencias();        
@@ -82,6 +84,8 @@ public class ListadoLicencias extends javax.swing.JFrame {
         if(listaLicencia.isEmpty()){
             
             JOptionPane.showMessageDialog(null,"No hay licencias con fecha de vencimiento dentro del rango");
+            IndexView index = new IndexView();
+            this.dispose();
             
         }else{
             
@@ -89,7 +93,7 @@ public class ListadoLicencias extends javax.swing.JFrame {
             dtm.setRowCount(0);
         
             for (int i=0; i<listaLicencia.size(); i++){
-                Object datos[] = new Object[7];                              
+                Object datos[] = new Object[8];                              
                 
                 Persona persona = lController.getPersona(listaLicencia.get(i).getPersonaId());
                 Licencia licencia = listaLicencia.get(i);
@@ -101,7 +105,8 @@ public class ListadoLicencias extends javax.swing.JFrame {
                 datos[3] = persona.getApellido(); //Apellido
                 datos[4] = persona.getNombre(); //Nombre
                 datos[5] = persona.getGrupoSanguineo(); //GrupoSanguineo
-                datos[6] = this.isDonante(persona); //SI O NO
+                datos[6] = persona.getFactor();
+                datos[7] = this.isDonante(persona); //SI O NO
                 
                 dtm.addRow(datos);
             }
@@ -119,6 +124,8 @@ public class ListadoLicencias extends javax.swing.JFrame {
         if(listaLicencia.isEmpty()){
             
             JOptionPane.showMessageDialog(null,"No hay licencias para mostrar");
+            IndexView index = new IndexView();
+            this.dispose();
             
         }else{
             
@@ -126,7 +133,7 @@ public class ListadoLicencias extends javax.swing.JFrame {
             dtm.setRowCount(0);
         
             for (int i=0; i<listaLicencia.size(); i++){
-                Object datos[] = new Object[7];                              
+                Object datos[] = new Object[8];                              
                 
                 Persona persona = lController.getPersona(listaLicencia.get(i).getPersonaId());
                 Licencia licencia = listaLicencia.get(i);
@@ -138,18 +145,13 @@ public class ListadoLicencias extends javax.swing.JFrame {
                 datos[3] = persona.getApellido(); //Apellido
                 datos[4] = persona.getNombre(); //Nombre
                 datos[5] = persona.getGrupoSanguineo(); //GrupoSanguineo
-                datos[6] = this.isDonante(persona); //SI O NO
+                datos[6] = persona.getFactor(); //Factor
+                datos[7] = this.isDonante(persona); //SI O NO
                 
                 dtm.addRow(datos);
             }
             
         } 
-    }
-    
-    private void cargarTabla(List listaLicencias){
-        
-        
-        
     }
     
     public String parseoFechaVigencia(Date fechaVigencia){
@@ -213,7 +215,7 @@ public class ListadoLicencias extends javax.swing.JFrame {
         });
 
         jLabel2.setFont(new java.awt.Font("Microsoft JhengHei UI", 0, 36)); // NOI18N
-        jLabel2.setText("Listado de licencias vigentes");
+        jLabel2.setText("Listado de licencias");
 
         tFiltro.setFont(new java.awt.Font("Microsoft JhengHei UI", 1, 14)); // NOI18N
         tFiltro.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -224,7 +226,7 @@ public class ListadoLicencias extends javax.swing.JFrame {
 
         jComboFiltro.setBackground(new java.awt.Color(102, 102, 102));
         jComboFiltro.setFont(new java.awt.Font("Microsoft JhengHei UI", 1, 14)); // NOI18N
-        jComboFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Apellido", "Nombre", "Grupo", "Donante" }));
+        jComboFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Apellido", "Nombre", "Grupo", "Factor", "Donante" }));
 
         jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/cancel.png"))); // NOI18N
         jButton10.setBorderPainted(false);
@@ -259,23 +261,25 @@ public class ListadoLicencias extends javax.swing.JFrame {
         tabla.setFont(new java.awt.Font("Microsoft JhengHei UI", 1, 12)); // NOI18N
         tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID Licencia", "Clase", "Vigencia", "Apellido", "Nombre", "Grupo +/-", "Donante"
+                "ID Licencia", "Clase", "Vigencia", "Apellido", "Nombre", "Grupo Sanguineo", "Factor", "Donante"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
+        tabla.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        tabla.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane2.setViewportView(tabla);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -354,7 +358,15 @@ public class ListadoLicencias extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void printActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printActionPerformed
-        // TODO add your handling code here:
+        if(flagTodas==1){
+            System.out.println("");
+            System.out.println("TODAS");
+            System.out.println("");
+        }else{
+            System.out.println("");
+            System.out.println("NO TODAS");
+            System.out.println("");
+        }
     }//GEN-LAST:event_printActionPerformed
 
     private void tFiltroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tFiltroKeyTyped
@@ -384,45 +396,6 @@ public class ListadoLicencias extends javax.swing.JFrame {
         FiltroListadoLicencias FLL = new FiltroListadoLicencias();
         this.dispose();
     }//GEN-LAST:event_jButton12ActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ListadoLicencias.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ListadoLicencias.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ListadoLicencias.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ListadoLicencias.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    new ListadoLicencias().setVisible(true);
-                } catch (ParseException ex) {
-                    Logger.getLogger(ListadoLicencias.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton10;

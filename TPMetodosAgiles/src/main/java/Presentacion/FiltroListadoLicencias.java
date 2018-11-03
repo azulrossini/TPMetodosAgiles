@@ -396,10 +396,10 @@ public class FiltroListadoLicencias extends javax.swing.JFrame {
     private void todasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_todasActionPerformed
         try {
             ListadoLicencias LL = new ListadoLicencias();
+            this.dispose();
         } catch (ParseException ex) {
             Logger.getLogger(FiltroListadoLicencias.class.getName()).log(Level.SEVERE, null, ex);
         }
-        this.dispose();
     }//GEN-LAST:event_todasActionPerformed
 
     private void rangoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rangoActionPerformed

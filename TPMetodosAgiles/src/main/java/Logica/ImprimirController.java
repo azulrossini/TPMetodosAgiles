@@ -14,6 +14,7 @@ import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -41,11 +42,19 @@ public class ImprimirController {
     private final Persona persona;
     private final Licencia lic;
     private final Map<String, Object> parameters = new HashMap();
+    private final Map<String, Object> parametersListado = new HashMap();
+    private List listado;
     
     public ImprimirController(Persona p, Licencia l) throws IOException{
         persona = p;
         lic = l;
         this.cargarParametros();
+    }
+    
+    public ImprimirController(Persona p, Licencia l, List lista) throws IOException{
+        persona = p;
+        lic = l;
+        this.cargarParametrosListado();
     }
 
     private void cargarParametros() throws IOException{
@@ -65,6 +74,18 @@ public class ImprimirController {
             parameters.put("donante", "No");
         parameters.put("bordeArriba", this.getClass().getClassLoader().getResource("bordeArriba.png"));
         parameters.put("bordeAbajo", this.getClass().getClassLoader().getResource("bordeArriba.png"));
+    }
+    
+    private void cargarParametrosListado() throws IOException{
+
+        parametersListado.put("id",listado.get(0)); //ID LICENCIA
+        parametersListado.put("clase_id",listado.get(1)); //CLASE
+        parametersListado.put("fecha_venc",listado.get(2)); //FECHA VIGENCIA
+        parametersListado.put("apellido",listado.get(3)); //APELLIDO
+        parametersListado.put("nombre",listado.get(4)); //NOMBRE
+        parametersListado.put("grupo_sanguineo",listado.get(5)); //GRUPO SANGUINEO
+        parametersListado.put("donante",listado.get(6)); //DONANTE
+        
     }
     
     public void verReporte(){
