@@ -8,6 +8,7 @@ public class Index {
     
     public static void main(String[] args) {
 
+
         try{
             GenericDAO gd = new GenericDAO();
             IndexView index = new IndexView();

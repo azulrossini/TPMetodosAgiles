@@ -75,6 +75,11 @@ public class EleccionTipoEmision extends javax.swing.JFrame {
         jButton18.setBorderPainted(false);
         jButton18.setContentAreaFilled(false);
         jButton18.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/left-arrow rollover.png"))); // NOI18N
+        jButton18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton18ActionPerformed(evt);
+            }
+        });
 
         botonRenovacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/recycle-sign.png"))); // NOI18N
         botonRenovacion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
@@ -177,7 +182,7 @@ public class EleccionTipoEmision extends javax.swing.JFrame {
 
     private void botonRenovacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRenovacionActionPerformed
         // TODO add your handling code here:
-        BuscarTitular bt = new BuscarTitular(personaController, licenciaController, LicenciaController.Motivo.RENOVACION);
+        BuscarTitular bt = new BuscarTitular(personaController, licenciaController, LicenciaController.Motivo.RENOVACION, "eleccion");
         bt.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_botonRenovacionActionPerformed
@@ -188,6 +193,13 @@ public class EleccionTipoEmision extends javax.swing.JFrame {
         at.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_boton1vezActionPerformed
+
+    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
+        // TODO add your handling code here:
+        IndexView i = new IndexView();
+        i.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton18ActionPerformed
 
 
 

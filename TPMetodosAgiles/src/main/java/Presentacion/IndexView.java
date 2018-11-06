@@ -3,16 +3,13 @@ package Presentacion;
 
 import Logica.*;
 import static java.lang.System.exit;
-import java.text.ParseException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 
 public class IndexView extends javax.swing.JFrame {
     
-    private PersonaController PC;
-    private LicenciaController LC;
-    private VigenciaController VC;
+    private final PersonaController PC;
+    private final LicenciaController LC;
+    private final VigenciaController VC;
 
     public IndexView() {
         initComponents();
@@ -386,7 +383,7 @@ public class IndexView extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void botonEmitirLicenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEmitirLicenciaActionPerformed
-        BuscarTitular bt = new BuscarTitular(PC,LC, LicenciaController.Motivo.RENOVACION);
+        BuscarTitular bt = new BuscarTitular(PC,LC, LicenciaController.Motivo.RENOVACION, "index");
         bt.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_botonEmitirLicenciaActionPerformed
@@ -397,7 +394,6 @@ public class IndexView extends javax.swing.JFrame {
         this.setVisible(false);
         ete.setVisible(true);
     }//GEN-LAST:event_botonEmitirActionPerformed
-
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

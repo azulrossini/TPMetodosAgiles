@@ -14,15 +14,17 @@ public class BuscarTitular extends javax.swing.JFrame {
     private LicenciaController licenciaController;
     private List<Persona> personas;
     private Motivo motivo;
+    private String pantallaAnterior;
     
     public BuscarTitular() {
         initComponents();
     }
     
-    public BuscarTitular(PersonaController p, LicenciaController l, Motivo m){
+    public BuscarTitular(PersonaController p, LicenciaController l, Motivo m, String pantAnterior){
         this.personaController = p;
         this.licenciaController = l;
         this.motivo = m;
+        this.pantallaAnterior = pantAnterior;
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -250,7 +252,7 @@ public class BuscarTitular extends javax.swing.JFrame {
         //Validar que no ingrese caracteres no numericos
         
         if(this.buscaDNI.getText()!=null){
-            int dni = Integer.valueOf(this.buscaDNI.getText());
+            String dni = this.buscaDNI.getText();
             personas = personaController.buscarTitular(dni);
             setearTabla();
         }
@@ -259,9 +261,19 @@ public class BuscarTitular extends javax.swing.JFrame {
 
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
         // TODO add your handling code here:
-        EleccionTipoEmision ete = new EleccionTipoEmision(personaController, licenciaController);
-        ete.setVisible(true);
-        this.setVisible(false);
+            switch(pantallaAnterior){
+            case "index": 
+                IndexView i = new IndexView();
+                i.setVisible(true);
+                this.setVisible(false);
+                break;
+            case "eleccion": 
+                EleccionTipoEmision e = new EleccionTipoEmision(personaController, licenciaController);
+                e.setVisible(true);
+                this.setVisible(false);
+                break;
+        }
+
         
     }//GEN-LAST:event_jButton18ActionPerformed
 

@@ -26,7 +26,7 @@ public class PersonaController {
         return persona;   
     }
 
-    public List<Persona> buscarTitular(int dni){
+    public List<Persona> buscarTitular(String dni){
         //Este metodo busca por DNI, no por id de la persona
         //El ID de la persona es un autoincremental de la bd
         return PersonaDAO.readTitular(dni);
@@ -209,7 +209,7 @@ public class PersonaController {
     
     public boolean validarExistencia(TipoDocumento tipo, String numeroDocumento){
         if(this.validarDocumento(tipo, numeroDocumento)){
-            List<Persona> listaPersonas = this.buscarTitular(Integer.valueOf(numeroDocumento));
+            List<Persona> listaPersonas = this.buscarTitular(numeroDocumento);
         for(Persona p: listaPersonas){
             if(p.getTipoId().equals(tipo.toString())) return false;
         }

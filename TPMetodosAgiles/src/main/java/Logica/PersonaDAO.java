@@ -42,7 +42,7 @@ public class PersonaDAO {
         }    
     }
     
-    public List<Persona> readTitular(int id){
+    public List<Persona> readTitular(String id){
         SS = util.getSessionFactory().openSession();
         SS.beginTransaction();
         //Devuelve los DNI que contengan un substring del dni

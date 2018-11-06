@@ -12,7 +12,7 @@ import java.util.List;
 
 public class LicenciaController {
     
-    private LicenciaDAO LicenciaDAO;
+    private final LicenciaDAO LicenciaDAO;
     
     public enum Motivo{ORIGINAL, RENOVACION}
     
@@ -134,54 +134,45 @@ public class LicenciaController {
     }
     
     public void crearLicencia(Persona titular, String clase, String obs, Motivo motivo){
+        this.eliminarClasesHeredadas(clase, titular);
 
-                this.eliminarClasesHeredadas(clase, titular);
-                
-                VigenciaController vigenciaController = new VigenciaController();
-                
-                Vigencias vigencia = vigenciaController.getVigencia(motivo.toString(), titular.getFechaNac());
-                //Crear la licencia
-                Licencia licencia = new Licencia();
-                licencia.setClaseId(clase);
-                licencia.setObservaciones(obs);
-                licencia.setPersonaId(titular.getId());
-                licencia.setUsuarioId(00);
-                licencia.setMotivo(motivo.toString());
+        //Crear la licencia
+        Licencia licencia = new Licencia();
+        licencia.setClaseId(clase);
+        licencia.setObservaciones(obs.toUpperCase());
+        licencia.setPersonaId(titular.getId());
+        licencia.setUsuarioId(00);
+        licencia.setMotivo(motivo.toString().toUpperCase());
 
-                //SETAR!!!!
-                licencia.setVigenciaId(vigencia.getId());
- 
-                //Calcular vigencia
-                licencia.setFechaEmision(new Date());
-                Date fechaVencimiento=null;
+        //Calcular vigencia
+        VigenciaController vigenciaController = new VigenciaController();
+        Vigencias vigencia = vigenciaController.getVigencia(motivo.toString(), titular.getFechaNac());
+        licencia.setVigenciaId(vigencia.getId());
+          
+        licencia.setFechaEmision(new Date());
+        Date fechaVencimiento=null;
+              
+        fechaVencimiento = this.getFechaVigencia(vigencia, titular.getFechaNac());
+        licencia.setFechaVenc(fechaVencimiento);
                 
-                fechaVencimiento = this.getFechaVigencia(vigencia, titular.getFechaNac());
+        //Calcular costo
+        CostoController cc = new CostoController();
+        Date hoy = new Date();
+        int diffAnios = getDiferenciaAnios(fechaVencimiento);
+        cc.calcularCosto(clase, diffAnios);
+             
+        licencia.setCostoId(cc.getCostoId());
                
-                licencia.setFechaVenc(fechaVencimiento);
-                System.out.println(fechaVencimiento);
-                
-                //Calcular costo
-                CostoController cc = new CostoController();
-                Date hoy = new Date();
-                
-                int diffAnios = getDiferenciaAnios(fechaVencimiento);
-
-                System.out.println(diffAnios);
-                cc.calcularCosto(clase, diffAnios);
-                
-                licencia.setCostoId(cc.getCostoId());
-                System.out.println(cc.getCostoId());
-                
-                LicenciaDAO.writeLicencia(licencia);
+         LicenciaDAO.writeLicencia(licencia);
     }
     
     public int getDiferenciaAnios(Date vencimiento){
-            Calendar c = new GregorianCalendar();
-            c.setTime(vencimiento);
-            
-            Calendar today = Calendar.getInstance();
-            int diffYear = c.get(Calendar.YEAR) -today.get(Calendar.YEAR);
-            
-            return diffYear;
+        Calendar c = new GregorianCalendar();
+        c.setTime(vencimiento);
+          
+        Calendar today = Calendar.getInstance();
+        int diffYear = c.get(Calendar.YEAR) -today.get(Calendar.YEAR);
+          
+        return diffYear;
     }
 }
