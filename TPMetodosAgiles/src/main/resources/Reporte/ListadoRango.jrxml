@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7dc48dfe-eba4-4d52-93f5-e1c44dddfbd2">
-	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.zoom" value="2.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
@@ -39,7 +39,7 @@ FROM
      `licencia` licencia,
      `persona` persona
 WHERE 
-	licencia.`fecha_venc` > '2019-10-8'
+	licencia.`fecha_venc` > NOW()
 group by licencia.`id`]]>
 	</queryString>
 	<field name="licencia_id" class="java.lang.Integer"/>
@@ -166,13 +166,6 @@ group by licencia.`id`]]>
 					<textFieldExpression><![CDATA[$F{persona_grupo_sanguineo}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
-					<reportElement uuid="01e3eb9c-00b9-45af-b202-4959f84caf70" style="Detail" positionType="Float" x="642" y="0" width="59" height="18"/>
-					<textElement textAlignment="Center">
-						<font size="14"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{persona_donante}]]></textFieldExpression>
-				</textField>
-				<textField isStretchWithOverflow="true">
 					<reportElement uuid="5034aecc-fe71-4877-98be-2fbf1b2301c9" style="Detail" positionType="Float" x="308" y="0" width="99" height="18"/>
 					<textElement textAlignment="Center">
 						<font size="14"/>
@@ -213,6 +206,13 @@ group by licencia.`id`]]>
 						<font size="14"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{licencia_id}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="01e3eb9c-00b9-45af-b202-4959f84caf70" style="Detail" positionType="Float" x="642" y="0" width="59" height="18"/>
+					<textElement textAlignment="Center">
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{persona_donante} == true ? "Si" : "No"]]></textFieldExpression>
 				</textField>
 			</frame>
 		</band>

@@ -12,6 +12,7 @@ import Persistencia.Persona;
 import Persistencia.Vigencias;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -29,6 +30,7 @@ import javax.swing.JTable;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
+import net.sf.jasperreports.engine.JRException;
 
 /**
  *
@@ -41,14 +43,16 @@ public class ListadoLicencias extends javax.swing.JFrame {
     
     private ImprimirController ic;
     private TableRowSorter trsFiltro;
-    private int flagTodas = 0;
+    private boolean flagTodas;
+    
+    String fecha1, fecha2;
     
     public ListadoLicencias(String fechaDesde, String fechaHasta) throws ParseException {
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         
-        flagTodas = 0;
+        flagTodas = false;
         
         //CARGO TODAS LAS LICENCIAS DENTRO DEL RANGO
         getLicenciasRango(fechaDesde, fechaHasta);        
@@ -59,7 +63,7 @@ public class ListadoLicencias extends javax.swing.JFrame {
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         
-        flagTodas = 1;
+        flagTodas = true;
         
         //CARGO TODAS LAS LICENCIAS
         getLicencias();        
@@ -74,8 +78,8 @@ public class ListadoLicencias extends javax.swing.JFrame {
         SimpleDateFormat targetFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date dateDesde = sourceFormat.parse(fechaDesde);
         Date dateHasta = sourceFormat.parse(fechaHasta);
-        String fecha1 = targetFormat.format(dateDesde);
-        String fecha2 = targetFormat.format(dateHasta);
+        fecha1 = targetFormat.format(dateDesde);
+        fecha2 = targetFormat.format(dateHasta);
 
         List<Licencia> listaLicencia = lController.getLicenciasRango(fecha1, fecha2);        
         VigenciaController vigenciaController = new VigenciaController();
@@ -358,14 +362,24 @@ public class ListadoLicencias extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void printActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printActionPerformed
-        if(flagTodas==1){
-            System.out.println("");
-            System.out.println("TODAS");
-            System.out.println("");
+        if(flagTodas){
+            try {
+                lController.imprimirTodas();
+            } catch (JRException ex) {
+                Logger.getLogger(ListadoLicencias.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(ListadoLicencias.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }else{
-            System.out.println("");
-            System.out.println("NO TODAS");
-            System.out.println("");
+            try {
+                lController.imprimirRango(fecha1, fecha2);
+            } catch (JRException ex) {
+                Logger.getLogger(ListadoLicencias.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(ListadoLicencias.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ParseException ex) {
+                Logger.getLogger(ListadoLicencias.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_printActionPerformed
 

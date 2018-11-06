@@ -4,10 +4,13 @@ package Logica;
 import Persistencia.Licencia;
 import Persistencia.Persona;
 import Persistencia.Vigencias;
+import java.io.IOException;
+import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
+import net.sf.jasperreports.engine.JRException;
 
 
 public class LicenciaController {
@@ -174,5 +177,22 @@ public class LicenciaController {
         int diffYear = c.get(Calendar.YEAR) -today.get(Calendar.YEAR);
           
         return diffYear;
+    }
+    
+    public int imprimirTodas() throws IOException, JRException{
+        
+        ImprimirController iController = new ImprimirController();
+        iController.imprimirListado();
+        
+        return 0;
+    }
+    
+    public int imprimirRango(String fechaDesde, String fechaHasta) throws IOException, JRException, ParseException{
+        
+        ImprimirController iController = new ImprimirController();
+        iController.imprimirListadoRango(fechaDesde, fechaHasta);
+        
+        
+        return 0;
     }
 }
