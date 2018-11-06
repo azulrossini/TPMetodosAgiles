@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3dfc272f-e3a8-4013-a97b-8032df248421">
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     licencia.`id` AS licencia_id,
+     licencia.`persona_id` AS licencia_persona_id,
+     licencia.`clase_id` AS licencia_clase_id,
+     licencia.`usuario_id` AS licencia_usuario_id,
+     licencia.`costo_id` AS licencia_costo_id,
+     licencia.`vigencia_id` AS licencia_vigencia_id,
+     licencia.`motivo` AS licencia_motivo,
+     licencia.`fecha_emision` AS licencia_fecha_emision,
+     licencia.`fecha_venc` AS licencia_fecha_venc,
+     licencia.`observaciones` AS licencia_observaciones,
+     persona.`id` AS persona_id,
+     persona.`tipo_id` AS persona_tipo_id,
+     persona.`nro_id` AS persona_nro_id,
+     persona.`apellido` AS persona_apellido,
+     persona.`nombre` AS persona_nombre,
+     persona.`fecha_nac` AS persona_fecha_nac,
+     persona.`domicilio` AS persona_domicilio,
+     persona.`grupo_sanguineo` AS persona_grupo_sanguineo,
+     persona.`factor` AS persona_factor,
+     persona.`donante` AS persona_donante
+FROM
+     `licencia` licencia,
+     `persona` persona]]>
+	</queryString>
+	<field name="licencia_id" class="java.lang.Integer"/>
+	<field name="licencia_persona_id" class="java.lang.Integer"/>
+	<field name="licencia_clase_id" class="java.lang.String"/>
+	<field name="licencia_usuario_id" class="java.lang.Integer"/>
+	<field name="licencia_costo_id" class="java.lang.Integer"/>
+	<field name="licencia_vigencia_id" class="java.lang.Integer"/>
+	<field name="licencia_motivo" class="java.lang.String"/>
+	<field name="licencia_fecha_emision" class="java.sql.Date"/>
+	<field name="licencia_fecha_venc" class="java.sql.Date"/>
+	<field name="licencia_observaciones" class="java.lang.String"/>
+	<field name="persona_id" class="java.lang.Integer"/>
+	<field name="persona_tipo_id" class="java.lang.String"/>
+	<field name="persona_nro_id" class="java.lang.String"/>
+	<field name="persona_apellido" class="java.lang.String"/>
+	<field name="persona_nombre" class="java.lang.String"/>
+	<field name="persona_fecha_nac" class="java.sql.Date"/>
+	<field name="persona_domicilio" class="java.lang.String"/>
+	<field name="persona_grupo_sanguineo" class="java.lang.String"/>
+	<field name="persona_factor" class="java.lang.String"/>
+	<field name="persona_donante" class="java.lang.Boolean"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="132" splitType="Stretch">
+			<image>
+				<reportElement uuid="1667c0d3-0bb3-425e-bc63-92f44e973db1" x="456" y="0" width="99" height="132"/>
+				<imageExpression><![CDATA["cherry.jpg"]]></imageExpression>
+			</image>
+			<frame>
+				<reportElement uuid="18625e0c-6ffd-4f65-9eff-b934d5f882e1" mode="Opaque" x="0" y="0" width="451" height="95" backcolor="#000000"/>
+				<staticText>
+					<reportElement uuid="d2ef0c64-3a08-4a20-9ff0-1bc63d024550" style="Title" x="0" y="0" width="370" height="66"/>
+					<textElement>
+						<font isBold="false"/>
+					</textElement>
+					<text><![CDATA[Cherry Title]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="7b20e5d7-bdcf-44be-8b0c-5d26f8d9e19e" style="SubTitle" x="157" y="66" width="249" height="29"/>
+					<textElement>
+						<font size="22" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Cherry SubTitle]]></text>
+				</staticText>
+			</frame>
+			<frame>
+				<reportElement uuid="79004e01-8006-4700-a2dd-9f8d1d512185" mode="Opaque" x="0" y="100" width="451" height="32" forecolor="#000000" backcolor="#CC0000"/>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement uuid="83af5588-0fc5-40b2-81f5-67e270b03a7e" x="307" y="12" width="144" height="20" forecolor="#FFFFFF"/>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="26" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="a5d5ed79-ff07-4280-9d05-75335d6625c9" style="Column header" x="0" y="7" width="27" height="18" forecolor="#000000"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[licencia_id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d78afbc9-69ba-4ee4-a51e-30f410a9f993" style="Column header" x="27" y="7" width="27" height="18" forecolor="#000000"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[licencia_persona_id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ed10e129-63c1-4f3d-b5e1-49c066a1a6ee" style="Column header" x="54" y="7" width="27" height="18" forecolor="#000000"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[licencia_clase_id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="24f9f967-eab0-47b2-9ecb-77ce2d41824e" style="Column header" x="81" y="7" width="27" height="18" forecolor="#000000"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[licencia_usuario_id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="f4091220-0ce2-4c0e-9723-979280378b20" style="Column header" x="108" y="7" width="27" height="18" forecolor="#000000"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[licencia_costo_id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="56cedf2c-3db5-4f84-8d5a-1872888e4ed4" style="Column header" x="135" y="7" width="27" height="18" forecolor="#000000"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[licencia_vigencia_id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="7a8f2076-c9f6-4dac-b674-8e8a2cbf0bf8" style="Column header" x="162" y="7" width="27" height="18" forecolor="#000000"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[licencia_motivo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9d4d97dc-a032-443f-ae7f-30f07a46767b" style="Column header" x="189" y="7" width="27" height="18" forecolor="#000000"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[licencia_fecha_emision]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c043f84f-b929-49b6-9ff4-ba6dac060143" style="Column header" x="216" y="7" width="27" height="18" forecolor="#000000"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[licencia_fecha_venc]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="01177c52-2b57-459d-9a68-13cfb471f347" style="Column header" x="243" y="7" width="27" height="18" forecolor="#000000"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[licencia_observaciones]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="bfef2ac9-a561-41d0-9abd-f07064320f59" style="Column header" x="270" y="7" width="27" height="18" forecolor="#000000"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[persona_id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="24d8c84b-fd96-4500-82ec-cbc189a1f266" style="Column header" x="297" y="7" width="27" height="18" forecolor="#000000"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[persona_tipo_id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="de1c2e8b-1045-4ea0-9d30-55555d4f2f78" style="Column header" x="324" y="7" width="27" height="18" forecolor="#000000"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[persona_nro_id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d88e8ab9-210a-46a7-8500-ef834e5dfc8a" style="Column header" x="351" y="7" width="27" height="18" forecolor="#000000"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[persona_apellido]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9d8c67b7-d017-4f8c-ad1f-abcc7f2d984c" style="Column header" x="378" y="7" width="27" height="18" forecolor="#000000"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[persona_nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="24ee3eb2-8eed-4684-9aa7-9b938186d2a3" style="Column header" x="405" y="7" width="27" height="18" forecolor="#000000"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[persona_fecha_nac]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8e71ea94-4046-4045-b16e-c61b8b950de5" style="Column header" x="432" y="7" width="27" height="18" forecolor="#000000"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[persona_domicilio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="0f5ca988-20c9-4d98-bc75-deb658303237" style="Column header" x="459" y="7" width="27" height="18" forecolor="#000000"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[persona_grupo_sanguineo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="3cd3e104-a032-4c44-9c42-da0ed36e2058" style="Column header" x="486" y="7" width="27" height="18" forecolor="#000000"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[persona_factor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a6389823-c9c7-4603-bfae-ceb18fd62e1a" style="Column header" x="513" y="7" width="27" height="18" forecolor="#000000"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[persona_donante]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="18" splitType="Stretch">
+			<frame>
+				<reportElement uuid="32d6958a-5b3e-46fe-b49e-d5f92eebf2a0" style="Row" mode="Opaque" x="0" y="0" width="555" height="18"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="6bd2bd4f-2503-4ace-9a74-571d2fcd48c6" style="Detail" positionType="Float" x="0" y="0" width="27" height="18"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{licencia_id}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="d9d8be4d-cf8a-466a-9764-a954e9c99366" style="Detail" positionType="Float" x="27" y="0" width="27" height="18"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{licencia_persona_id}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="8dd8406b-7d31-4fa6-b505-354fabdaffdf" style="Detail" positionType="Float" x="54" y="0" width="27" height="18"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{licencia_clase_id}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="b213afb9-fa52-4d34-90b4-0be7a2b440ce" style="Detail" positionType="Float" x="81" y="0" width="27" height="18"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{licencia_usuario_id}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="e2f83424-e4c7-41ab-bdd5-fe8c44900def" style="Detail" positionType="Float" x="108" y="0" width="27" height="18"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{licencia_costo_id}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="5d724abd-7e4e-4c67-8575-ae09ad7d4940" style="Detail" positionType="Float" x="135" y="0" width="27" height="18"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{licencia_vigencia_id}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="6d9fd821-9276-478a-b53f-aca66ed57001" style="Detail" positionType="Float" x="162" y="0" width="27" height="18"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{licencia_motivo}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="ba6c61d2-ba0b-48d6-8c84-9845908ac5f1" style="Detail" positionType="Float" x="189" y="0" width="27" height="18"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{licencia_fecha_emision}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="3366f62c-7e8e-4b86-9c7b-9eaba282c7fc" style="Detail" positionType="Float" x="216" y="0" width="27" height="18"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{licencia_fecha_venc}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="25d062c4-96e9-4f4d-8fef-9d5c86446bcf" style="Detail" positionType="Float" x="243" y="0" width="27" height="18"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{licencia_observaciones}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="ab1710ed-1a9e-43c9-b022-d616e5981f99" style="Detail" positionType="Float" x="270" y="0" width="27" height="18"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{persona_id}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="28f90eed-2b56-41fe-a90f-eb5246250432" style="Detail" positionType="Float" x="297" y="0" width="27" height="18"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{persona_tipo_id}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="5b34a2b9-81f9-4f0f-b436-63acc4a35da6" style="Detail" positionType="Float" x="324" y="0" width="27" height="18"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{persona_nro_id}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="f7cb73d0-6c26-492e-b6ae-e2e4575b27f4" style="Detail" positionType="Float" x="351" y="0" width="27" height="18"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{persona_apellido}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="8010640a-82af-441a-ad6c-bced218a64b7" style="Detail" positionType="Float" x="378" y="0" width="27" height="18"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{persona_nombre}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="d13f3859-499a-4d46-b7c5-08a485e01d1d" style="Detail" positionType="Float" x="405" y="0" width="27" height="18"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{persona_fecha_nac}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="b5a3dbdf-9d9a-4c32-86b9-ad1d0a89f16b" style="Detail" positionType="Float" x="432" y="0" width="27" height="18"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{persona_domicilio}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="342212ff-55b5-48f3-9907-fe0c083751b4" style="Detail" positionType="Float" x="459" y="0" width="27" height="18"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{persona_grupo_sanguineo}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="4b6d3af0-6477-438a-991f-a75faec5b507" style="Detail" positionType="Float" x="486" y="0" width="27" height="18"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{persona_factor}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="cf2be5c1-0ef6-4674-90ff-f74ea2cb2672" style="Detail" positionType="Float" x="513" y="0" width="27" height="18"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{persona_donante}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="7" splitType="Stretch">
+			<line>
+				<reportElement uuid="7b7245b8-6e6f-4aec-beb5-9355188360bf" positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement uuid="1c6fcdf4-0597-4e4b-a7e3-e6542ee2aa9c" mode="Opaque" x="0" y="1" width="555" height="24" forecolor="#D0B48E" backcolor="#000000"/>
+				<textField evaluationTime="Report">
+					<reportElement uuid="930f5fc9-7cb6-4c16-9d22-86bdb683544c" style="Column header" x="513" y="0" width="40" height="20" forecolor="#FFFFFF"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="57dd34f0-9b0d-470e-8e30-96c49754f4f9" style="Column header" x="433" y="0" width="80" height="20" forecolor="#FFFFFF"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement uuid="3018cc32-ee74-4db5-bfa4-20bb42b2efed" style="Column header" x="2" y="1" width="197" height="20" forecolor="#FFFFFF"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -13,6 +13,9 @@
 			<style mode="Opaque" backcolor="#F0EFEF"/>
 		</conditionalStyle>
 	</style>
+	<parameter name="fecha_desde" class="java.lang.String">
+		<defaultValueExpression><![CDATA["2019-01-01 00:00"]]></defaultValueExpression>
+	</parameter>
 	<queryString>
 		<![CDATA[SELECT
      licencia.`id` AS licencia_id,
@@ -39,7 +42,7 @@ FROM
      `licencia` licencia,
      `persona` persona
 WHERE 
-	licencia.`fecha_venc` > NOW()
+	licencia.`fecha_venc` > $P!{fecha_desde}
 group by licencia.`id`]]>
 	</queryString>
 	<field name="licencia_id" class="java.lang.Integer"/>

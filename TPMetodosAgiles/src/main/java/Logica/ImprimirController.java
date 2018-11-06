@@ -88,16 +88,8 @@ public class ImprimirController {
     
     private void cargarParametrosListado(String fecha1, String fecha2) throws IOException, ParseException{
         
-        //CAMBIO A FORMATO yyyy-MM-dd        
-        SimpleDateFormat sourceFormat = new SimpleDateFormat("dd/MM/yyyy");
-        SimpleDateFormat targetFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Date dateDesde = sourceFormat.parse(fecha1);
-        Date dateHasta = sourceFormat.parse(fecha2);
-        String fechaDesde = targetFormat.format(dateDesde);
-        String fechaHasta = targetFormat.format(dateHasta);
-        
-        parametersListado.put("fecha_desde", fechaDesde);
-        parametersListado.put("fecha_hasta", fechaHasta);
+        parametersListado.put("fecha_desde", fecha1);
+        parametersListado.put("fecha_hasta", fecha2);
         
     }
     
@@ -171,7 +163,7 @@ public class ImprimirController {
                 }finally{
                     try {
                         JasperPrintManager.printReport(jp, true);                        
-                        JOptionPane.showMessageDialog(null,"IMPRESIÓN CORRECTA"," Algo", JOptionPane.OK_OPTION);   
+                        JOptionPane.showMessageDialog(null,"IMPRESIÓN CORRECTA");   
                     } catch (JRException ex) {
                         Logger.getLogger(ImprimirController.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -182,16 +174,16 @@ public class ImprimirController {
         
     public void imprimirListadoRango(String fechaDesde, String fechaHasta) throws JRException, IOException, ParseException{
         
-        this.cargarParametrosListado(fechaDesde, fechaHasta);
+        this.cargarParametrosListado(fechaDesde, fechaHasta);        
         
         Session SS = util.getSessionFactory().openSession();
         SS.doWork(new Work(){
             @Override
             public void execute(Connection cnctn) throws SQLException {
-                InputStream archivo = this.getClass().getClassLoader().getResourceAsStream("Reporte/Listado.jasper");
+                InputStream archivo = this.getClass().getClassLoader().getResourceAsStream("Reporte/ListadoRango.jasper");
                 try{
                     JasperReport jr = (JasperReport) JRLoader.loadObject(archivo);
-                    JasperPrint jp = JasperFillManager.fillReport(jr,null,cnctn);
+                    JasperPrint jp = JasperFillManager.fillReport(jr,parametersListado,cnctn);
                     JasperViewer viewer = new JasperViewer(jp);
                     viewer.setTitle("Listado");
                     viewer.setVisible(true); 
