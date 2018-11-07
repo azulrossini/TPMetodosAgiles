@@ -189,7 +189,7 @@ public class ImprimirController {
         
         this.cargarParametrosListado(fechaDesde, fechaHasta);        
         
-                Session SS = util.getSessionFactory().openSession();
+        Session SS = util.getSessionFactory().openSession();
         SS.doWork(new Work(){
             @Override
             public void execute(Connection cnctn) throws SQLException {
@@ -209,27 +209,7 @@ public class ImprimirController {
                     }
                 }
             }
-        });
-        
-//        Session SS = util.getSessionFactory().openSession();
-//        SS.doWork(new Work(){
-//            @Override
-//            public void execute(Connection cnctn) throws SQLException {
-//                InputStream archivo = this.getClass().getClassLoader().getResourceAsStream("Reporte/ListadoPorRango.jasper");
-//                try{
-//                    JasperReport jr = (JasperReport) JRLoader.loadObject(archivo);
-//                    JasperPrint jp = JasperFillManager.fillReport(jr,parametersListado,cnctn);
-//                    JasperViewer viewer = new JasperViewer(jp);
-//                    viewer.setTitle("Listado");
-//                    viewer.setVisible(true); 
-//                    
-//                } catch (JRException ex) {
-//                    Logger.getLogger(ImprimirLicencia.class.getName()).log(Level.SEVERE, null, ex);
-//                }
-//            }
-//            
-//        });
-//        
+        });           
  }    
     
 }
