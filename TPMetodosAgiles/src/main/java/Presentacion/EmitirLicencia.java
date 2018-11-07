@@ -6,7 +6,10 @@ import Logica.LicenciaController.Motivo;
 import Logica.PersonaController;
 import Persistencia.*;
 import java.awt.Point;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 public class EmitirLicencia extends javax.swing.JFrame {
@@ -29,9 +32,7 @@ public class EmitirLicencia extends javax.swing.JFrame {
         this.motivo = m;
         initComponents();
         completarDatosTitular();
-//        validarMotivo();
-//        setearOriginal();
-        //anularBarraSiNoEsOriginal();
+        quitarClasesNoValidas();
         this.setLocationRelativeTo(null);
         this.user = user;
     }
@@ -354,6 +355,26 @@ public class EmitirLicencia extends javax.swing.JFrame {
         else{
             return true;
         }
+    }
+    
+    private void quitarClasesNoValidas(){
+        //En caso de que el titular ya posea una licencia de una clase
+        //No le da la posibilidad de que emita una nueva licencia de ese tipo
+        //En ese caso el titular ya existe, pero la licencia no
+        
+        List<Licencia> licenciasExistentes = licenciaController.getLicenciasTitular(titular);
+        
+        for(int i =0; i<licenciasExistentes.size(); i++){
+            if(licenciasExistentes.get(i).getFechaVenc().after(new Date())){
+                quitarDeCombo(licenciasExistentes.get(i).getClaseId());
+            }
+        }
+ 
+    }
+    
+    private void quitarDeCombo(String clase){
+        //Quita las licencias que ya posee el titular del combobox
+        comboClase.removeItem(clase);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

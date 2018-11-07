@@ -706,8 +706,7 @@ public class AltaTitular extends javax.swing.JFrame {
             this.setVisible(false);
         }
        
-        
-        
+
     }//GEN-LAST:event_jButtonGuardarActionPerformed
 
     private void jComboBoxTipoDocumentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxTipoDocumentoActionPerformed

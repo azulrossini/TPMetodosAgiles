@@ -57,8 +57,8 @@ public class RenovarLicencia extends javax.swing.JFrame {
         jLabel14.setBackground(new java.awt.Color(51, 51, 51));
         jLabel14.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 36)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/identity-card (2).png"))); // NOI18N
-        jLabel14.setText(" Emitir Licencia");
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/recycle-sign.png"))); // NOI18N
+        jLabel14.setText(" Renovar Licencia");
 
         jButton16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/cancel.png"))); // NOI18N
         jButton16.setBorderPainted(false);
@@ -156,7 +156,7 @@ public class RenovarLicencia extends javax.swing.JFrame {
                                     .addComponent(jLabel3)
                                     .addComponent(jLabel4)
                                     .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addGap(118, 118, 118)
+                                        .addGap(82, 82, 82)
                                         .addComponent(jLabel14)
                                         .addGap(32, 32, 32)
                                         .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
