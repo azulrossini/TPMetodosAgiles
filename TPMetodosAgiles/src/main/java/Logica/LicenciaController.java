@@ -35,6 +35,10 @@ public class LicenciaController {
         return LicenciaDAO.read(fechaVigencia);
     }  
     
+    public List<Licencia> getLicenciasTitular(Persona titular){
+        return LicenciaDAO.getLicenciasTitular(titular.getId());
+    }
+    
     public boolean verificarClase(String clase, Persona titular){
         ClaseController cc = new ClaseController();
         //Si la clase existe

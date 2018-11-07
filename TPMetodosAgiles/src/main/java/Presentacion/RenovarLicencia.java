@@ -1,46 +1,39 @@
 
 package Presentacion;
 
-import Logica.LicenciaController;
+import Logica.*;
 import Logica.LicenciaController.Motivo;
-import Logica.PersonaController;
 import Persistencia.*;
-import java.awt.Point;
 import java.util.Calendar;
+
 import javax.swing.JOptionPane;
 
-public class EmitirLicencia extends javax.swing.JFrame {
 
-    private Point mouseDownCompCoords = null;
+public class RenovarLicencia extends javax.swing.JFrame {
+    private Licencia licencia;
     private Persona titular;
-    private final PersonaController personaController;
-    private final LicenciaController licenciaController;
-    private final Motivo motivo;
-    private final Usuario user;
+    private PersonaController personaController;
+    private LicenciaController licenciaController;
+    private Motivo motivo;
+    private Usuario usuario;
     
-//    public EmitirLicencia() {
-//        initComponents();
-//    }
-    
-    public EmitirLicencia(Persona tit, PersonaController p, LicenciaController l, Motivo m, Usuario user){
+    public RenovarLicencia(Licencia lic, Persona tit, PersonaController p, LicenciaController l, Motivo m, Usuario u) {
+        this.licencia = lic;
         this.titular = tit;
         this.personaController = p;
         this.licenciaController = l;
         this.motivo = m;
+        this.usuario = u;
         initComponents();
-        completarDatosTitular();
-//        validarMotivo();
-//        setearOriginal();
-        //anularBarraSiNoEsOriginal();
-        this.setLocationRelativeTo(null);
-        this.user = user;
+        cargarDatosTitular();
+        cargarObservaciones();
+        cargarClase();
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         jButton16 = new javax.swing.JButton();
@@ -49,33 +42,16 @@ public class EmitirLicencia extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        comboClase = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         areaDatosTitular = new javax.swing.JTextArea();
         jButton2 = new javax.swing.JButton();
         observaciones = new javax.swing.JTextArea();
-
-        jLabel1.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 16)); // NOI18N
-        jLabel1.setText("Ingrese el DNI el titular para el que desea emitir una licencia");
+        fieldClase = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setUndecorated(true);
 
         jPanel4.setBackground(new java.awt.Color(206, 206, 206));
         jPanel4.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 2, true), new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true)));
-        jPanel4.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                jPanel4MouseDragged(evt);
-            }
-        });
-        jPanel4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jPanel4MousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jPanel4MouseReleased(evt);
-            }
-        });
 
         jLabel14.setBackground(new java.awt.Color(51, 51, 51));
         jLabel14.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 36)); // NOI18N
@@ -125,14 +101,6 @@ public class EmitirLicencia extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(51, 51, 51));
         jLabel4.setText("Clase:");
 
-        comboClase.setBackground(new java.awt.Color(178, 176, 176));
-        comboClase.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "B", "C", "D", "E", "F", "G" }));
-        comboClase.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboClaseActionPerformed(evt);
-            }
-        });
-
         areaDatosTitular.setEditable(false);
         areaDatosTitular.setBackground(new java.awt.Color(206, 206, 206));
         areaDatosTitular.setColumns(20);
@@ -152,11 +120,16 @@ public class EmitirLicencia extends javax.swing.JFrame {
             }
         });
 
+        observaciones.setEditable(false);
         observaciones.setBackground(new java.awt.Color(206, 206, 206));
         observaciones.setColumns(20);
         observaciones.setForeground(new java.awt.Color(51, 51, 51));
         observaciones.setRows(5);
         observaciones.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
+
+        fieldClase.setEditable(false);
+        fieldClase.setBackground(new java.awt.Color(206, 206, 206));
+        fieldClase.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -175,10 +148,10 @@ public class EmitirLicencia extends javax.swing.JFrame {
                                     .addGroup(jPanel4Layout.createSequentialGroup()
                                         .addComponent(jLabel2)
                                         .addGap(18, 18, 18)
-                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(observaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(comboClase, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(observaciones, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(fieldClase, javax.swing.GroupLayout.Alignment.LEADING)))
                                     .addComponent(jLabel3)
                                     .addComponent(jLabel4)
                                     .addGroup(jPanel4Layout.createSequentialGroup()
@@ -217,11 +190,11 @@ public class EmitirLicencia extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(observaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(comboClase, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
+                    .addComponent(fieldClase, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -242,7 +215,6 @@ public class EmitirLicencia extends javax.swing.JFrame {
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
         System.exit(0);
-        
     }//GEN-LAST:event_jButton16ActionPerformed
 
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
@@ -257,62 +229,32 @@ public class EmitirLicencia extends javax.swing.JFrame {
             new Object[] { "Si", "No" },   // null para YES, NO y CANCEL
             "Si");
         if(seleccion == 0){
-            AltaTitular at = new AltaTitular(personaController, licenciaController, "", motivo, user);
-            at.setVisible(true);
-            this.setVisible(false);
+            ElegirLicencia el = new ElegirLicencia(titular, personaController, licenciaController, motivo, usuario);
+            el.setVisible(true);
+            this.dispose();
         }
-
     }//GEN-LAST:event_jButton18ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        //Almacena el titular para poder obtener el id
-        //Para almacenar como FK en la tabla Licencia
- 
-        String clase = (String) this.comboClase.getSelectedItem();
+
         //Comprobar que pueda sacar las clases
-        if(licenciaController.verificarClase(clase, titular)){
-            //Si no esta en la BD lo almacena, si esta no
-            //Es para que no presione el boton OK muchas veces, porque se almacena muhcas veces el mismo titular
-            if(personaController.buscarTitular(titular.getNroId())!=null){
-                personaController.almacenarTitular(titular);
-            }
-            
+        if(licenciaController.verificarClase(licencia.getClaseId(), titular)){
             //Actualizo para que me devuelva el titular con el id autoincremental de la bd
             titular = personaController.getPersona(titular.getId());
-            
+
             //Si es clase C D o E controla que tenga +21, sino no
-            if(controlarCDE(clase)){
+            if(controlarCDE(licencia.getClaseId())){
                 String obs = this.observaciones.getText();
-                licenciaController.crearLicencia(titular, clase, obs, motivo, user.getId());
+                licenciaController.crearLicencia(titular, licencia.getClaseId(), obs, motivo, usuario.getId());
             }
         }
         else{
             JOptionPane.showMessageDialog(this, "Ha ocurrido un error \n No se puede almacenar el titular", "Error",  JOptionPane.ERROR_MESSAGE);
         }
-    
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jPanel4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MousePressed
-        mouseDownCompCoords = evt.getPoint();
-    }//GEN-LAST:event_jPanel4MousePressed
-
-    private void jPanel4MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseReleased
-        mouseDownCompCoords = null;
-    }//GEN-LAST:event_jPanel4MouseReleased
-
-    private void jPanel4MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseDragged
-        Point currCoords = evt.getLocationOnScreen();
-        this.setLocation(currCoords.x - mouseDownCompCoords.x, currCoords.y - mouseDownCompCoords.y);
-    }//GEN-LAST:event_jPanel4MouseDragged
-
-    private void comboClaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboClaseActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comboClaseActionPerformed
-
-    
-    private void completarDatosTitular(){
-        //Completar los datos del titular en el textArea
-        //No se pueden editar. Es el titular dado de alta anteriormente
+    private void cargarDatosTitular(){
         Calendar c = Calendar.getInstance();
         c.setTime(titular.getFechaNac());
         this.areaDatosTitular.setText("NOMBRE: "+ titular.getNombre() + "\n"
@@ -324,25 +266,17 @@ public class EmitirLicencia extends javax.swing.JFrame {
                 + "GRUPO SANGUINEO: " + titular.getGrupoSanguineo() + "\n"
                 + "FACTOR: " + titular.getFactor() + "\n"
                 + "ES DONANTE: " + titular.isDonante());
-
     }
     
-
+    private void cargarObservaciones(){
+        observaciones.setText(licencia.getObservaciones());
+    }
     
-////    private void setearOriginal(){
-////        switch(motivo){
-////            case ORIGINAL:
-////                this.labelOriginal.setText("Si");
-////                break;
-////            case RENOVACION:
-////                this.labelOriginal.setText("No");
-////                break;
-////        }
-//        
-//    }
-
-
-    private boolean controlarCDE(String clase){
+    private void cargarClase(){
+        this.fieldClase.setText(licencia.getClaseId());
+    }
+    
+        private boolean controlarCDE(String clase){
         if(clase == "C" || clase == "E" || clase == "D"){
             if(personaController.getEdad(titular.getFechaNac())>=21){
                 return true;
@@ -358,12 +292,11 @@ public class EmitirLicencia extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea areaDatosTitular;
-    private javax.swing.JComboBox<String> comboClase;
+    private javax.swing.JTextField fieldClase;
     private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

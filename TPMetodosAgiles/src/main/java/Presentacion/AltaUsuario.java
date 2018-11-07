@@ -83,7 +83,7 @@ public class AltaUsuario extends javax.swing.JFrame {
         jLabel14.setBackground(new java.awt.Color(51, 51, 51));
         jLabel14.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 36)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/add-user.png"))); // NOI18N
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/user (1).png"))); // NOI18N
         jLabel14.setText(" Crear Usuario");
         jLabel14.setFocusable(false);
 

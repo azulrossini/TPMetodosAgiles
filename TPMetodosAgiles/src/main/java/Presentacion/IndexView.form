@@ -126,15 +126,19 @@
                                   </Group>
                                   <EmptySpace pref="37" max="32767" attributes="0"/>
                                   <Component id="separadorUsuario" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="lbUsuario" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="1" attributes="0">
-                                              <Component id="altaUsuario" alignment="1" min="-2" pref="109" max="-2" attributes="0"/>
-                                              <Component id="lbAltaUsuario" alignment="1" min="-2" pref="109" max="-2" attributes="0"/>
+                                      <Group type="102" attributes="0">
+                                          <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="lbAltaUsuario" min="-2" pref="109" max="-2" attributes="0"/>
+                                              <Component id="altaUsuario" min="-2" pref="109" max="-2" attributes="0"/>
                                           </Group>
+                                          <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="lbUsuario" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -247,10 +251,11 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="separadorUsuario" min="-2" pref="192" max="-2" attributes="0"/>
                               <Group type="102" attributes="0">
+                                  <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                                   <Component id="lbUsuario" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="altaUsuario" min="-2" pref="85" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
                                   <Component id="lbAltaUsuario" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -634,7 +639,7 @@
         <Component class="javax.swing.JButton" name="altaUsuario">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Presentacion/add-user.png"/>
+              <Image iconType="3" name="/Presentacion/user (1).png"/>
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
