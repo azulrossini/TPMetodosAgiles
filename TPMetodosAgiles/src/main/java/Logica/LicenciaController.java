@@ -136,7 +136,7 @@ public class LicenciaController {
         return fechaVigencia.getTime();
     }
     
-    public void crearLicencia(Persona titular, String clase, String obs, Motivo motivo){
+    public void crearLicencia(Persona titular, String clase, String obs, Motivo motivo, int userID){
         this.eliminarClasesHeredadas(clase, titular);
 
         //Crear la licencia
@@ -144,7 +144,7 @@ public class LicenciaController {
         licencia.setClaseId(clase);
         licencia.setObservaciones(obs.toUpperCase());
         licencia.setPersonaId(titular.getId());
-        licencia.setUsuarioId(00);
+        licencia.setUsuarioId(userID);
         licencia.setMotivo(motivo.toString().toUpperCase());
 
         //Calcular vigencia

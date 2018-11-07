@@ -13,12 +13,13 @@ import java.util.Date;
 public class AltaTitular extends javax.swing.JFrame {
 
     private Point mouseDownCompCoords = null;
-    private PersonaController personaController;
-    private LicenciaController licenciaController;
-    private String pantallaAnterior;
-    private Motivo motivo;
+    private final PersonaController personaController;
+    private final LicenciaController licenciaController;
+    private final String pantallaAnterior;
+    private final Motivo motivo;
+    private Usuario user = null;
     
-    public AltaTitular(PersonaController p, LicenciaController l, String pantAnterior, Motivo m) {
+    public AltaTitular(PersonaController p, LicenciaController l, String pantAnterior, Motivo m, Usuario user) {
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
@@ -26,26 +27,20 @@ public class AltaTitular extends javax.swing.JFrame {
         this.pantallaAnterior = pantAnterior;
         this.licenciaController = l;
         this.motivo = m;
-        
-        this.jLabelErrorNumDocumento.setVisible(false);
-        this.jLabelErrorNombre.setVisible(false);
-        this.jLabelErrorApellido.setVisible(false);
-        this.jLabelErrorCalle.setVisible(false);
-        this.jLabelErrorPiso.setVisible(false);
-        this.jLabelErrorNumeroCalle.setVisible(false);
-        this.jLabelErrorDepartamento.setVisible(false);
-        this.jLabelErrorFecha.setVisible(false);
-        this.jLabelErrorDonante.setVisible(false);
-        this.buttonGroupDoanate.add(this.jRadioButtonDonanteSi);
-        this.buttonGroupDoanate.add(this.jRadioButtonDonanteNo);
+        this.setearComponentes();
+        this.user = user;
     }
 
-    private AltaTitular() { //sirve solo para iniciar alta titular sola (sin venir del menu principal)
-        initComponents();
-        this.setVisible(true);
-        this.setLocationRelativeTo(null);
-        PersonaController p = new PersonaController();
-        this.personaController = p;
+//    private AltaTitular() { //sirve solo para iniciar alta titular sola (sin venir del menu principal)
+//        initComponents();
+//        this.setVisible(true);
+//        this.setLocationRelativeTo(null);
+//        PersonaController p = new PersonaController();
+//        this.personaController = p;
+//        this.setearComponentes();
+//    }
+
+    private void setearComponentes(){
         this.jLabelErrorNumDocumento.setVisible(false);
         this.jLabelErrorNombre.setVisible(false);
         this.jLabelErrorApellido.setVisible(false);
@@ -59,7 +54,7 @@ public class AltaTitular extends javax.swing.JFrame {
         this.buttonGroupDoanate.add(this.jRadioButtonDonanteSi);
         this.buttonGroupDoanate.add(this.jRadioButtonDonanteNo);
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -544,12 +539,12 @@ public class AltaTitular extends javax.swing.JFrame {
         // TODO add your handling code here:
         switch(pantallaAnterior){
             case "index": 
-                IndexView i = new IndexView();
+                IndexView i = new IndexView(user);
                 i.setVisible(true);
                 this.setVisible(false);
                 break;
             case "eleccion": 
-                EleccionTipoEmision e = new EleccionTipoEmision(personaController, licenciaController);
+                EleccionTipoEmision e = new EleccionTipoEmision(personaController, licenciaController, user);
                 e.setVisible(true);
                 this.setVisible(false);
                 break;
@@ -706,7 +701,7 @@ public class AltaTitular extends javax.swing.JFrame {
             
             
             //Llama para emitir una licencia con el titular creado
-            EmitirLicencia el = new EmitirLicencia(nuevoTitular, personaController, licenciaController, motivo);
+            EmitirLicencia el = new EmitirLicencia(nuevoTitular, personaController, licenciaController, motivo, user);
             el.setVisible(true);
             this.setVisible(false);
         }

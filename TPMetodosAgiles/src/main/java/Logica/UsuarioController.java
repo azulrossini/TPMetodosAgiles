@@ -21,8 +21,8 @@ public class UsuarioController {
         this.ud = new UsuarioDAO();
     }
     
-    public boolean validar(String username, String pass){
-        return (ud.readByUsernameAndPassword(username, pass)!=null);
+    public Usuario validar(String username, byte[] pass){
+        return ud.readByUsernameAndPassword(username, pass);
     }
     
     public void crearUsuario(Usuario user){

@@ -13,15 +13,16 @@ public class EmitirLicencia extends javax.swing.JFrame {
 
     private Point mouseDownCompCoords = null;
     private Persona titular;
-    private PersonaController personaController;
-    private LicenciaController licenciaController;
-    private Motivo motivo;
+    private final PersonaController personaController;
+    private final LicenciaController licenciaController;
+    private final Motivo motivo;
+    private final Usuario user;
     
-    public EmitirLicencia() {
-        initComponents();
-    }
+//    public EmitirLicencia() {
+//        initComponents();
+//    }
     
-    public EmitirLicencia(Persona tit, PersonaController p, LicenciaController l, Motivo m){
+    public EmitirLicencia(Persona tit, PersonaController p, LicenciaController l, Motivo m, Usuario user){
         this.titular = tit;
         this.personaController = p;
         this.licenciaController = l;
@@ -32,6 +33,7 @@ public class EmitirLicencia extends javax.swing.JFrame {
 //        setearOriginal();
         //anularBarraSiNoEsOriginal();
         this.setLocationRelativeTo(null);
+        this.user = user;
     }
     
     @SuppressWarnings("unchecked")
@@ -255,7 +257,7 @@ public class EmitirLicencia extends javax.swing.JFrame {
             new Object[] { "Si", "No" },   // null para YES, NO y CANCEL
             "Si");
         if(seleccion == 0){
-            AltaTitular at = new AltaTitular(personaController, licenciaController, "", motivo);
+            AltaTitular at = new AltaTitular(personaController, licenciaController, "", motivo, user);
             at.setVisible(true);
             this.setVisible(false);
         }
@@ -281,7 +283,7 @@ public class EmitirLicencia extends javax.swing.JFrame {
             //Si es clase C D o E controla que tenga +21, sino no
             if(controlarCDE(clase)){
                 String obs = this.observaciones.getText();
-                licenciaController.crearLicencia(titular, clase, obs, motivo);
+                licenciaController.crearLicencia(titular, clase, obs, motivo, user.getId());
             }
         }
         else{

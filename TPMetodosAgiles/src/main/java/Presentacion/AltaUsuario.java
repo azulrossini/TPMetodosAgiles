@@ -1,14 +1,15 @@
 
 package Presentacion;
 
+import Logica.CryptoUtils;
 import Logica.GenericDAO;
 import Logica.UsuarioController;
-import Persistencia.Licencia;
-import Persistencia.Persona;
 import Persistencia.Usuario;
 import java.awt.Point;
-import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ButtonGroup;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,16 +22,19 @@ public class AltaUsuario extends javax.swing.JFrame {
      */
     
     private final UsuarioController uc;
-    private ButtonGroup bg;
+    private final ButtonGroup bg;
     private Point mouseDownCompCoords = null;
+    private final Usuario user;
     
-    private AltaUsuario(Persona p, Licencia l) throws IOException {
+    public AltaUsuario(Usuario user) {
         initComponents();
         uc = new UsuarioController();
         this.bg = new ButtonGroup();
         this.bg.add(this.superusuario);
         this.bg.add(this.administrativo);
         this.setLocationRelativeTo(null);
+        this.user=user;
+        this.setVisible(true);
     }
     
 
@@ -271,8 +275,23 @@ public class AltaUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel4MouseDragged
 
     private void crearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearActionPerformed
-        Usuario nuevo = new Usuario(this.username.getText(), this.pass.getText(), this.superusuario.isSelected());
-        GenericDAO.create(nuevo);
+        Usuario prueba = null;
+        try {
+            prueba = uc.validar(this.username.getText(), CryptoUtils.computeHash(this.pass.getText()));
+        } catch (Exception ex) {
+            Logger.getLogger(AltaUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if (prueba!=null){
+            JOptionPane.showMessageDialog(this, "El nombre de usuario ya existe", "Error",  JOptionPane.ERROR_MESSAGE);
+        }else{
+            try {
+                prueba = new Usuario(this.username.getText(), CryptoUtils.computeHash(this.pass.getText()), this.superusuario.isSelected());
+            } catch (Exception ex) {
+                Logger.getLogger(AltaUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            GenericDAO.create(prueba);
+            JOptionPane.showMessageDialog(this, "Ha creado el usuario con éxito", "Felicidades",  JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_crearActionPerformed
 
     private void crearMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_crearMouseExited
@@ -292,7 +311,9 @@ public class AltaUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton16ActionPerformed
 
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
-        // TODO add your handling code here:
+        IndexView iv = new IndexView(user);
+        iv.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton18ActionPerformed
 
     private void usernameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_usernameKeyTyped

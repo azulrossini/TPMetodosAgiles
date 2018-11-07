@@ -1,23 +1,20 @@
 
 package Logica;
 
+import Persistencia.Usuario;
 import Presentacion.Login;
-import Presentacion.IndexView;
 
 
 public class Index {
     
-    public static void main(String[] args) {
-
+    public static void main(String[] args) throws Exception {
+        Usuario nuevo = new Usuario("fausto", CryptoUtils.computeHash("fedele"), true);
         try{
-            GenericDAO gd = new GenericDAO();
-            IndexView index = new IndexView();
-            index.setVisible(true);
-            
+            GenericDAO.create(nuevo);
         }catch(Exception e){
-            System.out.println(e.getMessage());
-            e.printStackTrace();            
+            System.out.println("YA EXISTE EL USUARIO");
         }
+        Login log = new Login();
     }
     
 }

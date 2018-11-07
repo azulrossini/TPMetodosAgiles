@@ -9,6 +9,7 @@ import Logica.*;
 import Logica.PersonaController;
 import Persistencia.Licencia;
 import Persistencia.Persona;
+import Persistencia.Usuario;
 import Persistencia.Vigencias;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -44,26 +45,31 @@ public class ListadoLicencias extends javax.swing.JFrame {
     private ImprimirController ic;
     private TableRowSorter trsFiltro;
     private boolean flagTodas;
+    private final Usuario user;
     
     String fecha1, fecha2;
     
-    public ListadoLicencias(String fechaDesde, String fechaHasta) throws ParseException {
+    public ListadoLicencias(String fechaDesde, String fechaHasta, Usuario user) throws ParseException {
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         
         flagTodas = false;
         
+        this.user = user;
+        
         //CARGO TODAS LAS LICENCIAS DENTRO DEL RANGO
         getLicenciasRango(fechaDesde, fechaHasta);        
     }
     
-    public ListadoLicencias() throws ParseException {
+    public ListadoLicencias(Usuario user) throws ParseException {
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         
         flagTodas = true;
+        
+        this.user = user;
         
         //CARGO TODAS LAS LICENCIAS
         getLicencias();        
@@ -88,7 +94,7 @@ public class ListadoLicencias extends javax.swing.JFrame {
         if(listaLicencia.isEmpty()){
             
             JOptionPane.showMessageDialog(null,"No hay licencias con fecha de vencimiento dentro del rango");
-            IndexView index = new IndexView();
+            IndexView index = new IndexView(user);
             this.dispose();
             
         }else{
@@ -128,7 +134,7 @@ public class ListadoLicencias extends javax.swing.JFrame {
         if(listaLicencia.isEmpty()){
             
             JOptionPane.showMessageDialog(null,"No hay licencias para mostrar");
-            IndexView index = new IndexView();
+            IndexView index = new IndexView(user);
             this.dispose();
             
         }else{
@@ -407,7 +413,7 @@ public class ListadoLicencias extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        FiltroListadoLicencias FLL = new FiltroListadoLicencias();
+        FiltroListadoLicencias FLL = new FiltroListadoLicencias(user);
         this.dispose();
     }//GEN-LAST:event_jButton12ActionPerformed
 

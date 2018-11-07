@@ -6,6 +6,7 @@
 package Presentacion;
 
 import Logica.*;
+import Persistencia.Usuario;
 import java.awt.Color;
 import java.text.ParseException;
 import java.util.logging.Level;
@@ -19,15 +20,17 @@ public class FiltroListadoLicencias extends javax.swing.JFrame {
 
     private PersonaController personaController;
     private LicenciaController licenciaController;
+    private final Usuario user;
 
     
-    public FiltroListadoLicencias() {
+    public FiltroListadoLicencias(Usuario user) {
         initComponents();
         jPanel1.setVisible(false);
         errorDesde.setVisible(false);
         errorHasta.setVisible(false);
         this.setVisible(true);
         this.setLocationRelativeTo(null);
+        this.user = user;
     }
 
     /**
@@ -395,7 +398,7 @@ public class FiltroListadoLicencias extends javax.swing.JFrame {
 
     private void todasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_todasActionPerformed
         try {
-            ListadoLicencias LL = new ListadoLicencias();
+            ListadoLicencias LL = new ListadoLicencias(user);
             this.dispose();
         } catch (ParseException ex) {
             Logger.getLogger(FiltroListadoLicencias.class.getName()).log(Level.SEVERE, null, ex);
@@ -408,7 +411,7 @@ public class FiltroListadoLicencias extends javax.swing.JFrame {
     }//GEN-LAST:event_rangoActionPerformed
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
-        IndexView indexView = new IndexView();
+        IndexView indexView = new IndexView(user);
         this.dispose();
     }//GEN-LAST:event_backActionPerformed
 
@@ -430,7 +433,7 @@ public class FiltroListadoLicencias extends javax.swing.JFrame {
                 errorHasta.setVisible(true);
             }else{
                 try {
-                    ListadoLicencias LL = new ListadoLicencias(fechaDesde.getText(), fechaHasta.getText());
+                    ListadoLicencias LL = new ListadoLicencias(fechaDesde.getText(), fechaHasta.getText(), user);
                     this.dispose();
                 } catch (ParseException ex) {
                     Logger.getLogger(FiltroListadoLicencias.class.getName()).log(Level.SEVERE, null, ex);

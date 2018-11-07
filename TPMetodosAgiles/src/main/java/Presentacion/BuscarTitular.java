@@ -15,18 +15,20 @@ public class BuscarTitular extends javax.swing.JFrame {
     private List<Persona> personas;
     private Motivo motivo;
     private String pantallaAnterior;
+    private final Usuario user;
     
-    public BuscarTitular() {
-        initComponents();
-    }
+//    public BuscarTitular() {
+//        initComponents();
+//    }
     
-    public BuscarTitular(PersonaController p, LicenciaController l, Motivo m, String pantAnterior){
+    public BuscarTitular(PersonaController p, LicenciaController l, Motivo m, String pantAnterior, Usuario user){
         this.personaController = p;
         this.licenciaController = l;
         this.motivo = m;
         this.pantallaAnterior = pantAnterior;
         initComponents();
         this.setLocationRelativeTo(null);
+        this.user = user;
     }
 
     /**
@@ -263,12 +265,12 @@ public class BuscarTitular extends javax.swing.JFrame {
         // TODO add your handling code here:
             switch(pantallaAnterior){
             case "index": 
-                IndexView i = new IndexView();
+                IndexView i = new IndexView(user);
                 i.setVisible(true);
                 this.setVisible(false);
                 break;
             case "eleccion": 
-                EleccionTipoEmision e = new EleccionTipoEmision(personaController, licenciaController);
+                EleccionTipoEmision e = new EleccionTipoEmision(personaController, licenciaController, user);
                 e.setVisible(true);
                 this.setVisible(false);
                 break;
@@ -279,7 +281,7 @@ public class BuscarTitular extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        EmitirLicencia el= new EmitirLicencia(personas.get(this.tabla.getSelectedRow()), personaController, licenciaController, motivo);
+        EmitirLicencia el= new EmitirLicencia(personas.get(this.tabla.getSelectedRow()), personaController, licenciaController, motivo, user);
         el.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed

@@ -1,9 +1,12 @@
 
 package Presentacion;
 
+import Logica.CryptoUtils;
 import Logica.UsuarioController;
+import Persistencia.Usuario;
 import java.awt.Point;
-import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -266,8 +269,14 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel4MouseDragged
 
     private void ingresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresarActionPerformed
-        if (this.uc.validar(this.username.getText(), this.pass.getText())){
-            IndexView iv = new IndexView();
+        Usuario user = null;
+        try {
+            user = this.uc.validar(this.username.getText(), CryptoUtils.computeHash(this.pass.getText()));
+        } catch (Exception ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if (user!=null){
+            IndexView iv = new IndexView(user);
             this.dispose();
         }else{
             this.error.setVisible(true);

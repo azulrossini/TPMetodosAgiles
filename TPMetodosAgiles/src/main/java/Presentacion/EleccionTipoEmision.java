@@ -6,6 +6,7 @@
 package Presentacion;
 
 import Logica.*;
+import Persistencia.Usuario;
 
 /**
  *
@@ -15,17 +16,19 @@ public class EleccionTipoEmision extends javax.swing.JFrame {
 
     private PersonaController personaController;
     private LicenciaController licenciaController;
+    private final Usuario user;
 
     
-    public EleccionTipoEmision() {
-        initComponents();
-    }
+//    public EleccionTipoEmision() {
+//        initComponents();
+//    }
     
-    public EleccionTipoEmision(PersonaController p, LicenciaController l){
+    public EleccionTipoEmision(PersonaController p, LicenciaController l, Usuario user){
         this.personaController = p;
         this.licenciaController = l;
         initComponents();
         this.setLocationRelativeTo(null);
+        this.user = user;
     }
 
     /**
@@ -182,21 +185,21 @@ public class EleccionTipoEmision extends javax.swing.JFrame {
 
     private void botonRenovacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRenovacionActionPerformed
         // TODO add your handling code here:
-        BuscarTitular bt = new BuscarTitular(personaController, licenciaController, LicenciaController.Motivo.RENOVACION, "eleccion");
+        BuscarTitular bt = new BuscarTitular(personaController, licenciaController, LicenciaController.Motivo.RENOVACION, "eleccion", user);
         bt.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_botonRenovacionActionPerformed
 
     private void boton1vezActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton1vezActionPerformed
         // TODO add your handling code here:
-        AltaTitular at = new AltaTitular(personaController, licenciaController, "eleccion", LicenciaController.Motivo.ORIGINAL);
+        AltaTitular at = new AltaTitular(personaController, licenciaController, "eleccion", LicenciaController.Motivo.ORIGINAL, user);
         at.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_boton1vezActionPerformed
 
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
         // TODO add your handling code here:
-        IndexView i = new IndexView();
+        IndexView i = new IndexView(user);
         i.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton18ActionPerformed
