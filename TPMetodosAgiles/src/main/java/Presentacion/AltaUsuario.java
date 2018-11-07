@@ -6,8 +6,7 @@ import Logica.GenericDAO;
 import Logica.UsuarioController;
 import Persistencia.Usuario;
 import java.awt.Point;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.awt.event.KeyEvent;
 import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
 
@@ -86,6 +85,7 @@ public class AltaUsuario extends javax.swing.JFrame {
         jLabel14.setForeground(new java.awt.Color(51, 51, 51));
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/add-user.png"))); // NOI18N
         jLabel14.setText(" Crear Usuario");
+        jLabel14.setFocusable(false);
 
         jSeparator4.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator4.setForeground(new java.awt.Color(51, 51, 51));
@@ -94,6 +94,7 @@ public class AltaUsuario extends javax.swing.JFrame {
         jButton16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/cancel.png"))); // NOI18N
         jButton16.setBorderPainted(false);
         jButton16.setContentAreaFilled(false);
+        jButton16.setFocusable(false);
         jButton16.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/cancel rollover.png"))); // NOI18N
         jButton16.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -104,6 +105,7 @@ public class AltaUsuario extends javax.swing.JFrame {
         jButton17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/diminish.png"))); // NOI18N
         jButton17.setBorderPainted(false);
         jButton17.setContentAreaFilled(false);
+        jButton17.setFocusable(false);
         jButton17.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/diminish rollover.png"))); // NOI18N
         jButton17.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -114,6 +116,7 @@ public class AltaUsuario extends javax.swing.JFrame {
         jButton18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/left-arrow.png"))); // NOI18N
         jButton18.setBorderPainted(false);
         jButton18.setContentAreaFilled(false);
+        jButton18.setFocusable(false);
         jButton18.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/left-arrow rollover.png"))); // NOI18N
         jButton18.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -133,6 +136,7 @@ public class AltaUsuario extends javax.swing.JFrame {
         crear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/Flecha derecha.png"))); // NOI18N
         crear.setBorderPainted(false);
         crear.setContentAreaFilled(false);
+        crear.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/Flecha derecha rollover.png"))); // NOI18N
         crear.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 crearMouseEntered(evt);
@@ -144,6 +148,11 @@ public class AltaUsuario extends javax.swing.JFrame {
         crear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 crearActionPerformed(evt);
+            }
+        });
+        crear.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                crearKeyTyped(evt);
             }
         });
 
@@ -168,11 +177,23 @@ public class AltaUsuario extends javax.swing.JFrame {
         jLabel24.setForeground(new java.awt.Color(51, 51, 51));
         jLabel24.setText("Privilegios:");
 
+        superusuario.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 16)); // NOI18N
         superusuario.setText("Superusuario");
         superusuario.setContentAreaFilled(false);
+        superusuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                superusuarioKeyTyped(evt);
+            }
+        });
 
+        administrativo.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 16)); // NOI18N
         administrativo.setText("Administrativo");
         administrativo.setContentAreaFilled(false);
+        administrativo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                administrativoKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -203,7 +224,7 @@ public class AltaUsuario extends javax.swing.JFrame {
                     .addComponent(jLabel22))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(username, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
+                    .addComponent(username)
                     .addComponent(pass)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(superusuario)
@@ -249,9 +270,7 @@ public class AltaUsuario extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -275,22 +294,27 @@ public class AltaUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel4MouseDragged
 
     private void crearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearActionPerformed
-        Usuario prueba = null;
-        try {
-            prueba = uc.validar(this.username.getText(), CryptoUtils.computeHash(this.pass.getText()));
-        } catch (Exception ex) {
-            Logger.getLogger(AltaUsuario.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        if (prueba!=null){
-            JOptionPane.showMessageDialog(this, "El nombre de usuario ya existe", "Error",  JOptionPane.ERROR_MESSAGE);
-        }else{
-            try {
-                prueba = new Usuario(this.username.getText(), CryptoUtils.computeHash(this.pass.getText()), this.superusuario.isSelected());
-            } catch (Exception ex) {
-                Logger.getLogger(AltaUsuario.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            GenericDAO.create(prueba);
-            JOptionPane.showMessageDialog(this, "Ha creado el usuario con éxito", "Felicidades",  JOptionPane.INFORMATION_MESSAGE);
+        switch (uc.validarCampos(this.username.getText(), this.pass.getText(), this.superusuario.isSelected(), this.administrativo.isSelected())){
+            case 0:
+                try {
+                    GenericDAO.create(new Usuario(this.username.getText(), CryptoUtils.computeHash(this.pass.getText()), this.superusuario.isSelected()));
+                    JOptionPane.showMessageDialog(this, "Ha creado el usuario con éxito", "Felicidades",  JOptionPane.INFORMATION_MESSAGE);
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(this, "La contraseña no es válida", "Error",  JOptionPane.ERROR_MESSAGE);
+                }
+                break;
+            case 1:
+                JOptionPane.showMessageDialog(this, "El nombre de usuario ya existe", "Error",  JOptionPane.ERROR_MESSAGE);
+                break;
+            case 2:
+                JOptionPane.showMessageDialog(this, "Debe insertar un nombre de usuario", "Error",  JOptionPane.ERROR_MESSAGE);
+                break;
+            case 3:
+                JOptionPane.showMessageDialog(this, "Debe insertar una contraseña", "Error",  JOptionPane.ERROR_MESSAGE);
+                break;
+            case 4:
+                JOptionPane.showMessageDialog(this, "Debe seleccionar un privilegio", "Error",  JOptionPane.ERROR_MESSAGE);
+                break;
         }
     }//GEN-LAST:event_crearActionPerformed
 
@@ -320,13 +344,37 @@ public class AltaUsuario extends javax.swing.JFrame {
         if (this.username.getText().length()>=32){
             evt.consume();
         }
+        if (evt.getKeyChar()==KeyEvent.VK_ENTER){
+            this.crear.doClick();
+        }
     }//GEN-LAST:event_usernameKeyTyped
 
     private void passKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passKeyTyped
         if (this.pass.getText().length()>=32){
             evt.consume();
         }
+        if (evt.getKeyChar()==KeyEvent.VK_ENTER){
+            this.crear.doClick();
+        }
     }//GEN-LAST:event_passKeyTyped
+
+    private void superusuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_superusuarioKeyTyped
+        if (evt.getKeyChar()==KeyEvent.VK_ENTER){
+            this.crear.doClick();
+        }
+    }//GEN-LAST:event_superusuarioKeyTyped
+
+    private void administrativoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_administrativoKeyTyped
+        if (evt.getKeyChar()==KeyEvent.VK_ENTER){
+            this.crear.doClick();
+        }
+    }//GEN-LAST:event_administrativoKeyTyped
+
+    private void crearKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_crearKeyTyped
+        if (evt.getKeyChar()==KeyEvent.VK_ENTER){
+            this.crear.doClick();
+        }
+    }//GEN-LAST:event_crearKeyTyped
 
     /**
      * @param args the command line arguments

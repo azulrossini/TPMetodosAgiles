@@ -11,7 +11,7 @@ package Logica;
  */
 public class CryptoUtils {
 
- public static void main(String arg[]) {
+ private static void main(String arg[]) {
         try {
           // quick way to do input from the keyboard, now deprecated...
           java.io.StreamTokenizer Input=new java.io.StreamTokenizer(System.in);

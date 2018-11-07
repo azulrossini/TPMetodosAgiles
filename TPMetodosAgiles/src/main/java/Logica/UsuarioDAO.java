@@ -24,10 +24,10 @@ public class UsuarioDAO extends GenericDAO{
         
     }
     
-    public Usuario readByUsernameAndPassword(String username, byte[] pass){
+    public Usuario readByUsername(String username){
         SS = util.getSessionFactory().openSession();
         SS.beginTransaction();
-        String sentencia = "SELECT * FROM Usuario U WHERE U.username='" + username + "' AND U.password='"+ Arrays.toString(pass) +"' LIMIT 0,1;";
+        String sentencia = "SELECT * FROM Usuario U WHERE U.username='" + username + "' LIMIT 0,1;";
         Query query = SS.createSQLQuery(sentencia).addEntity(Usuario.class);
         List<Usuario> lista = query.list();
         SS.getTransaction().commit();

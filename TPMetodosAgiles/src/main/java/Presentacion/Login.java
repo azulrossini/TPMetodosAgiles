@@ -5,6 +5,8 @@ import Logica.CryptoUtils;
 import Logica.UsuarioController;
 import Persistencia.Usuario;
 import java.awt.Point;
+import java.awt.event.KeyEvent;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -76,6 +78,7 @@ public class Login extends javax.swing.JFrame {
         jLabel14.setForeground(new java.awt.Color(51, 51, 51));
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/lock.png"))); // NOI18N
         jLabel14.setText(" Iniciar sesión");
+        jLabel14.setFocusable(false);
 
         jSeparator4.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator4.setForeground(new java.awt.Color(51, 51, 51));
@@ -89,6 +92,7 @@ public class Login extends javax.swing.JFrame {
         exit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/cancel.png"))); // NOI18N
         exit.setBorderPainted(false);
         exit.setContentAreaFilled(false);
+        exit.setFocusable(false);
         exit.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/cancel rollover.png"))); // NOI18N
         exit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -99,6 +103,7 @@ public class Login extends javax.swing.JFrame {
         min.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/diminish.png"))); // NOI18N
         min.setBorderPainted(false);
         min.setContentAreaFilled(false);
+        min.setFocusable(false);
         min.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/diminish rollover.png"))); // NOI18N
         min.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -129,6 +134,11 @@ public class Login extends javax.swing.JFrame {
                 ingresarActionPerformed(evt);
             }
         });
+        ingresar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                ingresarKeyTyped(evt);
+            }
+        });
 
         jLabel30.setBackground(new java.awt.Color(51, 51, 51));
         jLabel30.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 18)); // NOI18N
@@ -151,8 +161,13 @@ public class Login extends javax.swing.JFrame {
                 salirActionPerformed(evt);
             }
         });
+        salir.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                salirKeyTyped(evt);
+            }
+        });
 
-        error.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 12)); // NOI18N
+        error.setFont(new java.awt.Font("Microsoft YaHei UI", 2, 12)); // NOI18N
         error.setForeground(new java.awt.Color(204, 51, 0));
         error.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/round-error-symbol.png"))); // NOI18N
         error.setText("ERROR. El nombre de usuario o la contraseña no son correctos.");
@@ -269,18 +284,17 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel4MouseDragged
 
     private void ingresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresarActionPerformed
-        Usuario user = null;
+        Usuario user;
         try {
-            user = this.uc.validar(this.username.getText(), CryptoUtils.computeHash(this.pass.getText()));
+            user = this.uc.validarAcc(this.username.getText(), this.pass.getText());
+            if (user!=null){
+                IndexView iv = new IndexView(user);
+                this.dispose();
+            }
         } catch (Exception ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        
         }
-        if (user!=null){
-            IndexView iv = new IndexView(user);
-            this.dispose();
-        }else{
-            this.error.setVisible(true);
-        }
+        this.error.setVisible(true);
     }//GEN-LAST:event_ingresarActionPerformed
 
     private void ingresarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ingresarMouseExited
@@ -312,12 +326,36 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_salirActionPerformed
 
     private void usernameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_usernameKeyTyped
+        if (this.username.getText().length()>=32){
+            evt.consume();
+        }
         this.error.setVisible(false);
+        if (evt.getKeyChar()==KeyEvent.VK_ENTER){
+            this.ingresar.doClick();
+        }
     }//GEN-LAST:event_usernameKeyTyped
 
     private void passKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passKeyTyped
+        if (this.pass.getText().length()>=32){
+            evt.consume();
+        }
         this.error.setVisible(false);
+        if (evt.getKeyChar()==KeyEvent.VK_ENTER){
+            this.ingresar.doClick();
+        }
     }//GEN-LAST:event_passKeyTyped
+
+    private void ingresarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ingresarKeyTyped
+        if (evt.getKeyChar()==KeyEvent.VK_ENTER){
+            this.ingresar.doClick();
+        }
+    }//GEN-LAST:event_ingresarKeyTyped
+
+    private void salirKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_salirKeyTyped
+        if (evt.getKeyChar()==KeyEvent.VK_ENTER){
+            System.exit(0);
+        }
+    }//GEN-LAST:event_salirKeyTyped
 
     /**
      * @param args the command line arguments
