@@ -27,8 +27,20 @@ public class LicenciaController {
         return LicenciaDAO.readAll();
     }
     
-    public List<Licencia> getLicenciasRango(String fecha1, String fecha2){
-        return LicenciaDAO.readRango(fecha1, fecha2);
+    public List<Licencia> getLicenciasVigentes(){
+        return LicenciaDAO.readAllVigentes();
+    }
+    
+    public List<Licencia> getLicenciasExpiradas(){
+        return LicenciaDAO.readAllExpiradas();
+    }
+    
+    public List<Licencia> getLicenciasRangoVigentes(String fecha1, String fecha2){
+        return LicenciaDAO.readRangoVigentes(fecha1, fecha2);
+    }
+    
+    public List<Licencia> getLicenciasRangoExpiradas(String fecha1, String fecha2){
+        return LicenciaDAO.readRangoExpiradas(fecha1, fecha2);
     }
     
     public List<Licencia> getLicenciasVigentes(Date fechaVigencia){
