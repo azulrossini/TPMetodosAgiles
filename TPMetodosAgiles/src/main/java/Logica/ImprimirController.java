@@ -88,8 +88,17 @@ public class ImprimirController {
     
     private void cargarParametrosListado(String fecha1, String fecha2) throws IOException, ParseException{
         
-        parametersListado.put("fecha_desde", fecha1);
-        parametersListado.put("fecha_hasta", fecha2);
+        //ARMO LOS STRING PARA LA CONSULTA
+        
+        String fechaDesdeFormat = "'" + fecha1 + "'";
+        String fechaHastaFormat = "'" + fecha2 + "'";
+        
+        System.out.println("");
+        System.out.println(fechaDesdeFormat + " Y " + fechaHastaFormat);
+        System.out.println("");
+        
+        parametersListado.put("fecha_desde", fechaDesdeFormat);
+        parametersListado.put("fecha_hasta", fechaHastaFormat);        
         
     }
     
@@ -174,27 +183,53 @@ public class ImprimirController {
         
     public void imprimirListadoRango(String fechaDesde, String fechaHasta) throws JRException, IOException, ParseException{
         
+        System.out.println("");
+        System.out.println("SE ESTÁ POR IMPRIMIR: " + fechaDesde + " y " + fechaHasta);
+        System.out.println("");
+        
         this.cargarParametrosListado(fechaDesde, fechaHasta);        
         
-        Session SS = util.getSessionFactory().openSession();
+                Session SS = util.getSessionFactory().openSession();
         SS.doWork(new Work(){
             @Override
             public void execute(Connection cnctn) throws SQLException {
-                InputStream archivo = this.getClass().getClassLoader().getResourceAsStream("Reporte/ListadoRango.jasper");
+                InputStream archivo = this.getClass().getClassLoader().getResourceAsStream("Reporte/ListadoPorRango.jasper");
+                JasperPrint jp = null;
                 try{
                     JasperReport jr = (JasperReport) JRLoader.loadObject(archivo);
-                    JasperPrint jp = JasperFillManager.fillReport(jr,parametersListado,cnctn);
-                    JasperViewer viewer = new JasperViewer(jp);
-                    viewer.setTitle("Listado");
-                    viewer.setVisible(true); 
-                    
+                    jp = JasperFillManager.fillReport(jr,parametersListado,cnctn);
                 } catch (JRException ex) {
-                    Logger.getLogger(ImprimirLicencia.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ImprimirController.class.getName()).log(Level.SEVERE, null, ex);
+                }finally{
+                    try {
+                        JasperPrintManager.printReport(jp, true);                        
+                        JOptionPane.showMessageDialog(null,"IMPRESIÓN CORRECTA");   
+                    } catch (JRException ex) {
+                        Logger.getLogger(ImprimirController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
             }
-            
         });
         
-    }    
+//        Session SS = util.getSessionFactory().openSession();
+//        SS.doWork(new Work(){
+//            @Override
+//            public void execute(Connection cnctn) throws SQLException {
+//                InputStream archivo = this.getClass().getClassLoader().getResourceAsStream("Reporte/ListadoPorRango.jasper");
+//                try{
+//                    JasperReport jr = (JasperReport) JRLoader.loadObject(archivo);
+//                    JasperPrint jp = JasperFillManager.fillReport(jr,parametersListado,cnctn);
+//                    JasperViewer viewer = new JasperViewer(jp);
+//                    viewer.setTitle("Listado");
+//                    viewer.setVisible(true); 
+//                    
+//                } catch (JRException ex) {
+//                    Logger.getLogger(ImprimirLicencia.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+//            }
+//            
+//        });
+//        
+//    }    
     
 }

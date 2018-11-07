@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="69c4449a-15e3-4f5e-a62f-8943fa1736e6">
 	<property name="ireport.zoom" value="1.610510000000001"/>
-	<property name="ireport.x" value="18"/>
+	<property name="ireport.x" value="33"/>
 	<property name="ireport.y" value="0"/>
 	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
 	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
@@ -66,7 +66,7 @@ group by licencia.`id`]]>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="95" splitType="Stretch">
+		<band height="111" splitType="Stretch">
 			<staticText>
 				<reportElement uuid="6cb172c7-6dc1-4680-b340-d489ad9c605e" x="286" y="20" width="267" height="27"/>
 				<textElement textAlignment="Right">
@@ -94,6 +94,13 @@ group by licencia.`id`]]>
 		<band height="19" splitType="Stretch">
 			<frame>
 				<reportElement uuid="c898d270-9c78-4fc1-a4f3-029720dbd4e7" mode="Opaque" x="2" y="0" width="553" height="18" forecolor="#000000" backcolor="#FFCC33"/>
+				<staticText>
+					<reportElement uuid="bfeea807-cbc6-424b-beb5-3802585504e0" style="Column header" x="240" y="0" width="99" height="18" forecolor="#000000"/>
+					<textElement textAlignment="Center">
+						<font fontName="Microsoft YaHei UI" size="12" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Apellido]]></text>
+				</staticText>
 			</frame>
 			<staticText>
 				<reportElement uuid="86bc2a76-0064-42f3-8849-196f15e7423f" style="Column header" x="499" y="0" width="56" height="18" forecolor="#000000"/>
@@ -122,13 +129,6 @@ group by licencia.`id`]]>
 					<font fontName="Microsoft YaHei UI" size="12" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Emisión]]></text>
-			</staticText>
-			<staticText>
-				<reportElement uuid="bfeea807-cbc6-424b-beb5-3802585504e0" style="Column header" x="242" y="0" width="99" height="18" forecolor="#000000"/>
-				<textElement textAlignment="Center">
-					<font fontName="Microsoft YaHei UI" size="12" isBold="false"/>
-				</textElement>
-				<text><![CDATA[Apellido]]></text>
 			</staticText>
 			<staticText>
 				<reportElement uuid="ce41a467-523f-4c1a-a365-25d196989f19" style="Column header" x="41" y="0" width="33" height="18" forecolor="#000000"/>
