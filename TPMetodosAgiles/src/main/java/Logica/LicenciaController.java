@@ -39,6 +39,10 @@ public class LicenciaController {
         return LicenciaDAO.getLicenciasTitular(titular.getId());
     }
     
+    public void actualizarLicencia(Licencia l){
+        LicenciaDAO.update(l);
+    }
+    
     public boolean verificarClase(String clase, Persona titular){
         ClaseController cc = new ClaseController();
         //Si la clase existe

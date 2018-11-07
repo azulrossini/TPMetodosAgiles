@@ -5,6 +5,7 @@ import Logica.*;
 import Logica.LicenciaController.Motivo;
 import Persistencia.*;
 import java.util.Calendar;
+import java.util.Date;
 
 import javax.swing.JOptionPane;
 
@@ -239,13 +240,12 @@ public class RenovarLicencia extends javax.swing.JFrame {
 
         //Comprobar que pueda sacar las clases
         if(licenciaController.verificarClase(licencia.getClaseId(), titular)){
-            //Actualizo para que me devuelva el titular con el id autoincremental de la bd
-            titular = personaController.getPersona(titular.getId());
 
             //Si es clase C D o E controla que tenga +21, sino no
             if(controlarCDE(licencia.getClaseId())){
-                String obs = this.observaciones.getText();
-                licenciaController.crearLicencia(titular, licencia.getClaseId(), obs, motivo, usuario.getId());
+                licenciaController.crearLicencia(titular, licencia.getClaseId(), licencia.getObservaciones(), motivo, usuario.getId());
+                licencia.setFechaVenc(new Date());
+                licenciaController.actualizarLicencia(licencia);
             }
         }
         else{

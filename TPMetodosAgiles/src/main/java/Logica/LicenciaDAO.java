@@ -63,6 +63,14 @@ public class LicenciaDAO extends GenericDAO {
         return lista;
     }
     
+    public void update(Licencia l){
+        SS = util.getSessionFactory().openSession();
+        SS.beginTransaction();
+        SS.update(l);
+        SS.getTransaction().commit();
+        SS.close();
+    }
+    
     public List<Licencia> getLicenciasTitular(int idTitular){
         SS = util.getSessionFactory().openSession();
         SS.beginTransaction();
