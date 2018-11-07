@@ -24,6 +24,12 @@ public class Usuario  implements java.io.Serializable {
        this.password = password;
        this.privilegio = privilegio;
     }
+    
+    public Usuario(String username, String password, boolean privilegio){
+        this.username = username;
+        this.password = password;
+        this.privilegio = privilegio;
+    }
    
     public Integer getId() {
         return this.id;

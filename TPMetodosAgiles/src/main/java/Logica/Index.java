@@ -1,13 +1,13 @@
 
 package Logica;
 
+import Presentacion.Login;
 import Presentacion.IndexView;
 
 
 public class Index {
     
     public static void main(String[] args) {
-
 
         try{
             GenericDAO gd = new GenericDAO();

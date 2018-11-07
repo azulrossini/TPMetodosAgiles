@@ -445,11 +445,11 @@ public class ImprimirLicencia extends javax.swing.JFrame {
     }//GEN-LAST:event_cargarImagenActionPerformed
 
     private void cargarImagenMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cargarImagenMouseExited
-        this.cargarImagen.setBackground(this.vistaPrevia.getBackground().brighter());
+        this.cargarImagen.setBackground(this.cargarImagen.getBackground().brighter());
     }//GEN-LAST:event_cargarImagenMouseExited
 
     private void cargarImagenMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cargarImagenMouseEntered
-        this.cargarImagen.setBackground(this.vistaPrevia.getBackground().darker());
+        this.cargarImagen.setBackground(this.cargarImagen.getBackground().darker());
     }//GEN-LAST:event_cargarImagenMouseEntered
 
     private void imprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imprimirActionPerformed
@@ -461,11 +461,11 @@ public class ImprimirLicencia extends javax.swing.JFrame {
     }//GEN-LAST:event_imprimirActionPerformed
 
     private void imprimirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imprimirMouseExited
-        this.imprimir.setBackground(this.vistaPrevia.getBackground().brighter());
+        this.imprimir.setBackground(this.imprimir.getBackground().brighter());
     }//GEN-LAST:event_imprimirMouseExited
 
     private void imprimirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imprimirMouseEntered
-        this.imprimir.setBackground(this.vistaPrevia.getBackground().darker());
+        this.imprimir.setBackground(this.imprimir.getBackground().darker());
     }//GEN-LAST:event_imprimirMouseEntered
 
     private void vistaPreviaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vistaPreviaActionPerformed
