@@ -111,8 +111,18 @@ public class AltaUsuario extends javax.swing.JFrame {
         jButton18.setBorderPainted(false);
         jButton18.setContentAreaFilled(false);
         jButton18.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/left-arrow rollover.png"))); // NOI18N
+        jButton18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton18ActionPerformed(evt);
+            }
+        });
 
         username.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 18)); // NOI18N
+        username.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                usernameKeyTyped(evt);
+            }
+        });
 
         crear.setBackground(new java.awt.Color(255, 255, 255));
         crear.setFont(new java.awt.Font("Microsoft JhengHei UI", 1, 12)); // NOI18N
@@ -142,6 +152,12 @@ public class AltaUsuario extends javax.swing.JFrame {
         jLabel23.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 18)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(51, 51, 51));
         jLabel23.setText("Contraseña:");
+
+        pass.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                passKeyTyped(evt);
+            }
+        });
 
         jLabel24.setBackground(new java.awt.Color(51, 51, 51));
         jLabel24.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 18)); // NOI18N
@@ -176,7 +192,7 @@ public class AltaUsuario extends javax.swing.JFrame {
                             .addComponent(jSeparator4, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addContainerGap())))
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
+                .addGap(51, 51, 51)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel24)
                     .addComponent(jLabel23)
@@ -189,7 +205,7 @@ public class AltaUsuario extends javax.swing.JFrame {
                         .addComponent(superusuario)
                         .addGap(18, 18, 18)
                         .addComponent(administrativo)))
-                .addGap(0, 73, Short.MAX_VALUE))
+                .addGap(0, 51, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(crear)
@@ -215,12 +231,12 @@ public class AltaUsuario extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel23)
                     .addComponent(pass, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel24)
                     .addComponent(superusuario, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(administrativo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
+                .addGap(30, 30, 30)
                 .addComponent(crear, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -274,6 +290,22 @@ public class AltaUsuario extends javax.swing.JFrame {
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jButton16ActionPerformed
+
+    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton18ActionPerformed
+
+    private void usernameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_usernameKeyTyped
+        if (this.username.getText().length()>=32){
+            evt.consume();
+        }
+    }//GEN-LAST:event_usernameKeyTyped
+
+    private void passKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passKeyTyped
+        if (this.pass.getText().length()>=32){
+            evt.consume();
+        }
+    }//GEN-LAST:event_passKeyTyped
 
     /**
      * @param args the command line arguments
