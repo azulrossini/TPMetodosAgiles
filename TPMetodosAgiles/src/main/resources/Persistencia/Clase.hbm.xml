@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Nov 2, 2018 3:35:28 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated 06/11/2018 23:10:20 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Persistencia.Clase" table="clase" catalog="lic_sf_bd" optimistic-lock="version">
         <id name="id" type="string">

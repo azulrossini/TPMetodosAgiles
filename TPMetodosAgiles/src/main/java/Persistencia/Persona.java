@@ -1,5 +1,5 @@
 package Persistencia;
-// Generated Nov 2, 2018 3:35:26 PM by Hibernate Tools 4.3.1
+// Generated 06/11/2018 23:10:19 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -10,16 +10,16 @@ import java.util.Date;
 public class Persona  implements java.io.Serializable {
 
 
-    private Integer id;
-    private String tipoId;
-    private String nroId;
-    private String apellido;
-    private String nombre;
-    private Date fechaNac;
-    private String domicilio;
-    private String grupoSanguineo;
-    private String factor;
-    private boolean donante;
+     private Integer id;
+     private String tipoId;
+     private String nroId;
+     private String apellido;
+     private String nombre;
+     private Date fechaNac;
+     private String domicilio;
+     private String grupoSanguineo;
+     private String factor;
+     private boolean donante;
 
     public Persona() {
     }
@@ -106,6 +106,8 @@ public class Persona  implements java.io.Serializable {
     public void setDonante(boolean donante) {
         this.donante = donante;
     }
+
+
 
 
 }

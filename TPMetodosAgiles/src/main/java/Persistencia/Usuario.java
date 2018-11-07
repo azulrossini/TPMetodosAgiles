@@ -1,5 +1,5 @@
 package Persistencia;
-// Generated Nov 2, 2018 3:35:26 PM by Hibernate Tools 4.3.1
+// Generated 06/11/2018 23:10:19 by Hibernate Tools 4.3.1
 
 
 
@@ -10,7 +10,6 @@ public class Usuario  implements java.io.Serializable {
 
 
      private Integer id;
-     private int personaId;
      private String username;
      private String password;
      private boolean privilegio;
@@ -18,17 +17,10 @@ public class Usuario  implements java.io.Serializable {
     public Usuario() {
     }
 
-    public Usuario(int personaId, String username, String password, boolean privilegio) {
-       this.personaId = personaId;
+    public Usuario(String username, String password, boolean privilegio) {
        this.username = username;
        this.password = password;
        this.privilegio = privilegio;
-    }
-    
-    public Usuario(String username, String password, boolean privilegio){
-        this.username = username;
-        this.password = password;
-        this.privilegio = privilegio;
     }
    
     public Integer getId() {
@@ -37,13 +29,6 @@ public class Usuario  implements java.io.Serializable {
     
     public void setId(Integer id) {
         this.id = id;
-    }
-    public int getPersonaId() {
-        return this.personaId;
-    }
-    
-    public void setPersonaId(int personaId) {
-        this.personaId = personaId;
     }
     public String getUsername() {
         return this.username;
