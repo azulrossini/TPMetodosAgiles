@@ -1,9 +1,9 @@
--- phpMyAdmin SQL Dump
+﻿-- phpMyAdmin SQL Dump
 -- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Nov 02, 2018 at 06:25 PM
+-- Generation Time: Nov 07, 2018 at 04:06 AM
 -- Server version: 5.7.23
 -- PHP Version: 7.2.10
 
@@ -185,13 +185,12 @@ INSERT INTO `persona` (`id`, `tipo_id`, `nro_id`, `apellido`, `nombre`, `fecha_n
 DROP TABLE IF EXISTS `usuario`;
 CREATE TABLE IF NOT EXISTS `usuario` (
   `id` int(2) NOT NULL AUTO_INCREMENT,
-  `persona_id` int(10) NOT NULL,
   `username` varchar(32) NOT NULL,
-  `password` varchar(32) NOT NULL,
+  `password` varbinary(20) NOT NULL,
   `privilegio` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_persona_usuario` (`persona_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  UNIQUE KEY `uk_username` (`username`)
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
