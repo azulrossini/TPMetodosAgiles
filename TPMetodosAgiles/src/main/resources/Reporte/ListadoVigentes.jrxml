@@ -22,8 +22,8 @@
      licencia.`costo_id` AS licencia_costo_id,
      licencia.`vigencia_id` AS licencia_vigencia_id,
      licencia.`motivo` AS licencia_motivo,
-     DATE_FORMAT(licencia.`fecha_emision`, "%m/%d/%Y") AS licencia_fecha_emision,
-     DATE_FORMAT(licencia.`fecha_venc`, "%m/%d/%Y") AS licencia_fecha_venc,
+     DATE_FORMAT(licencia.`fecha_emision`, "%d/%m/%Y") AS licencia_fecha_emision,
+     DATE_FORMAT(licencia.`fecha_venc`, "%d/%m/%Y") AS licencia_fecha_venc,
      licencia.`observaciones` AS licencia_observaciones,
      persona.`id` AS persona_id,
      persona.`tipo_id` AS persona_tipo_id,
@@ -38,7 +38,7 @@
 FROM
      `licencia` licencia,
      `persona` persona
-WHERE 
+WHERE 	licencia.`persona_id` = persona.`id` AND
 	licencia.`fecha_venc` > NOW()
 group by licencia.`id`]]>
 	</queryString>

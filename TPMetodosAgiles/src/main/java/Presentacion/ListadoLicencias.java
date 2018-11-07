@@ -46,15 +46,16 @@ public class ListadoLicencias extends javax.swing.JFrame {
     private TableRowSorter trsFiltro;
     private boolean flagTodas;
     private final Usuario user;
-    
+    private boolean flagTipo;    
     String fecha1, fecha2;
     
-    public ListadoLicencias(String fechaDesde, String fechaHasta, Usuario user) throws ParseException {
+    public ListadoLicencias(boolean tipo, String fechaDesde, String fechaHasta, Usuario user) throws ParseException {
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         
         flagTodas = false;
+        flagTipo = tipo;        
         
         this.user = user;
         
@@ -62,12 +63,13 @@ public class ListadoLicencias extends javax.swing.JFrame {
         getLicenciasRango(fechaDesde, fechaHasta);        
     }
     
-    public ListadoLicencias(Usuario user) throws ParseException {
+    public ListadoLicencias(boolean tipo, Usuario user) throws ParseException {
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         
         flagTodas = true;
+        flagTipo = tipo;
         
         this.user = user;
         
@@ -86,14 +88,20 @@ public class ListadoLicencias extends javax.swing.JFrame {
         Date dateHasta = sourceFormat.parse(fechaHasta);
         fecha1 = targetFormat.format(dateDesde);
         fecha2 = targetFormat.format(dateHasta);
-
-        List<Licencia> listaLicencia = lController.getLicenciasRango(fecha1, fecha2);        
+        
+        List<Licencia> listaLicencia;
         VigenciaController vigenciaController = new VigenciaController();
+        
+        if(flagTipo){
+            listaLicencia = lController.getLicenciasRangoVigentes(fecha1, fecha2); 
+        }else{
+            listaLicencia = lController.getLicenciasRangoExpiradas(fecha1, fecha2); 
+        }
         
         
         if(listaLicencia.isEmpty()){
             
-            JOptionPane.showMessageDialog(null,"No hay licencias con fecha de vencimiento dentro del rango");
+            JOptionPane.showMessageDialog(null,"No hay licencias para mostrar que cumplan con los criterios");
             IndexView index = new IndexView(user);
             this.dispose();
             
@@ -127,13 +135,18 @@ public class ListadoLicencias extends javax.swing.JFrame {
 
     private void getLicencias() throws ParseException{   
         
-        List<Licencia> listaLicencia = lController.getLicencias();
+        List<Licencia> listaLicencia;
         VigenciaController vigenciaController = new VigenciaController();
         
+        if(flagTipo){
+            listaLicencia = lController.getLicenciasVigentes(); 
+        }else{
+            listaLicencia = lController.getLicenciasExpiradas(); 
+        }        
         
         if(listaLicencia.isEmpty()){
             
-            JOptionPane.showMessageDialog(null,"No hay licencias para mostrar");
+            JOptionPane.showMessageDialog(null,"No hay licencias para mostrar que cumplan con los criterios");
             IndexView index = new IndexView(user);
             this.dispose();
             
@@ -306,7 +319,6 @@ public class ListadoLicencias extends javax.swing.JFrame {
                         .addComponent(print))
                     .addComponent(jSeparator3)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
                         .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
