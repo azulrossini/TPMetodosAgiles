@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2e921a59-be93-4185-a561-895a680b3313">
-	<property name="ireport.zoom" value="1.2100000000000006"/>
-	<property name="ireport.x" value="0"/>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="69c4449a-15e3-4f5e-a62f-8943fa1736e6">
+	<property name="ireport.zoom" value="1.610510000000001"/>
+	<property name="ireport.x" value="33"/>
 	<property name="ireport.y" value="0"/>
 	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
 	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
@@ -22,8 +22,8 @@
      licencia.`costo_id` AS licencia_costo_id,
      licencia.`vigencia_id` AS licencia_vigencia_id,
      licencia.`motivo` AS licencia_motivo,
-     licencia.`fecha_emision` AS licencia_fecha_emision,
-     licencia.`fecha_venc` AS licencia_fecha_venc,
+     DATE_FORMAT(licencia.`fecha_emision`, "%m/%d/%Y") AS licencia_fecha_emision,
+     DATE_FORMAT(licencia.`fecha_venc`, "%m/%d/%Y") AS licencia_fecha_venc,
      licencia.`observaciones` AS licencia_observaciones,
      persona.`id` AS persona_id,
      persona.`tipo_id` AS persona_tipo_id,
@@ -49,8 +49,8 @@ group by licencia.`id`]]>
 	<field name="licencia_costo_id" class="java.lang.Integer"/>
 	<field name="licencia_vigencia_id" class="java.lang.Integer"/>
 	<field name="licencia_motivo" class="java.lang.String"/>
-	<field name="licencia_fecha_emision" class="java.sql.Date"/>
-	<field name="licencia_fecha_venc" class="java.sql.Date"/>
+	<field name="licencia_fecha_emision" class="java.lang.String"/>
+	<field name="licencia_fecha_venc" class="java.lang.String"/>
 	<field name="licencia_observaciones" class="java.lang.String"/>
 	<field name="persona_id" class="java.lang.Integer"/>
 	<field name="persona_tipo_id" class="java.lang.String"/>
@@ -66,164 +66,167 @@ group by licencia.`id`]]>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="78" splitType="Stretch">
-			<image>
-				<reportElement uuid="ffa2a496-0dec-4d72-9301-88f73ecb4d2c" x="721" y="0" width="73" height="66"/>
-				<imageExpression><![CDATA["C:\\Proyectos Java\\TPMetodosAgiles\\TPMetodosAgiles\\src\\main\\resources\\Presentacion\\logo santa fe.png"]]></imageExpression>
-			</image>
+		<band height="111" splitType="Stretch">
 			<staticText>
-				<reportElement uuid="f334e56e-b0f2-4433-a028-8ee95309dffe" x="0" y="0" width="721" height="66"/>
-				<textElement>
-					<font fontName="Microsoft YaHei" size="36"/>
+				<reportElement uuid="6cb172c7-6dc1-4680-b340-d489ad9c605e" x="286" y="20" width="267" height="27"/>
+				<textElement textAlignment="Right">
+					<font fontName="Microsoft JhengHei UI" size="20"/>
 				</textElement>
 				<text><![CDATA[Listado de licencias vigentes]]></text>
 			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement uuid="fc3e2f2e-87b1-45bd-b9d7-77dacce28fb9" style="Column header" x="342" y="47" width="213" height="20" forecolor="#000000"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Microsoft YaHei UI" size="14" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement uuid="fdcfc690-2290-44f7-a79c-8c28d31ef223" x="1" y="0" width="197" height="90"/>
+				<imageExpression><![CDATA["C:\\Proyectos Java\\TPMetodosAgiles\\TPMetodosAgiles\\src\\main\\resources\\Presentacion\\LogoReporte.jpg"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>
 		<band splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="18" splitType="Stretch">
+		<band height="19" splitType="Stretch">
+			<frame>
+				<reportElement uuid="c898d270-9c78-4fc1-a4f3-029720dbd4e7" mode="Opaque" x="2" y="0" width="553" height="18" forecolor="#000000" backcolor="#FFCC33"/>
+				<staticText>
+					<reportElement uuid="bfeea807-cbc6-424b-beb5-3802585504e0" style="Column header" x="240" y="0" width="99" height="18" forecolor="#000000"/>
+					<textElement textAlignment="Center">
+						<font fontName="Microsoft YaHei UI" size="12" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Apellido]]></text>
+				</staticText>
+			</frame>
 			<staticText>
-				<reportElement uuid="ce41a467-523f-4c1a-a365-25d196989f19" style="Column header" x="39" y="0" width="39" height="18" forecolor="#000000"/>
+				<reportElement uuid="86bc2a76-0064-42f3-8849-196f15e7423f" style="Column header" x="499" y="0" width="56" height="18" forecolor="#000000"/>
 				<textElement textAlignment="Center">
-					<font isBold="false"/>
-				</textElement>
-				<text><![CDATA[Clase]]></text>
-			</staticText>
-			<staticText>
-				<reportElement uuid="6a3d5c02-14dd-41a5-8ad8-bda22f8426ab" style="Column header" x="78" y="0" width="110" height="18" forecolor="#000000"/>
-				<textElement textAlignment="Center">
-					<font isBold="false"/>
-				</textElement>
-				<text><![CDATA[Emisión]]></text>
-			</staticText>
-			<staticText>
-				<reportElement uuid="1883efe3-737a-4d16-ad5f-ba59c0659457" style="Column header" x="188" y="0" width="116" height="18" forecolor="#000000"/>
-				<textElement textAlignment="Center">
-					<font isBold="false"/>
-				</textElement>
-				<text><![CDATA[Vencimiento]]></text>
-			</staticText>
-			<staticText>
-				<reportElement uuid="bfeea807-cbc6-424b-beb5-3802585504e0" style="Column header" x="304" y="0" width="99" height="18" forecolor="#000000"/>
-				<textElement textAlignment="Center">
-					<font isBold="false"/>
-				</textElement>
-				<text><![CDATA[Apellido]]></text>
-			</staticText>
-			<staticText>
-				<reportElement uuid="0cae808e-7aa2-4044-8f2a-8cbde77d922a" style="Column header" x="403" y="0" width="91" height="18" forecolor="#000000"/>
-				<textElement textAlignment="Center">
-					<font isBold="false"/>
-				</textElement>
-				<text><![CDATA[Nombre]]></text>
-			</staticText>
-			<staticText>
-				<reportElement uuid="018fe354-e30d-4b4a-a8b0-2447613529e1" style="Column header" x="494" y="0" width="105" height="18" forecolor="#000000"/>
-				<textElement textAlignment="Center">
-					<font isBold="false"/>
-				</textElement>
-				<text><![CDATA[Grupo Sanguineo]]></text>
-			</staticText>
-			<staticText>
-				<reportElement uuid="d3f6897b-7c58-41e9-bdfc-d17387cb4a4b" style="Column header" x="599" y="0" width="39" height="18" forecolor="#000000"/>
-				<textElement textAlignment="Center">
-					<font isBold="false"/>
-				</textElement>
-				<text><![CDATA[Factor]]></text>
-			</staticText>
-			<staticText>
-				<reportElement uuid="86bc2a76-0064-42f3-8849-196f15e7423f" style="Column header" x="638" y="0" width="59" height="18" forecolor="#000000"/>
-				<textElement textAlignment="Center">
-					<font isBold="false"/>
+					<font fontName="Microsoft YaHei UI" size="12" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Donante]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="2d4d2714-2424-48a1-9bfc-9ced586c37fc" style="Column header" x="0" y="0" width="39" height="18" forecolor="#000000"/>
+				<reportElement uuid="018fe354-e30d-4b4a-a8b0-2447613529e1" style="Column header" x="432" y="0" width="67" height="18" forecolor="#000000"/>
 				<textElement textAlignment="Center">
-					<font isBold="false"/>
+					<font fontName="Microsoft YaHei UI" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Grupo +/-]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1883efe3-737a-4d16-ad5f-ba59c0659457" style="Column header" x="156" y="0" width="86" height="18" forecolor="#000000"/>
+				<textElement textAlignment="Center">
+					<font fontName="Microsoft YaHei UI" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Vencimiento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6a3d5c02-14dd-41a5-8ad8-bda22f8426ab" style="Column header" x="74" y="0" width="82" height="18" forecolor="#000000"/>
+				<textElement textAlignment="Center">
+					<font fontName="Microsoft YaHei UI" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Emisión]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ce41a467-523f-4c1a-a365-25d196989f19" style="Column header" x="41" y="0" width="33" height="18" forecolor="#000000"/>
+				<textElement textAlignment="Center">
+					<font fontName="Microsoft YaHei UI" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Clase]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="0cae808e-7aa2-4044-8f2a-8cbde77d922a" style="Column header" x="341" y="0" width="91" height="18" forecolor="#000000"/>
+				<textElement textAlignment="Center">
+					<font fontName="Microsoft YaHei UI" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="2d4d2714-2424-48a1-9bfc-9ced586c37fc" style="Column header" x="0" y="0" width="41" height="18" forecolor="#000000"/>
+				<textElement textAlignment="Center">
+					<font fontName="Microsoft YaHei UI" size="12" isBold="false"/>
 				</textElement>
 				<text><![CDATA[ID]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="26" splitType="Stretch">
+		<band height="21" splitType="Stretch">
 			<frame>
-				<reportElement uuid="1ab12f58-0a36-4bf0-a935-1f9d8cdc21f4" style="Row" mode="Opaque" x="0" y="0" width="797" height="18"/>
-				<textField isStretchWithOverflow="true">
-					<reportElement uuid="aa9e72ff-c83a-4f7c-97b6-a53497d35d6a" style="Detail" positionType="Float" x="39" y="0" width="39" height="18"/>
-					<textElement textAlignment="Center">
-						<font size="14"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{licencia_clase_id}]]></textFieldExpression>
-				</textField>
-				<textField isStretchWithOverflow="true">
-					<reportElement uuid="8ca8305f-4c7c-432f-bb64-a1f07995d7a3" style="Detail" positionType="Float" x="78" y="0" width="110" height="18"/>
-					<textElement textAlignment="Center">
-						<font size="14"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{licencia_fecha_emision}]]></textFieldExpression>
-				</textField>
-				<textField isStretchWithOverflow="true">
-					<reportElement uuid="5034aecc-fe71-4877-98be-2fbf1b2301c9" style="Detail" positionType="Float" x="304" y="0" width="99" height="18"/>
-					<textElement textAlignment="Center">
-						<font size="14"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{persona_apellido}]]></textFieldExpression>
-				</textField>
-				<textField isStretchWithOverflow="true">
-					<reportElement uuid="bfad3877-48dd-48ca-a786-d9aaa37882d3" style="Detail" positionType="Float" x="403" y="0" width="91" height="18"/>
-					<textElement textAlignment="Center">
-						<font size="14"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{persona_nombre}]]></textFieldExpression>
-				</textField>
-				<textField isStretchWithOverflow="true">
-					<reportElement uuid="49fd5d83-c1ae-47f3-b50c-71b8f63d2907" style="Detail" positionType="Float" x="494" y="0" width="105" height="18"/>
-					<textElement textAlignment="Center">
-						<font size="14"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{persona_grupo_sanguineo}]]></textFieldExpression>
-				</textField>
-				<textField isStretchWithOverflow="true">
-					<reportElement uuid="a8579c1b-81b1-424d-afac-a9cd50e9ef08" style="Detail" positionType="Float" x="599" y="0" width="39" height="18"/>
-					<textElement textAlignment="Center">
-						<font size="14"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{persona_factor}]]></textFieldExpression>
-				</textField>
-				<textField isStretchWithOverflow="true">
-					<reportElement uuid="01e3eb9c-00b9-45af-b202-4959f84caf70" style="Detail" positionType="Float" x="638" y="0" width="59" height="18"/>
-					<textElement textAlignment="Center">
-						<font size="14"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{persona_donante}]]></textFieldExpression>
-				</textField>
-				<textField isStretchWithOverflow="true">
-					<reportElement uuid="4d9ead83-5d6a-40b2-8828-54df448db901" style="Detail" positionType="Float" x="0" y="0" width="39" height="18"/>
-					<textElement textAlignment="Center">
-						<font size="14"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{licencia_id}]]></textFieldExpression>
-				</textField>
-				<textField isStretchWithOverflow="true">
-					<reportElement uuid="7ed5d351-bd2f-4049-a5bc-47462f91f11c" style="Detail" positionType="Float" x="188" y="0" width="116" height="18"/>
-					<textElement textAlignment="Center">
-						<font size="14"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{licencia_fecha_venc}]]></textFieldExpression>
-				</textField>
+				<reportElement uuid="323af36c-9f3f-4c54-9639-5cd1b7f3ead2" style="Row" mode="Opaque" x="0" y="0" width="555" height="18"/>
 			</frame>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="5034aecc-fe71-4877-98be-2fbf1b2301c9" style="Detail" positionType="Float" x="242" y="0" width="99" height="18"/>
+				<textElement textAlignment="Center">
+					<font fontName="Microsoft JhengHei UI" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{persona_apellido}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="8ca8305f-4c7c-432f-bb64-a1f07995d7a3" style="Detail" positionType="Float" x="74" y="0" width="82" height="18"/>
+				<textElement textAlignment="Center">
+					<font fontName="Microsoft JhengHei UI" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{licencia_fecha_emision}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="4d9ead83-5d6a-40b2-8828-54df448db901" style="Detail" positionType="Float" x="1" y="0" width="40" height="18"/>
+				<textElement textAlignment="Center">
+					<font fontName="Microsoft JhengHei UI" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{licencia_id}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="49fd5d83-c1ae-47f3-b50c-71b8f63d2907" style="Detail" positionType="Float" x="433" y="0" width="29" height="18"/>
+				<textElement textAlignment="Center">
+					<font fontName="Microsoft JhengHei UI" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{persona_grupo_sanguineo}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="a8579c1b-81b1-424d-afac-a9cd50e9ef08" style="Detail" positionType="Float" x="462" y="0" width="37" height="18"/>
+				<textElement textAlignment="Center">
+					<font fontName="Microsoft JhengHei UI" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{persona_factor}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="7ed5d351-bd2f-4049-a5bc-47462f91f11c" style="Detail" positionType="Float" x="156" y="0" width="86" height="18"/>
+				<textElement textAlignment="Center">
+					<font fontName="Microsoft JhengHei UI" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{licencia_fecha_venc}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="aa9e72ff-c83a-4f7c-97b6-a53497d35d6a" style="Detail" positionType="Float" x="41" y="0" width="33" height="18"/>
+				<textElement textAlignment="Center">
+					<font fontName="Microsoft JhengHei UI" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{licencia_clase_id}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="bfad3877-48dd-48ca-a786-d9aaa37882d3" style="Detail" positionType="Float" x="341" y="0" width="91" height="18"/>
+				<textElement textAlignment="Center">
+					<font fontName="Microsoft JhengHei UI" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{persona_nombre}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="01e3eb9c-00b9-45af-b202-4959f84caf70" style="Detail" positionType="Float" x="499" y="0" width="56" height="18"/>
+				<textElement textAlignment="Center">
+					<font fontName="Microsoft JhengHei UI" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{persona_donante} == true ? "Si" : "No"]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="100" splitType="Stretch">
+		<band height="7" splitType="Stretch">
 			<line>
-				<reportElement uuid="41262249-b9bc-43c5-8617-5af99165d5d8" positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1"/>
+				<reportElement uuid="2fabe0f7-12e1-4fa5-9e82-5146d023945c" positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1"/>
 				<graphicElement>
 					<pen lineWidth="0.5" lineColor="#999999"/>
 				</graphicElement>
@@ -231,25 +234,25 @@ group by licencia.`id`]]>
 		</band>
 	</columnFooter>
 	<pageFooter>
-		<band height="40" splitType="Stretch">
+		<band height="25" splitType="Stretch">
 			<frame>
-				<reportElement uuid="e8a85128-74c4-452b-abfa-ebb51b31d619" mode="Opaque" x="0" y="13" width="802" height="27" forecolor="#D0B48E" backcolor="#000000"/>
+				<reportElement uuid="dbb2a6f4-4702-4319-abc9-d8ad3572032c" mode="Opaque" x="0" y="1" width="555" height="24" forecolor="#D0B48E" backcolor="#000000"/>
 				<textField evaluationTime="Report">
-					<reportElement uuid="23831eff-612e-47f7-b2ae-18258a9a1c49" style="Column header" x="757" y="3" width="40" height="20" forecolor="#FFFFFF"/>
+					<reportElement uuid="7f48bc3d-b382-49a9-8610-3bf045a6d9e9" style="Column header" x="513" y="0" width="40" height="20" forecolor="#FFFFFF"/>
 					<textElement verticalAlignment="Middle">
 						<font size="10" isBold="false"/>
 					</textElement>
 					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement uuid="64727cf1-8413-4ad0-8496-e0e187a39cea" style="Column header" x="481" y="3" width="276" height="20" forecolor="#FFFFFF"/>
+					<reportElement uuid="f4edfb46-b6a0-474a-97c6-9a228084b411" style="Column header" x="433" y="0" width="80" height="20" forecolor="#FFFFFF"/>
 					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font size="10" isBold="false"/>
 					</textElement>
-					<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+					<textFieldExpression><![CDATA["Pág. "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
 				</textField>
 				<textField pattern="EEEEE dd MMMMM yyyy">
-					<reportElement uuid="d1e9eeb7-3e0d-48d1-bffb-73d91cbb164d" style="Column header" x="2" y="3" width="197" height="20" forecolor="#FFFFFF"/>
+					<reportElement uuid="fc3e2f2e-87b1-45bd-b9d7-77dacce28fb9" style="Column header" x="2" y="1" width="197" height="20" forecolor="#FFFFFF"/>
 					<textElement verticalAlignment="Middle">
 						<font size="10" isBold="false"/>
 					</textElement>

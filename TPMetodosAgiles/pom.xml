@@ -75,6 +75,11 @@
             <artifactId>JasperReport-3</artifactId>
             <version>4.7.1</version>
         </dependency>
+        <dependency>
+            <groupId>groovy1.0</groupId>
+            <artifactId>groovy</artifactId>
+            <version>1.0</version>
+        </dependency>
     </dependencies>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
