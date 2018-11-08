@@ -1,0 +1,123 @@
+ListadoVigente:
+
+SELECT
+     licencia.`id` AS licencia_id,
+     licencia.`persona_id` AS licencia_persona_id,
+     licencia.`clase_id` AS licencia_clase_id,
+     licencia.`usuario_id` AS licencia_usuario_id,
+     licencia.`costo_id` AS licencia_costo_id,
+     licencia.`vigencia_id` AS licencia_vigencia_id,
+     licencia.`motivo` AS licencia_motivo,
+     DATE_FORMAT(licencia.`fecha_emision`, "%d/%m/%Y") AS licencia_fecha_emision,
+     DATE_FORMAT(licencia.`fecha_venc`, "%d/%m/%Y") AS licencia_fecha_venc,
+     licencia.`observaciones` AS licencia_observaciones,
+     persona.`id` AS persona_id,
+     persona.`tipo_id` AS persona_tipo_id,
+     persona.`nro_id` AS persona_nro_id,
+     persona.`apellido` AS persona_apellido,
+     persona.`nombre` AS persona_nombre,
+     persona.`fecha_nac` AS persona_fecha_nac,
+     persona.`domicilio` AS persona_domicilio,
+     persona.`grupo_sanguineo` AS persona_grupo_sanguineo,
+     persona.`factor` AS persona_factor,
+     persona.`donante` AS persona_donante
+FROM
+     `licencia` licencia,
+     `persona` persona
+WHERE 	licencia.`persona_id` = persona.`id` AND
+	licencia.`fecha_venc` > NOW()
+group by licencia.`id`
+---------------------------------
+ListadoRangoVigentes
+
+SELECT
+     licencia.`id` AS licencia_id,
+     licencia.`persona_id` AS licencia_persona_id,
+     licencia.`clase_id` AS licencia_clase_id,
+     licencia.`usuario_id` AS licencia_usuario_id,
+     licencia.`costo_id` AS licencia_costo_id,
+     licencia.`vigencia_id` AS licencia_vigencia_id,
+     licencia.`motivo` AS licencia_motivo,
+     DATE_FORMAT(licencia.`fecha_emision`, "%m/%d/%Y") AS licencia_fecha_emision,
+     DATE_FORMAT(licencia.`fecha_venc`, "%m/%d/%Y") AS licencia_fecha_venc,
+     licencia.`observaciones` AS licencia_observaciones,
+     persona.`id` AS persona_id,
+     persona.`tipo_id` AS persona_tipo_id,
+     persona.`nro_id` AS persona_nro_id,
+     persona.`apellido` AS persona_apellido,
+     persona.`nombre` AS persona_nombre,
+     persona.`fecha_nac` AS persona_fecha_nac,
+     persona.`domicilio` AS persona_domicilio,
+     persona.`grupo_sanguineo` AS persona_grupo_sanguineo,
+     persona.`factor` AS persona_factor,
+     persona.`donante` AS persona_donante
+FROM
+     `licencia` licencia,
+     `persona` persona
+WHERE 	licencia.`persona_id` = persona.`id` AND
+	licencia.`fecha_venc` BETWEEN $P!{fecha_desde} AND $P!{fecha_hasta} AND licencia.`fecha_venc` < NOW()
+group by licencia.`id`
+
+--------------------------------
+
+ListadoExpiradas
+
+SELECT
+     licencia.`id` AS licencia_id,
+     licencia.`persona_id` AS licencia_persona_id,
+     licencia.`clase_id` AS licencia_clase_id,
+     licencia.`usuario_id` AS licencia_usuario_id,
+     licencia.`costo_id` AS licencia_costo_id,
+     licencia.`vigencia_id` AS licencia_vigencia_id,
+     licencia.`motivo` AS licencia_motivo,
+     DATE_FORMAT(licencia.`fecha_emision`, "%d/%m/%Y") AS licencia_fecha_emision,
+     DATE_FORMAT(licencia.`fecha_venc`, "%d/%m/%Y") AS licencia_fecha_venc,
+     licencia.`observaciones` AS licencia_observaciones,
+     persona.`id` AS persona_id,
+     persona.`tipo_id` AS persona_tipo_id,
+     persona.`nro_id` AS persona_nro_id,
+     persona.`apellido` AS persona_apellido,
+     persona.`nombre` AS persona_nombre,
+     persona.`fecha_nac` AS persona_fecha_nac,
+     persona.`domicilio` AS persona_domicilio,
+     persona.`grupo_sanguineo` AS persona_grupo_sanguineo,
+     persona.`factor` AS persona_factor,
+     persona.`donante` AS persona_donante
+FROM
+     `licencia` licencia,
+     `persona` persona
+WHERE 	licencia.`persona_id` = persona.`id` AND
+	licencia.`fecha_venc` < NOW()
+group by licencia.`id`
+
+--------------------------------------
+
+ListadoRangoExpiradas
+
+SELECT
+     licencia.`id` AS licencia_id,
+     licencia.`persona_id` AS licencia_persona_id,
+     licencia.`clase_id` AS licencia_clase_id,
+     licencia.`usuario_id` AS licencia_usuario_id,
+     licencia.`costo_id` AS licencia_costo_id,
+     licencia.`vigencia_id` AS licencia_vigencia_id,
+     licencia.`motivo` AS licencia_motivo,
+     DATE_FORMAT(licencia.`fecha_emision`, "%d/%m/%Y") AS licencia_fecha_emision,
+     DATE_FORMAT(licencia.`fecha_venc`, "%d/%m/%Y") AS licencia_fecha_venc,
+     licencia.`observaciones` AS licencia_observaciones,
+     persona.`id` AS persona_id,
+     persona.`tipo_id` AS persona_tipo_id,
+     persona.`nro_id` AS persona_nro_id,
+     persona.`apellido` AS persona_apellido,
+     persona.`nombre` AS persona_nombre,
+     persona.`fecha_nac` AS persona_fecha_nac,
+     persona.`domicilio` AS persona_domicilio,
+     persona.`grupo_sanguineo` AS persona_grupo_sanguineo,
+     persona.`factor` AS persona_factor,
+     persona.`donante` AS persona_donante
+FROM
+     `licencia` licencia,
+     `persona` persona
+WHERE 	licencia.`persona_id` = persona.`id` AND
+	licencia.`fecha_venc` < NOW()
+group by licencia.`id`
