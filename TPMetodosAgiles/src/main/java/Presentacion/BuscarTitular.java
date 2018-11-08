@@ -13,7 +13,6 @@ public class BuscarTitular extends javax.swing.JFrame {
     private PersonaController personaController;
     private LicenciaController licenciaController;
     private List<Persona> personas;
-    private Motivo motivo;
     private String pantallaAnterior;
     private final Usuario user;
     
@@ -21,10 +20,9 @@ public class BuscarTitular extends javax.swing.JFrame {
 //        initComponents();
 //    }
     
-    public BuscarTitular(PersonaController p, LicenciaController l, Motivo m, String pantAnterior, Usuario user){
+    public BuscarTitular(PersonaController p, LicenciaController l, String pantAnterior, Usuario user){
         this.personaController = p;
         this.licenciaController = l;
-        this.motivo = m;
         this.pantallaAnterior = pantAnterior;
         initComponents();
         this.setLocationRelativeTo(null);
@@ -50,6 +48,7 @@ public class BuscarTitular extends javax.swing.JFrame {
         jLabelRegistroDeTitular = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel4.setBackground(new java.awt.Color(206, 206, 206));
         jPanel4.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 2, true), new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true)));
@@ -277,7 +276,7 @@ public class BuscarTitular extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        ElegirLicencia el= new ElegirLicencia(personas.get(this.tabla.getSelectedRow()), personaController, licenciaController, motivo, user);
+        ElegirLicencia el= new ElegirLicencia(personas.get(this.tabla.getSelectedRow()), personaController, licenciaController, user);
         el.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed

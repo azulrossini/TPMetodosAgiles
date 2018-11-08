@@ -6,9 +6,12 @@ import Logica.LicenciaController.Motivo;
 import Logica.PersonaController;
 import Persistencia.*;
 import java.awt.Point;
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class EmitirLicencia extends javax.swing.JFrame {
@@ -17,18 +20,17 @@ public class EmitirLicencia extends javax.swing.JFrame {
     private Persona titular;
     private final PersonaController personaController;
     private final LicenciaController licenciaController;
-    private final Motivo motivo;
     private final Usuario user;
+    private Licencia licencia;
     
 //    public EmitirLicencia() {
 //        initComponents();
 //    }
     
-    public EmitirLicencia(Persona tit, PersonaController p, LicenciaController l, Motivo m, Usuario user){
+    public EmitirLicencia(Persona tit, PersonaController p, LicenciaController l, Usuario user){
         this.titular = tit;
         this.personaController = p;
         this.licenciaController = l;
-        this.motivo = m;
         initComponents();
         completarDatosTitular();
         quitarClasesNoValidas();
@@ -257,7 +259,7 @@ public class EmitirLicencia extends javax.swing.JFrame {
             new Object[] { "Si", "No" },   // null para YES, NO y CANCEL
             "Si");
         if(seleccion == 0){
-            AltaTitular at = new AltaTitular(personaController, licenciaController, "", motivo, user);
+            AltaTitular at = new AltaTitular(personaController, licenciaController, "", user);
             at.setVisible(true);
             this.setVisible(false);
         }
@@ -271,23 +273,24 @@ public class EmitirLicencia extends javax.swing.JFrame {
         String clase = (String) this.comboClase.getSelectedItem();
         //Comprobar que pueda sacar las clases
         if(licenciaController.verificarClase(clase, titular)){
-            //Si no esta en la BD lo almacena, si esta no
-            //Es para que no presione el boton OK muchas veces, porque se almacena muhcas veces el mismo titular
-            if(personaController.buscarTitular(titular.getNroId())!=null){
-                personaController.almacenarTitular(titular);
+            if(almacenarLicencia()){
+                JOptionPane.showMessageDialog(this, "Felicitaciones! \n Se ha creado correctamente la licencia", "Exito",  JOptionPane.OK_OPTION);
+                ImprimirLicencia il;
+                try {
+                    il = new ImprimirLicencia(titular, licencia);
+                    il.setVisible(true);
+                    this.dispose();
+                } catch (IOException ex) {
+                    Logger.getLogger(EmitirLicencia.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
             }
-            
-            //Actualizo para que me devuelva el titular con el id autoincremental de la bd
-            titular = personaController.getPersona(titular.getId());
-            
-            //Si es clase C D o E controla que tenga +21, sino no
-            if(controlarCDE(clase)){
-                String obs = this.observaciones.getText();
-                licenciaController.crearLicencia(titular, clase, obs, motivo, user.getId());
+            else{
+                JOptionPane.showMessageDialog(this, "Ha ocurrido un error \n No se puede crear la licencia", "Error",  JOptionPane.ERROR_MESSAGE);
             }
         }
         else{
-            JOptionPane.showMessageDialog(this, "Ha ocurrido un error \n No se puede almacenar el titular", "Error",  JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Ha ocurrido un error \n No se puede crear la licencia", "Error",  JOptionPane.ERROR_MESSAGE);
         }
     
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -309,7 +312,28 @@ public class EmitirLicencia extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_comboClaseActionPerformed
 
-    
+    private boolean almacenarLicencia(){
+        String clase = (String) this.comboClase.getSelectedItem();
+        
+        //Si no esta en la BD lo almacena, si esta no
+        //Es para que no presione el boton OK muchas veces, porque se almacena muhcas veces el mismo titular
+        if(personaController.buscarTitular(titular.getNroId())==null){
+            System.out.println("Entra a almacenar");
+            personaController.almacenarTitular(titular);
+        }
+            
+        //Actualizo para que me devuelva el titular con el id autoincremental de la bd
+        titular = personaController.getPersona(titular.getId());
+          
+        //Si es clase C D o E controla que tenga +21, sino no
+        if(controlarCDE(clase)){
+            String obs = this.observaciones.getText();
+            licencia = licenciaController.crearLicencia(titular, clase, obs, LicenciaController.Motivo.ORIGINAL, user.getId());
+            return true;
+        }
+        
+        return false;
+    }
     private void completarDatosTitular(){
         //Completar los datos del titular en el textArea
         //No se pueden editar. Es el titular dado de alta anteriormente
@@ -325,21 +349,7 @@ public class EmitirLicencia extends javax.swing.JFrame {
                 + "FACTOR: " + titular.getFactor() + "\n"
                 + "ES DONANTE: " + titular.isDonante());
 
-    }
-    
-
-    
-////    private void setearOriginal(){
-////        switch(motivo){
-////            case ORIGINAL:
-////                this.labelOriginal.setText("Si");
-////                break;
-////            case RENOVACION:
-////                this.labelOriginal.setText("No");
-////                break;
-////        }
-//        
-//    }
+    } 
 
 
     private boolean controlarCDE(String clase){
@@ -362,7 +372,7 @@ public class EmitirLicencia extends javax.swing.JFrame {
         //En ese caso el titular ya existe, pero la licencia no
         
         List<Licencia> licenciasExistentes = licenciaController.getLicenciasTitular(titular);
-        
+        System.out.println(licenciasExistentes.size());
         for(int i =0; i<licenciasExistentes.size(); i++){
             if(licenciasExistentes.get(i).getFechaVenc().after(new Date())){
                 quitarDeCombo(licenciasExistentes.get(i).getClaseId());

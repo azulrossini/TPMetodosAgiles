@@ -2,7 +2,6 @@
 package Presentacion;
 
 import Logica.*;
-import Logica.LicenciaController.Motivo;
 import Persistencia.*;
 import java.util.Date;
 import java.util.List;
@@ -13,15 +12,14 @@ public class ElegirLicencia extends javax.swing.JFrame {
     private PersonaController personaController;
     private LicenciaController licenciaController;
     private Usuario usuario;
-    private Motivo motivo;
     private List<Licencia> licencias;
 
-    public ElegirLicencia(Persona tit, PersonaController p, LicenciaController l, Motivo m, Usuario u) {
+    public ElegirLicencia(Persona tit, PersonaController p, LicenciaController l, Usuario u) {
         this.titular = tit;
         this.personaController = p;
         this.licenciaController = l;
         this.usuario = u;
-        this.motivo = m;
+        this.setLocationRelativeTo(null);
         initComponents();
         cargarTabla();
     }
@@ -42,6 +40,7 @@ public class ElegirLicencia extends javax.swing.JFrame {
         jLabelRegistroDeTitular = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel4.setBackground(new java.awt.Color(206, 206, 206));
         jPanel4.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 2, true), new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true)));
@@ -209,7 +208,7 @@ public class ElegirLicencia extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton18ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        RenovarLicencia rl = new RenovarLicencia(licencias.get(tabla.getSelectedRow()), titular, personaController, licenciaController, LicenciaController.Motivo.RENOVACION, usuario);
+        RenovarLicencia rl = new RenovarLicencia(licencias.get(tabla.getSelectedRow()), titular, personaController, licenciaController, usuario);
         rl.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed

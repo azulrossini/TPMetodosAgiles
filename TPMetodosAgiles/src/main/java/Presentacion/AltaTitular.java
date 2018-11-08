@@ -17,17 +17,15 @@ public class AltaTitular extends javax.swing.JFrame {
     private final PersonaController personaController;
     private final LicenciaController licenciaController;
     private final String pantallaAnterior;
-    private final Motivo motivo;
     private Usuario user = null;
     
-    public AltaTitular(PersonaController p, LicenciaController l, String pantAnterior, Motivo m, Usuario user) {
+    public AltaTitular(PersonaController p, LicenciaController l, String pantAnterior, Usuario user) {
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.personaController = p;
         this.pantallaAnterior = pantAnterior;
         this.licenciaController = l;
-        this.motivo = m;
         this.setearComponentes();
         this.user = user;
     }
@@ -633,13 +631,13 @@ public class AltaTitular extends javax.swing.JFrame {
             int seleccion = JOptionPane.showOptionDialog(null, "\t\tEl titular ya existe", "¿Que desea hacer?", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,null, options, options[2]);
             switch (seleccion){
                 case 0:/*Renovar*/
-                    BuscarTitular bt = new BuscarTitular(personaController,licenciaController, LicenciaController.Motivo.RENOVACION, "index", user);
+                    BuscarTitular bt = new BuscarTitular(personaController,licenciaController, "index", user);
                     bt.setVisible(true);
                     this.setVisible(false); break;
                 case 1:/*Nueva licencia*/ 
                     Persona titularExistente = personaController.PersonaExistente(tipo, numeroDocumento);
                     System.out.println(titularExistente.getNombre());
-                    EmitirLicencia el = new EmitirLicencia(titularExistente, personaController, licenciaController, motivo, user);
+                    EmitirLicencia el = new EmitirLicencia(titularExistente, personaController, licenciaController, user);
                     el.setVisible(true);
                     this.setVisible(false);
                     break;
@@ -727,7 +725,7 @@ public class AltaTitular extends javax.swing.JFrame {
             
             
             //Llama para emitir una licencia con el titular creado
-            EmitirLicencia el = new EmitirLicencia(nuevoTitular, personaController, licenciaController, motivo, user);
+            EmitirLicencia el = new EmitirLicencia(nuevoTitular, personaController, licenciaController, user);
             el.setVisible(true);
             this.setVisible(false);
         }

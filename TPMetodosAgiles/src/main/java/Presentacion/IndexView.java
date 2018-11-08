@@ -416,7 +416,7 @@ public class IndexView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAltaActionPerformed
-        AltaTitular at = new AltaTitular(PC,LC, "index", LicenciaController.Motivo.ORIGINAL, user);
+        AltaTitular at = new AltaTitular(PC,LC, "index", user);
         at.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_botonAltaActionPerformed
@@ -436,7 +436,7 @@ public class IndexView extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void botonEmitirLicenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEmitirLicenciaActionPerformed
-        BuscarTitular bt = new BuscarTitular(PC,LC, LicenciaController.Motivo.RENOVACION, "index", user);
+        BuscarTitular bt = new BuscarTitular(PC,LC, "index", user);
         bt.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_botonEmitirLicenciaActionPerformed

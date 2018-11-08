@@ -2,10 +2,12 @@
 package Presentacion;
 
 import Logica.*;
-import Logica.LicenciaController.Motivo;
 import Persistencia.*;
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.JOptionPane;
 
@@ -15,16 +17,15 @@ public class RenovarLicencia extends javax.swing.JFrame {
     private Persona titular;
     private PersonaController personaController;
     private LicenciaController licenciaController;
-    private Motivo motivo;
     private Usuario usuario;
     
-    public RenovarLicencia(Licencia lic, Persona tit, PersonaController p, LicenciaController l, Motivo m, Usuario u) {
+    public RenovarLicencia(Licencia lic, Persona tit, PersonaController p, LicenciaController l, Usuario u) {
         this.licencia = lic;
         this.titular = tit;
         this.personaController = p;
         this.licenciaController = l;
-        this.motivo = m;
         this.usuario = u;
+        this.setLocationRelativeTo(null);
         initComponents();
         cargarDatosTitular();
         cargarObservaciones();
@@ -50,6 +51,7 @@ public class RenovarLicencia extends javax.swing.JFrame {
         fieldClase = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel4.setBackground(new java.awt.Color(206, 206, 206));
         jPanel4.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 2, true), new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true)));
@@ -230,7 +232,7 @@ public class RenovarLicencia extends javax.swing.JFrame {
             new Object[] { "Si", "No" },   // null para YES, NO y CANCEL
             "Si");
         if(seleccion == 0){
-            ElegirLicencia el = new ElegirLicencia(titular, personaController, licenciaController, motivo, usuario);
+            ElegirLicencia el = new ElegirLicencia(titular, personaController, licenciaController, usuario);
             el.setVisible(true);
             this.dispose();
         }
@@ -238,22 +240,35 @@ public class RenovarLicencia extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
-        //Comprobar que pueda sacar las clases
-        if(licenciaController.verificarClase(licencia.getClaseId(), titular)){
-
-            //Si es clase C D o E controla que tenga +21, sino no
-            if(controlarCDE(licencia.getClaseId())){
-                licenciaController.crearLicencia(titular, licencia.getClaseId(), licencia.getObservaciones(), motivo, usuario.getId());
-                licencia.setFechaVenc(new Date());
-                licenciaController.actualizarLicencia(licencia);
+        //Si es clase C D o E controla que tenga +21, sino no
+        if(almacenarLicencia()){
+            JOptionPane.showMessageDialog(this, "Felicitaciones! \n Se ha renovado correctamente la licencia", "Exito",  JOptionPane.OK_OPTION);
+            ImprimirLicencia il;
+            try {
+                il = new ImprimirLicencia(titular, licencia);
+                il.setVisible(true);
+                this.dispose();
+            } catch (IOException ex) {
+                Logger.getLogger(RenovarLicencia.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        
         else{
-            JOptionPane.showMessageDialog(this, "Ha ocurrido un error \n No se puede almacenar el titular", "Error",  JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Ha ocurrido un error \n No se puede renovar la licencia", "Error",  JOptionPane.ERROR_MESSAGE);
         }
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private boolean almacenarLicencia(){
+        if(controlarCDE(licencia.getClaseId())){
+            licenciaController.crearLicencia(titular, licencia.getClaseId(), licencia.getObservaciones(),LicenciaController.Motivo.RENOVACION, usuario.getId());
+            licencia.setFechaVenc(new Date());
+            licenciaController.actualizarLicencia(licencia);
+            return true;
+        }
+        return false;
+    }
+    
     private void cargarDatosTitular(){
         Calendar c = Calendar.getInstance();
         c.setTime(titular.getFechaNac());

@@ -178,14 +178,14 @@ public class EleccionTipoEmision extends javax.swing.JFrame {
 
     private void botonRenovacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRenovacionActionPerformed
         // TODO add your handling code here:
-        BuscarTitular bt = new BuscarTitular(personaController, licenciaController, LicenciaController.Motivo.RENOVACION, "eleccion", user);
+        BuscarTitular bt = new BuscarTitular(personaController, licenciaController, "eleccion", user);
         bt.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_botonRenovacionActionPerformed
 
     private void boton1vezActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton1vezActionPerformed
         // TODO add your handling code here:
-        AltaTitular at = new AltaTitular(personaController, licenciaController, "eleccion", LicenciaController.Motivo.ORIGINAL, user);
+        AltaTitular at = new AltaTitular(personaController, licenciaController, "eleccion", user);
         at.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_boton1vezActionPerformed

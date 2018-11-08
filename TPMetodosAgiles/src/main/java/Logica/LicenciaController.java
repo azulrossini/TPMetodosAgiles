@@ -156,7 +156,7 @@ public class LicenciaController {
         return fechaVigencia.getTime();
     }
     
-    public void crearLicencia(Persona titular, String clase, String obs, Motivo motivo, int userID){
+    public Licencia crearLicencia(Persona titular, String clase, String obs, Motivo motivo, int userID){
         this.eliminarClasesHeredadas(clase, titular);
 
         //Crear la licencia
@@ -187,6 +187,8 @@ public class LicenciaController {
         licencia.setCostoId(cc.getCostoId());
                
          LicenciaDAO.writeLicencia(licencia);
+         
+         return licencia;
     }
     
     public int getDiferenciaAnios(Date vencimiento){
