@@ -6,6 +6,7 @@ import Persistencia.Persona;
 import Persistencia.Vigencias;
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -48,7 +49,13 @@ public class LicenciaController {
     }  
     
     public List<Licencia> getLicenciasTitular(Persona titular){
-        return LicenciaDAO.getLicenciasTitular(titular.getId());
+        if(titular.getId()!=null){
+            return LicenciaDAO.getLicenciasTitular(titular.getId());
+        }
+        else{
+            return new ArrayList<Licencia>();
+        }
+        
     }
     
     public void actualizarLicencia(Licencia l){

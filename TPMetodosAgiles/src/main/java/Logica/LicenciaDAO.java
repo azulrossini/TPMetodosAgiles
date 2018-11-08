@@ -119,6 +119,7 @@ public class LicenciaDAO extends GenericDAO {
         return lista;  
     }
     
+    
     public List<String> getHeredadas(String clase){
         SS = util.getSessionFactory().openSession();
         SS.beginTransaction();

@@ -1,15 +1,11 @@
 
 package Presentacion;
 
-import Logica.LicenciaController;
-import Logica.LicenciaController.Motivo;
-import Logica.PersonaController;
+import Logica.*;
 import Persistencia.*;
 import java.awt.Point;
 import java.io.IOException;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -317,7 +313,7 @@ public class EmitirLicencia extends javax.swing.JFrame {
         
         //Si no esta en la BD lo almacena, si esta no
         //Es para que no presione el boton OK muchas veces, porque se almacena muhcas veces el mismo titular
-        if(personaController.buscarTitular(titular.getNroId())==null){
+        if((personaController.buscarTitular(titular.getNroId()))!=null){
             System.out.println("Entra a almacenar");
             personaController.almacenarTitular(titular);
         }
