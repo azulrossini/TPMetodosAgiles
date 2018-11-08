@@ -217,4 +217,13 @@ public class PersonaController {
         }else return false;
         
     }
+    public Persona PersonaExistente(TipoDocumento tipo, String numeroDocumento){
+        List<Persona> listaPersonas = this.buscarTitular(numeroDocumento);
+        for(Persona p: listaPersonas){
+            if(p.getTipoId().equals(tipo.toString()) && p.getNroId().equals(numeroDocumento)) return p;
+        }
+        
+        return null;
+    }
+    
 }

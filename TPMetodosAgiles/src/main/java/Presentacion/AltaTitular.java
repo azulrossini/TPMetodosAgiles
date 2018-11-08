@@ -8,6 +8,7 @@ import java.awt.Color;
 import java.awt.Point;
 import static java.lang.System.exit;
 import java.util.Date;
+import javax.swing.JOptionPane;
 
 
 public class AltaTitular extends javax.swing.JFrame {
@@ -595,6 +596,8 @@ public class AltaTitular extends javax.swing.JFrame {
 
     private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
         
+        
+        
         //tomando los datos de la pantalla
         String nombre = this.jTextFieldNombre.getText();
         String apellido = this.jTextFieldApellido.getText();
@@ -622,6 +625,29 @@ public class AltaTitular extends javax.swing.JFrame {
         boolean[] lista = new boolean[12];
         boolean errorEnDonante = (!this.jRadioButtonDonanteSi.isSelected() && !this.jRadioButtonDonanteNo.isSelected());
         lista = personaController.validarDatos(tipo, numeroDocumento, nombre, apellido, dia, mes, anio, calle, numeroCalle, piso, depart);
+        
+        
+        //si el titular ya existe, pregunto
+        if(!lista[11]){
+            String[] options = {"Renovar licencia existente", "Generar licencia para otra clase", "Cancelar"};
+            int seleccion = JOptionPane.showOptionDialog(null, "\t\tEl titular ya existe", "¿Que desea hacer?", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,null, options, options[2]);
+            switch (seleccion){
+                case 0:/*Renovar*/
+                    BuscarTitular bt = new BuscarTitular(personaController,licenciaController, LicenciaController.Motivo.RENOVACION, "index", user);
+                    bt.setVisible(true);
+                    this.setVisible(false); break;
+                case 1:/*Nueva licencia*/ 
+                    Persona titularExistente = personaController.PersonaExistente(tipo, numeroDocumento);
+                    System.out.println(titularExistente.getNombre());
+                    EmitirLicencia el = new EmitirLicencia(titularExistente, personaController, licenciaController, motivo, user);
+                    el.setVisible(true);
+                    this.setVisible(false);
+                    break;
+                case 2:/*cancelar*/ break;
+            }
+            
+        }
+         
         
         this.jLabelErrorNumDocumento.setVisible(!(lista[0] && lista[11]));
         this.jLabelErrorNombre.setVisible(!lista[1]);
