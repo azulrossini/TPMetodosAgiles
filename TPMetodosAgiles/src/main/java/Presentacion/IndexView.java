@@ -7,6 +7,7 @@ import java.awt.Point;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import static java.lang.System.exit;
+import javax.swing.ImageIcon;
 
 
 public class IndexView extends javax.swing.JFrame {
@@ -21,6 +22,7 @@ public class IndexView extends javax.swing.JFrame {
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
+        setIconImage(new ImageIcon(getClass().getResource("/favicon.png")).getImage());
         this.PC = new PersonaController();
         this.LC = new LicenciaController();
         this.VC = new VigenciaController();

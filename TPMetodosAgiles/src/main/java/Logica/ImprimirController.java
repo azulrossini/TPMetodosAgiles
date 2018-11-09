@@ -21,6 +21,7 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -96,7 +97,9 @@ public class ImprimirController {
         System.out.println("");
         
         parametersListado.put("fecha_desde", fechaDesdeFormat);
-        parametersListado.put("fecha_hasta", fechaHastaFormat);        
+        parametersListado.put("fecha_hasta", fechaHastaFormat);     
+        parametersListado.put("logo", new ImageIcon(getClass().getResource("/LogoReporte.jpg")).getImage());
+//        
         
     }
     
@@ -155,7 +158,10 @@ public class ImprimirController {
         });
     }
     
-    public void imprimirListado() throws JRException{
+    public void imprimirListado() throws JRException, IOException, IOException, ParseException{
+        
+        this.cargarParametrosListado("2019-01-01","2020-01-01");
+        
         Session SS = util.getSessionFactory().openSession();
         SS.doWork(new Work(){
             @Override
@@ -164,7 +170,7 @@ public class ImprimirController {
                 JasperPrint jp = null;
                 try{
                     JasperReport jr = (JasperReport) JRLoader.loadObject(archivo);
-                    jp = JasperFillManager.fillReport(jr,null,cnctn);
+                    jp = JasperFillManager.fillReport(jr, null,cnctn);
                 } catch (JRException ex) {
                     Logger.getLogger(ImprimirController.class.getName()).log(Level.SEVERE, null, ex);
                 }finally{

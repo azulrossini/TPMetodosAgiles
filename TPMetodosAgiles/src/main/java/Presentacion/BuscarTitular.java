@@ -10,6 +10,7 @@ import java.awt.Point;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.*;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 
@@ -30,6 +31,7 @@ public class BuscarTitular extends javax.swing.JFrame {
         this.licenciaController = l;
         Index.historial.add(this);
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("/favicon.png")).getImage());
         this.setLocationRelativeTo(null);
         this.user = user;
     }

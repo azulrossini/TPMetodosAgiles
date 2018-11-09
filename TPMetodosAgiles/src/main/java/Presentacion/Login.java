@@ -11,6 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.Icon;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -27,6 +28,7 @@ public class Login extends javax.swing.JFrame {
     
     public Login(){
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("/favicon.png")).getImage());
         this.uc = new UsuarioController();
         this.setLocationRelativeTo(null);
         this.setVisible(true);

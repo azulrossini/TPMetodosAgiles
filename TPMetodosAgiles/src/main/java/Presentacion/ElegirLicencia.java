@@ -8,6 +8,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.Date;
 import java.util.List;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 
@@ -25,6 +26,7 @@ public class ElegirLicencia extends javax.swing.JFrame {
         this.licenciaController = l;
         this.usuario = u;
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("/favicon.png")).getImage());
         cargarTabla();
         Index.historial.add(this);
         this.setLocationRelativeTo(null);

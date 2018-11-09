@@ -11,6 +11,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -30,6 +31,7 @@ public class AltaUsuario extends javax.swing.JFrame {
     
     public AltaUsuario(Usuario user) {
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("/favicon.png")).getImage());
         uc = new UsuarioController();
         this.bg = new ButtonGroup();
         this.bg.add(this.superusuario);

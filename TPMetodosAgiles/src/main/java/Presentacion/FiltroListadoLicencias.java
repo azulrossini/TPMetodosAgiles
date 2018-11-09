@@ -12,6 +12,7 @@ import java.awt.event.WindowEvent;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -27,6 +28,7 @@ public class FiltroListadoLicencias extends javax.swing.JFrame {
     
     public FiltroListadoLicencias(Usuario user) {
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("/favicon.png")).getImage());
         Primera.setVisible(true);
         SelectVigente.setVisible(false);
         SelectRangoVigente.setVisible(false);

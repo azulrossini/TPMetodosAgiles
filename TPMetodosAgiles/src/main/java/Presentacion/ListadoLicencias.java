@@ -28,6 +28,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
@@ -53,6 +54,7 @@ public class ListadoLicencias extends javax.swing.JFrame {
     
     public ListadoLicencias(boolean tipo, String fechaDesde, String fechaHasta, Usuario user) throws ParseException {
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("/favicon.png")).getImage());
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         Index.historial.add(this);
@@ -68,6 +70,7 @@ public class ListadoLicencias extends javax.swing.JFrame {
     
     public ListadoLicencias(boolean tipo, Usuario user) throws ParseException {
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("/favicon.png")).getImage());
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         

@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class EmitirLicencia extends javax.swing.JFrame {
@@ -30,6 +31,7 @@ public class EmitirLicencia extends javax.swing.JFrame {
         this.personaController = p;
         this.licenciaController = l;
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("/favicon.png")).getImage());
         completarDatosTitular();
         quitarClasesNoValidas();
         this.setLocationRelativeTo(null);

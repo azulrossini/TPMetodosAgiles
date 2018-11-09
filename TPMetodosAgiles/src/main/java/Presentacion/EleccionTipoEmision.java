@@ -6,6 +6,7 @@ import Persistencia.Usuario;
 import java.awt.Point;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import javax.swing.ImageIcon;
 
 
 public class EleccionTipoEmision extends javax.swing.JFrame {
@@ -24,6 +25,7 @@ public class EleccionTipoEmision extends javax.swing.JFrame {
         this.personaController = p;
         this.licenciaController = l;
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("/favicon.png")).getImage());
         this.setLocationRelativeTo(null);
         this.user = user;
         Index.historial.add(this);

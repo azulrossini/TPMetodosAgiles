@@ -11,6 +11,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 
 import javax.swing.JOptionPane;
 
@@ -30,6 +31,7 @@ public class RenovarLicencia extends javax.swing.JFrame {
         this.licenciaController = l;
         this.usuario = u;
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("/favicon.png")).getImage());
         cargarDatosTitular();
         cargarObservaciones();
         cargarClase();

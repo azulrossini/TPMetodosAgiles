@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import net.sf.jasperreports.engine.JRException;
 
@@ -22,6 +23,7 @@ public class ImprimirLicencia extends javax.swing.JFrame {
     
     public ImprimirLicencia(Persona p, Licencia l) throws IOException {
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("/favicon.png")).getImage());
         ic = new ImprimirController(p, l);
         this.cargarCampos(p, l);
         this.setLocationRelativeTo(null);

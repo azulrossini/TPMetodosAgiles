@@ -10,6 +10,7 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import static java.lang.System.exit;
 import java.util.Date;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -23,6 +24,7 @@ public class AltaTitular extends javax.swing.JFrame {
     
     public AltaTitular(PersonaController p, LicenciaController l, Usuario user) {
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("/favicon.png")).getImage());
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.personaController = p;
