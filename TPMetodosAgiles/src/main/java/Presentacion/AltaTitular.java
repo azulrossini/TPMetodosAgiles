@@ -719,8 +719,7 @@ public class AltaTitular extends javax.swing.JFrame {
            
         }
             boolean donante = this.jRadioButtonDonanteSi.isSelected();
-            int numDocu = Integer.valueOf(numeroDocumento);
-            Persona nuevoTitular = new Persona(tipo1, String.valueOf(numDocu), apellido, nombre, fechaNac, domicilio, grupoSang, rh, donante);
+            Persona nuevoTitular = new Persona(tipo1, numeroDocumento, apellido, nombre, fechaNac, domicilio, grupoSang, rh, donante);
             //System.out.println(nuevoTitular.isDonante()+"   "+ nuevoTitular.getFechaNac());
             
             
