@@ -124,6 +124,7 @@ public class Login extends javax.swing.JFrame {
         ingresar.setToolTipText("");
         ingresar.setBorderPainted(false);
         ingresar.setContentAreaFilled(false);
+        ingresar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/Flecha derecha rollover.png"))); // NOI18N
         ingresar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 ingresarMouseEntered(evt);
