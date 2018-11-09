@@ -335,6 +335,11 @@ public class EmitirLicencia extends javax.swing.JFrame {
         //No se pueden editar. Es el titular dado de alta anteriormente
         Calendar c = Calendar.getInstance();
         c.setTime(titular.getFechaNac());
+        String esDonante;
+        if (titular.isDonante())
+            esDonante = "Sí";
+        else
+            esDonante = "No";
         this.areaDatosTitular.setText("NOMBRE: "+ titular.getNombre() + "\n"
                 + "APELLIDO: " + titular.getApellido() + "\n"
                 + titular.getTipoId().toUpperCase() +": " + titular.getNroId() + "\n"
@@ -343,7 +348,7 @@ public class EmitirLicencia extends javax.swing.JFrame {
                 + "DOMICILIO: " + titular.getDomicilio() + "\n"
                 + "GRUPO SANGUINEO: " + titular.getGrupoSanguineo() + "\n"
                 + "FACTOR: " + titular.getFactor() + "\n"
-                + "ES DONANTE: " + titular.isDonante());
+                + "ES DONANTE: " + esDonante);
 
     } 
 

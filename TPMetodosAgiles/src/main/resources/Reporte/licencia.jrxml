@@ -4,12 +4,11 @@
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<subDataset name="dataset1" uuid="c32c1766-6c1f-4273-9120-f44834ac80d2"/>
-	<parameter name="nro_id" class="java.lang.Integer"/>
+	<parameter name="nro_id" class="java.lang.String"/>
 	<parameter name="apellido" class="java.lang.String"/>
 	<parameter name="nombre" class="java.lang.String"/>
 	<parameter name="domicilio" class="java.lang.String"/>
-	<parameter name="fecha_venc" class="java.util.Date"/>
-	<parameter name="fecha_nacimiento" class="java.util.Date"/>
+	<parameter name="fecha_venc" class="java.lang.String"/>
 	<parameter name="grupo_sanguineo" class="java.lang.String"/>
 	<parameter name="factor" class="java.lang.String"/>
 	<parameter name="clase" class="java.lang.String"/>
@@ -18,10 +17,11 @@
 	<parameter name="image" class="java.awt.image.BufferedImage"/>
 	<parameter name="bordeArriba" class="java.awt.image.BufferedImage"/>
 	<parameter name="bordeAbajo" class="java.awt.image.BufferedImage"/>
+	<parameter name="fecha_nacimiento" class="java.lang.String"/>
 	<queryString language="SQL">
 		<![CDATA[SELECT * FROM persona, licencia, vigencias WHERE 1]]>
 	</queryString>
-	<field name="nro_id" class="java.lang.Integer"/>
+	<field name="nro_id" class="java.lang.String"/>
 	<field name="apellido" class="java.lang.String"/>
 	<field name="nombre" class="java.lang.String"/>
 	<field name="fecha_nac" class="java.sql.Date"/>

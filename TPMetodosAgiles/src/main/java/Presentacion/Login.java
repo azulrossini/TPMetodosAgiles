@@ -120,7 +120,10 @@ public class Login extends javax.swing.JFrame {
 
         ingresar.setBackground(new java.awt.Color(255, 255, 255));
         ingresar.setFont(new java.awt.Font("Microsoft JhengHei UI", 1, 12)); // NOI18N
-        ingresar.setText("INGRESAR");
+        ingresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/Flecha derecha.png"))); // NOI18N
+        ingresar.setToolTipText("");
+        ingresar.setBorderPainted(false);
+        ingresar.setContentAreaFilled(false);
         ingresar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 ingresarMouseEntered(evt);
@@ -199,12 +202,12 @@ public class Login extends javax.swing.JFrame {
                         .addGap(39, 39, 39)
                         .addComponent(salir, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(ingresar, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(ingresar)
                         .addGap(27, 27, 27)))
                 .addComponent(jLabel1)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addGap(122, 122, 122)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(error, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(122, 122, 122))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()

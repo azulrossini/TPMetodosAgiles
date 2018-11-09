@@ -71,19 +71,21 @@ public class ImprimirController {
         parameters.put("nro_id",persona.getNroId());
         parameters.put("apellido",persona.getApellido());
         parameters.put("nombre",persona.getNombre());
-        parameters.put("fecha_nacimiento",persona.getFechaNac());
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        System.out.println(sdf.format(persona.getFechaNac()));
+        parameters.put("fecha_nacimiento",sdf.format(persona.getFechaNac()));
         parameters.put("domicilio",persona.getDomicilio());
         parameters.put("grupo_sanguineo",persona.getGrupoSanguineo());
         parameters.put("factor",persona.getFactor());
         parameters.put("clase",lic.getClaseId());
         parameters.put("observaciones",lic.getObservaciones());
-        parameters.put("fecha_venc",lic.getFechaVenc());
+        parameters.put("fecha_venc",sdf.format(lic.getFechaVenc()));
         if (persona.isDonante())
             parameters.put("donante", "Sí");
         else
             parameters.put("donante", "No");
-        parameters.put("bordeArriba", this.getClass().getClassLoader().getResource("bordeArriba.png"));
-        parameters.put("bordeAbajo", this.getClass().getClassLoader().getResource("bordeArriba.png"));
+        parameters.put("bordeArriba", ImageIO.read(this.getClass().getClassLoader().getResourceAsStream("Presentacion/bordeArriba.png")));
+        parameters.put("bordeAbajo", ImageIO.read(this.getClass().getClassLoader().getResourceAsStream("Presentacion/bordeAbajo.png")));
     }
     
     private void cargarParametrosListado(String fecha1, String fecha2) throws IOException, ParseException{

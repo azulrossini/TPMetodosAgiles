@@ -19,11 +19,12 @@ public class ImprimirLicencia extends javax.swing.JFrame {
     private Point mouseDownCompCoords = null;
 
     
-    ImprimirLicencia(Persona p, Licencia l) throws IOException {
+    public ImprimirLicencia(Persona p, Licencia l) throws IOException {
         initComponents();
         ic = new ImprimirController(p, l);
         this.cargarCampos(p, l);
         this.setLocationRelativeTo(null);
+        this.setVisible(true);
     }
     
     private void cargarCampos(Persona p, Licencia l){
@@ -38,7 +39,7 @@ public class ImprimirLicencia extends javax.swing.JFrame {
             this.don.setText("No");
         this.dom.setText(p.getDomicilio());
         this.rh.setText(p.getGrupoSanguineo() + p.getFactor());
-        this.tipo.setText(l.getMotivo().toString());
+        this.tipo.setText(l.getMotivo());
         Vigencias vig = (Vigencias) GenericDAO.read(new Vigencias(), l.getVigenciaId());
         this.vigencia.setText(String.valueOf(vig.getDuracion()) + " años");
     }
@@ -314,9 +315,9 @@ public class ImprimirLicencia extends javax.swing.JFrame {
                                 .addComponent(dom, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addComponent(vistaPrevia)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(cargarImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(60, 60, 60)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                                .addComponent(cargarImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(53, 53, 53)))
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addGap(50, 50, 50)
@@ -333,11 +334,11 @@ public class ImprimirLicencia extends javax.swing.JFrame {
                                     .addComponent(don, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                .addGap(0, 1, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                        .addComponent(imprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)
+                                        .addComponent(imprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
                                         .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jSeparator5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addContainerGap())
