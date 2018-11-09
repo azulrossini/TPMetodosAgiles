@@ -134,6 +134,7 @@ public class RenovarLicencia extends javax.swing.JFrame {
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/Flecha derecha.png"))); // NOI18N
         jButton2.setBorderPainted(false);
         jButton2.setContentAreaFilled(false);
+        jButton2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/Flecha derecha rollover.png"))); // NOI18N
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -310,6 +311,11 @@ public class RenovarLicencia extends javax.swing.JFrame {
     private void cargarDatosTitular(){
         Calendar c = Calendar.getInstance();
         c.setTime(titular.getFechaNac());
+        String esDonante;
+        if (titular.isDonante())
+            esDonante = "Sí";
+        else
+            esDonante = "No";
         this.areaDatosTitular.setText("NOMBRE: "+ titular.getNombre() + "\n"
                 + "APELLIDO: " + titular.getApellido() + "\n"
                 + titular.getTipoId().toUpperCase() +": " + titular.getNroId() + "\n"
@@ -318,7 +324,7 @@ public class RenovarLicencia extends javax.swing.JFrame {
                 + "DOMICILIO: " + titular.getDomicilio() + "\n"
                 + "GRUPO SANGUINEO: " + titular.getGrupoSanguineo() + "\n"
                 + "FACTOR: " + titular.getFactor() + "\n"
-                + "ES DONANTE: " + titular.isDonante());
+                + "ES DONANTE: " + esDonante);
     }
     
     private void cargarObservaciones(){

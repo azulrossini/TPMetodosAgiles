@@ -6,6 +6,11 @@ import Logica.UsuarioController;
 import Persistencia.Usuario;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.Icon;
 
 /**
  *
@@ -121,12 +126,21 @@ public class Login extends javax.swing.JFrame {
         ingresar.setToolTipText("");
         ingresar.setBorderPainted(false);
         ingresar.setContentAreaFilled(false);
+        ingresar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/Flecha derecha rollover.png"))); // NOI18N
+        ingresar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/Flecha derecha rollover.png"))); // NOI18N
+        ingresar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/Flecha derecha.png"))); // NOI18N
         ingresar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 ingresarMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 ingresarMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                ingresarMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                ingresarMouseReleased(evt);
             }
         });
         ingresar.addActionListener(new java.awt.event.ActionListener() {
@@ -184,7 +198,7 @@ public class Login extends javax.swing.JFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(41, 41, 41)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -199,7 +213,7 @@ public class Login extends javax.swing.JFrame {
                         .addGap(39, 39, 39)
                         .addComponent(salir, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(ingresar)
+                        .addComponent(ingresar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)))
                 .addComponent(jLabel1)
                 .addContainerGap())
@@ -298,11 +312,11 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_ingresarActionPerformed
 
     private void ingresarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ingresarMouseExited
-        this.ingresar.setBackground(this.ingresar.getBackground().brighter());
+        this.ingresar.setPressedIcon(this.ingresar.getRolloverIcon());
     }//GEN-LAST:event_ingresarMouseExited
 
     private void ingresarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ingresarMouseEntered
-        this.ingresar.setBackground(this.ingresar.getBackground().darker());
+        this.ingresar.setPressedIcon(this.ingresar.getIcon());
     }//GEN-LAST:event_ingresarMouseEntered
 
     private void minActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minActionPerformed
@@ -356,6 +370,14 @@ public class Login extends javax.swing.JFrame {
             System.exit(0);
         }
     }//GEN-LAST:event_salirKeyTyped
+
+    private void ingresarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ingresarMouseReleased
+        
+    }//GEN-LAST:event_ingresarMouseReleased
+
+    private void ingresarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ingresarMousePressed
+
+    }//GEN-LAST:event_ingresarMousePressed
 
     /**
      * @param args the command line arguments
