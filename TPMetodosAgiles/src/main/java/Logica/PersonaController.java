@@ -208,14 +208,17 @@ public class PersonaController {
     }
     
     public boolean validarExistencia(TipoDocumento tipo, String numeroDocumento){
-        if(this.validarDocumento(tipo, numeroDocumento)){
-            List<Persona> listaPersonas = this.buscarTitular(numeroDocumento);
-        for(Persona p: listaPersonas){
-            if(p.getTipoId().equals(tipo.toString())) return false;
-        }
-        return true;
-        }else return false;
+        if(!numeroDocumento.equals("")){
+            if(this.validarDocumento(tipo, numeroDocumento)){
+                List<Persona> listaPersonas = this.buscarTitular(numeroDocumento);
+                for(Persona p: listaPersonas){
+                    if(p.getTipoId().equals(tipo.toString())) return false;
+                }
+                return true;
+            }
+        }else return true;
         
+        return true;
     }
     public Persona PersonaExistente(TipoDocumento tipo, String numeroDocumento){
         List<Persona> listaPersonas = this.buscarTitular(numeroDocumento);
