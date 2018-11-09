@@ -140,7 +140,6 @@ public class AltaUsuario extends javax.swing.JFrame {
         crear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/Flecha derecha.png"))); // NOI18N
         crear.setBorderPainted(false);
         crear.setContentAreaFilled(false);
-        crear.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/Flecha derecha rollover.png"))); // NOI18N
         crear.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 crearMouseEntered(evt);
