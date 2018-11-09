@@ -3,10 +3,13 @@ package Presentacion;
 
 import Logica.CryptoUtils;
 import Logica.GenericDAO;
+import Logica.Index;
 import Logica.UsuarioController;
 import Persistencia.Usuario;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
 
@@ -34,6 +37,7 @@ public class AltaUsuario extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.user=user;
         this.setVisible(true);
+        Index.historial.add(this);
     }
     
 
@@ -335,9 +339,9 @@ public class AltaUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton16ActionPerformed
 
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
-        IndexView iv = new IndexView(user);
-        iv.setVisible(true);
+        Index.historial.get(Index.historial.size()-2).setVisible(true);
         this.dispose();
+        Index.historial.remove(Index.historial.size()-1);
     }//GEN-LAST:event_jButton18ActionPerformed
 
     private void usernameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_usernameKeyTyped

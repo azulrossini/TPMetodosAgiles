@@ -13,6 +13,8 @@ import Persistencia.Usuario;
 import Persistencia.Vigencias;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -53,6 +55,7 @@ public class ListadoLicencias extends javax.swing.JFrame {
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
+        Index.historial.add(this);
         
         flagTodas = false;
         flagTipo = tipo;        
@@ -425,8 +428,9 @@ public class ListadoLicencias extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        FiltroListadoLicencias FLL = new FiltroListadoLicencias(user);
+        Index.historial.get(Index.historial.size()-2).setVisible(true);
         this.dispose();
+        Index.historial.remove(Index.historial.size()-1);
     }//GEN-LAST:event_jButton12ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

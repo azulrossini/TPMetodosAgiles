@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import net.sf.jasperreports.engine.JRException;
 
 
@@ -25,6 +26,7 @@ public class ImprimirLicencia extends javax.swing.JFrame {
         this.cargarCampos(p, l);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
+        Index.historial.add(this);
     }
     
     private void cargarCampos(Persona p, Licencia l){
@@ -481,11 +483,15 @@ public class ImprimirLicencia extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton17ActionPerformed
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
-        System.exit(0);
+        Index.historial.get(Index.historial.size()-2).setVisible(true);
+        this.dispose();
+        Index.historial.remove(Index.historial.size()-1);
     }//GEN-LAST:event_jButton16ActionPerformed
 
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
-
+        this.dispose();
+        Index.historial.get(Index.historial.size()-2).setVisible(true);
+        Index.historial.remove(Index.historial.size()-1);
     }//GEN-LAST:event_jButton18ActionPerformed
 
 

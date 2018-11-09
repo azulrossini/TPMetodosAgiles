@@ -3,12 +3,16 @@ package Presentacion;
 
 import Logica.*;
 import Persistencia.Usuario;
+import java.awt.Point;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 
 public class EleccionTipoEmision extends javax.swing.JFrame {
 
-    private PersonaController personaController;
-    private LicenciaController licenciaController;
+    private final PersonaController personaController;
+    private final LicenciaController licenciaController;
+    private Point mouseDownCompCoords = null;
     private final Usuario user;
 
     
@@ -22,6 +26,7 @@ public class EleccionTipoEmision extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.user = user;
+        Index.historial.add(this);
     }
 
     /**
@@ -43,9 +48,23 @@ public class EleccionTipoEmision extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel4.setBackground(new java.awt.Color(206, 206, 206));
         jPanel4.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 2, true), new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true)));
+        jPanel4.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jPanel4MouseDragged(evt);
+            }
+        });
+        jPanel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPanel4MousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jPanel4MouseReleased(evt);
+            }
+        });
 
         jButton16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/cancel.png"))); // NOI18N
         jButton16.setBorderPainted(false);
@@ -161,7 +180,7 @@ public class EleccionTipoEmision extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -178,24 +197,36 @@ public class EleccionTipoEmision extends javax.swing.JFrame {
 
     private void botonRenovacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRenovacionActionPerformed
         // TODO add your handling code here:
-        BuscarTitular bt = new BuscarTitular(personaController, licenciaController, "eleccion", user);
+        BuscarTitular bt = new BuscarTitular(personaController, licenciaController, user);
         bt.setVisible(true);
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_botonRenovacionActionPerformed
 
     private void boton1vezActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton1vezActionPerformed
         // TODO add your handling code here:
-        AltaTitular at = new AltaTitular(personaController, licenciaController, "eleccion", user);
+        AltaTitular at = new AltaTitular(personaController, licenciaController, user);
         at.setVisible(true);
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_boton1vezActionPerformed
 
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
-        // TODO add your handling code here:
-        IndexView i = new IndexView(user);
-        i.setVisible(true);
-        this.setVisible(false);
+        Index.historial.get(Index.historial.size()-2).setVisible(true);
+        this.dispose();
+        Index.historial.remove(Index.historial.size()-1);
     }//GEN-LAST:event_jButton18ActionPerformed
+
+    private void jPanel4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MousePressed
+        mouseDownCompCoords = evt.getPoint();
+    }//GEN-LAST:event_jPanel4MousePressed
+
+    private void jPanel4MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseReleased
+        mouseDownCompCoords = null;
+    }//GEN-LAST:event_jPanel4MouseReleased
+
+    private void jPanel4MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseDragged
+        Point currCoords = evt.getLocationOnScreen();
+        this.setLocation(currCoords.x - mouseDownCompCoords.x, currCoords.y - mouseDownCompCoords.y);
+    }//GEN-LAST:event_jPanel4MouseDragged
 
 
 

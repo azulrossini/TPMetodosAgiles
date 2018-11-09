@@ -1,14 +1,11 @@
 
 package Presentacion;
 
-import Logica.CryptoUtils;
+import Logica.Index;
 import Logica.UsuarioController;
 import Persistencia.Usuario;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
-import java.util.Arrays;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *

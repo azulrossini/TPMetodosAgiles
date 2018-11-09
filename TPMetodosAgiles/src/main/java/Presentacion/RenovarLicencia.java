@@ -3,6 +3,9 @@ package Presentacion;
 
 import Logica.*;
 import Persistencia.*;
+import java.awt.Point;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
@@ -13,11 +16,12 @@ import javax.swing.JOptionPane;
 
 
 public class RenovarLicencia extends javax.swing.JFrame {
-    private Licencia licencia;
-    private Persona titular;
-    private PersonaController personaController;
-    private LicenciaController licenciaController;
-    private Usuario usuario;
+    private final Licencia licencia;
+    private final Persona titular;
+    private final PersonaController personaController;
+    private final LicenciaController licenciaController;
+    private final Usuario usuario;
+    private Point mouseDownCompCoords = null;
     
     public RenovarLicencia(Licencia lic, Persona tit, PersonaController p, LicenciaController l, Usuario u) {
         this.licencia = lic;
@@ -25,11 +29,12 @@ public class RenovarLicencia extends javax.swing.JFrame {
         this.personaController = p;
         this.licenciaController = l;
         this.usuario = u;
-        this.setLocationRelativeTo(null);
         initComponents();
         cargarDatosTitular();
         cargarObservaciones();
         cargarClase();
+        Index.historial.add(this);
+        this.setLocationRelativeTo(null);
     }
 
     @SuppressWarnings("unchecked")
@@ -55,6 +60,19 @@ public class RenovarLicencia extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(206, 206, 206));
         jPanel4.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 2, true), new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true)));
+        jPanel4.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jPanel4MouseDragged(evt);
+            }
+        });
+        jPanel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPanel4MousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jPanel4MouseReleased(evt);
+            }
+        });
 
         jLabel14.setBackground(new java.awt.Color(51, 51, 51));
         jLabel14.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 36)); // NOI18N
@@ -232,9 +250,9 @@ public class RenovarLicencia extends javax.swing.JFrame {
             new Object[] { "Si", "No" },   // null para YES, NO y CANCEL
             "Si");
         if(seleccion == 0){
-            ElegirLicencia el = new ElegirLicencia(titular, personaController, licenciaController, usuario);
-            el.setVisible(true);
+            Index.historial.get(Index.historial.size()-2).setVisible(true);
             this.dispose();
+            Index.historial.remove(Index.historial.size()-1);
         }
     }//GEN-LAST:event_jButton18ActionPerformed
 
@@ -247,7 +265,15 @@ public class RenovarLicencia extends javax.swing.JFrame {
             try {
                 il = new ImprimirLicencia(titular, licencia);
                 il.setVisible(true);
-                this.dispose();
+                this.setEnabled(false);
+                RenovarLicencia este = this;
+                il.addWindowListener(new WindowAdapter(){
+                    @Override
+                    public void windowClosed(WindowEvent we) {
+                        este.setEnabled(true);
+                        este.setAlwaysOnTop(false);
+                    }
+                });
             } catch (IOException ex) {
                 Logger.getLogger(RenovarLicencia.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -258,6 +284,19 @@ public class RenovarLicencia extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jPanel4MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseDragged
+        Point currCoords = evt.getLocationOnScreen();
+        this.setLocation(currCoords.x - mouseDownCompCoords.x, currCoords.y - mouseDownCompCoords.y);
+    }//GEN-LAST:event_jPanel4MouseDragged
+
+    private void jPanel4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MousePressed
+        mouseDownCompCoords = evt.getPoint();
+    }//GEN-LAST:event_jPanel4MousePressed
+
+    private void jPanel4MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseReleased
+        mouseDownCompCoords = null;
+    }//GEN-LAST:event_jPanel4MouseReleased
 
     private boolean almacenarLicencia(){
         if(controlarCDE(licencia.getClaseId())){

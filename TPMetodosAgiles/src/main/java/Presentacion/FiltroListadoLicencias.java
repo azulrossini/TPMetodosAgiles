@@ -7,7 +7,8 @@ package Presentacion;
 
 import Logica.*;
 import Persistencia.Usuario;
-import java.awt.Color;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -36,6 +37,7 @@ public class FiltroListadoLicencias extends javax.swing.JFrame {
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.user = user;
+        Index.historial.add(this);
     }
 
     /**
@@ -918,13 +920,19 @@ public class FiltroListadoLicencias extends javax.swing.JFrame {
     }//GEN-LAST:event_rangoActionPerformed
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
-        Primera.setVisible(true);
-        SelectVigente.setVisible(false);
+//        Primera.setVisible(true);
+//        SelectVigente.setVisible(false);
+        Index.historial.get(Index.historial.size()-2).setVisible(true);
+        this.dispose();
+        Index.historial.remove(Index.historial.size()-1);
     }//GEN-LAST:event_backActionPerformed
 
     private void back1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back1ActionPerformed
-        SelectRangoVigente.setVisible(false);
-        SelectVigente.setVisible(true);
+//        SelectRangoVigente.setVisible(false);
+//        SelectVigente.setVisible(true);
+        this.dispose();
+        Index.historial.get(Index.historial.size()-2).setVisible(true);
+        Index.historial.remove(Index.historial.size()-1);
     }//GEN-LAST:event_back1ActionPerformed
 
     private void minimize1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minimize1ActionPerformed

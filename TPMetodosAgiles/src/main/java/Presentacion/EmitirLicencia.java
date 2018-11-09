@@ -4,6 +4,8 @@ package Presentacion;
 import Logica.*;
 import Persistencia.*;
 import java.awt.Point;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.util.*;
 import java.util.logging.Level;
@@ -32,6 +34,7 @@ public class EmitirLicencia extends javax.swing.JFrame {
         quitarClasesNoValidas();
         this.setLocationRelativeTo(null);
         this.user = user;
+        Index.historial.add(this);
     }
     
     @SuppressWarnings("unchecked")
@@ -255,9 +258,9 @@ public class EmitirLicencia extends javax.swing.JFrame {
             new Object[] { "Si", "No" },   // null para YES, NO y CANCEL
             "Si");
         if(seleccion == 0){
-            AltaTitular at = new AltaTitular(personaController, licenciaController, "", user);
-            at.setVisible(true);
-            this.setVisible(false);
+            Index.historial.get(Index.historial.size()-2).setVisible(true);
+            this.dispose();
+            Index.historial.remove(Index.historial.size()-1);
         }
 
     }//GEN-LAST:event_jButton18ActionPerformed
@@ -275,7 +278,15 @@ public class EmitirLicencia extends javax.swing.JFrame {
                 try {
                     il = new ImprimirLicencia(titular, licencia);
                     il.setVisible(true);
-                    this.dispose();
+                    this.setEnabled(false);
+                    EmitirLicencia este = this;
+                    il.addWindowListener(new WindowAdapter(){
+                        @Override
+                        public void windowClosed(WindowEvent we) {
+                            este.setEnabled(true);
+                            este.setAlwaysOnTop(false);
+                        }
+                    });
                 } catch (IOException ex) {
                     Logger.getLogger(EmitirLicencia.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -291,6 +302,15 @@ public class EmitirLicencia extends javax.swing.JFrame {
     
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void setear(boolean flag){
+        this.observaciones.setEnabled(flag);
+        this.comboClase.setEnabled(flag);
+        this.jButton16.setEnabled(flag);
+        this.jButton17.setEnabled(flag);
+        this.jButton18.setEnabled(flag);
+        this.jButton2.setEnabled(flag);
+    }
+    
     private void jPanel4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MousePressed
         mouseDownCompCoords = evt.getPoint();
     }//GEN-LAST:event_jPanel4MousePressed

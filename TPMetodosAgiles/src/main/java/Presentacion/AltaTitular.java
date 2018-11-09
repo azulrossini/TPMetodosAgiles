@@ -2,12 +2,15 @@
 package Presentacion;
 
 import Logica.*;
-import Logica.LicenciaController.Motivo;
 import Persistencia.*;
 import java.awt.Color;
 import java.awt.Point;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import static java.lang.System.exit;
 import java.util.Date;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 
@@ -16,18 +19,17 @@ public class AltaTitular extends javax.swing.JFrame {
     private Point mouseDownCompCoords = null;
     private final PersonaController personaController;
     private final LicenciaController licenciaController;
-    private final String pantallaAnterior;
     private Usuario user = null;
     
-    public AltaTitular(PersonaController p, LicenciaController l, String pantAnterior, Usuario user) {
+    public AltaTitular(PersonaController p, LicenciaController l, Usuario user) {
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.personaController = p;
-        this.pantallaAnterior = pantAnterior;
         this.licenciaController = l;
         this.setearComponentes();
         this.user = user;
+        Index.historial.add(this);
     }
 
 //    private AltaTitular() { //sirve solo para iniciar alta titular sola (sin venir del menu principal)
@@ -141,6 +143,11 @@ public class AltaTitular extends javax.swing.JFrame {
         jComboBoxTipoDocumento.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 14)); // NOI18N
         jComboBoxTipoDocumento.setForeground(new java.awt.Color(51, 51, 51));
         jComboBoxTipoDocumento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "DNI", "CUIT", "CUIL", "LC", "LE", "CI", "PASAPORTE" }));
+        jComboBoxTipoDocumento.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jComboBoxTipoDocumentoFocusGained(evt);
+            }
+        });
         jComboBoxTipoDocumento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxTipoDocumentoActionPerformed(evt);
@@ -535,19 +542,16 @@ public class AltaTitular extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtrasActionPerformed
-        // TODO add your handling code here:
-        switch(pantallaAnterior){
-            case "index": 
-                IndexView i = new IndexView(user);
-                i.setVisible(true);
-                this.setVisible(false);
-                break;
-            case "eleccion": 
-                EleccionTipoEmision e = new EleccionTipoEmision(personaController, licenciaController, user);
-                e.setVisible(true);
-                this.setVisible(false);
-                break;
-        }
+        Index.historial.get(Index.historial.size()-2).setVisible(true);
+        this.dispose();
+        Index.historial.remove(Index.historial.size()-1);
+//        AltaTitular este = this;
+//        Index.historial.get(Index.historial.size()-2).addWindowListener(new WindowAdapter(){
+//            @Override
+//            public void windowClosed(WindowEvent evt){
+//                
+//            }
+//        });
     }//GEN-LAST:event_jButtonAtrasActionPerformed
 
     private void jButtonCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCerrarActionPerformed
@@ -631,7 +635,7 @@ public class AltaTitular extends javax.swing.JFrame {
             int seleccion = JOptionPane.showOptionDialog(null, "\t\tEl titular ya existe", "¿Que desea hacer?", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,null, options, options[2]);
             switch (seleccion){
                 case 0:/*Renovar*/
-                    BuscarTitular bt = new BuscarTitular(personaController,licenciaController, "index", user);
+                    BuscarTitular bt = new BuscarTitular(personaController,licenciaController, user);
                     bt.setVisible(true);
                     this.setVisible(false); break;
                 case 1:/*Nueva licencia*/ 
@@ -735,6 +739,10 @@ public class AltaTitular extends javax.swing.JFrame {
     private void jComboBoxTipoDocumentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxTipoDocumentoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxTipoDocumentoActionPerformed
+
+    private void jComboBoxTipoDocumentoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jComboBoxTipoDocumentoFocusGained
+
+    }//GEN-LAST:event_jComboBoxTipoDocumentoFocusGained
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

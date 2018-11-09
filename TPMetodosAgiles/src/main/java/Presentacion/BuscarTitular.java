@@ -1,29 +1,34 @@
 
 package Presentacion;
 
+import Logica.Index;
 import Logica.LicenciaController;
 import Logica.LicenciaController.Motivo;
 import Logica.PersonaController;
 import Persistencia.*;
+import java.awt.Point;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.*;
+import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 
 public class BuscarTitular extends javax.swing.JFrame {
 
-    private PersonaController personaController;
-    private LicenciaController licenciaController;
+    private final PersonaController personaController;
+    private final LicenciaController licenciaController;
     private List<Persona> personas;
-    private String pantallaAnterior;
     private final Usuario user;
+    private Point mouseDownCompCoords = null;
     
 //    public BuscarTitular() {
 //        initComponents();
 //    }
     
-    public BuscarTitular(PersonaController p, LicenciaController l, String pantAnterior, Usuario user){
+    public BuscarTitular(PersonaController p, LicenciaController l, Usuario user){
         this.personaController = p;
         this.licenciaController = l;
-        this.pantallaAnterior = pantAnterior;
+        Index.historial.add(this);
         initComponents();
         this.setLocationRelativeTo(null);
         this.user = user;
@@ -52,6 +57,19 @@ public class BuscarTitular extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(206, 206, 206));
         jPanel4.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 2, true), new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true)));
+        jPanel4.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jPanel4MouseDragged(evt);
+            }
+        });
+        jPanel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPanel4MousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jPanel4MouseReleased(evt);
+            }
+        });
 
         jLabel14.setBackground(new java.awt.Color(51, 51, 51));
         jLabel14.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 30)); // NOI18N
@@ -257,33 +275,34 @@ public class BuscarTitular extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
-        // TODO add your handling code here:
-            switch(pantallaAnterior){
-            case "index": 
-                IndexView i = new IndexView(user);
-                i.setVisible(true);
-                this.setVisible(false);
-                break;
-            case "eleccion": 
-                EleccionTipoEmision e = new EleccionTipoEmision(personaController, licenciaController, user);
-                e.setVisible(true);
-                this.setVisible(false);
-                break;
-        }
-
-        
+        Index.historial.get(Index.historial.size()-2).setVisible(true);
+        this.dispose();
+        Index.historial.remove(Index.historial.size()-1);
     }//GEN-LAST:event_jButton18ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         ElegirLicencia el= new ElegirLicencia(personas.get(this.tabla.getSelectedRow()), personaController, licenciaController, user);
         el.setVisible(true);
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void buscaDNIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscaDNIActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_buscaDNIActionPerformed
+
+    private void jPanel4MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseDragged
+        Point currCoords = evt.getLocationOnScreen();
+        this.setLocation(currCoords.x - mouseDownCompCoords.x, currCoords.y - mouseDownCompCoords.y);
+    }//GEN-LAST:event_jPanel4MouseDragged
+
+    private void jPanel4MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseReleased
+        mouseDownCompCoords = null;
+    }//GEN-LAST:event_jPanel4MouseReleased
+
+    private void jPanel4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MousePressed
+        mouseDownCompCoords = evt.getPoint();
+    }//GEN-LAST:event_jPanel4MousePressed
 
     
     private void setearTabla(){
