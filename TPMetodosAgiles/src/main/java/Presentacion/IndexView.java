@@ -103,7 +103,7 @@ public class IndexView extends javax.swing.JFrame {
         });
 
         jLabel2.setBackground(new java.awt.Color(51, 51, 51));
-        jLabel2.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 36)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(51, 51, 51));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("LICENCIAS SANTA FE");
@@ -168,10 +168,11 @@ public class IndexView extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(217, 217, 217));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(228, 228, 228)));
 
-        botonListado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/listar-user-rollover.png"))); // NOI18N
+        botonListado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/ListadoTitular.png"))); // NOI18N
         botonListado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         botonListado.setBorderPainted(false);
         botonListado.setContentAreaFilled(false);
+        botonListado.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/listar-user-rollover.png"))); // NOI18N
 
         jLabel7.setBackground(new java.awt.Color(51, 51, 51));
         jLabel7.setFont(new java.awt.Font("Caviar Dreams", 1, 18)); // NOI18N
