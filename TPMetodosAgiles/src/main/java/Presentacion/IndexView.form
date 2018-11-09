@@ -246,12 +246,12 @@
         <Container class="javax.swing.JPanel" name="jPanel2">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="d9" green="d9" red="d9" type="rgb"/>
+              <Color blue="d3" green="d3" red="d3" type="rgb"/>
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                 <LineBorder>
-                  <Color PropertyName="color" blue="e4" green="e4" red="e4" type="rgb"/>
+                  <Color PropertyName="color" blue="d6" green="d6" red="d6" type="rgb"/>
                 </LineBorder>
               </Border>
             </Property>
@@ -346,6 +346,9 @@
                   <Image iconType="3" name="/Presentacion/listar-user-rollover.png"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonListadoActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel7">
               <Properties>
@@ -359,7 +362,7 @@
                   <Color blue="33" green="33" red="33" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="Listar"/>
+                <Property name="text" type="java.lang.String" value="BUSCAR"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel9">
@@ -410,7 +413,7 @@
                   <Color blue="33" green="33" red="33" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="Crear"/>
+                <Property name="text" type="java.lang.String" value="CREAR"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="botonBaja">
@@ -444,7 +447,7 @@
                   <Color blue="33" green="33" red="33" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="Eliminar"/>
+                <Property name="text" type="java.lang.String" value="ELIMINAR"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="botonEditar">
@@ -478,7 +481,7 @@
                   <Color blue="33" green="33" red="33" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="Editar"/>
+                <Property name="text" type="java.lang.String" value="EDITAR"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JSeparator" name="jSeparator2">
@@ -496,12 +499,12 @@
         <Container class="javax.swing.JPanel" name="jPanel3">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="e4" green="e4" red="e4" type="rgb"/>
+              <Color blue="d6" green="d6" red="d6" type="rgb"/>
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                 <LineBorder>
-                  <Color PropertyName="color" blue="e1" green="e1" red="e1" type="rgb"/>
+                  <Color PropertyName="color" blue="db" green="db" red="db" type="rgb"/>
                 </LineBorder>
               </Border>
             </Property>
@@ -638,7 +641,7 @@
                   <Color blue="33" green="33" red="33" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="Listado"/>
+                <Property name="text" type="java.lang.String" value="LISTAR"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="botonEmitir">
@@ -675,7 +678,7 @@
                   <Color blue="33" green="33" red="33" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="Emitir"/>
+                <Property name="text" type="java.lang.String" value="EMITIR"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="botonCosto">
@@ -709,7 +712,7 @@
                   <Color blue="33" green="33" red="33" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="Costo"/>
+                <Property name="text" type="java.lang.String" value="COSTOS"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="botonEmitirLicencia">
@@ -746,7 +749,7 @@
                   <Color blue="33" green="33" red="33" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="Buscar"/>
+                <Property name="text" type="java.lang.String" value="BUSCAR"/>
               </Properties>
             </Component>
           </SubComponents>

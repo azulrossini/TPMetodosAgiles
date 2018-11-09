@@ -165,20 +165,25 @@ public class IndexView extends javax.swing.JFrame {
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
         jSeparator1.setOpaque(true);
 
-        jPanel2.setBackground(new java.awt.Color(217, 217, 217));
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(228, 228, 228)));
+        jPanel2.setBackground(new java.awt.Color(211, 211, 211));
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(214, 214, 214)));
 
         botonListado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/ListadoTitular.png"))); // NOI18N
         botonListado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         botonListado.setBorderPainted(false);
         botonListado.setContentAreaFilled(false);
         botonListado.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/listar-user-rollover.png"))); // NOI18N
+        botonListado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonListadoActionPerformed(evt);
+            }
+        });
 
         jLabel7.setBackground(new java.awt.Color(51, 51, 51));
         jLabel7.setFont(new java.awt.Font("Caviar Dreams", 1, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(51, 51, 51));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("Listar");
+        jLabel7.setText("BUSCAR");
 
         jLabel9.setBackground(new java.awt.Color(51, 51, 51));
         jLabel9.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 24)); // NOI18N
@@ -200,7 +205,7 @@ public class IndexView extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Caviar Dreams", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(51, 51, 51));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Crear");
+        jLabel6.setText("CREAR");
 
         botonBaja.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/BajaTitular.png"))); // NOI18N
         botonBaja.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
@@ -212,7 +217,7 @@ public class IndexView extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Caviar Dreams", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(51, 51, 51));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Eliminar");
+        jLabel5.setText("ELIMINAR");
 
         botonEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/EditTitular.png"))); // NOI18N
         botonEditar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
@@ -224,7 +229,7 @@ public class IndexView extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Caviar Dreams", 1, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(51, 51, 51));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("Editar");
+        jLabel8.setText("EDITAR");
 
         jSeparator2.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
@@ -285,8 +290,8 @@ public class IndexView extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel3.setBackground(new java.awt.Color(228, 228, 228));
-        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(225, 225, 225)));
+        jPanel3.setBackground(new java.awt.Color(214, 214, 214));
+        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 219, 219)));
 
         jSeparator3.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator3.setForeground(new java.awt.Color(0, 0, 0));
@@ -311,7 +316,7 @@ public class IndexView extends javax.swing.JFrame {
         jLabel15.setFont(new java.awt.Font("Caviar Dreams", 1, 18)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(51, 51, 51));
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel15.setText("Listado");
+        jLabel15.setText("LISTAR");
 
         botonEmitir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/id-card (2).png"))); // NOI18N
         botonEmitir.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
@@ -328,7 +333,7 @@ public class IndexView extends javax.swing.JFrame {
         jLabel16.setFont(new java.awt.Font("Caviar Dreams", 1, 18)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(51, 51, 51));
         jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel16.setText("Emitir");
+        jLabel16.setText("EMITIR");
 
         botonCosto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/budget.png"))); // NOI18N
         botonCosto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
@@ -340,7 +345,7 @@ public class IndexView extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Caviar Dreams", 1, 18)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(51, 51, 51));
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel13.setText("Costo");
+        jLabel13.setText("COSTOS");
 
         botonEmitirLicencia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/loupe.png"))); // NOI18N
         botonEmitirLicencia.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
@@ -357,7 +362,7 @@ public class IndexView extends javax.swing.JFrame {
         jLabel14.setFont(new java.awt.Font("Caviar Dreams", 1, 18)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(51, 51, 51));
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel14.setText("Buscar");
+        jLabel14.setText("BUSCAR");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -549,6 +554,10 @@ public class IndexView extends javax.swing.JFrame {
     private void jPanelPrincipalMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelPrincipalMouseReleased
         mouseDownCompCoords = null;
     }//GEN-LAST:event_jPanelPrincipalMouseReleased
+
+    private void botonListadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonListadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonListadoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
