@@ -393,6 +393,8 @@ public class ListadoLicencias extends javax.swing.JFrame {
                 Logger.getLogger(ListadoLicencias.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException ex) {
                 Logger.getLogger(ListadoLicencias.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ParseException ex) {
+                Logger.getLogger(ListadoLicencias.class.getName()).log(Level.SEVERE, null, ex);
             }
         }else{
             try {

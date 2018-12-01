@@ -208,7 +208,7 @@ public class LicenciaController {
         return diffYear;
     }
     
-    public int imprimirTodas() throws IOException, JRException{
+    public int imprimirTodas() throws IOException, JRException, ParseException{
         
         ImprimirController iController = new ImprimirController();
         iController.imprimirListado();
@@ -224,4 +224,13 @@ public class LicenciaController {
         
         return 0;
     }
+    
+    public void guardarDuplicado ( Licencia l){
+        
+        l.setFechaEmision(new Date());
+        l.setMotivo("DUPLICADO");
+        LicenciaDAO.update(l);
+        
+    }
+    
 }

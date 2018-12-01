@@ -6,8 +6,12 @@ import Persistencia.*;
 import java.awt.Point;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
@@ -44,8 +48,9 @@ public class ElegirLicencia extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
         jLabelRegistroDeTitular = new javax.swing.JLabel();
+        jButtonDuplicar = new javax.swing.JButton();
+        jButtonRenovar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -104,7 +109,7 @@ public class ElegirLicencia extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 16)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel1.setText("Seleccione la licencia del titular que desea renovar");
+        jLabel1.setText("Seleccione la licencia del titular que desea renovar o duplicar");
 
         tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -114,7 +119,7 @@ public class ElegirLicencia extends javax.swing.JFrame {
                 {null, null, null}
             },
             new String [] {
-                "DNI", "Nombre", "Apellido"
+                "Nombre", "Apellido", "Tipo de licencia"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -127,53 +132,85 @@ public class ElegirLicencia extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tabla);
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/Flecha derecha.png"))); // NOI18N
-        jButton2.setBorderPainted(false);
-        jButton2.setContentAreaFilled(false);
-        jButton2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/Flecha derecha rollover.png"))); // NOI18N
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
         jLabelRegistroDeTitular.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 36)); // NOI18N
         jLabelRegistroDeTitular.setForeground(new java.awt.Color(51, 51, 51));
         jLabelRegistroDeTitular.setText("Buscar Licencia");
+
+        jButtonDuplicar.setBackground(new java.awt.Color(230, 230, 230));
+        jButtonDuplicar.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 11)); // NOI18N
+        jButtonDuplicar.setForeground(new java.awt.Color(51, 51, 51));
+        jButtonDuplicar.setText("Duplicar");
+        jButtonDuplicar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jButtonDuplicar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButtonDuplicarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButtonDuplicarMouseExited(evt);
+            }
+        });
+        jButtonDuplicar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDuplicarActionPerformed(evt);
+            }
+        });
+
+        jButtonRenovar.setBackground(new java.awt.Color(230, 230, 230));
+        jButtonRenovar.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 11)); // NOI18N
+        jButtonRenovar.setForeground(new java.awt.Color(51, 51, 51));
+        jButtonRenovar.setText("Renovar");
+        jButtonRenovar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jButtonRenovar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButtonRenovarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButtonRenovarMouseExited(evt);
+            }
+        });
+        jButtonRenovar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRenovarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addGap(0, 71, Short.MAX_VALUE)
-                        .addComponent(jLabel1)
-                        .addGap(69, 69, 69))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel14)
-                                .addGap(133, 133, 133)
-                                .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(26, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel4Layout.createSequentialGroup()
+                            .addGap(10, 10, 10)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                            .addGap(0, 0, Short.MAX_VALUE)
+                            .addComponent(jButtonDuplicar, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(jButtonRenovar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(20, 20, 20)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(20, 20, 20))))
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(134, 134, 134)
-                .addComponent(jLabelRegistroDeTitular)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel14)
+                        .addGap(133, 133, 133)
+                        .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(134, 134, 134)
+                        .addComponent(jLabelRegistroDeTitular)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -192,10 +229,12 @@ public class ElegirLicencia extends javax.swing.JFrame {
                 .addComponent(jLabelRegistroDeTitular)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonDuplicar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonRenovar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -229,12 +268,6 @@ public class ElegirLicencia extends javax.swing.JFrame {
         Index.historial.remove(Index.historial.size()-1);
     }//GEN-LAST:event_jButton18ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        RenovarLicencia rl = new RenovarLicencia(licencias.get(tabla.getSelectedRow()), titular, personaController, licenciaController, usuario);
-        rl.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
-
     private void jPanel4MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseDragged
         Point currCoords = evt.getLocationOnScreen();
         this.setLocation(currCoords.x - mouseDownCompCoords.x, currCoords.y - mouseDownCompCoords.y);
@@ -247,18 +280,69 @@ public class ElegirLicencia extends javax.swing.JFrame {
     private void jPanel4MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseReleased
         mouseDownCompCoords = null;
     }//GEN-LAST:event_jPanel4MouseReleased
+
+    private void jButtonDuplicarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonDuplicarMouseEntered
+        this.jButtonDuplicar.setBackground(this.jButtonDuplicar.getBackground().darker());
+    }//GEN-LAST:event_jButtonDuplicarMouseEntered
+
+    private void jButtonDuplicarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonDuplicarMouseExited
+        this.jButtonDuplicar.setBackground(this.jButtonDuplicar.getBackground().brighter());
+    }//GEN-LAST:event_jButtonDuplicarMouseExited
+
+    private void jButtonDuplicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDuplicarActionPerformed
+        ImprimirLicencia il;
+        Licencia licencia = licencias.get(tabla.getSelectedRow());
+        this.licenciaController.guardarDuplicado(licencia);
+                try {
+                    il = new ImprimirLicencia(titular, licencia);
+                    il.setVisible(true);
+                    this.setEnabled(false);
+                    ElegirLicencia este = this;
+                    il.addWindowListener(new WindowAdapter(){
+                        @Override
+                        public void windowClosed(WindowEvent we) {
+                            este.setEnabled(true);
+                            este.setAlwaysOnTop(false);
+                        }
+                    });
+                } catch (IOException ex) {
+                    Logger.getLogger(EmitirLicencia.class.getName()).log(Level.SEVERE, null, ex);
+                }
+    }//GEN-LAST:event_jButtonDuplicarActionPerformed
+
+    private void jButtonRenovarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonRenovarMouseEntered
+        this.jButtonRenovar.setBackground(this.jButtonRenovar.getBackground().darker());
+    }//GEN-LAST:event_jButtonRenovarMouseEntered
+
+    private void jButtonRenovarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonRenovarMouseExited
+        this.jButtonRenovar.setBackground(this.jButtonRenovar.getBackground().brighter());
+    }//GEN-LAST:event_jButtonRenovarMouseExited
+
+    private void jButtonRenovarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRenovarActionPerformed
+        RenovarLicencia rl = new RenovarLicencia(licencias.get(tabla.getSelectedRow()), titular, personaController, licenciaController, usuario);
+        rl.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButtonRenovarActionPerformed
     
     private void cargarTabla(){
         //Setea la tabla con los valores de las liencias de los titulares obtenidos
         DefaultTableModel dtm = (DefaultTableModel) this.tabla.getModel();
         dtm.setRowCount(0);   
         licencias = licenciaController.getLicencias();
+        List<Licencia> aux = new ArrayList<>();
+        for(Licencia l : licencias){
+            if(titular.getId()==l.getPersonaId()) aux.add(l); //Considero solo las licencias del titular seleccionado
+        }
         verificarVigencias();
-        for(int i = 0; i<licencias.size(); i++){
+        for(int i = 0; i<aux.size(); i++){
             String datos[] = new String[3];                 
-                datos[0] = String.valueOf(personaController.getPersona(licencias.get(i).getPersonaId()));
+                /*datos[0] = String.valueOf(personaController.getPersona(licencias.get(i).getPersonaId()));
                 datos[1] = String.valueOf(licencias.get(i).getFechaEmision());
-                datos[2] = String.valueOf(licencias.get(i).getFechaVenc());
+                datos[2] = String.valueOf(licencias.get(i).getFechaVenc());*/
+                datos[0] = personaController.getPersona(aux.get(i).getPersonaId()).getNombre();
+                datos[1] = personaController.getPersona(aux.get(i).getPersonaId()).getApellido();
+                datos[2]= aux.get(i).getClaseId();
+                
 
                 dtm.addRow(datos);
         }  
@@ -277,7 +361,8 @@ public class ElegirLicencia extends javax.swing.JFrame {
     private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton18;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButtonDuplicar;
+    private javax.swing.JButton jButtonRenovar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabelRegistroDeTitular;
