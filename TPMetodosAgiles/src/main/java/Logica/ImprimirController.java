@@ -97,9 +97,7 @@ public class ImprimirController {
         System.out.println("");
         
         parametersListado.put("fecha_desde", fechaDesdeFormat);
-        parametersListado.put("fecha_hasta", fechaHastaFormat);     
-        parametersListado.put("logo", new ImageIcon(getClass().getResource("/LogoReporte.jpg")).getImage());
-//        
+        parametersListado.put("fecha_hasta", fechaHastaFormat);      
         
     }
     
@@ -159,8 +157,6 @@ public class ImprimirController {
     }
     
     public void imprimirListado() throws JRException, IOException, IOException, ParseException{
-        
-        this.cargarParametrosListado("2019-01-01","2020-01-01");
         
         Session SS = util.getSessionFactory().openSession();
         SS.doWork(new Work(){
