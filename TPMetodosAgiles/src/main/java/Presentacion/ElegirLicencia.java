@@ -331,7 +331,12 @@ public class ElegirLicencia extends javax.swing.JFrame {
         licencias = licenciaController.getLicencias();
         List<Licencia> aux = new ArrayList<>();
         for(Licencia l : licencias){
-            if(titular.getId()==l.getPersonaId()) aux.add(l); //Considero solo las licencias del titular seleccionado
+            if(titular.getId()==l.getPersonaId()){
+                if(l.getFechaVenc().after(new Date())){
+                    aux.add(l);
+                }
+                
+            } //Considero solo las licencias del titular seleccionado
         }
         verificarVigencias();
         for(int i = 0; i<aux.size(); i++){

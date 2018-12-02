@@ -28,7 +28,7 @@ public class Login extends javax.swing.JFrame {
     
     public Login(){
         initComponents();
-        setIconImage(new ImageIcon(getClass().getResource("/favicon.png")).getImage());
+        //setIconImage(new ImageIcon(getClass().getResource("/favicon.png")).getImage());
         this.uc = new UsuarioController();
         this.setLocationRelativeTo(null);
         this.setVisible(true);

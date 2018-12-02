@@ -270,38 +270,28 @@ public class EmitirLicencia extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         //Almacena el titular para poder obtener el id
         //Para almacenar como FK en la tabla Licencia
- 
+        
         String clase = (String) this.comboClase.getSelectedItem();
-        //Comprobar que pueda sacar las clases
-        if(licenciaController.verificarClase(clase, titular)){
-            if(almacenarLicencia()){
-                JOptionPane.showMessageDialog(this, "Felicitaciones! \n Se ha creado correctamente la licencia", "Exito",  JOptionPane.OK_OPTION);
-                ImprimirLicencia il;
-                try {
-                    il = new ImprimirLicencia(titular, licencia);
-                    il.setVisible(true);
-                    this.setEnabled(false);
-                    EmitirLicencia este = this;
-                    il.addWindowListener(new WindowAdapter(){
-                        @Override
-                        public void windowClosed(WindowEvent we) {
-                            este.setEnabled(true);
-                            este.setAlwaysOnTop(false);
-                        }
-                    });
-                } catch (IOException ex) {
-                    Logger.getLogger(EmitirLicencia.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                
+        
+        //Si el titular no existe en la BD, no vale la pena que verifique que clases puede sacar, porque 
+        //Solo puede sacar A B F y G
+        if (titular.getId()==null){
+            if(licenciaController.validarClaseNuevoTitular(clase)){
+                crearLicencia();
             }
             else{
                 JOptionPane.showMessageDialog(this, "Ha ocurrido un error \n No se puede crear la licencia", "Error",  JOptionPane.ERROR_MESSAGE);
             }
         }
         else{
-            JOptionPane.showMessageDialog(this, "Ha ocurrido un error \n No se puede crear la licencia", "Error",  JOptionPane.ERROR_MESSAGE);
+            //Comprobar que pueda sacar las clases
+            if(licenciaController.verificarClase(clase, titular)){
+                crearLicencia();
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "Ha ocurrido un error \n No se puede crear la licencia", "Error",  JOptionPane.ERROR_MESSAGE);
+            }
         }
-    
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void setear(boolean flag){
@@ -330,6 +320,37 @@ public class EmitirLicencia extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_comboClaseActionPerformed
 
+    private void crearLicencia(){
+        if(almacenarLicencia()){
+                    JOptionPane.showMessageDialog(this,
+                    "\tFelicitaciones! \t\n Se ha creado correctamente la licencia",
+                    "Exito",
+                    JOptionPane.PLAIN_MESSAGE);
+                   
+                    ImprimirLicencia il;
+                    try {
+                        il = new ImprimirLicencia(titular, licencia);
+                        il.setVisible(true);
+                        this.setEnabled(false);
+                        EmitirLicencia este = this;
+                        il.addWindowListener(new WindowAdapter(){
+                            @Override
+                            public void windowClosed(WindowEvent we) {
+                                este.setEnabled(true);
+                                este.setAlwaysOnTop(false);
+                            }   
+                        });
+                    } 
+                    catch (IOException ex) {
+                        Logger.getLogger(EmitirLicencia.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Ha ocurrido un error \n No se puede crear la licencia", "Error",  JOptionPane.ERROR_MESSAGE);
+        }
+    
+}
+    
     private boolean almacenarLicencia(){
         String clase = (String) this.comboClase.getSelectedItem();
         

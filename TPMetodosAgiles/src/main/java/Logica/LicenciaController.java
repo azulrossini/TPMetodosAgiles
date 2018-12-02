@@ -89,6 +89,20 @@ public class LicenciaController {
         return false;
     }
     
+    public boolean validarClaseNuevoTitular(String clase){
+        ClaseController cc = new ClaseController();
+        
+        if(cc.verificarClase(clase)){
+            if(clase =="A" || clase =="B" || clase== "F" || clase =="G" ){
+                //Si es de esta clase no necesita validacion extra, puede sacarla sin problema a la licencia
+                return true;
+            }
+        }
+        
+        return false;
+        
+    }
+    
     public void eliminarClasesHeredadas(String clase, Persona titular){
         //Cancela la vigencia de las clases heredadas
         //Por ejemplo, si se emite una nueva licencia de la clase C
