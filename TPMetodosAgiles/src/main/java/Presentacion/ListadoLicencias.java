@@ -386,26 +386,23 @@ public class ListadoLicencias extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void printActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printActionPerformed
-        if(flagTodas){
-            try {
-                lController.imprimirTodas();
-            } catch (JRException ex) {
-                Logger.getLogger(ListadoLicencias.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
-                Logger.getLogger(ListadoLicencias.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (ParseException ex) {
-                Logger.getLogger(ListadoLicencias.class.getName()).log(Level.SEVERE, null, ex);
+        //VERIFICO QUE TIPO DE LICENCIA Y SI SON TODAS O RANGO
+        try {
+            if(flagTodas){
+                if(flagTipo){                
+                        lController.imprimirTodasVigentes();                
+                }else{
+                    lController.imprimirTodasExpiradas();
+                }
+            }else{
+                if(flagTipo){
+                    lController.imprimirRangoVigentes(fecha1, fecha2);
+                }else{
+                    lController.imprimirRangoExpiradas(fecha1, fecha2);
+                }        
             }
-        }else{
-            try {
-                lController.imprimirRango(fecha1, fecha2);
-            } catch (JRException ex) {
-                Logger.getLogger(ListadoLicencias.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
-                Logger.getLogger(ListadoLicencias.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (ParseException ex) {
-                Logger.getLogger(ListadoLicencias.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        }catch (Exception ex) {
+                    Logger.getLogger(ListadoLicencias.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_printActionPerformed
 

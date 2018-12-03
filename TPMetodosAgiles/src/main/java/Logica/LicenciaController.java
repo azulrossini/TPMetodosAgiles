@@ -222,19 +222,34 @@ public class LicenciaController {
         return diffYear;
     }
     
-    public int imprimirTodas() throws IOException, JRException, ParseException{
+    public int imprimirTodasVigentes() throws IOException, JRException, ParseException{
         
         ImprimirController iController = new ImprimirController();
-        iController.imprimirListado();
+        iController.imprimirListadoVigentes();
         
         return 0;
     }
     
-    public int imprimirRango(String fechaDesde, String fechaHasta) throws IOException, JRException, ParseException{
+    public int imprimirRangoVigentes(String fechaDesde, String fechaHasta) throws IOException, JRException, ParseException{
         
         ImprimirController iController = new ImprimirController();
-        iController.imprimirListadoRango(fechaDesde, fechaHasta);
+        iController.imprimirRangoVigentes(fechaDesde, fechaHasta);        
         
+        return 0;
+    }
+    
+    public int imprimirTodasExpiradas() throws IOException, JRException, ParseException{
+        
+        ImprimirController iController = new ImprimirController();
+        iController.imprimirListadoExpiradas();
+        
+        return 0;
+    }
+    
+    public int imprimirRangoExpiradas(String fechaDesde, String fechaHasta) throws IOException, JRException, ParseException{
+        
+        ImprimirController iController = new ImprimirController();
+        iController.imprimirRangoExpiradas(fechaDesde, fechaHasta);        
         
         return 0;
     }

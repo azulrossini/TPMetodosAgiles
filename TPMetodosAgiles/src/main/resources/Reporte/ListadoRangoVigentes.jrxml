@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0ce46297-572f-49e2-b4ee-595666874bb0">
-	<property name="ireport.zoom" value="3.0"/>
-	<property name="ireport.x" value="905"/>
-	<property name="ireport.y" value="111"/>
+	<property name="ireport.zoom" value="1.5394743546921197"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
 	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
 	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
 	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
@@ -14,10 +14,10 @@
 		</conditionalStyle>
 	</style>
 	<parameter name="fecha_desde" class="java.lang.String">
-		<defaultValueExpression><![CDATA["1980-01-01"]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA['2018-01-01']]></defaultValueExpression>
 	</parameter>
 	<parameter name="fecha_hasta" class="java.lang.String">
-		<defaultValueExpression><![CDATA["2100-12-30"]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA['2020-01-01']]></defaultValueExpression>
 	</parameter>
 	<queryString>
 		<![CDATA[SELECT
@@ -45,7 +45,7 @@ FROM
      `licencia` licencia,
      `persona` persona
 WHERE 	licencia.`persona_id` = persona.`id` AND
-	licencia.`fecha_venc` BETWEEN $P!{fecha_desde} AND $P!{fecha_hasta} AND licencia.`fecha_venc` < NOW()
+	licencia.`fecha_venc` BETWEEN $P!{fecha_desde} AND $P!{fecha_hasta} AND licencia.`fecha_venc` > NOW()
 group by licencia.`id`]]>
 	</queryString>
 	<field name="licencia_id" class="java.lang.Integer"/>
@@ -73,48 +73,48 @@ group by licencia.`id`]]>
 	</background>
 	<title>
 		<band height="132" splitType="Stretch">
+			<image>
+				<reportElement uuid="fdcfc690-2290-44f7-a79c-8c28d31ef223" x="2" y="0" width="197" height="90"/>
+				<imageExpression><![CDATA["LogoReporte.jpg"]]></imageExpression>
+			</image>
 			<staticText>
-				<reportElement uuid="6cb172c7-6dc1-4680-b340-d489ad9c605e" x="286" y="14" width="269" height="27"/>
+				<reportElement uuid="6cb172c7-6dc1-4680-b340-d489ad9c605e" x="208" y="27" width="348" height="27"/>
 				<textElement textAlignment="Right">
 					<font fontName="Microsoft JhengHei UI" size="20"/>
 				</textElement>
 				<text><![CDATA[Listado de licencias vigentes]]></text>
 			</staticText>
-			<image>
-				<reportElement uuid="fdcfc690-2290-44f7-a79c-8c28d31ef223" x="1" y="1" width="197" height="90"/>
-				<imageExpression><![CDATA["C:\\Proyectos Java\\TPMetodosAgiles\\TPMetodosAgiles\\src\\main\\resources\\Presentacion\\LogoReporte.jpg"]]></imageExpression>
-			</image>
-			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement uuid="fc3e2f2e-87b1-45bd-b9d7-77dacce28fb9" style="Column header" x="343" y="62" width="213" height="20" forecolor="#000000"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="Microsoft YaHei UI" size="14" isBold="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
-			</textField>
 			<staticText>
-				<reportElement uuid="6cb172c7-6dc1-4680-b340-d489ad9c605e" x="338" y="42" width="43" height="19"/>
+				<reportElement uuid="6cb172c7-6dc1-4680-b340-d489ad9c605e" x="347" y="54" width="43" height="19"/>
 				<textElement textAlignment="Right">
 					<font fontName="Microsoft JhengHei UI" size="14"/>
 				</textElement>
 				<text><![CDATA[Entre]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true">
-				<reportElement uuid="49fd5d83-c1ae-47f3-b50c-71b8f63d2907" style="Detail" positionType="Float" x="381" y="42" width="81" height="19"/>
-				<textElement textAlignment="Center">
+				<reportElement uuid="49fd5d83-c1ae-47f3-b50c-71b8f63d2907" style="Detail" positionType="Float" x="390" y="54" width="81" height="19"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Microsoft JhengHei UI" size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{fecha_desde}]]></textFieldExpression>
 			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement uuid="fc3e2f2e-87b1-45bd-b9d7-77dacce28fb9" style="Column header" x="343" y="74" width="213" height="20" forecolor="#000000"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Microsoft YaHei UI" size="14" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
 			<staticText>
-				<reportElement uuid="6cb172c7-6dc1-4680-b340-d489ad9c605e" x="462" y="42" width="12" height="19"/>
-				<textElement textAlignment="Right">
+				<reportElement uuid="6cb172c7-6dc1-4680-b340-d489ad9c605e" x="471" y="54" width="12" height="19"/>
+				<textElement textAlignment="Left">
 					<font fontName="Microsoft JhengHei UI" size="14"/>
 				</textElement>
 				<text><![CDATA[y]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true">
-				<reportElement uuid="49fd5d83-c1ae-47f3-b50c-71b8f63d2907" style="Detail" positionType="Float" x="474" y="42" width="82" height="19"/>
-				<textElement textAlignment="Right">
+				<reportElement uuid="49fd5d83-c1ae-47f3-b50c-71b8f63d2907" style="Detail" positionType="Float" x="483" y="54" width="73" height="19"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Microsoft JhengHei UI" size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{fecha_hasta}]]></textFieldExpression>
@@ -177,14 +177,14 @@ group by licencia.`id`]]>
 					</textElement>
 					<text><![CDATA[Apellido]]></text>
 				</staticText>
-				<staticText>
-					<reportElement uuid="2d4d2714-2424-48a1-9bfc-9ced586c37fc" style="Column header" x="0" y="0" width="41" height="18" forecolor="#000000"/>
-					<textElement textAlignment="Center">
-						<font fontName="Microsoft YaHei UI" size="12" isBold="false"/>
-					</textElement>
-					<text><![CDATA[ID]]></text>
-				</staticText>
 			</frame>
+			<staticText>
+				<reportElement uuid="2d4d2714-2424-48a1-9bfc-9ced586c37fc" style="Column header" x="0" y="0" width="41" height="18" forecolor="#000000"/>
+				<textElement textAlignment="Center">
+					<font fontName="Microsoft YaHei UI" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[ID]]></text>
+			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
