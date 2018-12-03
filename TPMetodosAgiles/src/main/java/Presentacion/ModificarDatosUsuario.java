@@ -1,47 +1,49 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Presentacion;
 
 import Logica.CryptoUtils;
 import Logica.GenericDAO;
-import Logica.Index;
 import Logica.UsuarioController;
 import Persistencia.Usuario;
-import java.awt.Point;
-import java.awt.event.KeyEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import javax.swing.ButtonGroup;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import Logica.Index;
+import javax.swing.ImageIcon;
 
 /**
  *
- * @author Fausto
+ * @author ayr_1
  */
-public class AltaUsuario extends javax.swing.JFrame {
+public class ModificarDatosUsuario extends javax.swing.JFrame {
+    private Usuario user;
+    private UsuarioController usuarioController;
 
     /**
-     * Creates new form ImprimirLicencia
+     * Creates new form ModificarDatosUsuario
      */
-    
-    private final UsuarioController uc;
-    private final ButtonGroup bg;
-    private Point mouseDownCompCoords = null;
-    private final Usuario user;
-    
-    public AltaUsuario(Usuario user) {
+    public ModificarDatosUsuario(Usuario usuario, UsuarioController usuarioController) {
         initComponents();
+        this.user = usuario;
+        this.usuarioController = usuarioController;
+        cargarCampos();
         setIconImage(new ImageIcon(getClass().getResource("/favicon.png")).getImage());
-        uc = new UsuarioController();
-        this.bg = new ButtonGroup();
-        this.bg.add(this.superusuario);
-        this.bg.add(this.administrativo);
         this.setLocationRelativeTo(null);
-        this.user=user;
         this.setVisible(true);
-        Index.historial.add(this);
+        Index.historial.add(this);        
     }
     
+    private void cargarCampos(){
+        this.username.setText(user.getUsername());
+        this.pass.setText(String.valueOf(user.getPassword()));
+        if(user.isPrivilegio()){
+            this.superusuario.setSelected(true);
+        }else{
+            this.administrativo.setSelected(true);
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -52,23 +54,23 @@ public class AltaUsuario extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        privilegios = new javax.swing.ButtonGroup();
         jPanel4 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
-        jButton16 = new javax.swing.JButton();
-        jButton17 = new javax.swing.JButton();
-        jButton18 = new javax.swing.JButton();
+        botonCerrar = new javax.swing.JButton();
+        botonMinimizar = new javax.swing.JButton();
+        botonAtras = new javax.swing.JButton();
         username = new javax.swing.JTextField();
-        crear = new javax.swing.JButton();
+        botonActualizar = new javax.swing.JButton();
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
-        pass = new javax.swing.JPasswordField();
         jLabel24 = new javax.swing.JLabel();
         superusuario = new javax.swing.JRadioButton();
         administrativo = new javax.swing.JRadioButton();
+        pass = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setUndecorated(true);
 
         jPanel4.setBackground(new java.awt.Color(206, 206, 206));
         jPanel4.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 2, true), new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true)));
@@ -90,43 +92,43 @@ public class AltaUsuario extends javax.swing.JFrame {
         jLabel14.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 36)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(51, 51, 51));
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/alta-user.png"))); // NOI18N
-        jLabel14.setText(" Crear Usuario");
+        jLabel14.setText(" Modificar Usuario");
         jLabel14.setFocusable(false);
 
         jSeparator4.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator4.setForeground(new java.awt.Color(51, 51, 51));
         jSeparator4.setOpaque(true);
 
-        jButton16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/cancel.png"))); // NOI18N
-        jButton16.setBorderPainted(false);
-        jButton16.setContentAreaFilled(false);
-        jButton16.setFocusable(false);
-        jButton16.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/cancel rollover.png"))); // NOI18N
-        jButton16.addActionListener(new java.awt.event.ActionListener() {
+        botonCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/cancel.png"))); // NOI18N
+        botonCerrar.setBorderPainted(false);
+        botonCerrar.setContentAreaFilled(false);
+        botonCerrar.setFocusable(false);
+        botonCerrar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/cancel rollover.png"))); // NOI18N
+        botonCerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton16ActionPerformed(evt);
+                botonCerrarActionPerformed(evt);
             }
         });
 
-        jButton17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/diminish.png"))); // NOI18N
-        jButton17.setBorderPainted(false);
-        jButton17.setContentAreaFilled(false);
-        jButton17.setFocusable(false);
-        jButton17.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/diminish rollover.png"))); // NOI18N
-        jButton17.addActionListener(new java.awt.event.ActionListener() {
+        botonMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/diminish.png"))); // NOI18N
+        botonMinimizar.setBorderPainted(false);
+        botonMinimizar.setContentAreaFilled(false);
+        botonMinimizar.setFocusable(false);
+        botonMinimizar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/diminish rollover.png"))); // NOI18N
+        botonMinimizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton17ActionPerformed(evt);
+                botonMinimizarActionPerformed(evt);
             }
         });
 
-        jButton18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/left-arrow.png"))); // NOI18N
-        jButton18.setBorderPainted(false);
-        jButton18.setContentAreaFilled(false);
-        jButton18.setFocusable(false);
-        jButton18.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/left-arrow rollover.png"))); // NOI18N
-        jButton18.addActionListener(new java.awt.event.ActionListener() {
+        botonAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/left-arrow.png"))); // NOI18N
+        botonAtras.setBorderPainted(false);
+        botonAtras.setContentAreaFilled(false);
+        botonAtras.setFocusable(false);
+        botonAtras.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/left-arrow rollover.png"))); // NOI18N
+        botonAtras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton18ActionPerformed(evt);
+                botonAtrasActionPerformed(evt);
             }
         });
 
@@ -137,27 +139,27 @@ public class AltaUsuario extends javax.swing.JFrame {
             }
         });
 
-        crear.setBackground(new java.awt.Color(255, 255, 255));
-        crear.setFont(new java.awt.Font("Microsoft JhengHei UI", 1, 12)); // NOI18N
-        crear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/Flecha derecha.png"))); // NOI18N
-        crear.setBorderPainted(false);
-        crear.setContentAreaFilled(false);
-        crear.addMouseListener(new java.awt.event.MouseAdapter() {
+        botonActualizar.setBackground(new java.awt.Color(255, 255, 255));
+        botonActualizar.setFont(new java.awt.Font("Microsoft JhengHei UI", 1, 12)); // NOI18N
+        botonActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/Flecha derecha.png"))); // NOI18N
+        botonActualizar.setBorderPainted(false);
+        botonActualizar.setContentAreaFilled(false);
+        botonActualizar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                crearMouseEntered(evt);
+                botonActualizarMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                crearMouseExited(evt);
+                botonActualizarMouseExited(evt);
             }
         });
-        crear.addActionListener(new java.awt.event.ActionListener() {
+        botonActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                crearActionPerformed(evt);
+                botonActualizarActionPerformed(evt);
             }
         });
-        crear.addKeyListener(new java.awt.event.KeyAdapter() {
+        botonActualizar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                crearKeyTyped(evt);
+                botonActualizarKeyTyped(evt);
             }
         });
 
@@ -171,17 +173,12 @@ public class AltaUsuario extends javax.swing.JFrame {
         jLabel23.setForeground(new java.awt.Color(51, 51, 51));
         jLabel23.setText("Contraseña:");
 
-        pass.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                passKeyTyped(evt);
-            }
-        });
-
         jLabel24.setBackground(new java.awt.Color(51, 51, 51));
         jLabel24.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 18)); // NOI18N
         jLabel24.setForeground(new java.awt.Color(51, 51, 51));
         jLabel24.setText("Privilegios:");
 
+        privilegios.add(superusuario);
         superusuario.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 16)); // NOI18N
         superusuario.setText("Superusuario");
         superusuario.setContentAreaFilled(false);
@@ -191,12 +188,20 @@ public class AltaUsuario extends javax.swing.JFrame {
             }
         });
 
+        privilegios.add(administrativo);
         administrativo.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 16)); // NOI18N
         administrativo.setText("Administrativo");
         administrativo.setContentAreaFilled(false);
         administrativo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 administrativoKeyTyped(evt);
+            }
+        });
+
+        pass.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 18)); // NOI18N
+        pass.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                passKeyTyped(evt);
             }
         });
 
@@ -214,11 +219,11 @@ public class AltaUsuario extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(botonAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(botonMinimizar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(botonCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jSeparator4, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addContainerGap())))
             .addGroup(jPanel4Layout.createSequentialGroup()
@@ -230,15 +235,15 @@ public class AltaUsuario extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(username)
-                    .addComponent(pass)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(superusuario)
                         .addGap(18, 18, 18)
-                        .addComponent(administrativo)))
+                        .addComponent(administrativo))
+                    .addComponent(pass))
                 .addGap(0, 51, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(crear)
+                .addComponent(botonActualizar)
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -246,9 +251,9 @@ public class AltaUsuario extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap(20, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(botonCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonMinimizar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel14)
                 .addGap(18, 18, 18)
@@ -260,14 +265,14 @@ public class AltaUsuario extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel23)
-                    .addComponent(pass, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(pass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(16, 16, 16)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel24)
                     .addComponent(superusuario, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(administrativo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
-                .addComponent(crear, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(botonActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
         );
 
@@ -285,154 +290,107 @@ public class AltaUsuario extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jPanel4MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseReleased
-        mouseDownCompCoords = null;
-    }//GEN-LAST:event_jPanel4MouseReleased
-
-    private void jPanel4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MousePressed
-        mouseDownCompCoords = evt.getPoint();
-    }//GEN-LAST:event_jPanel4MousePressed
-
-    private void jPanel4MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseDragged
-        Point currCoords = evt.getLocationOnScreen();
-        this.setLocation(currCoords.x - mouseDownCompCoords.x, currCoords.y - mouseDownCompCoords.y);
-    }//GEN-LAST:event_jPanel4MouseDragged
-
-    private void crearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearActionPerformed
-        switch (uc.validarCampos(this.username.getText(), this.pass.getText(), this.superusuario.isSelected(), this.administrativo.isSelected())){
-            case 0:
-                try {
-                    GenericDAO.create(new Usuario(this.username.getText(), CryptoUtils.computeHash(this.pass.getText()), this.superusuario.isSelected()));
-                    JOptionPane.showMessageDialog(this, "Ha creado el usuario con éxito", "Felicidades",  JOptionPane.INFORMATION_MESSAGE);
-                } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(this, "La contraseña no es válida", "Error",  JOptionPane.ERROR_MESSAGE);               
-                }
-                break;
-            case 1:
-                JOptionPane.showMessageDialog(this, "El nombre de usuario ya existe", "Error",  JOptionPane.ERROR_MESSAGE);
-                break;
-            case 2:
-                JOptionPane.showMessageDialog(this, "Debe insertar un nombre de usuario", "Error",  JOptionPane.ERROR_MESSAGE);
-                break;
-            case 3:
-                JOptionPane.showMessageDialog(this, "Debe insertar una contraseña", "Error",  JOptionPane.ERROR_MESSAGE);
-                break;
-            case 4:
-                JOptionPane.showMessageDialog(this, "Debe seleccionar un privilegio", "Error",  JOptionPane.ERROR_MESSAGE);
-                break;
-        }
-    }//GEN-LAST:event_crearActionPerformed
-
-    private void crearMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_crearMouseExited
-        this.crear.setBackground(this.crear.getBackground().brighter());
-    }//GEN-LAST:event_crearMouseExited
-
-    private void crearMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_crearMouseEntered
-        this.crear.setBackground(this.crear.getBackground().darker());
-    }//GEN-LAST:event_crearMouseEntered
-
-    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
-        this.setExtendedState(ICONIFIED);
-    }//GEN-LAST:event_jButton17ActionPerformed
-
-    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
+    private void botonCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCerrarActionPerformed
         System.exit(0);
-    }//GEN-LAST:event_jButton16ActionPerformed
+    }//GEN-LAST:event_botonCerrarActionPerformed
 
-    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
+    private void botonMinimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMinimizarActionPerformed
+        this.setExtendedState(ICONIFIED);
+    }//GEN-LAST:event_botonMinimizarActionPerformed
+
+    private void botonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAtrasActionPerformed
         Index.historial.get(Index.historial.size()-2).setVisible(true);
         this.dispose();
         Index.historial.remove(Index.historial.size()-1);
-    }//GEN-LAST:event_jButton18ActionPerformed
+    }//GEN-LAST:event_botonAtrasActionPerformed
 
     private void usernameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_usernameKeyTyped
-        if (this.username.getText().length()>=32){
-            evt.consume();
-        }
-        if (evt.getKeyChar()==KeyEvent.VK_ENTER){
-            this.crear.doClick();
-        }
+       
     }//GEN-LAST:event_usernameKeyTyped
 
-    private void passKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passKeyTyped
-        if (this.pass.getText().length()>=32){
-            evt.consume();
+    private void botonActualizarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonActualizarMouseEntered
+        this.botonActualizar.setBackground(this.botonActualizar.getBackground().darker());
+    }//GEN-LAST:event_botonActualizarMouseEntered
+
+    private void botonActualizarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonActualizarMouseExited
+        this.botonActualizar.setBackground(this.botonActualizar.getBackground().brighter());
+    }//GEN-LAST:event_botonActualizarMouseExited
+
+    private void botonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActualizarActionPerformed
+        //Valido los datos  ingresados y dependiendo del resultado muestro el mensaje correspondiente
+        switch (usuarioController.validarCampos(this.username.getText(), this.pass.getText(), this.superusuario.isSelected(), this.administrativo.isSelected())){
+            case 0:
+            try {
+                //Actualizo el usuario existente
+                user.setUsername(this.username.getText());
+                user.setPassword(CryptoUtils.computeHash(this.pass.getText()));
+                user.setPrivilegio(this.superusuario.isSelected());
+                //Actualizo en la BD
+                GenericDAO.update(user);
+                //Muestro mensaje de exito
+                JOptionPane.showMessageDialog(this, "Ha actualizado el usuario con éxito", "Felicidades",  JOptionPane.INFORMATION_MESSAGE);
+                //Vuelvo a la pantalla de buscar usuario
+                Index.historial.get(Index.historial.size()-2).setVisible(true);
+                this.dispose();
+                Index.historial.remove(Index.historial.size()-1);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "La contraseña no es válida", "Error",  JOptionPane.ERROR_MESSAGE);
+            }
+            break;
+            case 1:
+            JOptionPane.showMessageDialog(this, "El nombre de usuario ya existe", "Error",  JOptionPane.ERROR_MESSAGE);
+            break;
+            case 2:
+            JOptionPane.showMessageDialog(this, "Debe insertar un nombre de usuario", "Error",  JOptionPane.ERROR_MESSAGE);
+            break;
+            case 3:
+            JOptionPane.showMessageDialog(this, "Debe insertar una contraseña", "Error",  JOptionPane.ERROR_MESSAGE);
+            break;
         }
-        if (evt.getKeyChar()==KeyEvent.VK_ENTER){
-            this.crear.doClick();
-        }
-    }//GEN-LAST:event_passKeyTyped
+    }//GEN-LAST:event_botonActualizarActionPerformed
+
+    private void botonActualizarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_botonActualizarKeyTyped
+        
+    }//GEN-LAST:event_botonActualizarKeyTyped
 
     private void superusuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_superusuarioKeyTyped
-        if (evt.getKeyChar()==KeyEvent.VK_ENTER){
-            this.crear.doClick();
-        }
+        
     }//GEN-LAST:event_superusuarioKeyTyped
 
     private void administrativoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_administrativoKeyTyped
-        if (evt.getKeyChar()==KeyEvent.VK_ENTER){
-            this.crear.doClick();
-        }
+        
     }//GEN-LAST:event_administrativoKeyTyped
 
-    private void crearKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_crearKeyTyped
-        if (evt.getKeyChar()==KeyEvent.VK_ENTER){
-            this.crear.doClick();
-        }
-    }//GEN-LAST:event_crearKeyTyped
+    private void jPanel4MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseDragged
+        
+    }//GEN-LAST:event_jPanel4MouseDragged
 
-    /**
-     * @param args the command line arguments
-     */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(ImprimirLicencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(ImprimirLicencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(ImprimirLicencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(ImprimirLicencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                try {
-//                    new ImprimirLicencia(null, null).setVisible(true);
-//                } catch (IOException ex) {
-//                    Logger.getLogger(ImprimirLicencia.class.getName()).log(Level.SEVERE, null, ex);
-//                }
-//            }
-//        });
-//    }
+    private void jPanel4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MousePressed
+        
+    }//GEN-LAST:event_jPanel4MousePressed
+
+    private void jPanel4MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseReleased
+        
+    }//GEN-LAST:event_jPanel4MouseReleased
+
+    private void passKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passKeyTyped
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton administrativo;
-    private javax.swing.JButton crear;
-    private javax.swing.JButton jButton16;
-    private javax.swing.JButton jButton17;
-    private javax.swing.JButton jButton18;
+    private javax.swing.JButton botonActualizar;
+    private javax.swing.JButton botonAtras;
+    private javax.swing.JButton botonCerrar;
+    private javax.swing.JButton botonMinimizar;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JSeparator jSeparator4;
-    private javax.swing.JPasswordField pass;
+    private javax.swing.JTextField pass;
+    private javax.swing.ButtonGroup privilegios;
     private javax.swing.JRadioButton superusuario;
     private javax.swing.JTextField username;
     // End of variables declaration//GEN-END:variables

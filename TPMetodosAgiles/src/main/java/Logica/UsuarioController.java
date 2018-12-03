@@ -7,6 +7,7 @@ package Logica;
 
 import Persistencia.Usuario;
 import java.util.Arrays;
+import java.util.List;
 import javax.swing.JOptionPane;
 import org.hibernate.Session;
 
@@ -21,6 +22,10 @@ public class UsuarioController {
     
     public UsuarioController(){
         this.ud = new UsuarioDAO();
+    }
+    
+    public List<Usuario> buscarUsernameAdministrativo (String username){
+        return ud.buscarUsernameAdministrativo(username);
     }
     
     public Usuario validarAcc(String username, String pass) throws Exception{

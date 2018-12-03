@@ -23,6 +23,19 @@ public class UsuarioDAO extends GenericDAO{
     public UsuarioDAO(){
         
     }
+    public List<Usuario> buscarUsernameAdministrativo(String username){
+        SS = util.getSessionFactory().openSession();
+        SS.beginTransaction();
+        String sentencia = "SELECT * FROM Usuario U WHERE U.username LIKE '%" + username + "%' AND U.privilegio = 0";
+        Query query = SS.createSQLQuery(sentencia).addEntity(Usuario.class);
+        List<Usuario> lista = query.list();
+        SS.getTransaction().commit();
+        SS.close();
+        if (lista.isEmpty())
+            return null;
+        else
+            return lista;
+    }
     
     public Usuario readByUsername(String username){
         SS = util.getSessionFactory().openSession();
