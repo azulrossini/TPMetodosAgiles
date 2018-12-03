@@ -222,6 +222,18 @@ public class LicenciaController {
         return diffYear;
     }
     
+        
+    public void guardarDuplicado ( Licencia l){
+        
+        l.setFechaEmision(new Date());
+        l.setMotivo("DUPLICADO");
+        LicenciaDAO.update(l);
+        
+    }
+    
+    //CONJUNTO DE MÉTODOS PARA LA IMPRESIÓN DE REPORTES
+    
+    //MÉTODO PARA IMPRIMIR TODAS LAS LICENCIAS VIGENTES
     public int imprimirTodasVigentes() throws IOException, JRException, ParseException{
         
         ImprimirController iController = new ImprimirController();
@@ -230,14 +242,7 @@ public class LicenciaController {
         return 0;
     }
     
-    public int imprimirRangoVigentes(String fechaDesde, String fechaHasta) throws IOException, JRException, ParseException{
-        
-        ImprimirController iController = new ImprimirController();
-        iController.imprimirRangoVigentes(fechaDesde, fechaHasta);        
-        
-        return 0;
-    }
-    
+    //MÉTODO PARA IMPRIMIR TODAS LAS LICENCIAS EXPIRADAS
     public int imprimirTodasExpiradas() throws IOException, JRException, ParseException{
         
         ImprimirController iController = new ImprimirController();
@@ -246,6 +251,16 @@ public class LicenciaController {
         return 0;
     }
     
+    //MÉTODO PARA IMPRIMIR TODAS LAS LICENCIAS VIGENTES DENTRO DE UN RANGO
+    public int imprimirRangoVigentes(String fechaDesde, String fechaHasta) throws IOException, JRException, ParseException{
+        
+        ImprimirController iController = new ImprimirController();
+        iController.imprimirRangoVigentes(fechaDesde, fechaHasta);        
+        
+        return 0;
+    }    
+    
+    //MÉTODO PARA IMPRIMIR TODAS LAS LICENCIAS EXPIRADAS DENTRO DE UN RANGO
     public int imprimirRangoExpiradas(String fechaDesde, String fechaHasta) throws IOException, JRException, ParseException{
         
         ImprimirController iController = new ImprimirController();
@@ -253,13 +268,6 @@ public class LicenciaController {
         
         return 0;
     }
-    
-    public void guardarDuplicado ( Licencia l){
-        
-        l.setFechaEmision(new Date());
-        l.setMotivo("DUPLICADO");
-        LicenciaDAO.update(l);
-        
-    }
+
     
 }
