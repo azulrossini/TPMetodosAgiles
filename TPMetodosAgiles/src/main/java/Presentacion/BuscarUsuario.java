@@ -292,7 +292,7 @@ public class BuscarUsuario extends javax.swing.JFrame {
         dtm.setRowCount(0);   
         for(int i = 0; i<usuarios.size(); i++){
             String datos[] = new String[3];                 
-                datos[0] = String.valueOf(usuarios.get(i).getUsername());
+                datos[0] = String.valueOf(usuarios.get(i).getUsername());                
                 datos[1] = String.valueOf(usuarios.get(i).getPassword());
                 if (usuarios.get(i).isPrivilegio()){
                     datos[2] = "Superusuario";

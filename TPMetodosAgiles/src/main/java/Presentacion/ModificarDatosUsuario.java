@@ -319,6 +319,7 @@ public class ModificarDatosUsuario extends javax.swing.JFrame {
         //Valido los datos  ingresados y dependiendo del resultado muestro el mensaje correspondiente
         switch (usuarioController.validarCampos(this.username.getText(), this.pass.getText(), this.superusuario.isSelected(), this.administrativo.isSelected())){
             case 0:
+            case 1:
             try {
                 //Actualizo el usuario existente
                 user.setUsername(this.username.getText());
@@ -335,9 +336,6 @@ public class ModificarDatosUsuario extends javax.swing.JFrame {
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(this, "La contraseña no es válida", "Error",  JOptionPane.ERROR_MESSAGE);
             }
-            break;
-            case 1:
-            JOptionPane.showMessageDialog(this, "El nombre de usuario ya existe", "Error",  JOptionPane.ERROR_MESSAGE);
             break;
             case 2:
             JOptionPane.showMessageDialog(this, "Debe insertar un nombre de usuario", "Error",  JOptionPane.ERROR_MESSAGE);
