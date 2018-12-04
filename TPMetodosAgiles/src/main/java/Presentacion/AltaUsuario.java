@@ -302,7 +302,7 @@ public class AltaUsuario extends javax.swing.JFrame {
         switch (uc.validarCampos(this.username.getText(), this.pass.getText(), this.superusuario.isSelected(), this.administrativo.isSelected())){
             case 0:
                 try {
-                    GenericDAO.create(new Usuario(this.username.getText(), CryptoUtils.computeHash(this.pass.getText()), this.superusuario.isSelected()));
+                    uc.crearUsuario(username.getText(), pass.getText(), superusuario.isSelected());
                     JOptionPane.showMessageDialog(this, "Ha creado el usuario con éxito", "Felicidades",  JOptionPane.INFORMATION_MESSAGE);
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(this, "La contraseña no es válida", "Error",  JOptionPane.ERROR_MESSAGE);               

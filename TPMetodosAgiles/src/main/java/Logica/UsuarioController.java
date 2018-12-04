@@ -65,4 +65,9 @@ public class UsuarioController {
         }
     }
     
+    public void crearUsuario (String username, String pass, boolean priv) throws Exception{
+        //Se almacena en la base de datos el usuario
+        GenericDAO.create(new Usuario(username, CryptoUtils.computeHash(pass), priv));
+    }
+    
 }
