@@ -26,6 +26,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import lic_sf_bd.util;
+import net.sf.jasperreports.engine.JREmptyDataSource;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -46,6 +47,8 @@ public class ImprimirController {
     private final Licencia lic;
     private final Map<String, Object> parameters = new HashMap();
     private final Map<String, Object> parametersListado = new HashMap();
+    private final Map<String, Object> parametrosComprobanteDePago = new HashMap();
+    
     private List listado;
     
     public ImprimirController() throws IOException{
@@ -63,6 +66,19 @@ public class ImprimirController {
     public ImprimirController(Persona p, Licencia l, List lista) throws IOException{
         persona = p;
         lic = l;
+    }
+
+     public ImprimirController(String tipoLicencia, int aniosVigencia, float costoAdmin){
+        persona = null;
+        lic = null;
+        cargarParametrosComprobante(tipoLicencia,aniosVigencia,costoAdmin);        
+    }
+    
+    private void cargarParametrosComprobante(String tipoLicencia, int aniosVigencia, float costoAdmin){
+        //Cargo los parametros del comprobante
+        parametrosComprobanteDePago.put("tipoLicencia",tipoLicencia);
+        parametrosComprobanteDePago.put("vigencia",String.valueOf(aniosVigencia));
+        parametrosComprobanteDePago.put("costoAdministrativo",String.valueOf(costoAdmin));
     }
 
     private void cargarParametros() throws IOException{
@@ -121,6 +137,21 @@ public class ImprimirController {
         });
     }
     
+    public void verComprobanteDePago(){        
+        //Se carga el archivo a memoria a partir del recurso correspondiente en la carpeta del sistema
+        InputStream archivo = this.getClass().getClassLoader().getResourceAsStream("Reporte/ComprobanteDePago.jasper");
+        //Se arma el documento imprimible
+        try{
+            JasperReport jr = (JasperReport) JRLoader.loadObject(archivo);
+                                                           //conección a un data source vacío (no utilizo la bd)
+            JasperPrint jp = JasperFillManager.fillReport(jr,parametrosComprobanteDePago,new JREmptyDataSource());
+            //Se presenta una ventana con una vista previa del mismo
+            JasperViewer.viewReport(jp, false);
+        } catch (JRException ex) {
+            Logger.getLogger(ImprimirLicencia.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     public void cargarFoto(){
         //Se abre una ventana interactiva para permitirle al usuario buscar el archivo correspondiente a la foto
         JFileChooser jfc = new JFileChooser();
@@ -163,6 +194,22 @@ public class ImprimirController {
                 }
             }
         });
+    }
+    
+    public void imprimirComprobanteDePago(){
+        //Se carga el archivo a memoria a partir del recurso correspondiente en la carpeta del sistema
+        InputStream archivo = this.getClass().getClassLoader().getResourceAsStream("Reporte/ComprobanteDePago.jasper");
+        //Se arma el documento imprimible
+        try{
+            JasperReport jr = (JasperReport) JRLoader.loadObject(archivo);
+                                                           //conección a un data source vacío (no utilizo la bd)
+            JasperPrint jp = JasperFillManager.fillReport(jr,parametrosComprobanteDePago,new JREmptyDataSource());
+           //Se imprime el comprobante
+            JasperPrintManager.printReport(jp, true);
+            JOptionPane.showMessageDialog(null,"IMPRESIÓN CORRECTA"); 
+        } catch (JRException ex) {
+            Logger.getLogger(ImprimirLicencia.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     //MÉTODOS PARA LA IMPRESIÓN DE REPORTES

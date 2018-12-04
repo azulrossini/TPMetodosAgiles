@@ -323,6 +323,11 @@ public class IndexView extends javax.swing.JFrame {
         botonCosto.setBorderPainted(false);
         botonCosto.setContentAreaFilled(false);
         botonCosto.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/budget rollove.png"))); // NOI18N
+        botonCosto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCostoActionPerformed(evt);
+            }
+        });
 
         jLabel13.setBackground(new java.awt.Color(51, 51, 51));
         jLabel13.setFont(new java.awt.Font("Caviar Dreams", 1, 18)); // NOI18N
@@ -550,6 +555,10 @@ public class IndexView extends javax.swing.JFrame {
     private void botonBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBajaActionPerformed
         JOptionPane.showMessageDialog(this, "Esta funcionalidad no se ha implementado aún.", "Ups", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_botonBajaActionPerformed
+
+    private void botonCostoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCostoActionPerformed
+        
+    }//GEN-LAST:event_botonCostoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

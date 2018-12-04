@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ComprobanteDePago" pageWidth="595" pageHeight="200" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ace83908-7e08-4429-a04c-b6be22e82028">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<subDataset name="dataset1" uuid="198b22f2-17d8-4080-8454-c1edf7acff9e"/>
+	<parameter name="tipoLicencia" class="java.lang.String"/>
+	<parameter name="vigencia" class="java.lang.String"/>
+	<parameter name="costoAdministrativo" class="java.lang.String"/>
+	<title>
+		<band height="79" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement uuid="d681679f-f4f9-4dc5-9929-96c9785d857c" x="64" y="13" width="409" height="51"/>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="f84ad090-72cb-4423-9c4b-30f3e0ae5240" x="64" y="13" width="409" height="51"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COMPROBANTE DE PAGO]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="74" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="66841bfb-839a-4a98-bcd5-98e159e9daf7" x="0" y="0" width="460" height="20"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Tipo de licencia ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="66841bfb-839a-4a98-bcd5-98e159e9daf7" x="0" y="40" width="460" height="20"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Costo administrativo									$]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="66841bfb-839a-4a98-bcd5-98e159e9daf7" x="0" y="20" width="460" height="20"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Cantidad de años de vigencia]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="1d241845-69a3-4a77-a3ef-e8193105b0dd" x="460" y="0" width="95" height="20"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tipoLicencia}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="1d241845-69a3-4a77-a3ef-e8193105b0dd" x="460" y="40" width="95" height="20"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{costoAdministrativo}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="1d241845-69a3-4a77-a3ef-e8193105b0dd" x="460" y="20" width="95" height="20"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{vigencia}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+</jasperReport>
