@@ -1,17 +1,10 @@
 
 package Presentacion;
 
-import Logica.Index;
 import Logica.UsuarioController;
 import Persistencia.Usuario;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
 
 /**
  *

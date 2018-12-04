@@ -29,7 +29,10 @@ public class UsuarioController {
     }
     
     public Usuario validarAcc(String username, String pass) throws Exception{
+        //Se busca en la base de datos el usuario ingresado en la pantalla de Login
         Usuario user =  ud.readByUsername(username);
+        //Se encripta la contraseña ingresada por el usuario y se compara con la recuperada de la base de datos, 
+        //si coinciden, se retorna el objeto correspondiente a la cuenta válida. Caso contrario, se retorna null
         if (Arrays.equals(user.getPassword(), CryptoUtils.computeHash(pass))){
             return user;
         }else{

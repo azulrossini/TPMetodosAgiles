@@ -38,8 +38,10 @@ public class UsuarioDAO extends GenericDAO{
     }
     
     public Usuario readByUsername(String username){
+        //Se obtiene la conexión a la base de datos realizada por Hibernate
         SS = util.getSessionFactory().openSession();
         SS.beginTransaction();
+        //Se busca el usuario correspondiente al ingresado
         String sentencia = "SELECT * FROM Usuario U WHERE U.username='" + username + "' LIMIT 0,1;";
         Query query = SS.createSQLQuery(sentencia).addEntity(Usuario.class);
         List<Usuario> lista = query.list();

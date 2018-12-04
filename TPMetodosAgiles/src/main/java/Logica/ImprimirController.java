@@ -56,6 +56,7 @@ public class ImprimirController {
     public ImprimirController(Persona p, Licencia l) throws IOException{
         persona = p;
         lic = l;
+        //Se pasan todos los datos de la persona y licencia necesarios para el reporte
         this.cargarParametros();
     }
     
@@ -98,14 +99,18 @@ public class ImprimirController {
     }
     
     public void verReporte(){
+        //Se obtiene la conexión establecida por Hibernate a la base de datos
         Session SS = util.getSessionFactory().openSession();
         SS.doWork(new Work(){
             @Override
             public void execute(Connection cnctn) throws SQLException {
+                //Se carga el archivo a memoria a partir del recurso correspondiente en la carpeta del sistema
                 InputStream archivo = this.getClass().getClassLoader().getResourceAsStream("Reporte/licencia.jasper");
+                //Se arma el documento imprimible
                 try{
                     JasperReport jr = (JasperReport) JRLoader.loadObject(archivo);
                     JasperPrint jp = JasperFillManager.fillReport(jr,parameters,cnctn);
+                    //Se presenta una ventana con una vista previa del mismo
                     JasperViewer.viewReport(jp, false);
                     
                 } catch (JRException ex) {
@@ -117,11 +122,14 @@ public class ImprimirController {
     }
     
     public void cargarFoto(){
+        //Se abre una ventana interactiva para permitirle al usuario buscar el archivo correspondiente a la foto
         JFileChooser jfc = new JFileChooser();
+        //Se limitan los formatos de archivo seleccionable
         jfc.addChoosableFileFilter(new FileNameExtensionFilter("Images", "jpg", "png", "jpeg"));
         jfc.showDialog(null,"Selecciona la foto");
         jfc.setVisible(true);
         File filename = jfc.getSelectedFile();
+        //Se pasa el puntero del archivo al reporte
         try {
             parameters.put("image", ImageIO.read(filename));
         } catch (IOException ex) {
@@ -131,19 +139,24 @@ public class ImprimirController {
     
     public void imprimirReporte() throws JRException{
         Session SS = util.getSessionFactory().openSession();
+        //Se obtiene la conexión establecida por Hibernate a la base de datos
         SS.doWork(new Work(){
             @Override
             public void execute(Connection cnctn) throws SQLException {
+                //Se busca el recurso correspondiente al reporte construido
                 InputStream archivo = this.getClass().getClassLoader().getResourceAsStream("Reporte/licencia.jasper");
                 JasperPrint jp = null;
+                //Se carga el objeto JasperPrint que arma el documento a imprimir en base al recurso buscado anteriormente
                 try{
                     JasperReport jr = (JasperReport) JRLoader.loadObject(archivo);
                     jp = JasperFillManager.fillReport(jr,parameters,cnctn);
                 } catch (JRException ex) {
                     Logger.getLogger(ImprimirController.class.getName()).log(Level.SEVERE, null, ex);
                 }finally{
+                    //Se imprime el reporte
                     try {
                         JasperPrintManager.printReport(jp, true);
+                        JOptionPane.showMessageDialog(null,"IMPRESIÓN CORRECTA");  
                     } catch (JRException ex) {
                         Logger.getLogger(ImprimirController.class.getName()).log(Level.SEVERE, null, ex);
                     }
