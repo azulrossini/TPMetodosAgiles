@@ -5,8 +5,14 @@
  */
 package lic_sf_bd;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
 import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.SessionFactory;
+import org.hibernate.exception.JDBCConnectionException;
+import org.hibernate.jdbc.Work;
 
 /**
  * Hibernate Utility class with a convenient method to get Session Factory
@@ -26,11 +32,19 @@ public class util {
         } catch (Throwable ex) {
             // Log the exception. 
             System.err.println("Initial SessionFactory creation failed." + ex);
+            JOptionPane.showMessageDialog(null, "ERROR. Falló la conexión a la base de datos", "Error",  JOptionPane.ERROR_MESSAGE);
+            System.exit(0);
             throw new ExceptionInInitializerError(ex);
         }
     }
     
     public static SessionFactory getSessionFactory() {
+        try{
+            DriverManager.getConnection("jdbc:mysql://localhost:3306/lic_sf_bd?zeroDateTimeBehavior=convertToNull", "root", "");
+        } catch (SQLException e){
+            JOptionPane.showMessageDialog(null, "ERROR. Falló la conexión a la base de datos", "Error",  JOptionPane.ERROR_MESSAGE);
+            System.exit(0);
+        }
         return sessionFactory;
     }
 }
