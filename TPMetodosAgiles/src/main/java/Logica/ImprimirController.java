@@ -87,15 +87,11 @@ public class ImprimirController {
     
     private void cargarParametrosListado(String fecha1, String fecha2) throws IOException, ParseException{
         
-        //ARMO LOS STRING PARA LA CONSULTA
-        
+        //ARMO LOS STRING PARA LA CONSULTA        
         String fechaDesdeFormat = "'" + fecha1 + "'";
         String fechaHastaFormat = "'" + fecha2 + "'";
         
-        System.out.println("");
-        System.out.println(fechaDesdeFormat + " Y " + fechaHastaFormat);
-        System.out.println("");
-        
+        //PASO LOS PARAMETROS PARA LUEGO USARLO EN JASPERREPORT
         parametersListado.put("fecha_desde", fechaDesdeFormat);
         parametersListado.put("fecha_hasta", fechaHastaFormat);      
         
@@ -156,13 +152,43 @@ public class ImprimirController {
         });
     }
     
-    public void imprimirListado() throws JRException, IOException, IOException, ParseException{
+    //MÉTODOS PARA LA IMPRESIÓN DE REPORTES
+    
+    //REPORTE DE TODAS LAS LICENCIAS VIGENTES
+    public void imprimirListadoVigentes() throws JRException, IOException, IOException, ParseException{
         
         Session SS = util.getSessionFactory().openSession();
         SS.doWork(new Work(){
             @Override
             public void execute(Connection cnctn) throws SQLException {
-                InputStream archivo = this.getClass().getClassLoader().getResourceAsStream("Reporte/Listado.jasper");
+                InputStream archivo = this.getClass().getClassLoader().getResourceAsStream("Reporte/ListadoVigentes.jasper");
+                JasperPrint jp = null;
+                try{
+                    JasperReport jr = (JasperReport) JRLoader.loadObject(archivo);
+                    jp = JasperFillManager.fillReport(jr, null,cnctn);
+                } catch (JRException ex) {
+                    Logger.getLogger(ImprimirController.class.getName()).log(Level.SEVERE, null, ex);
+                }finally{
+                    try {
+                        JasperPrintManager.printReport(jp, true); 
+                        //MUESTRO UN MENSAJE LUEGO DE QUE SE GENERÓ EL PDF
+                        JOptionPane.showMessageDialog(null,"IMPRESIÓN CORRECTA");   
+                    } catch (JRException ex) {
+                        Logger.getLogger(ImprimirController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+        });
+    }
+    
+   //REPORTE DE TODAS LAS LICENCIAS EXPIRADAS
+    public void imprimirListadoExpiradas() throws JRException, IOException, IOException, ParseException{
+        
+        Session SS = util.getSessionFactory().openSession();
+        SS.doWork(new Work(){
+            @Override
+            public void execute(Connection cnctn) throws SQLException {
+                InputStream archivo = this.getClass().getClassLoader().getResourceAsStream("Reporte/ListadoExpiradas.jasper");
                 JasperPrint jp = null;
                 try{
                     JasperReport jr = (JasperReport) JRLoader.loadObject(archivo);
@@ -180,20 +206,17 @@ public class ImprimirController {
             }
         });
     }
-        
-    public void imprimirListadoRango(String fechaDesde, String fechaHasta) throws JRException, IOException, ParseException{
-        
-        System.out.println("");
-        System.out.println("SE ESTÁ POR IMPRIMIR: " + fechaDesde + " y " + fechaHasta);
-        System.out.println("");
-        
+    
+    //REPORTE DE TODAS LAS LICENCIAS VIGENTES DENTRO DE UN RANGO    
+    public void imprimirRangoVigentes(String fechaDesde, String fechaHasta) throws JRException, IOException, ParseException{
+       
         this.cargarParametrosListado(fechaDesde, fechaHasta);        
         
         Session SS = util.getSessionFactory().openSession();
         SS.doWork(new Work(){
             @Override
             public void execute(Connection cnctn) throws SQLException {
-                InputStream archivo = this.getClass().getClassLoader().getResourceAsStream("Reporte/ListadoPorRango.jasper");
+                InputStream archivo = this.getClass().getClassLoader().getResourceAsStream("Reporte/ListadoRangoVigentes.jasper");
                 JasperPrint jp = null;
                 try{
                     JasperReport jr = (JasperReport) JRLoader.loadObject(archivo);
@@ -210,6 +233,34 @@ public class ImprimirController {
                 }
             }
         });           
- }    
+    }    
+    
+    //REPORTE DE TODAS LAS LICENCIAS EXPIRADAS DENTRO DE UN RANGO
+    public void imprimirRangoExpiradas(String fechaDesde, String fechaHasta) throws JRException, IOException, ParseException{
+
+        this.cargarParametrosListado(fechaDesde, fechaHasta);        
+
+        Session SS = util.getSessionFactory().openSession();
+        SS.doWork(new Work(){
+            @Override
+            public void execute(Connection cnctn) throws SQLException {
+                InputStream archivo = this.getClass().getClassLoader().getResourceAsStream("Reporte/ListadoRangoExpiradas.jasper");
+                JasperPrint jp = null;
+                try{
+                    JasperReport jr = (JasperReport) JRLoader.loadObject(archivo);
+                    jp = JasperFillManager.fillReport(jr,parametersListado,cnctn);
+                } catch (JRException ex) {
+                    Logger.getLogger(ImprimirController.class.getName()).log(Level.SEVERE, null, ex);
+                }finally{
+                    try {
+                        JasperPrintManager.printReport(jp, true);                        
+                        JOptionPane.showMessageDialog(null,"IMPRESIÓN CORRECTA");   
+                    } catch (JRException ex) {
+                        Logger.getLogger(ImprimirController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+        });           
+    } 
     
 }

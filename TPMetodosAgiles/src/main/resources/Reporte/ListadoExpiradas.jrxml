@@ -66,11 +66,7 @@ group by licencia.`id`]]>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="132" splitType="Stretch">
-			<image>
-				<reportElement uuid="fdcfc690-2290-44f7-a79c-8c28d31ef223" x="2" y="0" width="197" height="90"/>
-				<imageExpression><![CDATA["C:\\Proyectos Java\\TPMetodosAgiles\\TPMetodosAgiles\\src\\main\\resources\\Presentacion\\LogoReporte.jpg"]]></imageExpression>
-			</image>
+		<band height="107" splitType="Stretch">
 			<staticText>
 				<reportElement uuid="6cb172c7-6dc1-4680-b340-d489ad9c605e" x="251" y="25" width="304" height="27"/>
 				<textElement textAlignment="Right">
@@ -169,6 +165,10 @@ group by licencia.`id`]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{licencia_id}]]></textFieldExpression>
 			</textField>
+			<image>
+				<reportElement uuid="fdcfc690-2290-44f7-a79c-8c28d31ef223" x="2" y="0" width="197" height="90"/>
+				<imageExpression><![CDATA["LogoReporte.jpg"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>
