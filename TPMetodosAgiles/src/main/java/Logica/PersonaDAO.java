@@ -61,6 +61,13 @@ public class PersonaDAO {
         SS.getTransaction().commit();
         SS.close();
     }
+    public void updateTitular(Persona p){
+        SS = util.getSessionFactory().openSession();
+        SS.beginTransaction();
+        SS.update(p);
+        SS.getTransaction().commit();
+        SS.close();
+    }
     
 
     

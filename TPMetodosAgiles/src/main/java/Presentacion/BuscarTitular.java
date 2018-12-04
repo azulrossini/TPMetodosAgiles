@@ -12,6 +12,7 @@ import java.awt.event.WindowEvent;
 import java.util.*;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class BuscarTitular extends javax.swing.JFrame {
@@ -53,6 +54,7 @@ public class BuscarTitular extends javax.swing.JFrame {
         tabla = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
         jLabelRegistroDeTitular = new javax.swing.JLabel();
+        botonModificar2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -169,6 +171,14 @@ public class BuscarTitular extends javax.swing.JFrame {
         jLabelRegistroDeTitular.setForeground(new java.awt.Color(51, 51, 51));
         jLabelRegistroDeTitular.setText("Buscar Titular");
 
+        botonModificar2.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 16)); // NOI18N
+        botonModificar2.setText("Modificar");
+        botonModificar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonModificar2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -199,15 +209,16 @@ public class BuscarTitular extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                .addComponent(jLabelRegistroDeTitular)
-                                .addGap(153, 153, 153))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                                 .addComponent(jLabel1)
-                                .addGap(67, 67, 67))))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                                .addGap(67, 67, 67))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                                .addComponent(jLabelRegistroDeTitular)
+                                .addGap(144, 144, 144))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addComponent(botonModificar2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -233,7 +244,9 @@ public class BuscarTitular extends javax.swing.JFrame {
                 .addGap(24, 24, 24)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonModificar2))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -304,6 +317,18 @@ public class BuscarTitular extends javax.swing.JFrame {
         mouseDownCompCoords = evt.getPoint();
     }//GEN-LAST:event_jPanel4MousePressed
 
+    private void botonModificar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificar2ActionPerformed
+        //Si el usuario eligió un elemento de la tabla, se crea el frame de ModificarDatosTitular
+        //para modificar el titular elegido, sino aparece mensaje de error.
+        if (this.tabla.getSelectedRowCount()!= 0){
+            ModificarDatosTitular mod= new ModificarDatosTitular(personas.get(this.tabla.getSelectedRow()), personaController);
+            mod.setVisible(true);
+            this.dispose();
+        }else{
+            JOptionPane.showMessageDialog(this, "Se debe seleccionar un titular", "Error",  JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_botonModificar2ActionPerformed
+
     
     private void setearTabla(){
         //Setea la tabla con los valores de los titualres obtenidos
@@ -322,6 +347,9 @@ public class BuscarTitular extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonModificar;
+    private javax.swing.JButton botonModificar1;
+    private javax.swing.JButton botonModificar2;
     private javax.swing.JTextField buscaDNI;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton16;

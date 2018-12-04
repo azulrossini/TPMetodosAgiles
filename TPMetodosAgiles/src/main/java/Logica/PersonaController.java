@@ -70,6 +70,18 @@ public class PersonaController {
         return lista;
     }
     
+    //Valida los datos para modificar un titular existente y devuelve un entero que será analizado por la interfaz
+    public int validarDatosMT( String nombre, String apellido, String calle, String numeroCalle, String piso, String depart){
+        
+        if(!validarNombre(nombre)) return 1;
+        if(!validarApellido(apellido)) return 2;
+        if(!validarCalle(calle, numeroCalle, piso, depart)) return 3;
+        if(!validarNumeroCalle(numeroCalle)) return 4;
+        if(!validarPiso(piso)) return 5;
+        if(!validarDepartamento(depart)) return 6;
+
+        return 0;
+    }
     public boolean validarDocumento(TipoDocumento tipo, String numeroDocumento){
 
         if((tipo==TipoDocumento.DNI || tipo==TipoDocumento.LE || tipo==TipoDocumento.LC ) && numeroDocumento.matches("[0-9]{8}")) return true;
