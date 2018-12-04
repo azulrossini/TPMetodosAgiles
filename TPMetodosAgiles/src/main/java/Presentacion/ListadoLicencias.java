@@ -414,10 +414,13 @@ public class ListadoLicencias extends javax.swing.JFrame {
     private void printActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printActionPerformed
         //VERIFICO QUE TIPO DE LICENCIA Y SI SON TODAS O RANGO
         //TAMBIEN SI SON EXPIRADAS O VIGENTES
+        
+        this.dispose();
+        
         try {
             if(flagTodas){
                 if(flagTipo){                
-                        lController.imprimirTodasVigentes();                
+                    lController.imprimirTodasVigentes();                
                 }else{
                     lController.imprimirTodasExpiradas();
                 }

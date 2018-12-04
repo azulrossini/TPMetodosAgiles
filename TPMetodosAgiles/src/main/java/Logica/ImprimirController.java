@@ -7,6 +7,8 @@ package Logica;
 
 import Persistencia.Licencia;
 import Persistencia.Persona;
+import Presentacion.Cargando;
+import Presentacion.IndexView;
 import Presentacion.ImprimirLicencia;
 import java.io.File;
 import java.io.IOException;
@@ -230,10 +232,13 @@ public class ImprimirController {
                     Logger.getLogger(ImprimirController.class.getName()).log(Level.SEVERE, null, ex);
                 }finally{
                     try {
+                        Cargando load = new Cargando();
                         JasperPrintManager.printReport(jp, true); 
-                        //MUESTRO UN MENSAJE LUEGO DE QUE SE GENERÓ EL PDF
-                        JOptionPane.showMessageDialog(null,"IMPRESIÓN CORRECTA");   
+                        System.out.println("Despues del printReport");
+                        load.dispose();                        
+                        IndexView index = new IndexView(null);
                     } catch (JRException ex) {
+                        JOptionPane.showMessageDialog(null,"Impresión cancelada"); 
                         Logger.getLogger(ImprimirController.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
@@ -256,9 +261,12 @@ public class ImprimirController {
                 } catch (JRException ex) {
                     Logger.getLogger(ImprimirController.class.getName()).log(Level.SEVERE, null, ex);
                 }finally{
-                    try {
-                        JasperPrintManager.printReport(jp, true);                        
-                        JOptionPane.showMessageDialog(null,"IMPRESIÓN CORRECTA");   
+                    try {                        
+                        Cargando load = new Cargando();
+                        JasperPrintManager.printReport(jp, true); 
+                        System.out.println("Despues del printReport");
+                        load.dispose();                        
+                        IndexView index = new IndexView(null);
                     } catch (JRException ex) {
                         Logger.getLogger(ImprimirController.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -285,8 +293,11 @@ public class ImprimirController {
                     Logger.getLogger(ImprimirController.class.getName()).log(Level.SEVERE, null, ex);
                 }finally{
                     try {
-                        JasperPrintManager.printReport(jp, true);                        
-                        JOptionPane.showMessageDialog(null,"IMPRESIÓN CORRECTA");   
+                        Cargando load = new Cargando();
+                        JasperPrintManager.printReport(jp, true); 
+                        JOptionPane.showMessageDialog(null,"Impresión correcta");
+                        load.dispose();                        
+                        IndexView index = new IndexView(null);  
                     } catch (JRException ex) {
                         Logger.getLogger(ImprimirController.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -313,8 +324,11 @@ public class ImprimirController {
                     Logger.getLogger(ImprimirController.class.getName()).log(Level.SEVERE, null, ex);
                 }finally{
                     try {
-                        JasperPrintManager.printReport(jp, true);                        
-                        JOptionPane.showMessageDialog(null,"IMPRESIÓN CORRECTA");   
+                        Cargando load = new Cargando();
+                        JasperPrintManager.printReport(jp, true);
+                        JOptionPane.showMessageDialog(null,"Impresión correcta");
+                        load.dispose();                        
+                        IndexView index = new IndexView(null); 
                     } catch (JRException ex) {
                         Logger.getLogger(ImprimirController.class.getName()).log(Level.SEVERE, null, ex);
                     }
