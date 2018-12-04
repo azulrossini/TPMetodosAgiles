@@ -290,9 +290,14 @@ public class ElegirLicencia extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonDuplicarMouseExited
 
     private void jButtonDuplicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDuplicarActionPerformed
+
         ImprimirLicencia il;
         Licencia licencia = licencias.get(tabla.getSelectedRow());
+        
+        //guardo el duplicado en la BD
         this.licenciaController.guardarDuplicado(licencia);
+        
+        //Muestro interfaz para imprimir el duplicado
                 try {
                     il = new ImprimirLicencia(titular, licencia);
                     il.setVisible(true);

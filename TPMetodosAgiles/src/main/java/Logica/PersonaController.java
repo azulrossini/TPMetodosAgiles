@@ -83,7 +83,7 @@ public class PersonaController {
         return 0;
     }
     public boolean validarDocumento(TipoDocumento tipo, String numeroDocumento){
-
+        //Segun el tipo de documento, valido la longitud de cada uno y si tienen los caracteres que correspondan
         if((tipo==TipoDocumento.DNI || tipo==TipoDocumento.LE || tipo==TipoDocumento.LC ) && numeroDocumento.matches("[0-9]{8}")) return true;
         else if((tipo==TipoDocumento.CUIT || tipo==TipoDocumento.CUIL)  && numeroDocumento.matches("[0-9]{11}")) return true;
         else if(tipo==TipoDocumento.PASAPORTE && numeroDocumento.matches("[0-9]{8}[a-zA-Z]")) return true;
@@ -92,20 +92,21 @@ public class PersonaController {
     }
     
     public boolean validarNombre(String nombre){
-
+        //Valido que tenga solo espacios y/o letras
         if(nombre.matches("((\\s?)[a-zA-Z]+(\\s?))+") && nombre.length()<32) return true;
         else return false;
         
  
     }
     public boolean validarApellido(String apellido){
-       
+       //Valido que tenga solo espacios y/o letras
         if(apellido.matches("((\\s?)[a-zA-Z]+(\\s?))+") && apellido.length()<32 ) return true;
         else return false;
   
     }
     public boolean validarFecha(String dia, String mes, String anio){
         int dia1, mes1, anio1;
+        //Primero valido si son numeros lo ingresado
         if(this.validarDia(dia)) dia1 = Integer.valueOf(dia);
         else return false;
         if(this.validarMes(mes)) mes1 = Integer.valueOf(mes);
@@ -113,6 +114,7 @@ public class PersonaController {
         if(this.validarAnio(anio)) anio1 = Integer.valueOf(anio);
         else return false;
         
+        //Verfico los dias del mes
         switch (mes1) {
             case 1: case 3: case 5: case 7: case 8: case 10: case 12:
                 //numDias = 31;
@@ -133,7 +135,7 @@ public class PersonaController {
                 }
                 break;
         }
-
+         //Verfico que la edad sea mayor a 17
         DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate fechaNac = LocalDate.of(anio1, mes1, dia1);
         LocalDate ahora = LocalDate.now();
@@ -144,7 +146,7 @@ public class PersonaController {
 
     }
     public boolean validarDia(String dia){
-
+        //Valido que sean solo nuemros y el rango valido
         if(dia.matches("[0-9]?[0-9]")){
             if(Integer.valueOf(dia)>0 && Integer.valueOf(dia)<32)
                 return true;
@@ -154,6 +156,7 @@ public class PersonaController {
         
     }
     public boolean validarMes(String mes){
+        //Valido que sean solo nuemros y el rango valido
         if(mes.matches("[0-9]?[0-9]")){
             if(Integer.valueOf(mes)>0 && Integer.valueOf(mes)<13)
                 return true;
@@ -161,6 +164,7 @@ public class PersonaController {
         }else return false;
     }
     public boolean validarAnio(String anio){
+        //Valido que sean solo nuemros y el rango valido
         if(anio.matches("[0-9][0-9][0-9][0-9]")){
             if(Integer.valueOf(anio)>1899 && Integer.valueOf(anio)<2018)
                 return true;
@@ -168,26 +172,30 @@ public class PersonaController {
         }else return false;
     }
     public boolean validarCalle(String calle, String numeroCalle, String piso, String depart){
+        //Valido que tenga solo espacios y/o letras y que la longitud no sobrepase la de la BD
         if(calle.matches("((\\s?)[a-zA-Z]+(\\s?))+") && (calle.length()+numeroCalle.length()+piso.length()+depart.length())<32) return true;
         else return false;
     }
     public boolean validarNumeroCalle(String numeroCalle){
-        
+        //Valido que sean solo numeros
         if(numeroCalle.matches("[0-9][0-9][0-9]?[0-9]")) return true;
         else return false;
         
     }
     
     public boolean validarPiso(String piso){
+        //Valido que sean solo numeros
         if(piso.matches("([0-9]?[0-9])?")) return true;
         else return false;
     }
     public boolean validarDepartamento(String depart){
+        //Valido que sean solo numeros o solo letras
         if(depart.matches("[0-9]?") || depart.matches("[a-zA-Z]?")) return true;
         else return false;
     }
     
     public Date getFecha(String dia, String mes, String anio){
+        //Obtiene una fecha a partir de strings
         int dia1 = Integer.valueOf(dia);
         int mes1 = Integer.valueOf(mes);
         int anio1 = Integer.valueOf(anio);
@@ -220,6 +228,7 @@ public class PersonaController {
     }
     
     public boolean validarExistencia(TipoDocumento tipo, String numeroDocumento){
+        //Busco en la BD si el titular ya existe
         if(!numeroDocumento.equals("")){
             if(this.validarDocumento(tipo, numeroDocumento)){
                 List<Persona> listaPersonas = this.buscarTitular(numeroDocumento);

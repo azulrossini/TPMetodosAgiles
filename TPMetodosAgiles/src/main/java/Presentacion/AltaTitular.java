@@ -652,7 +652,7 @@ public class AltaTitular extends javax.swing.JFrame {
             
         }
          
-        
+        //Muestro por pantalla una imagen de error segun el campo erroneo
         this.jLabelErrorNumDocumento.setVisible(!(lista[0] && lista[11]));
         this.jLabelErrorNombre.setVisible(!lista[1]);
         this.jLabelErrorApellido.setVisible(!lista[2]);
@@ -663,7 +663,7 @@ public class AltaTitular extends javax.swing.JFrame {
         this.jLabelErrorDepartamento.setVisible(!lista[9]);
         this.jLabelErrorDonante.setVisible(errorEnDonante);
         
-        //cambio color de los jtexfield
+        //cambio color de los jtexfield a rojo segun el campo erroneo
         if(!lista[0]){
             this.jTextFieldNumeroDocumento.setForeground(Color.red);
         }else this.jTextFieldNumeroDocumento.setForeground(Color.black);
@@ -703,7 +703,7 @@ public class AltaTitular extends javax.swing.JFrame {
         
         
         
-        //verifico y creo un nuevo titular
+        //verifico los campos y creo un nuevo titular
         boolean estado=true;
         if(errorEnDonante) estado=false;
         for(int i=0;i<12;i++)
@@ -726,7 +726,6 @@ public class AltaTitular extends javax.swing.JFrame {
         }
             boolean donante = this.jRadioButtonDonanteSi.isSelected();
             Persona nuevoTitular = new Persona(tipo1, numeroDocumento, apellido, nombre, fechaNac, domicilio, grupoSang, rh, donante);
-            //System.out.println(nuevoTitular.isDonante()+"   "+ nuevoTitular.getFechaNac());
             
             
             //Llama para emitir una licencia con el titular creado
