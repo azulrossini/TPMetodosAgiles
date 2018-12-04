@@ -48,18 +48,23 @@ public class UsuarioController {
     }
     
     public int validarCampos (String username, String pass, boolean superusuario, boolean administrativo){
+        //Verificar existencia de usuario
         if (!this.validarUsername(username)){
             return 1;
         }else{
+            //Verificar que se haya ingresado un nombre de usuario
             if (username.isEmpty()){
                 return 2;
             }else{
+                //Verificar que se haya ingresado una contraseña
                 if (pass.isEmpty()){
                     return 3;
                 }else
+                    //Verificar que se haya seleccionado un privilegio
                     if (superusuario || administrativo){
                         return 0;
                     }else
+                        //No se selecciona privilegio
                         return 4;
             }
         }
