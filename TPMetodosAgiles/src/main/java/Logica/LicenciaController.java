@@ -224,7 +224,7 @@ public class LicenciaController {
     
         
     public void guardarDuplicado ( Licencia l){
-        
+        //Cambio la fecha de emision de la licencia y cambio su motivo a Duplicado
         l.setFechaEmision(new Date());
         l.setMotivo("DUPLICADO");
         LicenciaDAO.update(l);
