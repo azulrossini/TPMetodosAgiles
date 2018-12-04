@@ -39,6 +39,7 @@ public class util {
     }
     
     public static SessionFactory getSessionFactory() {
+        //Se verifica conexión
         try{
             DriverManager.getConnection("jdbc:mysql://localhost:3306/lic_sf_bd?zeroDateTimeBehavior=convertToNull", "root", "");
         } catch (SQLException e){
