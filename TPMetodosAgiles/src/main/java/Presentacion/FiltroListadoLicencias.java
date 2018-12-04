@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Presentacion;
 
 import Logica.*;
@@ -38,6 +33,8 @@ public class FiltroListadoLicencias extends javax.swing.JFrame {
         SelectRangoExpired.setVisible(false);
         errorDesde.setVisible(false);
         errorHasta.setVisible(false);
+        errorDesde1.setVisible(false);
+        errorHasta1.setVisible(false);
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.user = user;
@@ -1029,15 +1026,15 @@ public class FiltroListadoLicencias extends javax.swing.JFrame {
     }//GEN-LAST:event_back4ActionPerformed
 
     private void minimize4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minimize4ActionPerformed
-        // TODO add your handling code here:
+        this.setExtendedState(ICONIFIED);
     }//GEN-LAST:event_minimize4ActionPerformed
 
     private void close4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_close4ActionPerformed
-        // TODO add your handling code here:
+        System.exit(0);
     }//GEN-LAST:event_close4ActionPerformed
 
     private void siguiente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siguiente1ActionPerformed
-         if(fechaDesde1.getText().isEmpty()){
+        if(fechaDesde1.getText().isEmpty()){
             errorDesde1.setVisible(true);
         }else{
             if(fechaHasta1.getText().isEmpty()){

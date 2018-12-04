@@ -107,7 +107,7 @@ public class LicenciaController {
         //Cancela la vigencia de las clases heredadas
         //Por ejemplo, si se emite una nueva licencia de la clase C
         //Si el titular posee una licencia de clase B, pierde la vigencia de la misma
-        //Porque C hereda todo loq ue posea B
+        //Porque C hereda todo lo que posea B
         
         switch (clase){
             case "A":
