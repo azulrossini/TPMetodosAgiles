@@ -8,7 +8,6 @@ package Logica;
 import Persistencia.Usuario;
 import java.util.Arrays;
 import java.util.List;
-import javax.swing.JOptionPane;
 import org.hibernate.Session;
 
 /**
@@ -41,6 +40,7 @@ public class UsuarioController {
     }
     
     public boolean validarUsername(String username){
+        //Verificar la existencia de nombre de usuario
         if (ud.readByUsername(username)!=null)
             return false;
         else
