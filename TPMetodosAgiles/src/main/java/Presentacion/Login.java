@@ -18,6 +18,7 @@ public class Login extends javax.swing.JFrame {
      */
     
     private final UsuarioController uc;
+    //Se define un objeto para manejar el desplazamiento cuando el usuario mantenga pulsado el clic sobre el frame y arrastre el puntero
     private Point mouseDownCompCoords = null;
     
     public Login(){
@@ -281,14 +282,17 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jPanel4MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseReleased
+        //Cuando el clic se deja de presionar, se libera el espacio en memoria de las coordenadas que registran la ubicación del puntero
         mouseDownCompCoords = null;
     }//GEN-LAST:event_jPanel4MouseReleased
 
     private void jPanel4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MousePressed
+        //Cuando se presiona un clic sobre el panel del frame, se obtienen las coordenadas donde fue realizado y se guardan en memoria
         mouseDownCompCoords = evt.getPoint();
     }//GEN-LAST:event_jPanel4MousePressed
 
     private void jPanel4MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseDragged
+        //A medida que se arrastra el puntero, también se mueve el frame
         Point currCoords = evt.getLocationOnScreen();
         this.setLocation(currCoords.x - mouseDownCompCoords.x, currCoords.y - mouseDownCompCoords.y);
     }//GEN-LAST:event_jPanel4MouseDragged
@@ -332,36 +336,43 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_salirMouseExited
 
     private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
+        //Se cierra el programa
         System.exit(0);
     }//GEN-LAST:event_salirActionPerformed
 
     private void usernameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_usernameKeyTyped
+        //Se verifica que el nombre de usuario ingresado no sobrepase los 32 caracteres, si lo hace se omite el tipeo realizado
         if (this.username.getText().length()>=32){
             evt.consume();
         }
         this.error.setVisible(false);
+        //Se detecta el botón Enter/Intro pulsado y se emite una pulsación del botón ingresar
         if (evt.getKeyChar()==KeyEvent.VK_ENTER){
             this.ingresar.doClick();
         }
     }//GEN-LAST:event_usernameKeyTyped
 
     private void passKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passKeyTyped
+        //Se verifica que la contraseña ingresado no sobrepase los 32 caracteres, si lo hace se omite el tipeo realizado
         if (this.pass.getText().length()>=32){
             evt.consume();
         }
         this.error.setVisible(false);
+        //Se detecta el botón Enter/Intro pulsado y se emite una pulsación del botón ingresar
         if (evt.getKeyChar()==KeyEvent.VK_ENTER){
             this.ingresar.doClick();
         }
     }//GEN-LAST:event_passKeyTyped
 
     private void ingresarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ingresarKeyTyped
+        //Se detecta el botón Enter/Intro pulsado y se emite una pulsación del botón ingresar
         if (evt.getKeyChar()==KeyEvent.VK_ENTER){
             this.ingresar.doClick();
         }
     }//GEN-LAST:event_ingresarKeyTyped
 
     private void salirKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_salirKeyTyped
+        //Se detecta el botón Enter/Intro pulsado y se emite una pulsación del botón salir
         if (evt.getKeyChar()==KeyEvent.VK_ENTER){
             System.exit(0);
         }
