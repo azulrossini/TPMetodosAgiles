@@ -1,15 +1,11 @@
 
 package Presentacion;
 
-import Logica.CryptoUtils;
-import Logica.GenericDAO;
 import Logica.Index;
 import Logica.UsuarioController;
 import Persistencia.Usuario;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -26,6 +22,7 @@ public class AltaUsuario extends javax.swing.JFrame {
     
     private final UsuarioController uc;
     private final ButtonGroup bg;
+    //Se define un objeto para manejar el desplazamiento cuando el usuario mantenga pulsado el clic sobre el frame y arrastre el puntero
     private Point mouseDownCompCoords = null;
     private final Usuario user;
     
@@ -286,20 +283,25 @@ public class AltaUsuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jPanel4MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseReleased
+        //Cuando el clic se deja de presionar, se libera el espacio en memoria de las coordenadas que registran la ubicación del puntero
         mouseDownCompCoords = null;
     }//GEN-LAST:event_jPanel4MouseReleased
 
     private void jPanel4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MousePressed
+        //Cuando se presiona un clic sobre el panel del frame, se obtienen las coordenadas donde fue realizado y se guardan en memoria
         mouseDownCompCoords = evt.getPoint();
     }//GEN-LAST:event_jPanel4MousePressed
 
     private void jPanel4MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseDragged
+        //A medida que se arrastra el puntero, también se mueve el frame
         Point currCoords = evt.getLocationOnScreen();
         this.setLocation(currCoords.x - mouseDownCompCoords.x, currCoords.y - mouseDownCompCoords.y);
     }//GEN-LAST:event_jPanel4MouseDragged
 
     private void crearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearActionPerformed
+        //Se verifican los campos ingresados
         switch (uc.validarCampos(this.username.getText(), this.pass.getText(), this.superusuario.isSelected(), this.administrativo.isSelected())){
+            //Caso correcto
             case 0:
                 try {
                     uc.crearUsuario(username.getText(), pass.getText(), superusuario.isSelected());
@@ -308,6 +310,7 @@ public class AltaUsuario extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "La contraseña no es válida", "Error",  JOptionPane.ERROR_MESSAGE);               
                 }
                 break;
+            //Casos erróneos
             case 1:
                 JOptionPane.showMessageDialog(this, "El nombre de usuario ya existe", "Error",  JOptionPane.ERROR_MESSAGE);
                 break;
@@ -324,10 +327,12 @@ public class AltaUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_crearActionPerformed
 
     private void crearMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_crearMouseExited
+        //Cuando sale el puntero del botón, se establece el fondo del mismo un tono más claro, regresando al color original
         this.crear.setBackground(this.crear.getBackground().brighter());
     }//GEN-LAST:event_crearMouseExited
 
     private void crearMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_crearMouseEntered
+        //Cuando el puntero ingresa al botón, se establece el fondo del mismo un tono más oscuro, para indicarle al usuario que el sistema efectivamente responde a sus aaciones, y de esta manera lograr un efecto más vistoso e interactivo
         this.crear.setBackground(this.crear.getBackground().darker());
     }//GEN-LAST:event_crearMouseEntered
 
@@ -336,46 +341,56 @@ public class AltaUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton17ActionPerformed
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
+        //Se termina el programa
         System.exit(0);
     }//GEN-LAST:event_jButton16ActionPerformed
 
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
+        //Cuando el usuario presiona el botón salir, se vuelve a visualizar la pantalla llamadora a esta
         Index.historial.get(Index.historial.size()-2).setVisible(true);
         this.dispose();
+        //Se elimina del historial la pantalla actual
         Index.historial.remove(Index.historial.size()-1);
     }//GEN-LAST:event_jButton18ActionPerformed
 
     private void usernameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_usernameKeyTyped
+        //Se verifica que el nombre de usuario ingresado no sobrepase los 32 caracteres, si lo hace se omite el tipeo realizado
         if (this.username.getText().length()>=32){
             evt.consume();
         }
+        //Se detecta el botón Enter/Intro pulsado y se emite una pulsación del botón crear
         if (evt.getKeyChar()==KeyEvent.VK_ENTER){
             this.crear.doClick();
         }
     }//GEN-LAST:event_usernameKeyTyped
 
     private void passKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passKeyTyped
+        //Se verifica que el nombre de usuario ingresado no sobrepase los 32 caracteres, si lo hace se omite el tipeo realizado
         if (this.pass.getText().length()>=32){
             evt.consume();
         }
+        //Se detecta el botón Enter/Intro pulsado y se emite una pulsación del botón crear
         if (evt.getKeyChar()==KeyEvent.VK_ENTER){
             this.crear.doClick();
         }
     }//GEN-LAST:event_passKeyTyped
 
     private void superusuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_superusuarioKeyTyped
+        //Se detecta el botón Enter/Intro pulsado y se emite una pulsación del botón crear
         if (evt.getKeyChar()==KeyEvent.VK_ENTER){
             this.crear.doClick();
         }
     }//GEN-LAST:event_superusuarioKeyTyped
 
     private void administrativoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_administrativoKeyTyped
+        //Se detecta el botón Enter/Intro pulsado y se emite una pulsación del botón crear
         if (evt.getKeyChar()==KeyEvent.VK_ENTER){
             this.crear.doClick();
         }
     }//GEN-LAST:event_administrativoKeyTyped
 
     private void crearKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_crearKeyTyped
+        //Se detecta el botón Enter/Intro pulsado y se emite una pulsación del botón crear
         if (evt.getKeyChar()==KeyEvent.VK_ENTER){
             this.crear.doClick();
         }
