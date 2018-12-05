@@ -7,19 +7,26 @@ import java.util.Date;
 import java.util.List;
 
 public class VigenciaController {
-       
+    
+    //Método para obtener todas las vigencias cargas en la BD
     public List<Vigencias> getVigencias(){
         
         VigenciaDAO vigenciadao = new VigenciaDAO();
         
         return vigenciadao.readAll();
-    } 
+    }
+    //Método para obtener una vigencia en particular a partir del motivo y
+    //la fecha de nacimiento de un titular
     public Vigencias getVigencia(String m, Date fechaNacimiento){
-        PersonaController personaController = new PersonaController();
-        int edad = personaController.getEdad(fechaNacimiento);
         
+        //Se crea el controlador del titular para obtener la edad:
+        PersonaController personaController = new PersonaController();
+        //Obtenemos la edad:
+        int edad = personaController.getEdad(fechaNacimiento);
+        //Obtenemos una lista con todas las vigencias:
         List<Vigencias> listaVigencias = this.getVigencias();
         
+        //Según los datos obtenidos retornamos la vigencia deseada:
         if(edad < 21){
             if(m.equals(Motivo.ORIGINAL.toString())){
 

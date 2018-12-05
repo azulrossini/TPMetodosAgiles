@@ -18,7 +18,7 @@ public class LicenciaController {
     
     private final LicenciaDAO LicenciaDAO;
     
-    public enum Motivo{ORIGINAL, RENOVACION}
+    public enum Motivo{ORIGINAL, RENOVACION, DUPLICADO}
     
     public LicenciaController(){
         this.LicenciaDAO = new LicenciaDAO();
@@ -155,25 +155,30 @@ public class LicenciaController {
         
         return personaController.getPersona(id);
     }
-    
+    //Retorna la fecha de vencimiento de la licencia
+    //A partir de la vigencia y la fecha de nacimiento
     public Date getFechaVigencia(Vigencias v,Date fechaNacimiento){
         
         PersonaController personaController = new PersonaController();
         
-             
+        //Obtenemos fecha actual     
         Calendar fechaVigencia = Calendar.getInstance();
-//        fechaVigencia.setTime(licencia.getFechaEmision());
         
+        //Obtenemos la edad de la persona
         int edad = personaController.getEdad(fechaNacimiento);
         
+        //A la fecha actual obtenida le agregamos la duración de la vigencia
         fechaVigencia.add(Calendar.YEAR, v.getDuracion());
-      
+        
+        //Obtenemos otra instancia de Calendar y la seteamos en la fecha de nacimiento
         Calendar c = Calendar.getInstance();
         c.setTime(fechaNacimiento);
         
+        //Seteamos a la fecha de vigencia el día y mes de nacimiento del titular
         fechaVigencia.set(Calendar.DAY_OF_MONTH, c.get(Calendar.DAY_OF_MONTH));
         fechaVigencia.set(Calendar.MONTH, c.get(Calendar.MONTH));
         
+        //Retornamos la fecha en formato Date
         return fechaVigencia.getTime();
     }
     
@@ -191,6 +196,7 @@ public class LicenciaController {
         //Calcular vigencia
         VigenciaController vigenciaController = new VigenciaController();
         Vigencias vigencia = vigenciaController.getVigencia(motivo.toString(), titular.getFechaNac());
+        System.out.println(vigencia);
         licencia.setVigenciaId(vigencia.getId());
           
         licencia.setFechaEmision(new Date());
@@ -207,9 +213,9 @@ public class LicenciaController {
              
         licencia.setCostoId(cc.getCostoId());
                
-         LicenciaDAO.writeLicencia(licencia);
+        LicenciaDAO.writeLicencia(licencia);
          
-         return licencia;
+        return licencia;
     }
     
     public int getDiferenciaAnios(Date vencimiento){
@@ -226,7 +232,7 @@ public class LicenciaController {
     public void guardarDuplicado ( Licencia l){
         //Cambio la fecha de emision de la licencia y cambio su motivo a Duplicado
         l.setFechaEmision(new Date());
-        l.setMotivo("DUPLICADO");
+        l.setMotivo(Motivo.DUPLICADO.toString());
         LicenciaDAO.update(l);
         
     }

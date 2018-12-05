@@ -35,6 +35,9 @@ public class PersonaController {
     public void almacenarTitular(Persona p){
         PersonaDAO.writeTitular(p);
     }
+    public void updateTitular(Persona p){
+        PersonaDAO.updateTitular(p);
+    }
     
     
     /*devuelve un arreglo de booleans, cada posicion indica si el dato es correcto o no

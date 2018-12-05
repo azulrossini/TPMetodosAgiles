@@ -14,8 +14,6 @@ import net.sf.jasperreports.engine.JRException;
 
 public class ImprimirLicencia extends javax.swing.JFrame {
 
-
-    
     private final ImprimirController ic;
     //Se define un objeto para manejar el desplazamiento cuando el usuario mantenga pulsado el clic sobre el frame y arrastre el puntero
     private Point mouseDownCompCoords = null;
