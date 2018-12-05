@@ -37,7 +37,6 @@ public class ModificarDatosUsuario extends javax.swing.JFrame {
     
     private void cargarCampos(){
         this.username.setText(user.getUsername());
-        this.pass.setText(String.valueOf(user.getPassword()));
         if(user.isPrivilegio()){
             this.superusuario.setSelected(true);
         }else{
@@ -68,9 +67,10 @@ public class ModificarDatosUsuario extends javax.swing.JFrame {
         jLabel24 = new javax.swing.JLabel();
         superusuario = new javax.swing.JRadioButton();
         administrativo = new javax.swing.JRadioButton();
-        pass = new javax.swing.JTextField();
+        pass = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel4.setBackground(new java.awt.Color(206, 206, 206));
         jPanel4.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 2, true), new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true)));
@@ -198,13 +198,6 @@ public class ModificarDatosUsuario extends javax.swing.JFrame {
             }
         });
 
-        pass.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 18)); // NOI18N
-        pass.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                passKeyTyped(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -229,19 +222,17 @@ public class ModificarDatosUsuario extends javax.swing.JFrame {
                 .addComponent(jLabel14)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(botonAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(botonMinimizar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(botonCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jSeparator4, javax.swing.GroupLayout.Alignment.TRAILING)))
+                        .addComponent(botonAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botonMinimizar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(botonCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSeparator4, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(botonActualizar)))
                 .addContainerGap())
         );
@@ -264,8 +255,8 @@ public class ModificarDatosUsuario extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel23)
-                    .addComponent(pass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16)
+                    .addComponent(pass, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(11, 11, 11)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel24)
                     .addComponent(superusuario, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -318,12 +309,19 @@ public class ModificarDatosUsuario extends javax.swing.JFrame {
     private void botonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActualizarActionPerformed
         //Valido los datos  ingresados y dependiendo del resultado muestro el mensaje correspondiente
         switch (usuarioController.validarCampos(this.username.getText(), this.pass.getText(), this.superusuario.isSelected(), this.administrativo.isSelected())){
+            //Se cambia el username y la password
             case 0:
+            //No se cambia el username    
             case 1:
+            //No se cambia la contraseña
+            case 3:
             try {
                 //Actualizo el usuario existente
                 user.setUsername(this.username.getText());
-                user.setPassword(CryptoUtils.computeHash(this.pass.getText()));
+                //Si cambia la contraseña la almaceno sino la dejo como estaba
+                if(this.pass.getText().length() != 0){
+                    user.setPassword(CryptoUtils.computeHash(this.pass.getText()));
+                }
                 user.setPrivilegio(this.superusuario.isSelected());
                 //Actualizo en la BD
                 GenericDAO.update(user);
@@ -337,11 +335,9 @@ public class ModificarDatosUsuario extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "La contraseña no es válida", "Error",  JOptionPane.ERROR_MESSAGE);
             }
             break;
+            //No permite el username vacío
             case 2:
             JOptionPane.showMessageDialog(this, "Debe insertar un nombre de usuario", "Error",  JOptionPane.ERROR_MESSAGE);
-            break;
-            case 3:
-            JOptionPane.showMessageDialog(this, "Debe insertar una contraseña", "Error",  JOptionPane.ERROR_MESSAGE);
             break;
         }
     }//GEN-LAST:event_botonActualizarActionPerformed
@@ -370,10 +366,6 @@ public class ModificarDatosUsuario extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jPanel4MouseReleased
 
-    private void passKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_passKeyTyped
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton administrativo;
     private javax.swing.JButton botonActualizar;
@@ -386,7 +378,7 @@ public class ModificarDatosUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel24;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JSeparator jSeparator4;
-    private javax.swing.JTextField pass;
+    private javax.swing.JPasswordField pass;
     private javax.swing.ButtonGroup privilegios;
     private javax.swing.JRadioButton superusuario;
     private javax.swing.JTextField username;
