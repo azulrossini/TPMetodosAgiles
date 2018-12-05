@@ -83,12 +83,12 @@ public class ImprimirController {
         parametrosComprobanteDePago.put("costoAdministrativo",String.valueOf(costoAdmin));
     }
 
+    //Se pasan los datos de variables al reporte para ser impresos
     private void cargarParametros() throws IOException{
         parameters.put("nro_id",persona.getNroId());
         parameters.put("apellido",persona.getApellido());
         parameters.put("nombre",persona.getNombre());
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        System.out.println(sdf.format(persona.getFechaNac()));
         parameters.put("fecha_nacimiento",sdf.format(persona.getFechaNac()));
         parameters.put("domicilio",persona.getDomicilio());
         parameters.put("grupo_sanguineo",persona.getGrupoSanguineo());
