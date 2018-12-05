@@ -295,9 +295,14 @@ public class BuscarTitular extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        ElegirLicencia el= new ElegirLicencia(personas.get(this.tabla.getSelectedRow()), personaController, licenciaController, user);
-        el.setVisible(true);
-        this.dispose();
+        if (personas!=null && this.tabla.getSelectedRow()!=-1){
+            ElegirLicencia el= new ElegirLicencia(personas.get(this.tabla.getSelectedRow()), personaController, licenciaController, user);
+            el.setVisible(true);
+            this.dispose();
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Se debe seleccionar un titular", "Error",  JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void buscaDNIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscaDNIActionPerformed

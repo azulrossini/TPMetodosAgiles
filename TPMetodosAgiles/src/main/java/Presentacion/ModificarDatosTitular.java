@@ -67,6 +67,9 @@ public class ModificarDatosTitular extends javax.swing.JFrame {
         if (this.persona.isDonante()){
             this.jRadioButtonDonanteSi.setSelected(true);
         }
+        else{
+            this.jRadioButtonDonanteNo.setSelected(true);
+        }
     }
 
     /**
