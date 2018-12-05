@@ -18,7 +18,7 @@ public class LicenciaController {
     
     private final LicenciaDAO LicenciaDAO;
     
-    public enum Motivo{ORIGINAL, RENOVACION}
+    public enum Motivo{ORIGINAL, RENOVACION, DUPLICADO}
     
     public LicenciaController(){
         this.LicenciaDAO = new LicenciaDAO();
@@ -227,7 +227,7 @@ public class LicenciaController {
     public void guardarDuplicado ( Licencia l){
         //Cambio la fecha de emision de la licencia y cambio su motivo a Duplicado
         l.setFechaEmision(new Date());
-        l.setMotivo("DUPLICADO");
+        l.setMotivo(Motivo.DUPLICADO.toString());
         LicenciaDAO.update(l);
         
     }
