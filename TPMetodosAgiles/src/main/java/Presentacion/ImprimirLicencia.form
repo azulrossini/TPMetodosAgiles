@@ -152,11 +152,11 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jSeparator4" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jButton18" min="-2" pref="41" max="-2" attributes="0"/>
+                                  <Component id="atras" min="-2" pref="41" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="jButton17" min="-2" pref="38" max="-2" attributes="0"/>
+                                  <Component id="minimizar" min="-2" pref="38" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jButton16" min="-2" pref="35" max="-2" attributes="0"/>
+                                  <Component id="salir" min="-2" pref="35" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
@@ -170,9 +170,9 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="jButton16" alignment="1" min="-2" pref="33" max="-2" attributes="0"/>
-                      <Component id="jButton17" alignment="1" min="-2" pref="33" max="-2" attributes="0"/>
-                      <Component id="jButton18" alignment="1" min="-2" pref="33" max="-2" attributes="0"/>
+                      <Component id="salir" alignment="1" min="-2" pref="33" max="-2" attributes="0"/>
+                      <Component id="minimizar" alignment="1" min="-2" pref="33" max="-2" attributes="0"/>
+                      <Component id="atras" alignment="1" min="-2" pref="33" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
@@ -296,7 +296,7 @@
             <Property name="opaque" type="boolean" value="true"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton16">
+        <Component class="javax.swing.JButton" name="salir">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Presentacion/cancel.png"/>
@@ -308,10 +308,10 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton16ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="salirActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton17">
+        <Component class="javax.swing.JButton" name="minimizar">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Presentacion/diminish.png"/>
@@ -323,10 +323,10 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton17ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="minimizarActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton18">
+        <Component class="javax.swing.JButton" name="atras">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Presentacion/left-arrow.png"/>
@@ -338,7 +338,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton18ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="atrasActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="titular">

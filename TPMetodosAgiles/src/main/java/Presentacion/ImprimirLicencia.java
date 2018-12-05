@@ -56,9 +56,9 @@ public class ImprimirLicencia extends javax.swing.JFrame {
         jSeparator4 = new javax.swing.JSeparator();
         jLabel21 = new javax.swing.JLabel();
         jSeparator5 = new javax.swing.JSeparator();
-        jButton16 = new javax.swing.JButton();
-        jButton17 = new javax.swing.JButton();
-        jButton18 = new javax.swing.JButton();
+        salir = new javax.swing.JButton();
+        minimizar = new javax.swing.JButton();
+        atras = new javax.swing.JButton();
         titular = new javax.swing.JTextField();
         dni = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
@@ -122,33 +122,33 @@ public class ImprimirLicencia extends javax.swing.JFrame {
         jSeparator5.setForeground(new java.awt.Color(51, 51, 51));
         jSeparator5.setOpaque(true);
 
-        jButton16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/cancel.png"))); // NOI18N
-        jButton16.setBorderPainted(false);
-        jButton16.setContentAreaFilled(false);
-        jButton16.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/cancel rollover.png"))); // NOI18N
-        jButton16.addActionListener(new java.awt.event.ActionListener() {
+        salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/cancel.png"))); // NOI18N
+        salir.setBorderPainted(false);
+        salir.setContentAreaFilled(false);
+        salir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/cancel rollover.png"))); // NOI18N
+        salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton16ActionPerformed(evt);
+                salirActionPerformed(evt);
             }
         });
 
-        jButton17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/diminish.png"))); // NOI18N
-        jButton17.setBorderPainted(false);
-        jButton17.setContentAreaFilled(false);
-        jButton17.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/diminish rollover.png"))); // NOI18N
-        jButton17.addActionListener(new java.awt.event.ActionListener() {
+        minimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/diminish.png"))); // NOI18N
+        minimizar.setBorderPainted(false);
+        minimizar.setContentAreaFilled(false);
+        minimizar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/diminish rollover.png"))); // NOI18N
+        minimizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton17ActionPerformed(evt);
+                minimizarActionPerformed(evt);
             }
         });
 
-        jButton18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/left-arrow.png"))); // NOI18N
-        jButton18.setBorderPainted(false);
-        jButton18.setContentAreaFilled(false);
-        jButton18.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/left-arrow rollover.png"))); // NOI18N
-        jButton18.addActionListener(new java.awt.event.ActionListener() {
+        atras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/left-arrow.png"))); // NOI18N
+        atras.setBorderPainted(false);
+        atras.setContentAreaFilled(false);
+        atras.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/left-arrow rollover.png"))); // NOI18N
+        atras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton18ActionPerformed(evt);
+                atrasActionPerformed(evt);
             }
         });
 
@@ -377,11 +377,11 @@ public class ImprimirLicencia extends javax.swing.JFrame {
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jSeparator4)
                             .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(atras, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(minimizar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(salir, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(12, 12, 12))))
         );
         jPanel4Layout.setVerticalGroup(
@@ -389,9 +389,9 @@ public class ImprimirLicencia extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(salir, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(minimizar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(atras, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel14)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -509,22 +509,22 @@ public class ImprimirLicencia extends javax.swing.JFrame {
         this.vistaPrevia.setBackground(this.vistaPrevia.getBackground().darker());
     }//GEN-LAST:event_vistaPreviaMouseEntered
 
-    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
+    private void minimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minimizarActionPerformed
         // TODO add your handling code here:
         this.setExtendedState(ICONIFIED);
-    }//GEN-LAST:event_jButton17ActionPerformed
+    }//GEN-LAST:event_minimizarActionPerformed
 
-    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
+    private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
         Index.historial.get(Index.historial.size()-2).setVisible(true);
         this.dispose();
         Index.historial.remove(Index.historial.size()-1);
-    }//GEN-LAST:event_jButton16ActionPerformed
+    }//GEN-LAST:event_salirActionPerformed
 
-    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
+    private void atrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atrasActionPerformed
         this.dispose();
         Index.historial.get(Index.historial.size()-2).setVisible(true);
         Index.historial.remove(Index.historial.size()-1);
-    }//GEN-LAST:event_jButton18ActionPerformed
+    }//GEN-LAST:event_atrasActionPerformed
 
     private void imprimir1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imprimir1MouseEntered
         // TODO add your handling code here:
@@ -541,6 +541,7 @@ public class ImprimirLicencia extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton atras;
     private javax.swing.JButton cargarImagen;
     private javax.swing.JTextField clase;
     private javax.swing.JTextField dni;
@@ -549,9 +550,6 @@ public class ImprimirLicencia extends javax.swing.JFrame {
     private javax.swing.JTextField fechanac;
     private javax.swing.JButton imprimir;
     private javax.swing.JButton imprimir1;
-    private javax.swing.JButton jButton16;
-    private javax.swing.JButton jButton17;
-    private javax.swing.JButton jButton18;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel21;
@@ -567,7 +565,9 @@ public class ImprimirLicencia extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JButton minimizar;
     private javax.swing.JTextField rh;
+    private javax.swing.JButton salir;
     private javax.swing.JTextField tipo;
     private javax.swing.JTextField titular;
     private javax.swing.JTextField vigencia;
