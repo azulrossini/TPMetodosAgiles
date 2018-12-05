@@ -5,17 +5,13 @@
  */
 package Logica;
 
-import Persistencia.Licencia;
 import Persistencia.Vigencias;
 import java.util.List;
 import lic_sf_bd.util;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
-/**
- *
- * @author JIC
- */
+
 public class VigenciaDAO extends GenericDAO{
     
     private Session SS;

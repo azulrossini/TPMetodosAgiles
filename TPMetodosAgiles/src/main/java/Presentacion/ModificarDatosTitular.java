@@ -19,7 +19,6 @@ import javax.swing.ImageIcon;
 public class ModificarDatosTitular extends javax.swing.JFrame {
     private Persona persona;
     private PersonaController personaController;
-    private PersonaDAO personaDAO;
     private String calle, numero, piso, dpto;
 
     /**
@@ -30,7 +29,6 @@ public class ModificarDatosTitular extends javax.swing.JFrame {
         initComponents();
         this.persona = persona;
         this.personaController = personacontroller;
-        this.personaDAO= new PersonaDAO();
         cargarCampos();
         setIconImage(new ImageIcon(getClass().getResource("/favicon.png")).getImage());
         this.setLocationRelativeTo(null);
@@ -473,7 +471,7 @@ public class ModificarDatosTitular extends javax.swing.JFrame {
                 persona.setDomicilio(calle+" "+numero+" "+piso+" "+dpto);
                 persona.setDonante(jRadioButtonDonanteSi.isSelected());
                 //Actualizo en la BD
-                personaDAO.updateTitular(persona);
+                personaController.updateTitular(persona);
                 //Muestro mensaje de exito
                 JOptionPane.showMessageDialog(this, "Ha actualizado el titular con éxito", "Felicidades",  JOptionPane.INFORMATION_MESSAGE);
                 //Vuelvo a la pantalla de buscar titular
