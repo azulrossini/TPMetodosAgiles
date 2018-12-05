@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import net.sf.jasperreports.engine.JRException;
 
 
@@ -43,8 +44,7 @@ public class ImprimirLicencia extends javax.swing.JFrame {
         this.dom.setText(p.getDomicilio());
         this.rh.setText(p.getGrupoSanguineo() + p.getFactor());
         this.tipo.setText(l.getMotivo());
-        Vigencias vig = (Vigencias) GenericDAO.read(new Vigencias(), l.getVigenciaId());
-        this.vigencia.setText(String.valueOf(vig.getDuracion()));
+        this.vigencia.setText(String.valueOf(ic.getDuracionLicencia()));
     }
 
 
@@ -81,7 +81,6 @@ public class ImprimirLicencia extends javax.swing.JFrame {
         imprimir = new javax.swing.JButton();
         cargarImagen = new javax.swing.JButton();
         don = new javax.swing.JTextField();
-        imprimir1 = new javax.swing.JButton();
         jLabel30 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -284,24 +283,6 @@ public class ImprimirLicencia extends javax.swing.JFrame {
         don.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 18)); // NOI18N
         don.setEnabled(false);
 
-        imprimir1.setBackground(new java.awt.Color(255, 255, 255));
-        imprimir1.setFont(new java.awt.Font("Microsoft JhengHei UI", 1, 12)); // NOI18N
-        imprimir1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/mini-printer.png"))); // NOI18N
-        imprimir1.setText("COMPROBANTE");
-        imprimir1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                imprimir1MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                imprimir1MouseExited(evt);
-            }
-        });
-        imprimir1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                imprimir1ActionPerformed(evt);
-            }
-        });
-
         jLabel30.setBackground(new java.awt.Color(51, 51, 51));
         jLabel30.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 18)); // NOI18N
         jLabel30.setForeground(new java.awt.Color(51, 51, 51));
@@ -345,9 +326,7 @@ public class ImprimirLicencia extends javax.swing.JFrame {
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addComponent(vistaPrevia)
                                 .addGap(56, 56, 56)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(imprimir1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(cargarImagen, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))))
+                                .addComponent(cargarImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addGap(50, 50, 50)
@@ -429,14 +408,12 @@ public class ImprimirLicencia extends javax.swing.JFrame {
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel28)
                             .addComponent(dom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                        .addGap(28, 28, 28)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(cargarImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(vistaPrevia, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(imprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(imprimir1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
+                        .addContainerGap(28, Short.MAX_VALUE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -491,6 +468,14 @@ public class ImprimirLicencia extends javax.swing.JFrame {
     private void imprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imprimirActionPerformed
         try {
             ic.imprimirReporte();
+            int seleccion = JOptionPane.showOptionDialog(null, "¿Desea ver el comprobante de pago?", "", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,
+                null,    // null para icono por defecto.
+                new Object[] { "Si", "No" },   // null para YES, NO y CANCEL
+                "Si");
+            if(seleccion == 0){
+                ic.verComprobanteDePago();
+            }
+            ic.imprimirComprobanteDePago();
         } catch (JRException ex) {
             Logger.getLogger(ImprimirLicencia.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -535,19 +520,6 @@ public class ImprimirLicencia extends javax.swing.JFrame {
         Index.historial.remove(Index.historial.size()-1);
     }//GEN-LAST:event_atrasActionPerformed
 
-    private void imprimir1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imprimir1MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_imprimir1MouseEntered
-
-    private void imprimir1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imprimir1MouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_imprimir1MouseExited
-
-    private void imprimir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imprimir1ActionPerformed
-        CostoController cc = new CostoController();
-        cc.imprimirComprobanteDePago(this.clase.getText(), Integer.valueOf(this.vigencia.getText()));
-    }//GEN-LAST:event_imprimir1ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton atras;
@@ -558,7 +530,6 @@ public class ImprimirLicencia extends javax.swing.JFrame {
     private javax.swing.JTextField don;
     private javax.swing.JTextField fechanac;
     private javax.swing.JButton imprimir;
-    private javax.swing.JButton imprimir1;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel21;

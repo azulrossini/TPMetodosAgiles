@@ -255,7 +255,7 @@ public class EmitirLicencia extends javax.swing.JFrame {
 
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
         // TODO add your handling code here:
-        int seleccion = JOptionPane.showOptionDialog(this, "¿Está seguro que desea volver \n No se guardaran los datos", "", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,
+        int seleccion = JOptionPane.showOptionDialog(this, "¿Está seguro que desea volver? \n No se guardaran los datos", "", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,
             null,    // null para icono por defecto.
             new Object[] { "Si", "No" },   // null para YES, NO y CANCEL
             "Si");
