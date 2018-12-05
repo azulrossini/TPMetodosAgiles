@@ -251,7 +251,7 @@ public class ListadoLicencias extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Microsoft JhengHei UI", 0, 18)); // NOI18N
         jLabel1.setText("Filtros");
 
-        print.setBackground(new java.awt.Color(102, 102, 102));
+        print.setBackground(new java.awt.Color(204, 204, 204));
         print.setFont(new java.awt.Font("Microsoft JhengHei UI", 1, 14)); // NOI18N
         print.setText("IMPRIMIR");
         print.addActionListener(new java.awt.event.ActionListener() {
@@ -270,7 +270,7 @@ public class ListadoLicencias extends javax.swing.JFrame {
             }
         });
 
-        jComboFiltro.setBackground(new java.awt.Color(102, 102, 102));
+        jComboFiltro.setBackground(new java.awt.Color(204, 204, 204));
         jComboFiltro.setFont(new java.awt.Font("Microsoft JhengHei UI", 1, 14)); // NOI18N
         jComboFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Apellido", "Nombre", "Grupo", "Factor", "Donante" }));
 
@@ -414,10 +414,13 @@ public class ListadoLicencias extends javax.swing.JFrame {
     private void printActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printActionPerformed
         //VERIFICO QUE TIPO DE LICENCIA Y SI SON TODAS O RANGO
         //TAMBIEN SI SON EXPIRADAS O VIGENTES
+        
+        this.dispose();
+        
         try {
             if(flagTodas){
                 if(flagTipo){                
-                        lController.imprimirTodasVigentes();                
+                    lController.imprimirTodasVigentes();                
                 }else{
                     lController.imprimirTodasExpiradas();
                 }

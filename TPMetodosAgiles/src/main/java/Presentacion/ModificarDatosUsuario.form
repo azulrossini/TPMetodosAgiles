@@ -7,6 +7,7 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="undecorated" type="boolean" value="true"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -83,7 +84,7 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="administrativo" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="pass" alignment="0" max="32767" attributes="0"/>
+                      <Component id="pass" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="0" pref="51" max="32767" attributes="0"/>
               </Group>
@@ -133,9 +134,9 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel23" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="pass" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="pass" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel24" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="superusuario" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
@@ -329,15 +330,7 @@
             <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="administrativoKeyTyped"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="pass">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Microsoft YaHei UI" size="18" style="0"/>
-            </Property>
-          </Properties>
-          <Events>
-            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="passKeyTyped"/>
-          </Events>
+        <Component class="javax.swing.JPasswordField" name="pass">
         </Component>
       </SubComponents>
     </Container>

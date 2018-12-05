@@ -18,7 +18,7 @@ public class LicenciaController {
     
     private final LicenciaDAO LicenciaDAO;
     
-    public enum Motivo{ORIGINAL, RENOVACION}
+    public enum Motivo{ORIGINAL, RENOVACION, DUPLICADO}
     
     public LicenciaController(){
         this.LicenciaDAO = new LicenciaDAO();
@@ -107,7 +107,7 @@ public class LicenciaController {
         //Cancela la vigencia de las clases heredadas
         //Por ejemplo, si se emite una nueva licencia de la clase C
         //Si el titular posee una licencia de clase B, pierde la vigencia de la misma
-        //Porque C hereda todo loq ue posea B
+        //Porque C hereda todo lo que posea B
         
         switch (clase){
             case "A":
@@ -196,6 +196,7 @@ public class LicenciaController {
         //Calcular vigencia
         VigenciaController vigenciaController = new VigenciaController();
         Vigencias vigencia = vigenciaController.getVigencia(motivo.toString(), titular.getFechaNac());
+        System.out.println(vigencia);
         licencia.setVigenciaId(vigencia.getId());
           
         licencia.setFechaEmision(new Date());
@@ -212,9 +213,9 @@ public class LicenciaController {
              
         licencia.setCostoId(cc.getCostoId());
                
-         LicenciaDAO.writeLicencia(licencia);
+        LicenciaDAO.writeLicencia(licencia);
          
-         return licencia;
+        return licencia;
     }
     
     public int getDiferenciaAnios(Date vencimiento){
@@ -231,7 +232,7 @@ public class LicenciaController {
     public void guardarDuplicado ( Licencia l){
         //Cambio la fecha de emision de la licencia y cambio su motivo a Duplicado
         l.setFechaEmision(new Date());
-        l.setMotivo("DUPLICADO");
+        l.setMotivo(Motivo.DUPLICADO.toString());
         LicenciaDAO.update(l);
         
     }

@@ -65,6 +65,7 @@ public class BuscarUsuario extends javax.swing.JFrame {
         botonModificar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel4.setBackground(new java.awt.Color(206, 206, 206));
         jPanel4.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 2, true), new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true)));
@@ -140,17 +141,17 @@ public class BuscarUsuario extends javax.swing.JFrame {
 
         tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Username", "Password", "Privilegio"
+                "Username", "Privilegio"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -292,13 +293,13 @@ public class BuscarUsuario extends javax.swing.JFrame {
         dtm.setRowCount(0);   
         for(int i = 0; i<usuarios.size(); i++){
             String datos[] = new String[3];                 
-                datos[0] = String.valueOf(usuarios.get(i).getUsername());                
-                datos[1] = String.valueOf(usuarios.get(i).getPassword());
+                datos[0] = String.valueOf(usuarios.get(i).getUsername());   
                 if (usuarios.get(i).isPrivilegio()){
-                    datos[2] = "Superusuario";
+                    datos[1] = "Superusuario";
                 }else{
-                    datos[2] = "Administrativo";
-                }
+                    datos[1] = "Administrativo";
+                }                             
+                datos[2] = String.valueOf(usuarios.get(i).getPassword());
 
                 dtm.addRow(datos);
         }    
