@@ -15,6 +15,7 @@ import net.sf.jasperreports.engine.JRException;
 public class ImprimirLicencia extends javax.swing.JFrame {
 
     private final ImprimirController ic;
+    //Se define un objeto para manejar el desplazamiento cuando el usuario mantenga pulsado el clic sobre el frame y arrastre el puntero
     private Point mouseDownCompCoords = null;
 
     
@@ -28,6 +29,7 @@ public class ImprimirLicencia extends javax.swing.JFrame {
         Index.historial.add(this);
     }
     
+    //Se carga cada campo de texto con cada dato de los objetos que se reciben por parámetros
     private void cargarCampos(Persona p, Licencia l){
         this.titular.setText(p.getApellido() + ", " + p.getNombre());
         this.dni.setText(String.valueOf(p.getNroId()));
@@ -457,14 +459,17 @@ public class ImprimirLicencia extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jPanel4MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseReleased
+        //Cuando el clic se deja de presionar, se libera el espacio en memoria de las coordenadas que registran la ubicación del puntero
         mouseDownCompCoords = null;
     }//GEN-LAST:event_jPanel4MouseReleased
 
     private void jPanel4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MousePressed
+        //Cuando se presiona un clic sobre el panel del frame, se obtienen las coordenadas donde fue realizado y se guardan en memoria
         mouseDownCompCoords = evt.getPoint();
     }//GEN-LAST:event_jPanel4MousePressed
 
     private void jPanel4MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseDragged
+        //A medida que se arrastra el puntero, también se mueve el frame
         Point currCoords = evt.getLocationOnScreen();
         this.setLocation(currCoords.x - mouseDownCompCoords.x, currCoords.y - mouseDownCompCoords.y);
     }//GEN-LAST:event_jPanel4MouseDragged
@@ -474,10 +479,12 @@ public class ImprimirLicencia extends javax.swing.JFrame {
     }//GEN-LAST:event_cargarImagenActionPerformed
 
     private void cargarImagenMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cargarImagenMouseExited
+        //Cuando sale el puntero del botón, se establece el fondo del mismo un tono más claro, regresando al color original
         this.cargarImagen.setBackground(this.cargarImagen.getBackground().brighter());
     }//GEN-LAST:event_cargarImagenMouseExited
 
     private void cargarImagenMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cargarImagenMouseEntered
+        //Cuando el puntero ingresa al botón, se establece el fondo del mismo un tono más oscuro, para indicarle al usuario que el sistema efectivamente responde a sus aaciones, y de esta manera lograr un efecto más vistoso e interactivo
         this.cargarImagen.setBackground(this.cargarImagen.getBackground().darker());
     }//GEN-LAST:event_cargarImagenMouseEntered
 
@@ -510,17 +517,19 @@ public class ImprimirLicencia extends javax.swing.JFrame {
     }//GEN-LAST:event_vistaPreviaMouseEntered
 
     private void minimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minimizarActionPerformed
-        // TODO add your handling code here:
         this.setExtendedState(ICONIFIED);
     }//GEN-LAST:event_minimizarActionPerformed
 
     private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
+        //Cuando el usuario presiona el botón salir, se vuelve a visualizar la pantalla llamadora a esta
         Index.historial.get(Index.historial.size()-2).setVisible(true);
         this.dispose();
+        //Se elimina del historial la pantalla actual
         Index.historial.remove(Index.historial.size()-1);
     }//GEN-LAST:event_salirActionPerformed
 
     private void atrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atrasActionPerformed
+        //Mismo funcionamiento que salir
         this.dispose();
         Index.historial.get(Index.historial.size()-2).setVisible(true);
         Index.historial.remove(Index.historial.size()-1);
