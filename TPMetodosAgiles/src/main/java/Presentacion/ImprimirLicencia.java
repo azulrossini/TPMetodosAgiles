@@ -14,8 +14,6 @@ import net.sf.jasperreports.engine.JRException;
 
 public class ImprimirLicencia extends javax.swing.JFrame {
 
-
-    
     private final ImprimirController ic;
     private Point mouseDownCompCoords = null;
 

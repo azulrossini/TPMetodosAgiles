@@ -191,6 +191,7 @@ public class LicenciaController {
         //Calcular vigencia
         VigenciaController vigenciaController = new VigenciaController();
         Vigencias vigencia = vigenciaController.getVigencia(motivo.toString(), titular.getFechaNac());
+        System.out.println(vigencia);
         licencia.setVigenciaId(vigencia.getId());
           
         licencia.setFechaEmision(new Date());
@@ -207,9 +208,9 @@ public class LicenciaController {
              
         licencia.setCostoId(cc.getCostoId());
                
-         LicenciaDAO.writeLicencia(licencia);
+        LicenciaDAO.writeLicencia(licencia);
          
-         return licencia;
+        return licencia;
     }
     
     public int getDiferenciaAnios(Date vencimiento){

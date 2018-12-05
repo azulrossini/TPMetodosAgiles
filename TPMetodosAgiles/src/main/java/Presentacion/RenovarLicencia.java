@@ -262,7 +262,10 @@ public class RenovarLicencia extends javax.swing.JFrame {
 
         //Si es clase C D o E controla que tenga +21, sino no
         if(almacenarLicencia()){
-            JOptionPane.showMessageDialog(this, "Felicitaciones! \n Se ha renovado correctamente la licencia", "Exito",  JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(this,
+                    "\tFelicitaciones! \t\n Se ha creado correctamente la licencia",
+                    "Exito",
+                    JOptionPane.PLAIN_MESSAGE);
             ImprimirLicencia il;
             try {
                 il = new ImprimirLicencia(titular, licencia);
@@ -302,9 +305,9 @@ public class RenovarLicencia extends javax.swing.JFrame {
 
     private boolean almacenarLicencia(){
         if(controlarCDE(licencia.getClaseId())){
-            licenciaController.crearLicencia(titular, licencia.getClaseId(), licencia.getObservaciones(),LicenciaController.Motivo.RENOVACION, usuario.getId());
             licencia.setFechaVenc(new Date());
             licenciaController.actualizarLicencia(licencia);
+            licenciaController.crearLicencia(titular, licencia.getClaseId(), licencia.getObservaciones(),LicenciaController.Motivo.RENOVACION, usuario.getId());
             return true;
         }
         return false;

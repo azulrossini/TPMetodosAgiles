@@ -356,7 +356,7 @@ public class EmitirLicencia extends javax.swing.JFrame {
         
         //Si no esta en la BD lo almacena, si esta no
         //Es para que no presione el boton OK muchas veces, porque se almacena muhcas veces el mismo titular
-        if((personaController.buscarTitular(titular.getNroId()))!=null){
+        if((personaController.buscarTitular(titular.getNroId()))==null){
             System.out.println("Entra a almacenar");
             personaController.almacenarTitular(titular);
         }
