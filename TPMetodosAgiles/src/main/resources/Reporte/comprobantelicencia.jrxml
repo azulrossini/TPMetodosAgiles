@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="88f138d2-38ce-4680-845d-bc618b41bef7">
-	<property name="ireport.zoom" value="1.948717100000005"/>
-	<property name="ireport.x" value="37"/>
+	<property name="ireport.zoom" value="1.7715610000000064"/>
+	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
 	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
@@ -22,7 +22,7 @@
 	<parameter name="nrodoc" class="java.lang.String"/>
 	<parameter name="fechanac" class="java.lang.String"/>
 	<parameter name="dom" class="java.lang.String"/>
-	<parameter name="numfactura" class="java.lang.String"/>
+	<parameter name="numfactura" class="java.lang.Integer"/>
 	<parameter name="costoAdm" class="java.lang.Float"/>
 	<parameter name="costototal" class="java.lang.Float"/>
 	<background>
@@ -135,7 +135,7 @@
 			</staticText>
 			<image>
 				<reportElement uuid="3a885364-ca4a-4b5a-b26d-6c91db2330f1" x="1" y="0" width="197" height="90"/>
-				<imageExpression><![CDATA["D:\\Datos\\Documentos\\NetBeansProjects\\TPMetodosAgiles\\TPMetodosAgiles\\src\\main\\resources\\Reporte\\LogoReporte.jpg"]]></imageExpression>
+				<imageExpression><![CDATA["LogoReporte.jpg"]]></imageExpression>
 			</image>
 			<textField>
 				<reportElement uuid="22e7be48-273b-4c1d-9b8d-fcd870dbd439" x="642" y="20" width="135" height="23"/>
