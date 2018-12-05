@@ -155,25 +155,30 @@ public class LicenciaController {
         
         return personaController.getPersona(id);
     }
-    
+    //Retorna la fecha de vencimiento de la licencia
+    //A partir de la vigencia y la fecha de nacimiento
     public Date getFechaVigencia(Vigencias v,Date fechaNacimiento){
         
         PersonaController personaController = new PersonaController();
         
-             
+        //Obtenemos fecha actual     
         Calendar fechaVigencia = Calendar.getInstance();
-//        fechaVigencia.setTime(licencia.getFechaEmision());
         
+        //Obtenemos la edad de la persona
         int edad = personaController.getEdad(fechaNacimiento);
         
+        //A la fecha actual obtenida le agregamos la duración de la vigencia
         fechaVigencia.add(Calendar.YEAR, v.getDuracion());
-      
+        
+        //Obtenemos otra instancia de Calendar y la seteamos en la fecha de nacimiento
         Calendar c = Calendar.getInstance();
         c.setTime(fechaNacimiento);
         
+        //Seteamos a la fecha de vigencia el día y mes de nacimiento del titular
         fechaVigencia.set(Calendar.DAY_OF_MONTH, c.get(Calendar.DAY_OF_MONTH));
         fechaVigencia.set(Calendar.MONTH, c.get(Calendar.MONTH));
         
+        //Retornamos la fecha en formato Date
         return fechaVigencia.getTime();
     }
     
