@@ -11,6 +11,7 @@ import Persistencia.Licencia;
 import Persistencia.Persona;
 import Persistencia.Usuario;
 import Persistencia.Vigencias;
+import java.awt.Point;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
@@ -53,6 +54,7 @@ public class ListadoLicencias extends javax.swing.JFrame {
     private boolean flagTipo;
     private final Usuario user;    
     String fecha1, fecha2;
+    private Point mouseDownCompCoords = null;
     
     public ListadoLicencias(boolean tipo, String fechaDesde, String fechaHasta, Usuario user) throws ParseException {
         initComponents();
@@ -77,6 +79,7 @@ public class ListadoLicencias extends javax.swing.JFrame {
         setIconImage(new ImageIcon(getClass().getResource("/favicon.png")).getImage());
         this.setVisible(true);
         this.setLocationRelativeTo(null);
+        Index.historial.add(this);
         
         flagTodas = true;
         flagTipo = tipo;
@@ -249,6 +252,19 @@ public class ListadoLicencias extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(206, 206, 206));
         jPanel1.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 1, true), new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true)));
+        jPanel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jPanel1MouseDragged(evt);
+            }
+        });
+        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPanel1MousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jPanel1MouseReleased(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Microsoft JhengHei UI", 0, 18)); // NOI18N
         jLabel1.setText("Filtros");
@@ -470,6 +486,19 @@ public class ListadoLicencias extends javax.swing.JFrame {
         this.dispose();
         Index.historial.remove(Index.historial.size()-1);
     }//GEN-LAST:event_backActionPerformed
+
+    private void jPanel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MousePressed
+        mouseDownCompCoords = evt.getPoint();
+    }//GEN-LAST:event_jPanel1MousePressed
+
+    private void jPanel1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseReleased
+        mouseDownCompCoords = null;
+    }//GEN-LAST:event_jPanel1MouseReleased
+
+    private void jPanel1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseDragged
+        Point currCoords = evt.getLocationOnScreen();
+        this.setLocation(currCoords.x - mouseDownCompCoords.x, currCoords.y - mouseDownCompCoords.y);
+    }//GEN-LAST:event_jPanel1MouseDragged
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton back;
