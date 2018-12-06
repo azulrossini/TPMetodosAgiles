@@ -10,7 +10,6 @@ import Persistencia.Persona;
 import Persistencia.Vigencias;
 import Presentacion.Cargando;
 import Persistencia.Costos;
-import Presentacion.IndexView;
 import Presentacion.ImprimirLicencia;
 import java.io.File;
 import java.io.IOException;
