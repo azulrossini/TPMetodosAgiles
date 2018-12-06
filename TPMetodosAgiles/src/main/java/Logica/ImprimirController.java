@@ -7,8 +7,9 @@ package Logica;
 
 import Persistencia.Licencia;
 import Persistencia.Persona;
+import Persistencia.Vigencias;
 import Presentacion.Cargando;
-import Presentacion.IndexView;
+import Persistencia.Costos;
 import Presentacion.ImprimirLicencia;
 import java.io.File;
 import java.io.IOException;
@@ -23,7 +24,7 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
+import java.util.concurrent.ThreadLocalRandom;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -50,8 +51,8 @@ public class ImprimirController {
     private final Map<String, Object> parameters = new HashMap();
     private final Map<String, Object> parametersListado = new HashMap();
     private final Map<String, Object> parametrosComprobanteDePago = new HashMap();
+    private final float costoAdmin = 8;
     
-    private List listado;
     
     public ImprimirController() throws IOException{
         persona = null;
@@ -63,6 +64,7 @@ public class ImprimirController {
         lic = l;
         //Se pasan todos los datos de la persona y licencia necesarios para el reporte
         this.cargarParametros();
+        cargarParametrosComprobante();
     }
     
     public ImprimirController(Persona p, Licencia l, List lista) throws IOException{
@@ -73,14 +75,26 @@ public class ImprimirController {
      public ImprimirController(String tipoLicencia, int aniosVigencia, float costoAdmin){
         persona = null;
         lic = null;
-        cargarParametrosComprobante(tipoLicencia,aniosVigencia,costoAdmin);        
+        cargarParametrosComprobante();
     }
     
-    private void cargarParametrosComprobante(String tipoLicencia, int aniosVigencia, float costoAdmin){
+    private void cargarParametrosComprobante(){
         //Cargo los parametros del comprobante
-        parametrosComprobanteDePago.put("tipoLicencia",tipoLicencia);
-        parametrosComprobanteDePago.put("vigencia",String.valueOf(aniosVigencia));
-        parametrosComprobanteDePago.put("costoAdministrativo",String.valueOf(costoAdmin));
+        parametrosComprobanteDePago.put("costoAdm",costoAdmin);
+        float cost = ((Costos)GenericDAO.read(new Costos(), lic.getCostoId())).getPrecio();
+        parametrosComprobanteDePago.put("costo", cost);
+        Vigencias vig = (Vigencias) GenericDAO.read(new Vigencias(), lic.getVigenciaId());
+        parametrosComprobanteDePago.put("duracion", vig.getDuracion());
+        parametrosComprobanteDePago.put("clase", lic.getClaseId());
+        parametrosComprobanteDePago.put("nombre", persona.getNombre());
+        parametrosComprobanteDePago.put("apellido", persona.getApellido());
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        parametrosComprobanteDePago.put("fechanac", sdf.format(persona.getFechaNac()));
+        parametrosComprobanteDePago.put("tipodoc", persona.getTipoId());
+        parametrosComprobanteDePago.put("nrodoc", persona.getNroId());
+        parametrosComprobanteDePago.put("dom", persona.getDomicilio());
+        parametrosComprobanteDePago.put("numfactura", ThreadLocalRandom.current().nextInt(1, 99999 + 1));
+        parametrosComprobanteDePago.put("costototal",costoAdmin+cost);
     }
 
     //Se pasan los datos de variables al reporte para ser impresos
@@ -141,7 +155,7 @@ public class ImprimirController {
     
     public void verComprobanteDePago(){        
         //Se carga el archivo a memoria a partir del recurso correspondiente en la carpeta del sistema
-        InputStream archivo = this.getClass().getClassLoader().getResourceAsStream("Reporte/ComprobanteDePago.jasper");
+        InputStream archivo = this.getClass().getClassLoader().getResourceAsStream("Reporte/comprobantelicencia.jasper");
         //Se arma el documento imprimible
         try{
             JasperReport jr = (JasperReport) JRLoader.loadObject(archivo);
@@ -189,7 +203,7 @@ public class ImprimirController {
                     //Se imprime el reporte
                     try {
                         JasperPrintManager.printReport(jp, true);
-                        JOptionPane.showMessageDialog(null,"IMPRESIÓN CORRECTA");  
+                        JOptionPane.showMessageDialog(null,"IMPRESIÓN CORRECTA");
                     } catch (JRException ex) {
                         Logger.getLogger(ImprimirController.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -198,15 +212,20 @@ public class ImprimirController {
         });
     }
     
+    public Integer getDuracionLicencia(){
+        Vigencias vig = (Vigencias) GenericDAO.read(new Vigencias(), lic.getVigenciaId());
+        return vig.getDuracion();
+    }
+    
     public void imprimirComprobanteDePago(){
         //Se carga el archivo a memoria a partir del recurso correspondiente en la carpeta del sistema
-        InputStream archivo = this.getClass().getClassLoader().getResourceAsStream("Reporte/ComprobanteDePago.jasper");
+        InputStream archivo = this.getClass().getClassLoader().getResourceAsStream("Reporte/comprobantelicencia.jasper");
         //Se arma el documento imprimible
         try{
             JasperReport jr = (JasperReport) JRLoader.loadObject(archivo);
-                                                           //conección a un data source vacío (no utilizo la bd)
+            //conección a un data source vacío (no utilizo la bd)
             JasperPrint jp = JasperFillManager.fillReport(jr,parametrosComprobanteDePago,new JREmptyDataSource());
-           //Se imprime el comprobante
+            //Se imprime el comprobante
             JasperPrintManager.printReport(jp, true);
             JOptionPane.showMessageDialog(null,"IMPRESIÓN CORRECTA"); 
         } catch (JRException ex) {
@@ -234,9 +253,8 @@ public class ImprimirController {
                     try {
                         Cargando load = new Cargando();
                         JasperPrintManager.printReport(jp, true); 
-                        System.out.println("Despues del printReport");
-                        load.dispose();                        
-                        IndexView index = new IndexView(null);
+                        load.dispose();
+                        JOptionPane.showMessageDialog(null,"Impresión correcta");
                     } catch (JRException ex) {
                         JOptionPane.showMessageDialog(null,"Impresión cancelada"); 
                         Logger.getLogger(ImprimirController.class.getName()).log(Level.SEVERE, null, ex);
@@ -263,11 +281,11 @@ public class ImprimirController {
                 }finally{
                     try {                        
                         Cargando load = new Cargando();
-                        JasperPrintManager.printReport(jp, true); 
-                        System.out.println("Despues del printReport");
-                        load.dispose();                        
-                        IndexView index = new IndexView(null);
+                        JasperPrintManager.printReport(jp, true);
+                        load.dispose();
+                        JOptionPane.showMessageDialog(null,"Impresión correcta");
                     } catch (JRException ex) {
+                        JOptionPane.showMessageDialog(null,"Impresión cancelada"); 
                         Logger.getLogger(ImprimirController.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
@@ -295,10 +313,10 @@ public class ImprimirController {
                     try {
                         Cargando load = new Cargando();
                         JasperPrintManager.printReport(jp, true); 
+                        load.dispose();
                         JOptionPane.showMessageDialog(null,"Impresión correcta");
-                        load.dispose();                        
-                        IndexView index = new IndexView(null);  
                     } catch (JRException ex) {
+                        JOptionPane.showMessageDialog(null,"Impresión cancelada"); 
                         Logger.getLogger(ImprimirController.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
@@ -326,10 +344,10 @@ public class ImprimirController {
                     try {
                         Cargando load = new Cargando();
                         JasperPrintManager.printReport(jp, true);
+                        load.dispose();               
                         JOptionPane.showMessageDialog(null,"Impresión correcta");
-                        load.dispose();                        
-                        IndexView index = new IndexView(null); 
                     } catch (JRException ex) {
+                        JOptionPane.showMessageDialog(null,"Impresión cancelada"); 
                         Logger.getLogger(ImprimirController.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }

@@ -2,8 +2,7 @@ package Presentacion;
 
 import Logica.*;
 import Persistencia.Usuario;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.Point;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,6 +16,7 @@ public class FiltroListadoLicencias extends javax.swing.JFrame {
 
     private PersonaController personaController;
     private LicenciaController licenciaController;
+    private Point mouseDownCompCoords = null;
     private final Usuario user;
     
     //El campo tipo es para determinar si son las licencias vigentes (true) o expiradas (false)
@@ -115,6 +115,19 @@ public class FiltroListadoLicencias extends javax.swing.JFrame {
 
         Primera.setBackground(new java.awt.Color(206, 206, 206));
         Primera.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 2, true), new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true)));
+        Primera.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                PrimeraMouseDragged(evt);
+            }
+        });
+        Primera.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                PrimeraMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                PrimeraMouseReleased(evt);
+            }
+        });
 
         rango2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/vigente.png"))); // NOI18N
         rango2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
@@ -236,6 +249,19 @@ public class FiltroListadoLicencias extends javax.swing.JFrame {
 
         SelectVigente.setBackground(new java.awt.Color(206, 206, 206));
         SelectVigente.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 2, true), new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true)));
+        SelectVigente.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                SelectVigenteMouseDragged(evt);
+            }
+        });
+        SelectVigente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                SelectVigenteMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                SelectVigenteMouseReleased(evt);
+            }
+        });
 
         close.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/cancel.png"))); // NOI18N
         close.setBorderPainted(false);
@@ -366,6 +392,19 @@ public class FiltroListadoLicencias extends javax.swing.JFrame {
 
         SelectRangoVigente.setBackground(new java.awt.Color(206, 206, 206));
         SelectRangoVigente.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 2, true), new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true)));
+        SelectRangoVigente.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                SelectRangoVigenteMouseDragged(evt);
+            }
+        });
+        SelectRangoVigente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                SelectRangoVigenteMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                SelectRangoVigenteMouseReleased(evt);
+            }
+        });
 
         back1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/left-arrow.png"))); // NOI18N
         back1.setBorderPainted(false);
@@ -550,6 +589,19 @@ public class FiltroListadoLicencias extends javax.swing.JFrame {
 
         SelectExpired.setBackground(new java.awt.Color(206, 206, 206));
         SelectExpired.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 2, true), new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true)));
+        SelectExpired.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                SelectExpiredMouseDragged(evt);
+            }
+        });
+        SelectExpired.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                SelectExpiredMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                SelectExpiredMouseReleased(evt);
+            }
+        });
 
         rango3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/calendar.png"))); // NOI18N
         rango3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
@@ -680,6 +732,19 @@ public class FiltroListadoLicencias extends javax.swing.JFrame {
 
         SelectRangoExpired.setBackground(new java.awt.Color(206, 206, 206));
         SelectRangoExpired.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 2, true), new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true)));
+        SelectRangoExpired.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                SelectRangoExpiredMouseDragged(evt);
+            }
+        });
+        SelectRangoExpired.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                SelectRangoExpiredMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                SelectRangoExpiredMouseReleased(evt);
+            }
+        });
 
         back4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/left-arrow.png"))); // NOI18N
         back4.setBorderPainted(false);
@@ -904,8 +969,8 @@ public class FiltroListadoLicencias extends javax.swing.JFrame {
         //Seteo en true - Impresión de todas las vigentes
         tipo = true;
         try {
-            ListadoLicencias LL = new ListadoLicencias(tipo, user);
             this.dispose();
+            ListadoLicencias LL = new ListadoLicencias(tipo, user);
         } catch (ParseException ex) {
             Logger.getLogger(FiltroListadoLicencias.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -940,8 +1005,8 @@ public class FiltroListadoLicencias extends javax.swing.JFrame {
             }else{
                 try {
                     tipo = true;
-                    ListadoLicencias LL = new ListadoLicencias(tipo, fechaDesde.getText(), fechaHasta.getText(), user);
                     this.dispose();
+                    ListadoLicencias LL = new ListadoLicencias(tipo, fechaDesde.getText(), fechaHasta.getText(), user);
                 } catch (ParseException ex) {
                     Logger.getLogger(FiltroListadoLicencias.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -980,8 +1045,9 @@ public class FiltroListadoLicencias extends javax.swing.JFrame {
     }//GEN-LAST:event_todas1ActionPerformed
 
     private void back2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back2ActionPerformed
-        IndexView indexView = new IndexView(user);
+        Index.historial.get(Index.historial.size()-2).setVisible(true);
         this.dispose();
+        Index.historial.remove(Index.historial.size()-1);
     }//GEN-LAST:event_back2ActionPerformed
 
     private void minimize2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minimize2ActionPerformed
@@ -1000,8 +1066,8 @@ public class FiltroListadoLicencias extends javax.swing.JFrame {
     private void todas2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_todas2ActionPerformed
         tipo = false;
         try {
-            ListadoLicencias LL = new ListadoLicencias(tipo, user);
             this.dispose();
+            ListadoLicencias LL = new ListadoLicencias(tipo, user);
         } catch (ParseException ex) {
             Logger.getLogger(FiltroListadoLicencias.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1042,8 +1108,8 @@ public class FiltroListadoLicencias extends javax.swing.JFrame {
             }else{
                 try {
                     tipo = false;
-                    ListadoLicencias LL = new ListadoLicencias(tipo, fechaDesde1.getText(), fechaHasta1.getText(), user);
                     this.dispose();
+                    ListadoLicencias LL = new ListadoLicencias(tipo, fechaDesde1.getText(), fechaHasta1.getText(), user);
                 } catch (ParseException ex) {
                     Logger.getLogger(FiltroListadoLicencias.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -1064,6 +1130,71 @@ public class FiltroListadoLicencias extends javax.swing.JFrame {
     private void rango4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rango4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_rango4ActionPerformed
+
+    private void PrimeraMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PrimeraMousePressed
+        mouseDownCompCoords = evt.getPoint();
+    }//GEN-LAST:event_PrimeraMousePressed
+
+    private void PrimeraMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PrimeraMouseReleased
+        mouseDownCompCoords = null;
+    }//GEN-LAST:event_PrimeraMouseReleased
+
+    private void PrimeraMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PrimeraMouseDragged
+        Point currCoords = evt.getLocationOnScreen();
+        this.setLocation(currCoords.x - mouseDownCompCoords.x, currCoords.y - mouseDownCompCoords.y);
+    }//GEN-LAST:event_PrimeraMouseDragged
+
+    private void SelectVigenteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SelectVigenteMousePressed
+        mouseDownCompCoords = evt.getPoint();
+    }//GEN-LAST:event_SelectVigenteMousePressed
+
+    private void SelectVigenteMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SelectVigenteMouseReleased
+        mouseDownCompCoords = null;
+    }//GEN-LAST:event_SelectVigenteMouseReleased
+
+    private void SelectVigenteMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SelectVigenteMouseDragged
+        Point currCoords = evt.getLocationOnScreen();
+        this.setLocation(currCoords.x - mouseDownCompCoords.x, currCoords.y - mouseDownCompCoords.y);
+    }//GEN-LAST:event_SelectVigenteMouseDragged
+
+    private void SelectRangoVigenteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SelectRangoVigenteMousePressed
+        mouseDownCompCoords = evt.getPoint();
+    }//GEN-LAST:event_SelectRangoVigenteMousePressed
+
+    private void SelectRangoVigenteMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SelectRangoVigenteMouseReleased
+        mouseDownCompCoords = null;
+    }//GEN-LAST:event_SelectRangoVigenteMouseReleased
+
+    private void SelectRangoVigenteMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SelectRangoVigenteMouseDragged
+        Point currCoords = evt.getLocationOnScreen();
+        this.setLocation(currCoords.x - mouseDownCompCoords.x, currCoords.y - mouseDownCompCoords.y);
+    }//GEN-LAST:event_SelectRangoVigenteMouseDragged
+
+    private void SelectExpiredMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SelectExpiredMousePressed
+        mouseDownCompCoords = evt.getPoint();
+    }//GEN-LAST:event_SelectExpiredMousePressed
+
+    private void SelectExpiredMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SelectExpiredMouseReleased
+        mouseDownCompCoords = null;
+    }//GEN-LAST:event_SelectExpiredMouseReleased
+
+    private void SelectExpiredMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SelectExpiredMouseDragged
+        Point currCoords = evt.getLocationOnScreen();
+        this.setLocation(currCoords.x - mouseDownCompCoords.x, currCoords.y - mouseDownCompCoords.y);
+    }//GEN-LAST:event_SelectExpiredMouseDragged
+
+    private void SelectRangoExpiredMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SelectRangoExpiredMousePressed
+        mouseDownCompCoords = evt.getPoint();
+    }//GEN-LAST:event_SelectRangoExpiredMousePressed
+
+    private void SelectRangoExpiredMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SelectRangoExpiredMouseDragged
+        Point currCoords = evt.getLocationOnScreen();
+        this.setLocation(currCoords.x - mouseDownCompCoords.x, currCoords.y - mouseDownCompCoords.y);
+    }//GEN-LAST:event_SelectRangoExpiredMouseDragged
+
+    private void SelectRangoExpiredMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SelectRangoExpiredMouseReleased
+        mouseDownCompCoords = null;
+    }//GEN-LAST:event_SelectRangoExpiredMouseReleased
 
 
 

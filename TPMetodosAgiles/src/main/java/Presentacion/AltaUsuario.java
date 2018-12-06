@@ -306,6 +306,10 @@ public class AltaUsuario extends javax.swing.JFrame {
                 try {
                     uc.crearUsuario(username.getText(), pass.getText(), superusuario.isSelected());
                     JOptionPane.showMessageDialog(this, "Ha creado el usuario con éxito", "Felicidades",  JOptionPane.INFORMATION_MESSAGE);
+                    Index.historial.get(Index.historial.size()-2).setVisible(true);
+                    this.dispose();
+                    //Se elimina del historial la pantalla actual
+                    Index.historial.remove(Index.historial.size()-1);
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(this, "La contraseña no es válida", "Error",  JOptionPane.ERROR_MESSAGE);               
                 }

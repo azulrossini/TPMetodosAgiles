@@ -11,6 +11,7 @@ import Logica.UsuarioController;
 import Persistencia.Usuario;
 import javax.swing.JOptionPane;
 import Logica.Index;
+import java.awt.Point;
 import javax.swing.ImageIcon;
 
 /**
@@ -20,6 +21,7 @@ import javax.swing.ImageIcon;
 public class ModificarDatosUsuario extends javax.swing.JFrame {
     private Usuario user;
     private UsuarioController usuarioController;
+    private Point mouseDownCompCoords = null;
 
     /**
      * Creates new form ModificarDatosUsuario
@@ -355,15 +357,16 @@ public class ModificarDatosUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_administrativoKeyTyped
 
     private void jPanel4MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseDragged
-        
+        Point currCoords = evt.getLocationOnScreen();
+        this.setLocation(currCoords.x - mouseDownCompCoords.x, currCoords.y - mouseDownCompCoords.y);
     }//GEN-LAST:event_jPanel4MouseDragged
 
     private void jPanel4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MousePressed
-        
+        mouseDownCompCoords = evt.getPoint();
     }//GEN-LAST:event_jPanel4MousePressed
 
     private void jPanel4MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseReleased
-        
+        mouseDownCompCoords = null;
     }//GEN-LAST:event_jPanel4MouseReleased
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

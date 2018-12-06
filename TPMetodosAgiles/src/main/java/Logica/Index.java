@@ -4,7 +4,6 @@ package Logica;
 import Persistencia.Usuario;
 import Presentacion.Inicio;
 import Presentacion.Login;
-import Presentacion.Login2;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFrame;

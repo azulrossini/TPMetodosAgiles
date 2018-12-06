@@ -499,6 +499,7 @@ public class IndexView extends javax.swing.JFrame {
 
     private void altaUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_altaUsuarioActionPerformed
         AltaUsuario au = new AltaUsuario(user);
+        this.altaUsuario.setBackground(this.altaUsuario.getBackground().brighter());
         this.dispose();
     }//GEN-LAST:event_altaUsuarioActionPerformed
 
@@ -540,15 +541,16 @@ public class IndexView extends javax.swing.JFrame {
     }//GEN-LAST:event_botonBuscarActionPerformed
 
     private void buscarUsuarioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buscarUsuarioMouseEntered
-        // TODO add your handling code here:
+        this.buscarUsuario.setBackground(this.buscarUsuario.getBackground().darker());
     }//GEN-LAST:event_buscarUsuarioMouseEntered
 
     private void buscarUsuarioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buscarUsuarioMouseExited
-        // TODO add your handling code here:
+        this.buscarUsuario.setBackground(this.buscarUsuario.getBackground().brighter());
     }//GEN-LAST:event_buscarUsuarioMouseExited
 
     private void buscarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarUsuarioActionPerformed
         BuscarUsuario bu = new BuscarUsuario();
+        this.buscarUsuario.setBackground(this.buscarUsuario.getBackground().brighter());
         this.dispose();
     }//GEN-LAST:event_buscarUsuarioActionPerformed
 

@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 
 public class ElegirLicencia extends javax.swing.JFrame {
@@ -326,6 +325,7 @@ public class ElegirLicencia extends javax.swing.JFrame {
     private void jButtonRenovarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRenovarActionPerformed
         RenovarLicencia rl = new RenovarLicencia(licencias.get(tabla.getSelectedRow()), titular, personaController, licenciaController, usuario);
         rl.setVisible(true);
+        this.jButtonRenovar.setBackground(this.jButtonRenovar.getBackground().brighter());
         this.dispose();
     }//GEN-LAST:event_jButtonRenovarActionPerformed
     
@@ -340,9 +340,9 @@ public class ElegirLicencia extends javax.swing.JFrame {
                 if(l.getFechaVenc().after(new Date())){
                     aux.add(l);
                 }
-                
             } //Considero solo las licencias del titular seleccionado
         }
+        licencias = aux;
         verificarVigencias();
         for(int i = 0; i<aux.size(); i++){
             String datos[] = new String[3];                 

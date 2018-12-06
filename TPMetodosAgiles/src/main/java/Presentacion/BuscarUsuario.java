@@ -9,6 +9,7 @@ import Logica.UsuarioController;
 import Persistencia.Usuario;
 import java.util.List;
 import Logica.Index;
+import java.awt.Point;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -22,6 +23,7 @@ public class BuscarUsuario extends javax.swing.JFrame {
     private final UsuarioController usuarioController;
     private List<Usuario> usuarios;
     private DefaultTableModel dtm;
+    private Point mouseDownCompCoords = null;
 
     /**
      * Creates new form BuscarUsuario
@@ -307,16 +309,16 @@ public class BuscarUsuario extends javax.swing.JFrame {
     }
     
     private void jPanel4MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseDragged
-        /*Point currCoords = evt.getLocationOnScreen();
-        this.setLocation(currCoords.x - mouseDownCompCoords.x, currCoords.y - mouseDownCompCoords.y);*/
+        Point currCoords = evt.getLocationOnScreen();
+        this.setLocation(currCoords.x - mouseDownCompCoords.x, currCoords.y - mouseDownCompCoords.y);
     }//GEN-LAST:event_jPanel4MouseDragged
 
     private void jPanel4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MousePressed
-        //mouseDownCompCoords = evt.getPoint();
+        mouseDownCompCoords = evt.getPoint();
     }//GEN-LAST:event_jPanel4MousePressed
 
     private void jPanel4MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseReleased
-        //mouseDownCompCoords = null;
+        mouseDownCompCoords = null;
     }//GEN-LAST:event_jPanel4MouseReleased
 
     private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed

@@ -9,6 +9,7 @@ import Logica.*;
 import Persistencia.*;
 import javax.swing.JOptionPane;
 import Logica.Index;
+import java.awt.Point;
 import java.util.StringTokenizer;
 import javax.swing.ImageIcon;
 
@@ -20,6 +21,7 @@ public class ModificarDatosTitular extends javax.swing.JFrame {
     private Persona persona;
     private PersonaController personaController;
     private String calle, numero, piso, dpto;
+    private Point mouseDownCompCoords = null;
 
     /**
      * Creates new form ModificarDatosUsuario
@@ -511,15 +513,16 @@ public class ModificarDatosTitular extends javax.swing.JFrame {
     }//GEN-LAST:event_botonActualizarKeyTyped
 
     private void jPanel4MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseDragged
-        
+        Point currCoords = evt.getLocationOnScreen();
+        this.setLocation(currCoords.x - mouseDownCompCoords.x, currCoords.y - mouseDownCompCoords.y);
     }//GEN-LAST:event_jPanel4MouseDragged
 
     private void jPanel4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MousePressed
-        
+        mouseDownCompCoords = evt.getPoint();
     }//GEN-LAST:event_jPanel4MousePressed
 
     private void jPanel4MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseReleased
-        
+        mouseDownCompCoords = null;
     }//GEN-LAST:event_jPanel4MouseReleased
 
     private void jTextFieldPisoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPisoActionPerformed

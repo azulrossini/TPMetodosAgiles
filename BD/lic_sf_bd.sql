@@ -1,9 +1,9 @@
-﻿-- phpMyAdmin SQL Dump
+-- phpMyAdmin SQL Dump
 -- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Nov 07, 2018 at 04:06 AM
+-- Generation Time: Dec 06, 2018 at 02:22 AM
 -- Server version: 5.7.23
 -- PHP Version: 7.2.10
 
@@ -21,8 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `lic_sf_bd`
 --
-CREATE DATABASE IF NOT EXISTS `lic_sf_bd` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `lic_sf_bd`;
 
 -- --------------------------------------------------------
 
@@ -127,8 +125,15 @@ CREATE TABLE IF NOT EXISTS `licencia` (
   KEY `fk_usuario_lic` (`usuario_id`),
   KEY `fk_costo_lic` (`costo_id`),
   KEY `fk_vigencia_lic` (`vigencia_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `licencia`
+--
+
+INSERT INTO `licencia` (`id`, `persona_id`, `clase_id`, `usuario_id`, `costo_id`, `vigencia_id`, `motivo`, `fecha_emision`, `fecha_venc`, `observaciones`) VALUES
+(28, 23, 'A', 8, 4, 3, 'ORIGINAL', '2018-12-05', '2023-12-01', ''),
+(29, 25, 'A', 8, 4, 3, 'ORIGINAL', '2018-12-05', '2023-09-12', '');
 
 -- --------------------------------------------------------
 
@@ -149,7 +154,7 @@ CREATE TABLE IF NOT EXISTS `persona` (
   `factor` varchar(1) NOT NULL,
   `donante` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `persona`
@@ -157,7 +162,9 @@ CREATE TABLE IF NOT EXISTS `persona` (
 
 INSERT INTO `persona` (`id`, `tipo_id`, `nro_id`, `apellido`, `nombre`, `fecha_nac`, `domicilio`, `grupo_sanguineo`, `factor`, `donante`) VALUES
 (1, 'DNI', '40053701', 'Fedele', 'Fausto', '1997-05-06', 'Avellaneda 2178', 'O', '+', 1),
-(5, 'DNI', '40115862', 'Rossini', 'Azul', '1997-05-21', 'La Tatenguita 478  ', 'O', '+', 1);
+(23, 'DNI', '40115862', 'Rossini', 'Azul', '1990-12-01', 'Suipacha 1284 3 b', 'O', '+', 0),
+(25, 'DNI', '12342857', 'Gola', 'Maria', '1974-09-12', 'Suipacha  1212  ', 'O', '+', 0),
+(26, 'DNI', '12846725', 'Perez', 'Julia', '1999-09-08', 'Las heras 1212  ', 'O', '+', 1);
 
 -- --------------------------------------------------------
 
@@ -173,7 +180,14 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `privilegio` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `uk_username` (`username`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `usuario`
+--
+
+INSERT INTO `usuario` (`id`, `username`, `password`, `privilegio`) VALUES
+(8, 'fausto', 0x86515242db62049db33a2c63ead9d5334bd4c144, 1);
 
 -- --------------------------------------------------------
 
