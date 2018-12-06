@@ -902,7 +902,6 @@ public class FiltroListadoLicencias extends javax.swing.JFrame {
         //Seteo en true - Impresión de todas las vigentes
         tipo = true;
         try {
-            Index.historial.remove(Index.historial.size()-1);
             this.dispose();
             ListadoLicencias LL = new ListadoLicencias(tipo, user);
         } catch (ParseException ex) {
@@ -939,7 +938,6 @@ public class FiltroListadoLicencias extends javax.swing.JFrame {
             }else{
                 try {
                     tipo = true;
-                    Index.historial.remove(Index.historial.size()-1);
                     this.dispose();
                     ListadoLicencias LL = new ListadoLicencias(tipo, fechaDesde.getText(), fechaHasta.getText(), user);
                 } catch (ParseException ex) {
@@ -1001,7 +999,6 @@ public class FiltroListadoLicencias extends javax.swing.JFrame {
     private void todas2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_todas2ActionPerformed
         tipo = false;
         try {
-            Index.historial.remove(Index.historial.size()-1);
             this.dispose();
             ListadoLicencias LL = new ListadoLicencias(tipo, user);
         } catch (ParseException ex) {
@@ -1044,7 +1041,6 @@ public class FiltroListadoLicencias extends javax.swing.JFrame {
             }else{
                 try {
                     tipo = false;
-                    Index.historial.remove(Index.historial.size()-1);
                     this.dispose();
                     ListadoLicencias LL = new ListadoLicencias(tipo, fechaDesde1.getText(), fechaHasta1.getText(), user);
                 } catch (ParseException ex) {

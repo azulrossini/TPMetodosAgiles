@@ -116,8 +116,9 @@ public class ListadoLicencias extends javax.swing.JFrame {
         if(listaLicencia.isEmpty()){
             
             JOptionPane.showMessageDialog(null,"No hay licencias para mostrar que cumplan con los criterios");
-            IndexView index = new IndexView(user);
+            Index.historial.get(Index.historial.size()-2).setVisible(true);
             this.dispose();
+            Index.historial.remove(Index.historial.size()-1);
         
         //SI EXISTEN, CARGO LA JTABLE
         }else{
@@ -165,8 +166,9 @@ public class ListadoLicencias extends javax.swing.JFrame {
         if(listaLicencia.isEmpty()){
             
             JOptionPane.showMessageDialog(null,"No hay licencias para mostrar que cumplan con los criterios");
-            IndexView index = new IndexView(user);
+            Index.historial.get(Index.historial.size()-2).setVisible(true);
             this.dispose();
+            Index.historial.remove(Index.historial.size()-1);
             
         }else{
             
@@ -415,6 +417,7 @@ public class ListadoLicencias extends javax.swing.JFrame {
         //VERIFICO QUE TIPO DE LICENCIA Y SI SON TODAS O RANGO
         //TAMBIEN SI SON EXPIRADAS O VIGENTES
         
+        Index.historial.get(Index.historial.size()-2).setVisible(true);
         this.dispose();
         Index.historial.remove(Index.historial.size()-1);
         

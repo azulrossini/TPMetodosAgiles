@@ -253,9 +253,8 @@ public class ImprimirController {
                     try {
                         Cargando load = new Cargando();
                         JasperPrintManager.printReport(jp, true); 
-                        System.out.println("Despues del printReport");
                         load.dispose();
-                        Index.historial.get(Index.historial.size()-1).setVisible(true);
+                        JOptionPane.showMessageDialog(null,"Impresión correcta");
                     } catch (JRException ex) {
                         JOptionPane.showMessageDialog(null,"Impresión cancelada"); 
                         Logger.getLogger(ImprimirController.class.getName()).log(Level.SEVERE, null, ex);
@@ -282,11 +281,11 @@ public class ImprimirController {
                 }finally{
                     try {                        
                         Cargando load = new Cargando();
-                        JasperPrintManager.printReport(jp, true); 
-                        System.out.println("Despues del printReport");
-                        load.dispose();                        
-                        Index.historial.get(Index.historial.size()-1).setVisible(true);
+                        JasperPrintManager.printReport(jp, true);
+                        load.dispose();
+                        JOptionPane.showMessageDialog(null,"Impresión correcta");
                     } catch (JRException ex) {
+                        JOptionPane.showMessageDialog(null,"Impresión cancelada"); 
                         Logger.getLogger(ImprimirController.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
@@ -314,10 +313,10 @@ public class ImprimirController {
                     try {
                         Cargando load = new Cargando();
                         JasperPrintManager.printReport(jp, true); 
+                        load.dispose();
                         JOptionPane.showMessageDialog(null,"Impresión correcta");
-                        load.dispose();                        
-                        Index.historial.get(Index.historial.size()-1).setVisible(true);
                     } catch (JRException ex) {
+                        JOptionPane.showMessageDialog(null,"Impresión cancelada"); 
                         Logger.getLogger(ImprimirController.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
@@ -345,10 +344,10 @@ public class ImprimirController {
                     try {
                         Cargando load = new Cargando();
                         JasperPrintManager.printReport(jp, true);
+                        load.dispose();               
                         JOptionPane.showMessageDialog(null,"Impresión correcta");
-                        load.dispose();                        
-                        Index.historial.get(Index.historial.size()-1).setVisible(true); 
                     } catch (JRException ex) {
+                        JOptionPane.showMessageDialog(null,"Impresión cancelada"); 
                         Logger.getLogger(ImprimirController.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
