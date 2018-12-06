@@ -275,15 +275,17 @@ public class RenovarLicencia extends javax.swing.JFrame {
             try {
                 il = new ImprimirLicencia(titular, licencia);
                 il.setVisible(true);
-                this.setEnabled(false);
-                RenovarLicencia este = this;
-                il.addWindowListener(new WindowAdapter(){
-                    @Override
-                    public void windowClosed(WindowEvent we) {
-                        este.setEnabled(true);
-                        este.setAlwaysOnTop(false);
-                    }
-                });
+                this.dispose();
+                Index.historial.remove(Index.historial.size()-1);
+//                this.setEnabled(false);
+//                RenovarLicencia este = this;
+//                il.addWindowListener(new WindowAdapter(){
+//                    @Override
+//                    public void windowClosed(WindowEvent we) {
+//                        este.setEnabled(true);
+//                        este.setAlwaysOnTop(false);
+//                    }
+//                });
             } catch (IOException ex) {
                 Logger.getLogger(RenovarLicencia.class.getName()).log(Level.SEVERE, null, ex);
             }

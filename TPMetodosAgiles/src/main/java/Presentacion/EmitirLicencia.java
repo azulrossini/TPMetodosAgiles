@@ -331,16 +331,9 @@ public class EmitirLicencia extends javax.swing.JFrame {
                     try {
                         il = new ImprimirLicencia(titular, licencia);
                         il.setVisible(true);
-                        this.setEnabled(false);
-                        EmitirLicencia este = this;
-                        il.addWindowListener(new WindowAdapter(){
-                            @Override
-                            public void windowClosed(WindowEvent we) {
-                                este.setEnabled(true);
-                                este.setAlwaysOnTop(false);
-                            }   
-                        });
-                    } 
+                        this.dispose();
+                        Index.historial.remove(Index.historial.size()-1);
+                    }
                     catch (IOException ex) {
                         Logger.getLogger(EmitirLicencia.class.getName()).log(Level.SEVERE, null, ex);
                     }

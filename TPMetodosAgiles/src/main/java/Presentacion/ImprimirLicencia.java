@@ -18,12 +18,14 @@ public class ImprimirLicencia extends javax.swing.JFrame {
     private final ImprimirController ic;
     //Se define un objeto para manejar el desplazamiento cuando el usuario mantenga pulsado el clic sobre el frame y arrastre el puntero
     private Point mouseDownCompCoords = null;
+    private Licencia licencia;
 
     
     public ImprimirLicencia(Persona p, Licencia l) throws IOException {
         initComponents();
         setIconImage(new ImageIcon(getClass().getResource("/favicon.png")).getImage());
         ic = new ImprimirController(p, l);
+        this.licencia=l;
         this.cargarCampos(p, l);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
@@ -505,17 +507,45 @@ public class ImprimirLicencia extends javax.swing.JFrame {
     }//GEN-LAST:event_minimizarActionPerformed
 
     private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
-        //Cuando el usuario presiona el botón salir, se vuelve a visualizar la pantalla llamadora a esta
-        Index.historial.get(Index.historial.size()-2).setVisible(true);
-        this.dispose();
+        if(this.licencia.getMotivo().equals(LicenciaController.Motivo.DUPLICADO.toString())){
+            Index.historial.get(Index.historial.size()-2).setVisible(true);
+            this.dispose();
+        }
+        else{
+            if (this.licencia.getMotivo().equals(LicenciaController.Motivo.ORIGINAL.toString())){
+                Index.historial.get(Index.historial.size()-3).setVisible(true);
+                this.dispose();
+                Index.historial.remove(Index.historial.size()-2);
+            }
+            else{
+                Index.historial.get(Index.historial.size()-2).setVisible(true);
+                this.dispose();
+                
+            }
+        }
         //Se elimina del historial la pantalla actual
         Index.historial.remove(Index.historial.size()-1);
     }//GEN-LAST:event_salirActionPerformed
 
     private void atrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atrasActionPerformed
         //Mismo funcionamiento que salir
-        this.dispose();
-        Index.historial.get(Index.historial.size()-2).setVisible(true);
+        if(this.licencia.getMotivo().equals(LicenciaController.Motivo.DUPLICADO.toString())){
+            Index.historial.get(Index.historial.size()-2).setVisible(true);
+            this.dispose();
+        }
+        else{
+            if (this.licencia.getMotivo().equals(LicenciaController.Motivo.ORIGINAL.toString())){
+                Index.historial.get(Index.historial.size()-3).setVisible(true);
+                this.dispose();
+                Index.historial.remove(Index.historial.size()-2);
+            }
+            else{
+                Index.historial.get(Index.historial.size()-2).setVisible(true);
+                this.dispose();
+                
+            }
+        }
+        //Se elimina del historial la pantalla actual
         Index.historial.remove(Index.historial.size()-1);
     }//GEN-LAST:event_atrasActionPerformed
 

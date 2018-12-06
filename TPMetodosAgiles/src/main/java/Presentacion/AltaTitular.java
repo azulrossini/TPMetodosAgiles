@@ -725,7 +725,7 @@ public class AltaTitular extends javax.swing.JFrame {
            
         }
             boolean donante = this.jRadioButtonDonanteSi.isSelected();
-            Persona nuevoTitular = new Persona(tipo1, numeroDocumento, apellido, nombre, fechaNac, domicilio, grupoSang, rh, donante);
+            Persona nuevoTitular = new Persona(tipo1, numeroDocumento, apellido.toUpperCase(), nombre.toUpperCase(), fechaNac, domicilio.toUpperCase(), grupoSang, rh, donante);
             
             
             //Llama para emitir una licencia con el titular creado

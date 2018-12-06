@@ -466,12 +466,12 @@ public class ModificarDatosTitular extends javax.swing.JFrame {
             case 0:
             try {
                 //Actualizo la persona existente
-                persona.setNombre(this.jTextFieldNombre.getText());
-                persona.setApellido(this.jTextFieldApellido.getText());
-                this.calle=this.jTextFieldCalle.getText();
-                this.numero=this.jTextFieldNumeroCalle.getText();
-                this.piso=this.jTextFieldPiso.getText();
-                this.dpto=this.jTextFieldDepartamento.getText();
+                persona.setNombre(this.jTextFieldNombre.getText().toUpperCase());
+                persona.setApellido(this.jTextFieldApellido.getText().toUpperCase());
+                this.calle=this.jTextFieldCalle.getText().toUpperCase();
+                this.numero=this.jTextFieldNumeroCalle.getText().toUpperCase();
+                this.piso=this.jTextFieldPiso.getText().toUpperCase();
+                this.dpto=this.jTextFieldDepartamento.getText().toUpperCase();
                 
                 persona.setDomicilio(calle+" "+numero+" "+piso+" "+dpto);
                 persona.setDonante(jRadioButtonDonanteSi.isSelected());
