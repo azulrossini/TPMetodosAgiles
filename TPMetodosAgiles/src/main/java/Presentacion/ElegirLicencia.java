@@ -340,9 +340,9 @@ public class ElegirLicencia extends javax.swing.JFrame {
                 if(l.getFechaVenc().after(new Date())){
                     aux.add(l);
                 }
-                
             } //Considero solo las licencias del titular seleccionado
         }
+        licencias = aux;
         verificarVigencias();
         for(int i = 0; i<aux.size(); i++){
             String datos[] = new String[3];                 

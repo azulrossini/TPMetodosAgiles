@@ -153,6 +153,11 @@ public class RenovarLicencia extends javax.swing.JFrame {
         fieldClase.setEditable(false);
         fieldClase.setBackground(new java.awt.Color(206, 206, 206));
         fieldClase.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
+        fieldClase.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fieldClaseActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -303,6 +308,10 @@ public class RenovarLicencia extends javax.swing.JFrame {
         mouseDownCompCoords = null;
     }//GEN-LAST:event_jPanel4MouseReleased
 
+    private void fieldClaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldClaseActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fieldClaseActionPerformed
+
     private boolean almacenarLicencia(){
         if(controlarCDE(licencia.getClaseId())){
             licencia.setFechaVenc(new Date());
@@ -337,6 +346,8 @@ public class RenovarLicencia extends javax.swing.JFrame {
     }
     
     private void cargarClase(){
+        System.out.println(licencia.getClaseId());
+        
         this.fieldClase.setText(licencia.getClaseId());
     }
     
