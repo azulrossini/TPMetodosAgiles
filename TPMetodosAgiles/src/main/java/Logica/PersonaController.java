@@ -176,7 +176,7 @@ public class PersonaController {
     }
     public boolean validarCalle(String calle, String numeroCalle, String piso, String depart){
         //Valido que tenga solo espacios y/o letras y que la longitud no sobrepase la de la BD
-        if(calle.matches("((\\s?)[a-zA-Z]+(\\s?))+") && (calle.length()+numeroCalle.length()+piso.length()+depart.length())<32) return true;
+        if(calle.matches("((\\s?)[a-zA-Z0-9]+(\\s?))+") && (calle.length()+numeroCalle.length()+piso.length()+depart.length())<32) return true;
         else return false;
     }
     public boolean validarNumeroCalle(String numeroCalle){
