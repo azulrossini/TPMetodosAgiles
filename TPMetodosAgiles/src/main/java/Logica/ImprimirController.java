@@ -11,7 +11,6 @@ import Persistencia.Vigencias;
 import Presentacion.Cargando;
 import Persistencia.Costos;
 import Presentacion.ImprimirLicencia;
-import Presentacion.IndexView;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;

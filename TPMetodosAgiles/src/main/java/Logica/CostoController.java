@@ -20,20 +20,6 @@ public class CostoController {
         return (costoAdmin + costoLicencia);
     }
     
-    public void imprimirComprobanteDePago(String tipoLicencia, int aniosVigencia){
-        //Creo una instancia de la clase encargada de crear e imprimir reportes
-        ImprimirController ic = new ImprimirController(tipoLicencia, aniosVigencia, costoAdmin);
-        //Imprimo el comprobante
-        ic.imprimirComprobanteDePago();
-    }
-    
-    public void verComprobanteDePago(String tipoLicencia, int aniosVigencia){
-        //Creo una instancia de la clase encargada de crear e imprimir reportes
-        ImprimirController ic = new ImprimirController(tipoLicencia, aniosVigencia, costoAdmin);        
-        //Ver el comprobante
-        ic.verComprobanteDePago();
-    }
-    
     public int getCostoId(){
         return this.costo.getId();
     }
