@@ -44,7 +44,7 @@ public class ImprimirLicencia extends javax.swing.JFrame {
         this.dom.setText(p.getDomicilio());
         this.rh.setText(p.getGrupoSanguineo() + p.getFactor());
         this.tipo.setText(l.getMotivo());
-        this.vigencia.setText(String.valueOf(ic.getDuracionLicencia()));
+        this.vigencia.setText(String.valueOf(ic.getDuracionLicencia())+" años");
     }
 
 
@@ -81,7 +81,6 @@ public class ImprimirLicencia extends javax.swing.JFrame {
         imprimir = new javax.swing.JButton();
         cargarImagen = new javax.swing.JButton();
         don = new javax.swing.JTextField();
-        jLabel30 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -154,12 +153,14 @@ public class ImprimirLicencia extends javax.swing.JFrame {
         });
 
         titular.setEditable(false);
-        titular.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 18)); // NOI18N
-        titular.setEnabled(false);
+        titular.setBackground(new java.awt.Color(204, 204, 204));
+        titular.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 18)); // NOI18N
+        titular.setBorder(null);
 
         dni.setEditable(false);
-        dni.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 18)); // NOI18N
-        dni.setEnabled(false);
+        dni.setBackground(new java.awt.Color(204, 204, 204));
+        dni.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 18)); // NOI18N
+        dni.setBorder(null);
 
         jLabel22.setBackground(new java.awt.Color(51, 51, 51));
         jLabel22.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 18)); // NOI18N
@@ -167,8 +168,9 @@ public class ImprimirLicencia extends javax.swing.JFrame {
         jLabel22.setText("DNI:");
 
         clase.setEditable(false);
-        clase.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 18)); // NOI18N
-        clase.setEnabled(false);
+        clase.setBackground(new java.awt.Color(204, 204, 204));
+        clase.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 18)); // NOI18N
+        clase.setBorder(null);
 
         jLabel23.setBackground(new java.awt.Color(51, 51, 51));
         jLabel23.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 18)); // NOI18N
@@ -181,8 +183,9 @@ public class ImprimirLicencia extends javax.swing.JFrame {
         jLabel24.setText("Vigencia:");
 
         vigencia.setEditable(false);
-        vigencia.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 18)); // NOI18N
-        vigencia.setEnabled(false);
+        vigencia.setBackground(new java.awt.Color(204, 204, 204));
+        vigencia.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 18)); // NOI18N
+        vigencia.setBorder(null);
 
         jLabel25.setBackground(new java.awt.Color(51, 51, 51));
         jLabel25.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 18)); // NOI18N
@@ -190,8 +193,9 @@ public class ImprimirLicencia extends javax.swing.JFrame {
         jLabel25.setText("Tipo:");
 
         tipo.setEditable(false);
-        tipo.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 18)); // NOI18N
-        tipo.setEnabled(false);
+        tipo.setBackground(new java.awt.Color(204, 204, 204));
+        tipo.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 18)); // NOI18N
+        tipo.setBorder(null);
 
         jLabel26.setBackground(new java.awt.Color(51, 51, 51));
         jLabel26.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 18)); // NOI18N
@@ -199,8 +203,9 @@ public class ImprimirLicencia extends javax.swing.JFrame {
         jLabel26.setText("Fecha de nacimiento:");
 
         fechanac.setEditable(false);
-        fechanac.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 18)); // NOI18N
-        fechanac.setEnabled(false);
+        fechanac.setBackground(new java.awt.Color(204, 204, 204));
+        fechanac.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 18)); // NOI18N
+        fechanac.setBorder(null);
 
         vistaPrevia.setBackground(new java.awt.Color(255, 255, 255));
         vistaPrevia.setFont(new java.awt.Font("Microsoft JhengHei UI", 1, 12)); // NOI18N
@@ -226,8 +231,9 @@ public class ImprimirLicencia extends javax.swing.JFrame {
         jLabel27.setText("RH y factor:");
 
         rh.setEditable(false);
-        rh.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 18)); // NOI18N
-        rh.setEnabled(false);
+        rh.setBackground(new java.awt.Color(204, 204, 204));
+        rh.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 18)); // NOI18N
+        rh.setBorder(null);
 
         jLabel28.setBackground(new java.awt.Color(51, 51, 51));
         jLabel28.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 18)); // NOI18N
@@ -235,8 +241,9 @@ public class ImprimirLicencia extends javax.swing.JFrame {
         jLabel28.setText("Domicilio:");
 
         dom.setEditable(false);
-        dom.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 18)); // NOI18N
-        dom.setEnabled(false);
+        dom.setBackground(new java.awt.Color(204, 204, 204));
+        dom.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 18)); // NOI18N
+        dom.setBorder(null);
 
         jLabel29.setBackground(new java.awt.Color(51, 51, 51));
         jLabel29.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 18)); // NOI18N
@@ -280,13 +287,9 @@ public class ImprimirLicencia extends javax.swing.JFrame {
         });
 
         don.setEditable(false);
-        don.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 18)); // NOI18N
-        don.setEnabled(false);
-
-        jLabel30.setBackground(new java.awt.Color(51, 51, 51));
-        jLabel30.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 18)); // NOI18N
-        jLabel30.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel30.setText("años");
+        don.setBackground(new java.awt.Color(204, 204, 204));
+        don.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 18)); // NOI18N
+        don.setBorder(null);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -336,14 +339,11 @@ public class ImprimirLicencia extends javax.swing.JFrame {
                                     .addComponent(jLabel23, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel29, javax.swing.GroupLayout.Alignment.TRAILING))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tipo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(clase, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(don, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addComponent(vigencia, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel30)))
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(tipo, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                    .addComponent(clase, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                    .addComponent(don, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                    .addComponent(vigencia))
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -385,26 +385,25 @@ public class ImprimirLicencia extends javax.swing.JFrame {
                             .addComponent(titular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel23)
                             .addComponent(clase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel22)
                             .addComponent(dni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel24)
-                            .addComponent(vigencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel30))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(vigencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel26)
                             .addComponent(fechanac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel25)
                             .addComponent(tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel27)
                             .addComponent(rh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel29)
                             .addComponent(don, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel28)
                             .addComponent(dom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -541,7 +540,6 @@ public class ImprimirLicencia extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
-    private javax.swing.JLabel jLabel30;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;

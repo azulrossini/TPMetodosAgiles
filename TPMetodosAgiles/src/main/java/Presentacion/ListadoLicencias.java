@@ -416,6 +416,7 @@ public class ListadoLicencias extends javax.swing.JFrame {
         //TAMBIEN SI SON EXPIRADAS O VIGENTES
         
         this.dispose();
+        Index.historial.remove(Index.historial.size()-1);
         
         try {
             if(flagTodas){

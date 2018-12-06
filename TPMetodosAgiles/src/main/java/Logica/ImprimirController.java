@@ -255,8 +255,8 @@ public class ImprimirController {
                         Cargando load = new Cargando();
                         JasperPrintManager.printReport(jp, true); 
                         System.out.println("Despues del printReport");
-                        load.dispose();                        
-                        IndexView index = new IndexView(null);
+                        load.dispose();
+                        Index.historial.get(Index.historial.size()-1).setVisible(true);
                     } catch (JRException ex) {
                         JOptionPane.showMessageDialog(null,"Impresión cancelada"); 
                         Logger.getLogger(ImprimirController.class.getName()).log(Level.SEVERE, null, ex);
@@ -286,7 +286,7 @@ public class ImprimirController {
                         JasperPrintManager.printReport(jp, true); 
                         System.out.println("Despues del printReport");
                         load.dispose();                        
-                        IndexView index = new IndexView(null);
+                        Index.historial.get(Index.historial.size()-1).setVisible(true);
                     } catch (JRException ex) {
                         Logger.getLogger(ImprimirController.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -317,7 +317,7 @@ public class ImprimirController {
                         JasperPrintManager.printReport(jp, true); 
                         JOptionPane.showMessageDialog(null,"Impresión correcta");
                         load.dispose();                        
-                        IndexView index = new IndexView(null);  
+                        Index.historial.get(Index.historial.size()-1).setVisible(true);
                     } catch (JRException ex) {
                         Logger.getLogger(ImprimirController.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -348,7 +348,7 @@ public class ImprimirController {
                         JasperPrintManager.printReport(jp, true);
                         JOptionPane.showMessageDialog(null,"Impresión correcta");
                         load.dispose();                        
-                        IndexView index = new IndexView(null); 
+                        Index.historial.get(Index.historial.size()-1).setVisible(true); 
                     } catch (JRException ex) {
                         Logger.getLogger(ImprimirController.class.getName()).log(Level.SEVERE, null, ex);
                     }

@@ -2,8 +2,6 @@ package Presentacion;
 
 import Logica.*;
 import Persistencia.Usuario;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -904,8 +902,9 @@ public class FiltroListadoLicencias extends javax.swing.JFrame {
         //Seteo en true - Impresión de todas las vigentes
         tipo = true;
         try {
-            ListadoLicencias LL = new ListadoLicencias(tipo, user);
+            Index.historial.remove(Index.historial.size()-1);
             this.dispose();
+            ListadoLicencias LL = new ListadoLicencias(tipo, user);
         } catch (ParseException ex) {
             Logger.getLogger(FiltroListadoLicencias.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -940,8 +939,9 @@ public class FiltroListadoLicencias extends javax.swing.JFrame {
             }else{
                 try {
                     tipo = true;
-                    ListadoLicencias LL = new ListadoLicencias(tipo, fechaDesde.getText(), fechaHasta.getText(), user);
+                    Index.historial.remove(Index.historial.size()-1);
                     this.dispose();
+                    ListadoLicencias LL = new ListadoLicencias(tipo, fechaDesde.getText(), fechaHasta.getText(), user);
                 } catch (ParseException ex) {
                     Logger.getLogger(FiltroListadoLicencias.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -980,8 +980,9 @@ public class FiltroListadoLicencias extends javax.swing.JFrame {
     }//GEN-LAST:event_todas1ActionPerformed
 
     private void back2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back2ActionPerformed
-        IndexView indexView = new IndexView(user);
+        Index.historial.remove(Index.historial.size()-1);
         this.dispose();
+        Index.historial.get(Index.historial.size()-2).setVisible(true);
     }//GEN-LAST:event_back2ActionPerformed
 
     private void minimize2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minimize2ActionPerformed
@@ -1000,8 +1001,9 @@ public class FiltroListadoLicencias extends javax.swing.JFrame {
     private void todas2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_todas2ActionPerformed
         tipo = false;
         try {
-            ListadoLicencias LL = new ListadoLicencias(tipo, user);
+            Index.historial.remove(Index.historial.size()-1);
             this.dispose();
+            ListadoLicencias LL = new ListadoLicencias(tipo, user);
         } catch (ParseException ex) {
             Logger.getLogger(FiltroListadoLicencias.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1042,8 +1044,9 @@ public class FiltroListadoLicencias extends javax.swing.JFrame {
             }else{
                 try {
                     tipo = false;
-                    ListadoLicencias LL = new ListadoLicencias(tipo, fechaDesde1.getText(), fechaHasta1.getText(), user);
+                    Index.historial.remove(Index.historial.size()-1);
                     this.dispose();
+                    ListadoLicencias LL = new ListadoLicencias(tipo, fechaDesde1.getText(), fechaHasta1.getText(), user);
                 } catch (ParseException ex) {
                     Logger.getLogger(FiltroListadoLicencias.class.getName()).log(Level.SEVERE, null, ex);
                 }
