@@ -71,12 +71,6 @@ public class ImprimirController {
         persona = p;
         lic = l;
     }
-
-     public ImprimirController(String tipoLicencia, int aniosVigencia, float costoAdmin){
-        persona = null;
-        lic = null;
-        cargarParametrosComprobante();
-    }
     
     private void cargarParametrosComprobante(){
         //Cargo los parametros del comprobante
