@@ -98,7 +98,7 @@ public class AltaTitularTest {
         
         //calle (caracteres erroneos)
         anio="1990";
-        calle="Francia75";
+        calle="Francia=";
         rtdo=p.validarDatos(PersonaController.TipoDocumento.CUIT, numDocumento, nombre, apellido, dia, mes, anio, calle, numeroCalle, piso, depart);
         assertEquals(false, rtdo[6]);
         
