@@ -11,6 +11,7 @@ import Persistencia.Vigencias;
 import Presentacion.Cargando;
 import Persistencia.Costos;
 import Presentacion.ImprimirLicencia;
+import Presentacion.IndexView;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -256,6 +257,8 @@ public class ImprimirController {
                         System.out.println("Despues del printReport");
                         load.dispose();
                         Index.historial.get(Index.historial.size()-1).setVisible(true);
+                        
+                        
                     } catch (JRException ex) {
                         JOptionPane.showMessageDialog(null,"Impresión cancelada"); 
                         Logger.getLogger(ImprimirController.class.getName()).log(Level.SEVERE, null, ex);
