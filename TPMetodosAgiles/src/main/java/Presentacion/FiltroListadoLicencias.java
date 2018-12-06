@@ -978,9 +978,9 @@ public class FiltroListadoLicencias extends javax.swing.JFrame {
     }//GEN-LAST:event_todas1ActionPerformed
 
     private void back2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back2ActionPerformed
-        Index.historial.remove(Index.historial.size()-1);
-        this.dispose();
         Index.historial.get(Index.historial.size()-2).setVisible(true);
+        this.dispose();
+        Index.historial.remove(Index.historial.size()-1);
     }//GEN-LAST:event_back2ActionPerformed
 
     private void minimize2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minimize2ActionPerformed
