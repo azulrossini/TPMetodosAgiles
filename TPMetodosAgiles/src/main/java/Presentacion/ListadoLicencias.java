@@ -138,7 +138,8 @@ public class ListadoLicencias extends javax.swing.JFrame {
                 
                 datos[0] = licencia.getId(); //ID
                 datos[1] = licencia.getClaseId(); //ClaseID
-                datos[2] = parseoFechaVigencia(lController.getFechaVigencia(vigencia, persona.getFechaNac())); //CALCULO LA VIGENCIA
+                datos[2] = parseoFechaVigencia(licencia.getFechaVenc()); //CALCULO LA VIGENCIA
+                //datos[2] = parseoFechaVigencia(lController.getFechaVigencia(vigencia, persona.getFechaNac())); //CALCULO LA VIGENCIA
                 datos[3] = persona.getApellido(); //Apellido
                 datos[4] = persona.getNombre(); //Nombre
                 datos[5] = persona.getGrupoSanguineo(); //GrupoSanguineo
@@ -187,7 +188,8 @@ public class ListadoLicencias extends javax.swing.JFrame {
                 
                 datos[0] = licencia.getId(); //ID
                 datos[1] = licencia.getClaseId(); //ClaseID
-                datos[2] = parseoFechaVigencia(lController.getFechaVigencia(vigencia, persona.getFechaNac())); //CALCULO LA VIGENCIA
+                //datos[2] = parseoFechaVigencia(lController.getFechaVigencia(vigencia, persona.getFechaNac())); //CALCULO LA VIGENCIA
+                datos[2] = parseoFechaVigencia(licencia.getFechaVenc()); //CALCULO LA VIGENCIA
                 datos[3] = persona.getApellido(); //Apellido
                 datos[4] = persona.getNombre(); //Nombre
                 datos[5] = persona.getGrupoSanguineo(); //GrupoSanguineo

@@ -16,7 +16,7 @@ public class Index {
     public static void main(String[] args) throws Exception {
         Inicio init = new Inicio();
         //Se crea cuenta ejemplo con privilegios de superusuario
-        Usuario nuevo = new Usuario("fausto", CryptoUtils.computeHash("fedele"), true);
+        Usuario nuevo = new Usuario("admin", CryptoUtils.computeHash("admin"), true);
         try{
             GenericDAO.create(nuevo);
         }catch(Exception e){
